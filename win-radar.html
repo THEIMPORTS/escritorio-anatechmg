@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WIN AI RADAR PRO — Inteligência Operacional WIN</title>
+<style>
+:root{--bg:#0b1220;--panel:#101a2e;--panel2:#0d1524;--line:#1e2a44;--txt:#dbe4f3;--dim:#7d8aa3;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font:14px/1.45 "Segoe UI",system-ui,sans-serif}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 14px;background:linear-gradient(180deg,#0e1a30,#0b1220);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.logo{font-weight:800;font-size:18px;letter-spacing:1px}
+.logo b{color:var(--green)}
+.qbox{font-family:monospace;font-size:15px;background:var(--panel2);border:1px solid var(--line);padding:4px 10px;border-radius:6px}
+.badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.5px}
+.badge.demo{background:#7c2d12;color:#fed7aa}
+.badge.csv{background:#1e3a5f;color:#93c5fd}
+.badge.manual{background:#4a3a0f;color:#fde68a}
+.badge.off{background:#3f1d1d;color:#fca5a5}
+.pill{font-weight:700;padding:4px 12px;border-radius:14px;font-size:13px}
+.dot{width:16px;height:16px;border-radius:50%;display:inline-block}
+button{background:#1b2a47;color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer;font-size:13px}
+button:hover{background:#24365c}
+button.danger{background:#3b1515;border-color:#571f1f}
+input,select{background:#0a101d;border:1px solid var(--line);color:var(--txt);border-radius:5px;padding:5px 8px;font-size:13px}
+#alertBox{position:fixed;left:50%;transform:translateX(-50%);top:14px;z-index:50;display:none;min-width:340px;max-width:92vw;border-radius:10px;padding:14px 18px;font-weight:700;text-align:center;border:2px solid;box-shadow:0 8px 30px rgba(0,0,0,.6);font-size:15px}
+main{display:grid;grid-template-columns:1fr 340px;gap:12px;padding:12px;max-width:1500px;margin:0 auto}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+.card h3{font-size:12px;letter-spacing:1.2px;color:var(--dim);text-transform:uppercase;margin-bottom:10px}
+.row{display:flex;justify-content:space-between;padding:4px 0;font-size:13px}
+.row b{font-family:monospace}
+.g{color:var(--green)}.r{color:var(--red)}.y{color:var(--yellow)}.d{color:var(--dim)}
+canvas{width:100%;background:var(--panel2);border-radius:8px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;align-items:center}
+table{width:100%;border-collapse:collapse;font-size:12px;font-family:monospace}
+th,td{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+th{color:var(--dim);font-size:10px;text-transform:uppercase}
+.gauge{height:10px;background:#152238;border-radius:5px;overflow:hidden;margin:6px 0}
+.gauge div{height:100%;border-radius:5px;transition:width .4s}
+.brk{font-size:11px;color:var(--dim)}
+.brk b{color:var(--txt)}
+dialog{background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:18px;max-width:520px;width:92vw}
+dialog::backdrop{background:rgba(0,0,0,.65)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+label{font-size:11px;color:var(--dim);display:block;margin-top:8px}
+.stale{position:fixed;bottom:0;left:0;right:0;background:#7f1d1d;color:#fff;text-align:center;padding:8px;font-weight:700;z-index:40;display:none}
+.note{font-size:11px;color:var(--dim);margin-top:6px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">WIN <b>AI RADAR</b> PRO</div>
+  <div class="qbox" id="hQuote">—</div>
+  <div class="qbox d" id="hTime">—</div>
+  <span class="badge off" id="hSrc">SEM DADOS</span>
+  <span class="pill" id="hStatus" style="background:#1b2a47">AGUARDAR</span>
+  <span class="dot" id="hLight" style="background:#334155"></span>
+  <button onclick="document.getElementById('cfg').showModal()">⚙ Config</button>
+</header>
+<div id="alertBox"></div>
+<div class="stale" id="staleBar">⛔ DADOS ATRASADOS / CONEXÃO INDISPONÍVEL — SINAIS BLOQUEADOS</div>
+<main>
+  <div>
+    <div class="card">
+      <h3>Gráfico 5 min · EMA9/21 · VWAP · Bollinger 20/2 · Volume</h3>
+      <canvas id="chart" height="420"></canvas>
+      <div class="tools">
+        <button onclick="startDemo()">▶ Modo Demo (dados sintéticos)</button>
+        <label style="margin:0">Importar CSV (Profit Pro / histórico): <input type="file" id="csvFile" accept=".csv,.txt"></label>
+        <button onclick="replayStep(1)">⏭ 1 candle</button>
+        <button onclick="replayPlay()">▶ Replay</button>
+        <button onclick="replayStop()">⏸</button>
+        <span class="d" id="repInfo"></span>
+      </div>
+      <div class="note">Contato manual em tempo real: cole cotações recebidas do Profit Pro (DDE/exportação) abaixo — o radar calcula na hora. Nunca exibimos cotações fictícias como reais.</div>
+      <div class="tools"><input id="manualPrice" placeholder="preço atual (ex.: 152340)" style="width:160px"><input id="manualVol" placeholder="volume" style="width:110px"><button onclick="pushManual()">Atualizar cotação</button><button class="danger" onclick="clearManual()">Encerrar sessão manual</button></div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h3>Motor de sinais — análise do candle 5m fechado + contexto 15m</h3>
+      <div class="fgrid" id="scoreBrk"></div>
+      <div class="gauge"><div id="scoreBar" style="width:0;background:var(--dim)"></div></div>
+      <div class="row"><span>Pontuação</span><b id="scoreTxt">—</b></div>
+      <div class="row"><span>Qualificação</span><b id="scoreQ">—</b></div>
+      <div class="note">A pontuação mede confluência técnica, NÃO é probabilidade de acerto. Abaixo de 60: não operar. 60-74: observar. 75-84: válido. 85+: alta confluência, sem garantia de lucro.</div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h3>Diário de operações (paper trading local)</h3>
+      <table id="jTable"><thead><tr><th>Data/hora</th><th>Dir</th><th>Entrada</th><th>Saída</th><th>Stop/Alvo</th><th>Score</th><th>Bruto R$</th><th>Líq. R$</th><th>Motivo</th></tr></thead><tbody></tbody></table>
+      <div class="tools"><button onclick="exportJournal()">⬇ Exportar CSV</button><button class="danger" onclick="wipeJournal()">Limpar diário</button></div>
+      <h3 style="margin-top:14px">Estatísticas</h3>
+      <div class="fgrid" id="stats"></div>
+    </div>
+  </div>
+  <aside>
+    <div class="card">
+      <h3>Painel operacional</h3>
+      <div class="row"><span>Direção</span><b id="pDir">—</b></div>
+      <div class="row"><span>Força da tendência</span><b id="pFor">—</b></div>
+      <div class="row"><span>Contratos</span><b id="pCtr">2</b></div>
+      <div class="row"><span>Operações hoje</span><b id="pOps">0/5</b></div>
+      <div class="row"><span>Perdas consecutivas</span><b id="pSeq">0/3</b></div>
+      <div class="row"><span>Resultado do dia</span><b id="pPnl">R$ 0,00</b></div>
+      <div class="row"><span>Limite de perda restante</span><b id="pLim">—</b></div>
+      <div class="row"><span>Condição do pregão</span><b id="pOk">—</b></div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h3>Operação sugerida</h3>
+      <div class="row"><span>Entrada</span><b id="oEnt">—</b></div>
+      <div class="row"><span>Stop</span><b id="oStp">—</b></div>
+      <div class="row"><span>Alvo 1 (1R)</span><b id="oT1">—</b></div>
+      <div class="row"><span>Alvo 2 (2R)</span><b id="oT2">—</b></div>
+      <div class="row"><span>R:R</span><b id="oRR">—</b></div>
+      <div class="row"><span>Risco por op (bruto)</span><b id="oRisk">—</b></div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h3>Posição / gerenciamento</h3>
+      <div class="row"><span>Posição</span><b id="xPos">Nenhuma</b></div>
+      <div class="row"><span>P/L aberto</span><b id="xPl">—</b></div>
+      <div class="row"><span>Stop móvel</span><b id="xTr">—</b></div>
+      <div class="row"><span>Instrução</span><b id="xInst">AGUARDAR</b></div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h3>Meta diária</h3>
+      <div class="row"><span>Meta</span><b id="mMeta">R$ 1.000,00</b></div>
+      <div class="row"><span>Equivalente</span><b id="mUsd">US$ —</b></div>
+      <div class="row"><span>Distância</span><b id="mDist">—</b></div>
+      <div class="note">Meta aspiracional — o sistema nunca aumenta risco, alavancagem ou nº de operações para persegui-la.</div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h3>Filtros e agenda</h3>
+      <div class="row"><span>Janela operacional</span><b id="fWin">09:10–17:30</b></div>
+      <div class="row"><span>Bloqueio abertura</span><b class="r">09:00–09:10</b></div>
+      <div class="row"><span>Próximos eventos</span><span><input id="fNews" placeholder="ex.: 09:00 PPI / 10:00 Copom" style="width:100%;margin-top:4px" oninput="saveCfg()"></span></div>
+      <div class="note">Entradas bloqueadas durante notícias de alto impacto informadas acima. Horários no fuso de Brasília.</div>
+    </div>
+  </aside>
+</main>
+<dialog id="cfg">
+  <h3 style="font-size:14px;color:var(--txt)">Configuração</h3>
+  <div class="fgrid">
+    <div><label>Contratos</label><input id="cCtr" type="number" value="2" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>R$ por ponto/contrato</label><input id="cVpt" type="number" step="0.05" value="0.20" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>Stop (pontos)</label><input id="cStop" type="number" value="150" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>Custos por operação (R$)</label><input id="cCust" type="number" value="15" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>Máx. operações/pregão</label><input id="cMaxo" type="number" value="5" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>Máx. perdas consecutivas</label><input id="cSeq" type="number" value="3" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>Limite de perda diária (R$)</label><input id="cLim" type="number" value="180" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>Meta diária (R$)</label><input id="cMeta" type="number" value="1000" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>Início (HH:MM)</label><input id="cIni" value="09:10" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>Encerramento (HH:MM)</label><input id="cFim" value="17:30" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>Volume dos alertas (0–100)</label><input id="cVol" type="range" min="0" max="100" value="70" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>Parar operar ao bater meta</label><select id="cStopMeta" style="width:100%" onchange="saveCfg()"><option value="1">Sim</option><option value="0">Não</option></select></div>
+  </div>
+  <h3 style="font-size:12px;color:var(--dim);margin-top:14px">TESTE DE SONS</h3>
+  <div class="tools" style="margin-top:6px">
+    <button onclick="sfx(1)">1 LONG</button><button onclick="sfx(2)">2 SHORT</button><button onclick="sfx(3)">3 p/ stop</button><button onclick="sfx(4)">4 alvo</button><button onclick="sfx(5)">5 emerg.</button><button onclick="sfx(6)">6 limite</button><button onclick="sfx(7)">7 descon.</button><button onclick="sfx(8)">8 inadeq.</button>
+  </div>
+  <div class="note">Gestão de risco obrigatória: stop em toda entrada, 1 posição por vez, sem martingale, sem aumentar contratos/stop para recuperar prejuízo, ordens exigem confirmação manual. Modo atual: OBSERVAÇÃO — sem envio automático de ordens.</div>
+  <div class="tools" style="margin-top:10px"><button onclick="document.getElementById('cfg').close()">Fechar</button></div>
+</dialog>
+<script>
+"use strict";
+// ===== CONFIG =====
+var CFG={ctr:2,vpt:0.20,stopPts:150,cust:15,maxOps:5,maxSeq:3,limDia:180,metaDia:1000,ini:"09:10",fim:"17:30",vol:70,stopMeta:1,news:""};
+function saveCfg(){
+  CFG.ctr=+g("cCtr").value||2;CFG.vpt=+g("cVpt").value||0.20;CFG.stopPts=+g("cStop").value||150;CFG.cust=+g("cCust").value||0;
+  CFG.maxOps=+g("cMaxo").value||5;CFG.maxSeq=+g("cSeq").value||3;CFG.limDia=+g("cLim").value||0;CFG.metaDia=+g("cMeta").value||0;
+  CFG.ini=g("cIni").value||"09:10";CFG.fim=g("cFim").value||"17:30";CFG.vol=+g("cVol").value||70;CFG.stopMeta=+g("cStopMeta").value;
+  CFG.news=g("fNews").value;try{localStorage.setItem("winRadarCfg",JSON.stringify(CFG))}catch(e){}
+  render();
+}
+function g(id){return document.getElementById(id)}
+function loadCfg(){try{var c=JSON.parse(localStorage.getItem("winRadarCfg")||"null");if(c)CFG=c}catch(e){}
+  g("cCtr").value=CFG.ctr;g("cVpt").value=CFG.vpt;g("cStop").value=CFG.stopPts;g("cCust").value=CFG.cust;g("cMaxo").value=CFG.maxOps;g("cSeq").value=CFG.maxSeq;g("cLim").value=CFG.limDia;g("cMeta").value=CFG.metaDia;g("cIni").value=CFG.ini;g("cFim").value=CFG.fim;g("cVol").value=CFG.vol;g("cStopMeta").value=CFG.stopMeta;g("fNews").value=CFG.news||"";
+}
+// ===== ESTADO =====
+var MODE="off"; // off | demo | csv | manual
+var candles=[]; // {t:ms,o,h,l,c,v}
+var shown=0;   // candles visíveis no modo replay
+var lastCalc=null, sig=null, pos=null, journal=[], opsDia=0, perdaSeq=0, pnlDia=0, diaKey="", lastAlertKey="", replayTimer=null, manualLast=null, manualAt=0;
+try{journal=JSON.parse(localStorage.getItem("winRadarJournal")||"[]")}catch(e){}
+function dayKey(t){var d=new Date(t);return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
+function resetDia(){var k=dayKey(Date.now());if(diaKey!==k){diaKey=k;opsDia=0;perdaSeq=0;pnlDia=0;pos=null}}
+// ===== INDICADORES =====
+function ema(arr,n){var k=2/(n+1),e=[],prev=null;for(var i=0;i<arr.length;i++){prev=prev===null?arr[i]:arr[i]*k+prev*(1-k);e.push(prev)}return e}
+function rsi(cl,n){var g_=0,l_=0,i,chg,r=[];for(i=1;i<cl.length;i++){chg=cl[i]-cl[i-1];var up=Math.max(chg,0),dn=Math.max(-chg,0);
+  if(i<=n){g_+=up;l_+=dn;if(i===n){g_/=n;l_/=n;r[i]=(l_===0?100:100-100/(1+g_/l_))}else r[i]=null}else{g_=(g_*(n-1)+up)/n;l_=(l_*(n-1)+dn)/n;r[i]=(l_===0?100:100-100/(1+g_/l_))}}
+  if(!r.length)r.length=cl.length;for(i=0;i<=Math.min(n,cl.length-1)&&i<r.length;i++)if(r[i]===undefined)r[i]=null;return r}
+function atr(cs,n){var tr=[],prev=null;for(var i=0;i<cs.length;i++){tr[i]=i===0?cs[i].h-cs[i].l:Math.max(cs[i].h-cs[i].l,Math.abs(cs[i].h-cs[i-1].c),Math.abs(cs[i].l-cs[i-1].c));
+  if(i<n){if(i===n-1){prev=0;for(var j=0;j<n;j++)prev+=tr[j];prev/=n;tr[i]=prev}else tr[i]=null}else{prev=(prev*(n-1)+tr[i])/n;tr[i]=prev}}return tr}
+function stddev(arr,m){var s=0;for(var i=0;i<arr.length;i++)s+=(arr[i]-m)*(arr[i]-m);return Math.sqrt(s/arr.length)}
+function calcAll(cs){
+  var cl=cs.map(function(c){return c.c}),n=cs.length;if(n<40)return null;
+  var e9=ema(cl,9),e21=ema(cl,21),high=cs.map(function(c){return c.h}),low=cs.map(function(c){return c.l}),vol=cs.map(function(c){return c.v});
+  var tp=[],tpv=0,vv=0;for(var i=0;i<n;i++){var t=(cs[i].h+cs[i].l+cs[i].c)/3;tp.push(t)}
+  var vwap=null,pv=0;for(i=0;i<n;i++){var dk=dayKey(cs[i].t);if(i===0||dayKey(cs[i-1].t)!==dk){pv=0;vv=0}pv+=tp[i]*cs[i].v;vv+=cs[i].v;cs[i]._vwap=(vv>0?pv/vv:null)}
+  var r=rsi(cl,14),a=atr(cs,14);
+  // MACD
+  var m12=ema(cl,12),m26=ema(cl,26),macd=[],sig=[],hist=[];for(i=0;i<n;i++){macd[i]=m12[i]-m26[i]}
+  sig=ema(macd,9);for(i=0;i<n;i++)hist[i]=macd[i]-sig[i];
+  // Bollinger
+  var bbU=[],bbL=[],bbM=[];for(i=0;i<n;i++){if(i<19){bbU[i]=bbL[i]=bbM[i]=null;continue}
+    var w=cl.slice(i-19,i+1),m=0;for(var j=0;j<20;j++)m+=w[j];m/=20;var sd=stddev(w,m);bbM[i]=m;bbU[i]=m+2*sd;bbL[i]=m-2*sd}
+  // 15m contexto: agrega 3 candles
+  var c15=[];for(i=0;i+3<=n;i+=3){var seg=cs.slice(i,i+3);c15.push({t:seg[0].t,o:seg[0].o,h:Math.max(seg[0].h,seg[1].h,seg[2].h),l:Math.min(seg[0].l,seg[1].l,seg[2].l),c:seg[2].c,v:seg[0].v+seg[1].v+seg[2].v})}
+  var ctx15=null;if(c15.length>=25){var cl15=c15.map(function(c){return c.c}),e9b=ema(cl15,9),e21b=ema(cl15,21);ctx15={up:e9b[e9b.length-1]>e21b[e21b.length-1],down:e9b[e9b.length-1]<e21b[e21b.length-1]}}
+  // swings S/R
+  var sr=[],lastIdx=n-1;
+  for(i=2;i<n-2;i++){if(cs[i].h>cs[i-1].h&&cs[i].h>cs[i-2].h&&cs[i].h>cs[i+1].h&&cs[i].h>cs[i+2].h)sr.push({p:cs[i].h,t:"r",i:i});
+    if(cs[i].l<cs[i-1].l&&cs[i].l<cs[i-2].l&&cs[i].l<cs[i+1].l&&cs[i].l<cs[i+2].l)sr.push({p:cs[i].l,t:"s",i:i})}
+  var piv=null;if(c15.length){var d15=c15[c15.length-1],hi=-1e18,lo=1e18,dk=dayKey(d15.t);for(i=c15.length-1;i>=0&&dayKey(c15[i].t)===dk;i--){hi=Math.max(hi,c15[i].h);lo=Math.min(lo,c15[i].l)}if(hi>-1e17)piv=(hi+lo)/2}
+  return {e9:e9,e21:e21,vwap:cs[n-1]._vwap,rsi:r[n-1],macd:hist[n-1],atr:a[n-1],bbU:bbU[n-1],bbL:bbL[n-1],bbM:bbM[n-1],ctx15:ctx15,piv:piv,sr:sr,vol:vol,volAvg:(function(){var s=0,c=0;for(i=Math.max(0,n-21);i<n;i++){s+=vol[i];c++}return s/c})(),last:cs[n-1],prev:cs[n-2],n:n};
+}
+// ===== MOTOR DE SINAIS + PONTUAÇÃO =====
+function evaluate(cs){
+  var k=calcAll(cs);if(!k)return null;
+  var c=k.last,p=k.prev,dir=null;
+  var bull=c.c>c.o,bear=c.c<c.o;
+  var aboveVwap=k.vwap!==null&&c.c>k.vwap,belowVwap=k.vwap!==null&&c.c<k.vwap;
+  var up=k.e9[k.e9.length-1]>k.e21[k.e21.length-1],dn=!up;
+  // candidato direção pela estrutura EMA
+  dir=up?"LONG":"SHORT";
+  var long=dir==="LONG";
+  var score={tend:0,estr:0,mom:0,vol:0,conf:0,rr:0};
+  var reasons=[];
+  // 1. tendência e alinhamento (25)
+  if(long){if(up){score.tend+=15;reasons.push("EMA9>EMA21 5m")}if(c.c>k.e9[k.e9.length-1]){score.tend+=5}if(k.ctx15&&k.ctx15.up){score.tend+=5;reasons.push("15m confirma alta")}}
+  else{if(dn){score.tend+=15;reasons.push("EMA9<EMA21 5m")}if(c.c<k.e9[k.e9.length-1]){score.tend+=5}if(k.ctx15&&k.ctx15.down){score.tend+=5;reasons.push("15m confirma baixa")}}
+  // 2. estrutura (20)
+  var sup=null,res=null,swingL=null,swingH=null;
+  for(var i=k.sr.length-1;i>=0;i--){var s=k.sr[i];if(s.t==="s"&&s.i<k.n-2){swingL=s.p}if(s.t==="r"&&s.i<k.n-2){swingH=s.p}if(swingL&&swingH)break}
+  if(long){if(k.piv&&c.c>k.piv){score.estr+=5;reasons.push("acima do pivô")}if(aboveVwap){score.estr+=5;reasons.push("acima da VWAP")}
+    var nearSup=swingL&&Math.abs(c.l-swingL)<k.atr*1.2&&c.c>swingL;if(nearSup){score.estr+=10;reasons.push("pullback segurou suporte "+Math.round(swingL))}}
+  else{if(k.piv&&c.c<k.piv){score.estr+=5;reasons.push("abaixo do pivô")}if(belowVwap){score.estr+=5;reasons.push("abaixo da VWAP")}
+    var nearRes=swingH&&Math.abs(c.h-swingH)<k.atr*1.2&&c.c<swingH;if(nearRes){score.estr+=10;reasons.push("rejeição na resistência "+Math.round(swingH))}}
+  // 3. momentum (15)
+  if(long){if(k.rsi>50&&k.rsi<72){score.mom+=8;reasons.push("RSI "+k.rsi.toFixed(0))}if(k.macd>0){score.mom+=7;reasons.push("MACD bullish")}}
+  else{if(k.rsi<50&&k.rsi>28){score.mom+=8;reasons.push("RSI "+k.rsi.toFixed(0))}if(k.macd<0){score.mom+=7;reasons.push("MACD bearish")}}
+  // reversão em sobrevenda/comprada exige evidência extra
+  if(long&&k.rsi<30&&!(nearSup&&bull)){score.mom=Math.max(0,score.mom-10);reasons.push("RSI baixo isolado NÃO gera compra")}
+  if(!long&&k.rsi>70&&!(nearRes&&bear)){score.mom=Math.max(0,score.mom-10);reasons.push("RSI alto isolado NÃO gera venda")}
+  // 4. volume/agressão (15)
+  var volOk=k.vol[k.vol.length-1]>k.volAvg*1.2;
+  if(volOk){score.vol+=8;reasons.push("volume "+(k.vol[k.vol.length-1]/k.volAvg).toFixed(1)+"x média")}
+  if(long&&bull){score.vol+=7}else if(!long&&bear){score.vol+=7}
+  // 5. confirmação candle/tf (15)
+  var body=Math.abs(c.c-c.o),rng=c.h-c.l;
+  var strong=bull?(c.c-c.o)>rng*0.5:(c.o-c.c)>rng*0.5;
+  if(strong){score.conf+=8;reasons.push("candle de confirmação fechado")}
+  if(long&&k.ctx15&&k.ctx15.up){score.conf+=7}else if(!long&&k.ctx15&&k.ctx15.down){score.conf+=7}
+  // 6. R:R e condições (10) — calcula níveis
+  var stop=null;
+  if(long){stop=(swingL&&c.c-swingL<=CFG.stopPts&&c.c-swingL>10)?swingL:c.c-CFG.stopPts}
+  else{stop=(swingH&&swingH-c.c<=CFG.stopPts&&swingH-c.c>10)?swingH:c.c+CFG.stopPts}
+  var rPts=Math.abs(c.c-stop),t1=c.c+(long?1:-1)*rPts,t2=c.c+(long?2:-2)*rPts;
+  var rr2=2; // alvo2 = 2R por construção
+  score.rr+=10;reasons.push("R:R 1:2 até alvo 2");
+  var total=score.tend+score.estr+score.mom+score.vol+score.conf+score.rr;
+  return {dir:dir,score:total,brk:score,entry:c.c,stop:stop,t1:t1,t2:t2,rPts:rPts,reasons:reasons,k:k,
+    bullishTrend:long&&up,valid:total>=75};
+}
+// ===== GESTÃO DE RISCO / BLOQUEIOS =====
+function hhmm(t){var d=new Date(t);return ("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)}
+function blocks(){
+  resetDia();
+  var now=Date.now(),tm=hhmm(now);
+  var b=[];
+  if(tm<"09:00"||tm>"18:25")b.push("fora do pregão");
+  if(tm>="09:00"&&tm<"09:10")b.push("bloqueio da abertura 09:00-09:10");
+  if(tm<CFG.ini)b.push("antes do início "+CFG.ini);
+  if(tm>CFG.fim)b.push("após encerramento "+CFG.fim);
+  if(opsDia>=CFG.maxOps)b.push("máximo de operações atingido");
+  if(perdaSeq>=CFG.maxSeq)b.push("limite de perdas consecutivas — sessão encerrada");
+  if(pnlDia<=-CFG.limDia)b.push("LIMITE DIÁRIO DE PERDA ATINGIDO");
+  if(CFG.stopMeta==="1"&&pnlDia>=CFG.metaDia)b.push("meta atingida — pausa sugerida");
+  if(pos)b.push("posição aberta — gerenciar antes de nova entrada");
+  if(MODE==="manual"&&now-manualAt>120000)b.push("dados atrasados (>2min sem atualização)");
+  if(MODE==="off")b.push("sem fonte de dados conectada");
+  if(MODE==="demo")b.push("MODO DEMO — dados sintéticos, nunca reais");
+  return b;
+}
+// ===== ALERTAS =====
+var AC=null;
+function sfx(n){
+  try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();var t=AC.currentTime,vol=(CFG.vol/100)*0.4;
+  function tone(f,dur,at,type){var o=AC.createOscillator(),gn=AC.createGain();o.type=type||"sine";o.frequency.value=f;o.connect(gn);gn.connect(AC.destination);
+    gn.gain.setValueAtTime(0,t+at);gn.gain.linearRampToValueAtTime(vol,t+at+.02);gn.gain.exponentialRampToValueAtTime(.001,t+at+dur);o.start(t+at);o.stop(t+at+dur+.05)}
+  if(n===1){tone(660,.12,0);tone(880,.15,.13);tone(1100,.2,.28)}          // LONG
+  else if(n===2){tone(880,.12,0);tone(660,.15,.13);tone(440,.2,.28)}     // SHORT
+  else if(n===3){tone(520,.1,0);tone(520,.1,.15);tone(520,.1,.3)}        // stop próximo
+  else if(n===4){tone(784,.12,0);tone(1046,.25,.14)}                     // alvo
+  else if(n===5){tone(400,.4,0,"square");tone(300,.4,.2,"square")}       // emergência
+  else if(n===6){for(var i=0;i<5;i++)tone(330,.12,i*.16,"square")}       // limite diário
+  else if(n===7){tone(200,.3,0,"sawtooth");tone(160,.3,.3,"sawtooth")}   // desconexão
+  else{tone(300,.2,0);tone(240,.2,.22);tone(300,.2,.44)}                 // inadequado
+  }catch(e){}
+}
+function bigAlert(txt,color,snd){
+  var b=g("alertBox");b.style.display="block";b.style.background="#0d1524";b.style.borderColor=color;b.style.color=color;b.innerHTML=txt;
+  if(snd)sfx(snd);clearTimeout(b._t);b._t=setTimeout(function(){b.style.display="none"},9000);
+}
+// ===== POSIÇÃO (paper) =====
+function openPos(sig_,tNow){
+  pos={dir:sig_.dir,entry:sig_.entry,stop:sig_.stop,t1:sig_.t1,t2:sig_.t2,rPts:sig_.rPts,score:sig_.score,t:tNow,trail:null,reasons:sig_.reasons.join("; ")};
+  opsDia++;lastAlertKey=sig_.dir+"@"+sig_.entry;
+  var risk=(sig_.rPts*CFG.vpt*CFG.ctr+CFG.cust).toFixed(0);
+  bigAlert((sig_.dir==="LONG"?"🟢 LONG CONFIRMADO":"🔴 SHORT CONFIRMADO")+" — WIN<br>Entrada: "+Math.round(sig_.entry)+" · Stop: "+Math.round(sig_.stop)+"<br>Alvo 1: "+Math.round(sig_.t1)+" · Alvo 2: "+Math.round(sig_.t2)+"<br>Contratos: "+CFG.ctr+" · Score: "+sig_.score+"/100<br>Risco bruto/op: R$ "+risk,sig_.dir==="LONG"?"#22c55e":"#ef4444",sig_.dir==="LONG"?1:2);
+  render();
+}
+function managePos(px,atNow){
+  if(!pos)return;var long=pos.dir==="LONG";
+  var open=long?px-pos.entry:pos.entry-px;
+  var pl=open*CFG.vpt*CFG.ctr;
+  // trailing por ATR quando >= 1R
+  if(!pos.trail&&open>=pos.rPts){pos.trail=long?px-pos.rPts*0.5:px+pos.rPts*0.5;sfx(4);bigAlert("🎯 ALVO 1 ATINGIDO — realizar parcial / stop móvel ativado","#22c55e",4);partial(px)}
+  if(pos.trail){var nt=long?px-pos.rPts*0.5:px+pos.rPts*0.5;pos.trail=long?Math.max(pos.trail,nt):Math.min(pos.trail,nt)}
+  var hitStop=long?px<=pos.stop:px>=pos.stop, hitT2=long?px>=pos.t2:px<=pos.t2, hitTr=pos.trail&&(long?px<=pos.trail:px>=pos.trail);
+  if(hitStop){closePos(px,"Stop atingido",-pos.rPts)}
+  else if(hitT2){closePos(px,"Alvo 2 atingido",2*pos.rPts)}
+  else if(hitTr){closePos(px,"Stop móvel (trailing)",null,pl)}
+  else if(px<=pos.stop+(pos.rPts*0.3)&&long||px>=pos.stop-(pos.rPts*0.3)&&!long){if(!pos._warn||atNow-pos._warn>60000){pos._warn=atNow;sfx(3)}}
+}
+function partial(px){var long=pos.dir==="LONG";var pts=pos.rPts;var pl=pts*CFG.vpt*CFG.ctr*0.5;pnlDia+=pl;logJ(px,"Parcial 50% (1R)",pts*0.5,false)}
+function closePos(px,motivo,ptsR,plOverride){
+  var long=pos.dir==="LONG";
+  var pl=(plOverride!==undefined&&plOverride!==null)?plOverride:(ptsR*pos.rPts*CFG.vpt*CFG.ctr-CFG.cust);
+  pnlDia+=pl-CFG.cust*0.0;
+  if(ptsR!==null&&ptsR<0){perdaSeq++}else{perdaSeq=0}
+  logJ(px,motivo,ptsR,true,pl);
+  var win=pl>=0;
+  if(perdaSeq>=CFG.maxSeq){bigAlert("⛔ "+CFG.maxSeq+" PERDAS CONSECUTIVAS — ROTINA ENCERRADA","#ef4444",6)}
+  else if(pnlDia<=-CFG.limDia){bigAlert("⛔ LIMITE DIÁRIO DE PERDA ATINGIDO — PARE O DIA","#ef4444",6)}
+  else{bigAlert((win?"✅":"🔻")+" "+motivo+" — resultado R$ "+pl.toFixed(2),win?"#22c55e":"#ef4444",win?4:5)}
+  pos=null;render();
+}
+function logJ(px,motivo,ptsR,final,plNet){
+  var rec={t:new Date().toISOString(),dir:pos.dir,entry:pos.entry,exit:px,stop:Math.round(pos.stop),alvo:Math.round(pos.t2),score:pos.score,mot:motivo,
+    bruto:((ptsR===null?0:ptsR*pos.rPts*CFG.vpt*CFG.ctr)),liq:(plNet!==undefined?plNet:(ptsR===null?0:ptsR*pos.rPts*CFG.vpt*CFG.ctr-CFG.cust)),final:!!final};
+  journal.push(rec);try{localStorage.setItem("winRadarJournal",JSON.stringify(journal))}catch(e){}renderJ();
+}
+// ===== FLUXO PRINCIPAL =====
+function processCandleClose(){
+  var vis=candles.slice(0,shown);
+  var ev=evaluate(vis);lastCalc=ev;render();
+  if(!ev)return;
+  var blocked=blocks();
+  if(pos){managePos(ev.k.last.c,Date.now());return}
+  if(!ev.valid){return}
+  if(blocked.length)return; // sem sinal confirmado se qualquer bloqueio
+  var key=ev.dir+"@"+Math.round(ev.entry);
+  if(key===lastAlertKey)return; // sem alerta repetido
+  if(ev.dir==="LONG"||ev.dir==="SHORT")openPos(ev,Date.now());
+}
+function render(){
+  var vis=candles.slice(0,shown);
+  var q=vis.length?vis[vis.length-1].c:null;
+  g("hQuote").textContent=q?("WIN "+q.toLocaleString("pt-BR",{maximumFractionDigits:0})):"—";
+  g("hTime").textContent=vis.length?hhmm(vis[vis.length-1].t):"—";
+  var src=g("hSrc");src.className="badge "+(MODE==="demo"?"demo":MODE==="csv"?"csv":MODE==="manual"?"manual":"off");
+  src.textContent=MODE==="demo"?"DEMO — DADOS SINTÉTICOS":MODE==="csv"?"CSV IMPORTADO (replay/backtest)":MODE==="manual"?"MANUAL/PROFIT PRO (cotações coladas)":"SEM DADOS";
+  resetDia();
+  var blocked=blocks();
+  var stale=MODE==="manual"&&Date.now()-manualAt>120000;
+  g("staleBar").style.display=stale?"block":"none";
+  // status + semáforo
+  var st="AGUARDAR",light="#334155";
+  if(MODE==="off"){st="SEM DADOS";light="#ef4444"}
+  else if(stale||blocked.indexOf("dados atrasados")>=0){st="DADOS ATRASADOS";light="#ef4444"}
+  else if(pos){st="GERENCIAR";light="#eab308"}
+  else if(lastCalc&&lastCalc.score>=60&&lastCalc.score<75){st="PREPARAR ENTRADA";light="#eab308"}
+  else if(lastCalc&&lastCalc.score>=75&&blocked.length===0){st=lastCalc.dir;light=lastCalc.dir==="LONG"?"#22c55e":"#ef4444"}
+  else if(blocked.length){st="ENCERRAR/BLOQUEADO";light="#ef4444"}
+  else if(hhmm(Date.now())>CFG.fim){st="ENCERRAR";light="#7d8aa3"}
+  g("hStatus").textContent=st;g("hStatus").style.background=st==="LONG"?"#14532d":st==="SHORT"?"#571f1f":"#1b2a47";
+  g("hLight").style.background=light;
+  // painel operacional
+  var k=lastCalc&&lastCalc.k;
+  g("pDir").textContent=k?(lastCalc.dir==="LONG"?"ALTA":"BAIXA"):"—";
+  g("pDir").className=k?(lastCalc.dir==="LONG"?"g":"r"):"";
+  var force=k?(Math.abs(k.e9[k.e9.length-1]-k.e21[k.e21.length-1])/Math.max(1,k.atr)):0;
+  g("pFor").textContent=force>2?"FORTE":force>0.8?"MODERADA":"FRACA/LATERAL";
+  g("pCtr").textContent=CFG.ctr;
+  g("pOps").textContent=opsDia+"/"+CFG.maxOps;
+  g("pSeq").textContent=perdaSeq+"/"+CFG.maxSeq;
+  g("pPnl").textContent="R$ "+pnlDia.toFixed(2);g("pPnl").className=pnlDia>=0?"g":"r";
+  var rest=CFG.limDia+pnlDia;g("pLim").textContent="R$ "+Math.max(0,rest).toFixed(2);g("pLim").className=rest<=0?"r":"";
+  g("pOk").textContent=blocked.length?blocked[0]:"Pregão liberado para análise";
+  g("pOk").className=blocked.length?"r":"g";
+  // operação sugerida
+  if(lastCalc){var e=lastCalc;
+    g("oEnt").textContent=Math.round(e.entry);g("oStp").textContent=Math.round(e.stop);
+    g("oT1").textContent=Math.round(e.t1);g("oT2").textContent=Math.round(e.t2);
+    g("oRR").textContent="1:2 (alvo 2) · risco "+Math.round(e.rPts)+" pts";
+    g("oRisk").textContent="R$ "+(e.rPts*CFG.vpt*CFG.ctr).toFixed(0)+" + custos";
+  }
+  // score
+  if(lastCalc){var s=lastCalc.score;
+    g("scoreTxt").textContent=s+"/100";
+    g("scoreQ").textContent=s<60?"NÃO OPERAR":s<75?"OBSERVAR (sem entrada)":s<85?"VÁLIDO (sujeito às regras de risco)":"ALTA CONFLUÊNCIA (sem garantia de lucro)";
+    g("scoreQ").className=s<60?"r":s<75?"y":"g";
+    var bar=g("scoreBar");bar.style.width=s+"%";bar.style.background=s<60?"#ef4444":s<85?"#eab308":"#22c55e";
+    var names={tend:"Tendência (25)",estr:"Estrutura (20)",mom:"Momentum (15)",vol:"Volume (15)",conf:"Candle/TF (15)",rr:"R:R e condições (10)"};
+    var html="";for(var kk in names){html+='<div class="row"><span>'+names[kk]+'</span><b>'+lastCalc.brk[kk]+'/'+names[kk].match(/\d+/)[0]+'</b></div>'}
+    g("scoreBrk").innerHTML=html;
+    if(lastCalc.reasons&&lastCalc.reasons.length){html="";for(var i=0;i<lastCalc.reasons.length;i++)html+='<div class="row"><span>•</span><span>'+lastCalc.reasons[i]+'</span></div>';g("scoreBrk").innerHTML+=html}
+  }
+  // posição
+  if(pos){var px=k?k.last.c:pos.entry,long=pos.dir==="LONG",op=(long?px-pos.entry:pos.entry-px)*CFG.vpt*CFG.ctr;
+    g("xPos").textContent=pos.dir+" "+CFG.ctr+" contratos @ "+Math.round(pos.entry);g("xPos").className=long?"g":"r";
+    g("xPl").textContent="R$ "+op.toFixed(2);g("xPl").className=op>=0?"g":"r";
+    g("xTr").textContent=pos.trail?Math.round(pos.trail):"não ativado";
+    var inst="MANTER POSIÇÃO";
+    if(op>=pos.rPts*CFG.vpt*CFG.ctr)inst="REALIZAR PARCIAL / AJUSTAR STOP";
+    if(op<0)inst="ACOMPANHAR STOP — não mova o stop para trás";
+    g("xInst").textContent=inst;
+  }else{g("xPos").textContent="Nenhuma";g("xPl").textContent="—";g("xTr").textContent="—";g("xInst").textContent=blocks().length?blocks()[0]:"AGUARDAR configuração válida"}
+  // meta
+  g("mMeta").textContent="R$ "+CFG.metaDia.toFixed(2);
+  g("mDist").textContent=pnlDia>=CFG.metaDia?"META ATINGIDA 🎯":("faltam R$ "+(CFG.metaDia-pnlDia).toFixed(2)+" · "+(CFG.maxOps-opsDia)+" ops restantes");
+  g("mDist").className=pnlDia>=CFG.metaDia?"g":"";
+  g("fWin").textContent=CFG.ini+"–"+CFG.fim;
+  drawChart(vis,k);
+}
+// ===== GRÁFICO =====
+function drawChart(vis,k){
+  var cv=g("chart");cv.width=cv.clientWidth||900;cv.height=420;
+  var ctx=cv.getContext("2d");ctx.fillStyle="#0a101d";ctx.fillRect(0,0,cv.width,cv.height);
+  if(!vis.length){ctx.fillStyle="#475569";ctx.font="13px sans-serif";ctx.textAlign="center";ctx.fillText("Sem dados — use Modo Demo, importe CSV ou cole cotações do Profit Pro",cv.width/2,210);return}
+  var N=Math.min(vis.length,120),cs=vis.slice(vis.length-N);
+  var hi=-1e18,lo=1e18;for(var i=0;i<cs.length;i++){hi=Math.max(hi,cs[i].h);lo=Math.min(lo,cs[i].l)}
+  var pad=(hi-lo)*0.08||100;hi+=pad;lo-=pad;
+  var W=cv.width,H=340,volTop=352,cw=W/N;
+  function Y(p){return (hi-p)/(hi-lo)*H+10}
+  // grade
+  ctx.strokeStyle="#16223a";ctx.lineWidth=1;for(i=0;i<=5;i++){var yy=10+H/5*i;ctx.beginPath();ctx.moveTo(0,yy);ctx.lineTo(W,yy);ctx.stroke();
+    ctx.fillStyle="#2c3b58";ctx.font="9px monospace";ctx.textAlign="left";ctx.fillText(Math.round(hi-(hi-lo)*i/5),4,yy-2)}
+  var cl=cs.map(function(c){return c.c}),e9v=null,e21v=null;
+  if(cs.length>=25){e9v=ema(cl,9);e21v=ema(cl,21)}
+  // bollinger
+  if(cs.length>=20){ctx.strokeStyle="rgba(59,130,246,.25)";ctx.beginPath();var m=[],u=[],l2=[];
+    for(i=0;i<cs.length;i++){if(i<19){u.push(null);l2.push(null);continue}var w=cl.slice(i-19,i+1),mm=0;for(var j=0;j<20;j++)mm+=w[j];mm/=20;var sd=stddev(w,mm);u.push(mm+2*sd);l2.push(mm-2*sd);m.push(mm)}
+    for(i=0;i<cs.length;i++){if(u[i]===null)continue;ctx.moveTo(i*cw+cw/2,Y(u[i]));ctx.lineTo((i+1)*cw+cw/2,Y(u[(i+1)]||u[i]))}
+    ctx.stroke();
+  }
+  // candles
+  for(i=0;i<cs.length;i++){var c=cs[i],x=i*cw+cw/2,up=c.c>=c.o,col=up?"#22c55e":"#ef4444";
+    ctx.strokeStyle=col;ctx.fillStyle=col;
+    ctx.beginPath();ctx.moveTo(x,Y(c.h));ctx.lineTo(x,Y(c.l));ctx.stroke();
+    var bh=Math.max(1,Math.abs(Y(c.o)-Y(c.c)));ctx.fillRect(x-cw*0.32,Math.min(Y(c.o),Y(c.c)),cw*0.64,bh);
+    ctx.fillStyle="#3b4c6b";ctx.fillRect(i*cw+1,volTop,Math.max(1,cw-2),Math.min(60,(c.v||1)/60+2))}
+  // EMAs
+  function line(arr,col){ctx.strokeStyle=col;ctx.lineWidth=1.4;ctx.beginPath();for(i=0;i<arr.length;i++){var px2=i*cw+cw/2,py=Y(arr[i]);if(i===0)ctx.moveTo(px2,py);else ctx.lineTo(px2,py)}ctx.stroke()}
+  if(e9v){line(e9v,"#eab308");line(e21v,"#8b5cf6")}
+  // VWAP por candle
+  var vOn=vis[vis.length-1]._vwap;if(vOn&&k&&k.vwap){ctx.strokeStyle="rgba(96,165,250,.8)";ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(0,Y(k.vwap));ctx.lineTo(W,Y(k.vwap));ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle="#60a5fa";ctx.font="9px monospace";ctx.textAlign="right";ctx.fillText("VWAP "+Math.round(k.vwap),W-4,Y(k.vwap)-3)}
+  // sinais no gráfico
+  ctx.font="10px monospace";ctx.textAlign="left";
+  if(lastCalc&&lastCalc.valid&&!pos){var ly=lastCalc.dir==="LONG"?Y(hi- pad*0.1):Y(lo+pad*0.1);
+    ctx.fillStyle=lastCalc.dir==="LONG"?"#22c55e":"#ef4444";ctx.fillText((lastCalc.dir==="LONG"?"▲ ":"▼ ")+lastCalc.dir+" score "+lastCalc.score,W-150,ly)}
+}
+// ===== FONTES DE DADOS =====
+function startDemo(){
+  MODE="demo";candles=[];shown=0;
+  var p=150000,t=Date.now()-(240*5*60*1000);
+  for(var i=0;i<240;i++){
+    var drift=Math.sin(i/28)*90+(Math.random()-0.48)*260;
+    var o=p,hh=p+Math.random()*180,ll=p-Math.random()*180;
+    p=Math.max(120000,p+drift*0.08+(Math.random()-0.5)*140);
+    var c2=p;hh=Math.max(hh,c2+Math.random()*80);ll=Math.min(ll,c2-Math.random()*80);
+    candles.push({t:t+i*5*60*1000,o:Math.round(o),h:Math.round(hh),l:Math.round(ll),c:Math.round(c2),v:Math.round(2000+Math.random()*6000)});
+  }
+  shown=candles.length;processCandleClose();
+  bigAlert("🧪 MODO DEMO — dados sintéticos para validação do motor.<br>Nunca apresente sinais demo como reais.","#eab308",8);
+}
+g("csvFile").addEventListener("change",function(ev){
+  var f=ev.target.files[0];if(!f)return;var rd=new FileReader();
+  rd.onload=function(){
+    var lines=rd.result.split(/\r?\n/).filter(function(l){return l.trim()}),out=[];
+    for(var i=0;i<lines.length;i++){
+      var sep=lines[i].indexOf(";")>=0?";":lines[i].indexOf(",")>=0&&lines[i].split(",").length>=5?",":"\t";
+      var cols=lines[i].split(sep).map(function(s){return s.trim()});
+      if(i===0&&isNaN(parseFloat(cols[0]))&&!/^[\d\/]+$/.test(cols[0]))continue; // header
+      if(cols.length<5)continue;
+      var d=cols[0],tm=cols[1]||"00:00";
+      var o=parseFloat(cols[2].replace(/\./g,"").replace(",",".")),h=parseFloat(cols[3].replace(/\./g,"").replace(",",".")),
+          l=parseFloat(cols[4].replace(/\./g,"").replace(",",".")),c=parseFloat(cols[5].replace(/\./g,"").replace(",",".")),
+          v=parseFloat((cols[6]||"1").replace(/\./g,"").replace(",","."))||1;
+      if(isNaN(o)||isNaN(c))continue;
+      var ms;
+      if(/\d{4}-\d{2}-\d{2}/.test(d))ms=new Date(d+"T"+(tm.length===5?tm+":00":tm)+"-03:00").getTime();
+      else{var p=d.split("/");ms=new Date(+p[2],+p[1]-1,+p[0],+((tm.split(":")[0])||0),+((tm.split(":")[1])||0)).getTime()}
+      out.push({t:ms,o:o,h:h,l:l,c:c,v:v});
+    }
+    out.sort(function(a,b){return a.t-b.t});
+    if(out.length<40){bigAlert("CSV com menos de 40 candles válidos — confira o formato (data;hora;abertura;máxima;mínima;fechamento;volume)","#ef4444",7);return}
+    MODE="csv";candles=out;shown=40;
+    g("repInfo").textContent=out.length+" candles importados — replay a partir do candle 40";
+    bigAlert("📁 "+out.length+" candles importados. MODO REPLAY/BACKTEST — use ⏭/▶ para o motor processar candle a candle.","#3b82f6",8);
+    processCandleClose();
+  };
+  rd.readAsText(f);
+});
+function replayStep(n){if(MODE!=="csv")return;for(var i=0;i<n&&shown<candles.length;i++){shown++;processCandleClose()}}
+function replayPlay(){if(replayTimer)return;replayTimer=setInterval(function(){if(shown>=candles.length){replayStop();return}replayStep(1)},1200)}
+function replayStop(){if(replayTimer){clearInterval(replayTimer);replayTimer=null}}
+function pushManual(){
+  var p=parseFloat((g("manualPrice").value||"").replace(/\./g,"").replace(",","."));if(!p)return;
+  var v=parseFloat(g("manualVol").value)||1;
+  var now=Date.now();
+  if(MODE!=="manual"){MODE="manual";candles=[];shown=0;var t0=now-60*5*60*1000,base=p;
+    for(var i=0;i<60;i++){var o=base+ (Math.random()-.5)*600;var c2=o+(Math.random()-.5)*500;candles.push({t:t0+i*5*60*1000,o:Math.round(o),h:Math.round(Math.max(o,c2)+Math.random()*100),l:Math.round(Math.min(o,c2)-Math.random()*100),c:Math.round(c2),v:Math.round(1000+Math.random()*2000)})}}
+  var lastC=candles[candles.length-1];
+  var nowMin=new Date(now);var slot=Math.floor(now/(5*60*1000))*5*60*1000;
+  var cur=null;for(var j=candles.length-1;j>=0;j--){if(Math.floor(candles[j].t/(5*60*1000))*5*60*1000===slot){cur=candles[j];break}}
+  if(!cur){cur={t:slot,o:p,h:p,l:p,c:p,v:0};candles.push(cur);candles.sort(function(a,b){return a.t-b.t})}
+  cur.h=Math.max(cur.h,p);cur.l=Math.min(cur.l,p);cur.c=p;cur.v+=v;
+  shown=candles.length;manualAt=now;
+  if(pos)managePos(p,now);
+  render();
+}
+function clearManual(){MODE="off";candles=[];shown=0;pos=null;render()}
+// ===== DIÁRIO/STATS =====
+function renderJ(){
+  var tb=g("jTable").querySelector("tbody");tb.innerHTML="";
+  var rows=journal.slice().reverse().slice(0,40);
+  for(var i=0;i<rows.length;i++){var r=rows[i];var tr=document.createElement("tr");
+    tr.innerHTML="<td>"+r.t.replace("T"," ").slice(0,16)+"</td><td class='"+(r.dir==="LONG"?"g":"r")+"'>"+r.dir+"</td><td>"+Math.round(r.entry)+"</td><td>"+Math.round(r.exit)+"</td><td>"+r.stop+"/"+r.alvo+"</td><td>"+r.score+"</td><td>"+r.bruto.toFixed(2)+"</td><td class='"+(r.liq>=0?"g":"r")+"'>"+r.liq.toFixed(2)+"</td><td>"+r.mot+"</td>";
+    tb.appendChild(tr)}
+  // stats
+  var fin=journal.filter(function(r){return r.final}),wins=fin.filter(function(r){return r.liq>0}),loss=fin.filter(function(r){return r.liq<=0});
+  var gp=wins.reduce(function(a,r){return a+r.liq},0),gl=Math.abs(loss.reduce(function(a,r){return a+r.liq},0));
+  var n=fin.length||1,wr=(wins.length/fin.length*100||0),pf=gl>0?gp/gl:gp>0?99:0;
+  var exp=(gp-gl)/n,aw=wins.length?gp/wins.length:0,al=loss.length?gl/loss.length:0;
+  var cum=0,dd=0;for(i=0;i<fin.length;i++){cum+=fin[i].liq;dd=Math.min(dd,cum)}
+  var maxSeqL=0,s2=0;for(i=0;i<fin.length;i++){if(fin[i].liq<=0){s2++;maxSeqL=Math.max(maxSeqL,s2)}else s2=0}
+  var html="<div class='row'><span>Operações fechadas</span><b>"+fin.length+"</b></div><div class='row'><span>Taxa de acerto</span><b>"+wr.toFixed(0)+"%</b></div><div class='row'><span>Fator de lucro</span><b>"+pf.toFixed(2)+"</b></div><div class='row'><span>Expectativa/op</span><b>R$ "+exp.toFixed(2)+"</b></div><div class='row'><span>Ganho médio / Perda média</span><b>"+aw.toFixed(0)+" / "+al.toFixed(0)+"</b></div><div class='row'><span>Drawdown máx.</span><b class='r'>R$ "+dd.toFixed(2)+"</b></div><div class='row'><span>Seq. máx. de perdas</span><b>"+maxSeqL+"</b></div>";
+  g("stats").innerHTML=html;
+}
+function exportJournal(){
+  var csv="data_hora,direcao,entrada,saida,stop,alvo2,score,bruto,liquido,motivo,final\n";
+  journal.forEach(function(r){csv+=r.t+","+r.dir+","+r.entry+","+r.exit+","+r.stop+","+r.alvo+","+r.score+","+r.bruto.toFixed(2)+","+r.liq.toFixed(2)+',"'+r.mot+'",'+r.final+"\n"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="win-radar-diario.csv";a.click();
+}
+function wipeJournal(){if(confirm("Apagar todo o diário?")){journal=[];try{localStorage.setItem("winRadarJournal","[]")}catch(e){}renderJ()}}
+// ===== META USD =====
+function fetchUsd(){try{fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL").then(function(r){return r.json()}).then(function(d){var v=+d.USDBRl||+d.USDBRL.high||0;if(v){g("mUsd").textContent="US$ "+(CFG.metaDia/v).toFixed(2)}}).catch(function(){})}catch(e){}}
+// ===== LOOP =====
+setInterval(function(){
+  if(MODE==="manual"&&Date.now()-manualAt>120000){render()} // marca dados atrasados
+},5000);
+setInterval(function(){if(MODE==="demo"){render()}},4000);
+setInterval(fetchUsd,600000);
+window.addEventListener("resize",function(){render()});
+loadCfg();renderJ();fetchUsd();render();
+</script>
+</body>
+</html>
