@@ -63,10 +63,10 @@ label{font-size:11px;color:var(--dim);display:block;margin-top:8px}
 <main>
   <div>
     <div class="card">
-      <h3>Gráfico 5 min · EMA9/21 · VWAP · Bollinger 20/2 · Volume</h3>
+      <h3>Gráfico 5 min · EMA9/21 · VWAP · Bollinger 20/2 · HILO Flow · Volume</h3>
       <canvas id="chart" height="420"></canvas>
       <div class="tools">
-        <button onclick="startDemo()">▶ Modo Demo (dados sintéticos)</button>
+        <button onclick="startAuto()">🔗 Modo AUTO (ponte ProfitDLL)</button><button onclick="startDemo()">▶ Modo Demo (dados sintéticos)</button>
         <label style="margin:0">Importar CSV (Profit Pro / histórico): <input type="file" id="csvFile" accept=".csv,.txt"></label>
         <button onclick="replayStep(1)">⏭ 1 candle</button>
         <button onclick="replayPlay()">▶ Replay</button>
@@ -148,6 +148,8 @@ label{font-size:11px;color:var(--dim);display:block;margin-top:8px}
     <div><label>Limite de perda diária (R$)</label><input id="cLim" type="number" value="180" style="width:100%" oninput="saveCfg()"></div>
     <div><label>Meta diária (R$)</label><input id="cMeta" type="number" value="1000" style="width:100%" oninput="saveCfg()"></div>
     <div><label>Início (HH:MM)</label><input id="cIni" value="09:10" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>HILO Flow: período</label><input id="cHiloP" type="number" value="9" style="width:100%" oninput="saveCfg()"></div>
+    <div><label>HILO Flow: (reservado)</label><input id="cHiloF" type="number" step="0.5" value="2" style="width:100%" oninput="saveCfg()"></div>
     <div><label>Encerramento (HH:MM)</label><input id="cFim" value="17:30" style="width:100%" oninput="saveCfg()"></div>
     <div><label>Volume dos alertas (0–100)</label><input id="cVol" type="range" min="0" max="100" value="70" style="width:100%" oninput="saveCfg()"></div>
     <div><label>Parar operar ao bater meta</label><select id="cStopMeta" style="width:100%" onchange="saveCfg()"><option value="1">Sim</option><option value="0">Não</option></select></div>
@@ -162,17 +164,17 @@ label{font-size:11px;color:var(--dim);display:block;margin-top:8px}
 <script>
 "use strict";
 // ===== CONFIG =====
-var CFG={ctr:2,vpt:0.20,stopPts:150,cust:15,maxOps:5,maxSeq:3,limDia:180,metaDia:1000,ini:"09:10",fim:"17:30",vol:70,stopMeta:1,news:""};
+var CFG={hiloP:9,hiloF:0,ctr:2,vpt:0.20,stopPts:150,cust:15,maxOps:5,maxSeq:3,limDia:180,metaDia:1000,ini:"09:10",fim:"17:30",vol:70,stopMeta:1,news:""};
 function saveCfg(){
   CFG.ctr=+g("cCtr").value||2;CFG.vpt=+g("cVpt").value||0.20;CFG.stopPts=+g("cStop").value||150;CFG.cust=+g("cCust").value||0;
   CFG.maxOps=+g("cMaxo").value||5;CFG.maxSeq=+g("cSeq").value||3;CFG.limDia=+g("cLim").value||0;CFG.metaDia=+g("cMeta").value||0;
-  CFG.ini=g("cIni").value||"09:10";CFG.fim=g("cFim").value||"17:30";CFG.vol=+g("cVol").value||70;CFG.stopMeta=+g("cStopMeta").value;
+  CFG.hiloP=+g("cHiloP").value||21;CFG.hiloF=+g("cHiloF").value||2;CFG.ini=g("cIni").value||"09:10";CFG.fim=g("cFim").value||"17:30";CFG.vol=+g("cVol").value||70;CFG.stopMeta=+g("cStopMeta").value;
   CFG.news=g("fNews").value;try{localStorage.setItem("winRadarCfg",JSON.stringify(CFG))}catch(e){}
   render();
 }
 function g(id){return document.getElementById(id)}
 function loadCfg(){try{var c=JSON.parse(localStorage.getItem("winRadarCfg")||"null");if(c)CFG=c}catch(e){}
-  g("cCtr").value=CFG.ctr;g("cVpt").value=CFG.vpt;g("cStop").value=CFG.stopPts;g("cCust").value=CFG.cust;g("cMaxo").value=CFG.maxOps;g("cSeq").value=CFG.maxSeq;g("cLim").value=CFG.limDia;g("cMeta").value=CFG.metaDia;g("cIni").value=CFG.ini;g("cFim").value=CFG.fim;g("cVol").value=CFG.vol;g("cStopMeta").value=CFG.stopMeta;g("fNews").value=CFG.news||"";
+  g("cCtr").value=CFG.ctr;g("cVpt").value=CFG.vpt;g("cStop").value=CFG.stopPts;g("cCust").value=CFG.cust;g("cMaxo").value=CFG.maxOps;g("cSeq").value=CFG.maxSeq;g("cLim").value=CFG.limDia;g("cMeta").value=CFG.metaDia;g("cHiloP").value=CFG.hiloP||9;g("cHiloF").value=CFG.hiloF||2;g("cIni").value=CFG.ini;g("cFim").value=CFG.fim;g("cVol").value=CFG.vol;g("cStopMeta").value=CFG.stopMeta;g("fNews").value=CFG.news||"";
 }
 // ===== ESTADO =====
 var MODE="off"; // off | demo | csv | manual
@@ -210,7 +212,17 @@ function calcAll(cs){
   for(i=2;i<n-2;i++){if(cs[i].h>cs[i-1].h&&cs[i].h>cs[i-2].h&&cs[i].h>cs[i+1].h&&cs[i].h>cs[i+2].h)sr.push({p:cs[i].h,t:"r",i:i});
     if(cs[i].l<cs[i-1].l&&cs[i].l<cs[i-2].l&&cs[i].l<cs[i+1].l&&cs[i].l<cs[i+2].l)sr.push({p:cs[i].l,t:"s",i:i})}
   var piv=null;if(c15.length){var d15=c15[c15.length-1],hi=-1e18,lo=1e18,dk=dayKey(d15.t);for(i=c15.length-1;i>=0&&dayKey(c15[i].t)===dk;i--){hi=Math.max(hi,c15[i].h);lo=Math.min(lo,c15[i].l)}if(hi>-1e17)piv=(hi+lo)/2}
-  return {e9:e9,e21:e21,vwap:cs[n-1]._vwap,rsi:r[n-1],macd:hist[n-1],atr:a[n-1],bbU:bbU[n-1],bbL:bbL[n-1],bbM:bbM[n-1],ctx15:ctx15,piv:piv,sr:sr,vol:vol,volAvg:(function(){var s=0,c=0;for(i=Math.max(0,n-21);i<n;i++){s+=vol[i];c++}return s/c})(),last:cs[n-1],prev:cs[n-2],n:n};
+  var hilo=null,hiloTrend=0;
+  if(n>=25){var hp2=CFG.hiloP||9,hm2=0,aT2=atr(cs,14),line2=null;
+    for(var q=hp2;q<n;q++){if(aT2[q]===null||aT2[q]===undefined)continue;
+      var hi2=-1e18,lo2=1e18;for(var j2=q-hp2+1;j2<=q;j2++){if(cs[j2].h>hi2)hi2=cs[j2].h;if(cs[j2].l<lo2)lo2=cs[j2].l}
+      var up2=hi2-hm2*aT2[q],dn2=lo2+hm2*aT2[q];
+      if(line2===null){hiloTrend=1;line2=up2}
+      if(hiloTrend===1){if(cs[q].c<line2){hiloTrend=-1;line2=dn2}else line2=Math.max(line2,up2)}
+      else{if(cs[q].c>line2){hiloTrend=1;line2=up2}else line2=Math.min(line2,dn2)}
+    }
+    hilo=line2}
+  return {e9:e9,e21:e21,hilo:hilo,hiloTrend:hiloTrend,vwap:cs[n-1]._vwap,rsi:r[n-1],macd:hist[n-1],atr:a[n-1],bbU:bbU[n-1],bbL:bbL[n-1],bbM:bbM[n-1],ctx15:ctx15,piv:piv,sr:sr,vol:vol,volAvg:(function(){var s=0,c=0;for(i=Math.max(0,n-21);i<n;i++){s+=vol[i];c++}return s/c})(),last:cs[n-1],prev:cs[n-2],n:n};
 }
 // ===== MOTOR DE SINAIS + PONTUAÇÃO =====
 function evaluate(cs){
@@ -238,6 +250,9 @@ function evaluate(cs){
   if(long){if(k.rsi>50&&k.rsi<72){score.mom+=8;reasons.push("RSI "+k.rsi.toFixed(0))}if(k.macd>0){score.mom+=7;reasons.push("MACD bullish")}}
   else{if(k.rsi<50&&k.rsi>28){score.mom+=8;reasons.push("RSI "+k.rsi.toFixed(0))}if(k.macd<0){score.mom+=7;reasons.push("MACD bearish")}}
   // reversão em sobrevenda/comprada exige evidência extra
+  if(long){if(k.hiloTrend===1&&c.c>k.hilo){score.tend+=5;reasons.push("HILO Flow confirma alta ("+Math.round(k.hilo)+")")}else if(k.hiloTrend===-1){score.tend=Math.max(0,score.tend-10);reasons.push("HILO Flow contra (baixa)")}}
+  else{if(k.hiloTrend===-1&&c.c<k.hilo){score.tend+=5;reasons.push("HILO Flow confirma baixa ("+Math.round(k.hilo)+")")}else if(k.hiloTrend===1){score.tend=Math.max(0,score.tend-10);reasons.push("HILO Flow contra (alta)")}}
+  if(score.tend>25)score.tend=25;
   if(long&&k.rsi<30&&!(nearSup&&bull)){score.mom=Math.max(0,score.mom-10);reasons.push("RSI baixo isolado NÃO gera compra")}
   if(!long&&k.rsi>70&&!(nearRes&&bear)){score.mom=Math.max(0,score.mom-10);reasons.push("RSI alto isolado NÃO gera venda")}
   // 4. volume/agressão (15)
@@ -358,7 +373,7 @@ function render(){
   g("hQuote").textContent=q?("WIN "+q.toLocaleString("pt-BR",{maximumFractionDigits:0})):"—";
   g("hTime").textContent=vis.length?hhmm(vis[vis.length-1].t):"—";
   var src=g("hSrc");src.className="badge "+(MODE==="demo"?"demo":MODE==="csv"?"csv":MODE==="manual"?"manual":"off");
-  src.textContent=MODE==="demo"?"DEMO — DADOS SINTÉTICOS":MODE==="csv"?"CSV IMPORTADO (replay/backtest)":MODE==="manual"?"MANUAL/PROFIT PRO (cotações coladas)":"SEM DADOS";
+  src.textContent=autoTimer?"AUTO — PONTE PROFITDLL":MODE==="demo"?"DEMO — DADOS SINTÉTICOS":MODE==="csv"?"CSV IMPORTADO (replay/backtest)":MODE==="manual"?"MANUAL/PROFIT PRO (cotações coladas)":"SEM DADOS";
   resetDia();
   var blocked=blocks();
   var stale=MODE==="manual"&&Date.now()-manualAt>120000;
@@ -452,6 +467,21 @@ function drawChart(vis,k){
   // EMAs
   function line(arr,col){ctx.strokeStyle=col;ctx.lineWidth=1.4;ctx.beginPath();for(i=0;i<arr.length;i++){var px2=i*cw+cw/2,py=Y(arr[i]);if(i===0)ctx.moveTo(px2,py);else ctx.lineTo(px2,py)}ctx.stroke()}
   if(e9v){line(e9v,"#eab308");line(e21v,"#8b5cf6")}
+  if(cs.length>=25){var hp3=CFG.hiloP||9,hm3=CFG.hiloF||2,aT3=atr(cs,hp3),l3=null,tr3=1;
+    ctx.lineWidth=2;
+    for(i=hp3;i<cs.length;i++){if(aT3[i]===null||aT3[i]===undefined)continue;
+      var hi3=-1e18,lo3=1e18;for(var j3=i-hp3+1;j3<=i;j3++){if(cs[j3].h>hi3)hi3=cs[j3].h;if(cs[j3].l<lo3)lo3=cs[j3].l}
+      var up3=hi3-hm3*aT3[i],dn3=lo3+hm3*aT3[i];
+      if(l3===null){tr3=1;l3=up3}
+      var pv3=tr3,pl3=l3;
+      if(tr3===1){if(cs[i].c<l3){tr3=-1;l3=dn3}else l3=Math.max(l3,up3)}
+      else{if(cs[i].c>l3){tr3=1;l3=up3}else l3=Math.min(l3,dn3)}
+      ctx.strokeStyle=pv3===1?"#14b8a6":"#f97316";
+      ctx.beginPath();ctx.moveTo((i-1)*cw+cw/2,Y(pl3));ctx.lineTo(i*cw+cw/2,Y(l3));ctx.stroke();
+    }
+    ctx.lineWidth=1.4;
+    ctx.fillStyle="#14b8a6";ctx.font="9px monospace";ctx.textAlign="left";ctx.fillText("HILO Flow",6,22);
+  }
   // VWAP por candle
   var vOn=vis[vis.length-1]._vwap;if(vOn&&k&&k.vwap){ctx.strokeStyle="rgba(96,165,250,.8)";ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(0,Y(k.vwap));ctx.lineTo(W,Y(k.vwap));ctx.stroke();ctx.setLineDash([]);
     ctx.fillStyle="#60a5fa";ctx.font="9px monospace";ctx.textAlign="right";ctx.fillText("VWAP "+Math.round(k.vwap),W-4,Y(k.vwap)-3)}
@@ -505,6 +535,31 @@ g("csvFile").addEventListener("change",function(ev){
 function replayStep(n){if(MODE!=="csv")return;for(var i=0;i<n&&shown<candles.length;i++){shown++;processCandleClose()}}
 function replayPlay(){if(replayTimer)return;replayTimer=setInterval(function(){if(shown>=candles.length){replayStop();return}replayStep(1)},1200)}
 function replayStop(){if(replayTimer){clearInterval(replayTimer);replayTimer=null}}
+var FEEDURL="https://ana-a391f94e.base44.app/functions/winRadarFeed",FEEDKEY="anatechmg-win",autoTimer=null;
+function feedCandle(p,v){
+  var now=Date.now();
+  if(MODE!=="manual"){MODE="manual";candles=[];shown=0;var t0=now-60*5*60*1000;
+    for(var i=0;i<60;i++){var o=p+(Math.random()-.5)*600,c2=o+(Math.random()-.5)*500;candles.push({t:t0+i*5*60*1000,o:Math.round(o),h:Math.round(Math.max(o,c2)+Math.random()*100),l:Math.round(Math.min(o,c2)-Math.random()*100),c:Math.round(c2),v:Math.round(1000+Math.random()*2000)})}}
+  var slot=Math.floor(now/(5*60*1000))*5*60*1000,cur=null;
+  for(var j=candles.length-1;j>=0;j--){if(Math.floor(candles[j].t/(5*60*1000))*5*60*1000===slot){cur=candles[j];break}}
+  if(!cur){cur={t:slot,o:p,h:p,l:p,c:p,v:0};candles.push(cur);candles.sort(function(a,b){return a.t-b.t})}
+  cur.h=Math.max(cur.h,p);cur.l=Math.min(cur.l,p);cur.c=p;cur.v+=v;
+  shown=candles.length;manualAt=now;window._staleSnd=false;
+  if(pos)managePos(p,now);
+  render();
+}
+function startAuto(){
+  if(autoTimer){bigAlert("⚠️ Modo AUTO já está ativo.","#eab308");return}
+  MODE="manual";manualAt=Date.now();
+  bigAlert("🔗 MODO AUTO: aguardando cotações da ponte ProfitDLL.<br>Rode win-hilo-bridge.py no PC com o Profit Pro aberto.","#3b82f6",8);
+  autoTimer=setInterval(function(){
+    fetch(FEEDURL+"?key="+FEEDKEY).then(function(r){return r.json()}).then(function(d){
+      if(d&&d.ok&&d.p&&Date.now()-d.t<120000){feedCandle(d.p,d.v||1)}
+      else if(MODE==="manual"&&Date.now()-manualAt>120000&&!window._staleSnd){window._staleSnd=true;sfx(7);bigAlert("⚠️ Sem dados frescos da ponte há mais de 2 min — sinais bloqueados.","#ef4444",7)}
+    }).catch(function(){});
+  },5000);
+}
+function stopAuto(){if(autoTimer){clearInterval(autoTimer);autoTimer=null}}
 function pushManual(){
   var p=parseFloat((g("manualPrice").value||"").replace(/\./g,"").replace(",","."));if(!p)return;
   var v=parseFloat(g("manualVol").value)||1;
@@ -520,7 +575,7 @@ function pushManual(){
   if(pos)managePos(p,now);
   render();
 }
-function clearManual(){MODE="off";candles=[];shown=0;pos=null;render()}
+function clearManual(){stopAuto();MODE="off";candles=[];shown=0;pos=null;render()}
 // ===== DIÁRIO/STATS =====
 function renderJ(){
   var tb=g("jTable").querySelector("tbody");tb.innerHTML="";
@@ -548,7 +603,7 @@ function wipeJournal(){if(confirm("Apagar todo o diário?")){journal=[];try{loca
 function fetchUsd(){try{fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL").then(function(r){return r.json()}).then(function(d){var v=+d.USDBRl||+d.USDBRL.high||0;if(v){g("mUsd").textContent="US$ "+(CFG.metaDia/v).toFixed(2)}}).catch(function(){})}catch(e){}}
 // ===== LOOP =====
 setInterval(function(){
-  if(MODE==="manual"&&Date.now()-manualAt>120000){render()} // marca dados atrasados
+  if(MODE==="manual"&&Date.now()-manualAt>120000){if(!window._staleSnd){window._staleSnd=true;sfx(7)}render()} // marca dados atrasados
 },5000);
 setInterval(function(){if(MODE==="demo"){render()}},4000);
 setInterval(fetchUsd,600000);
