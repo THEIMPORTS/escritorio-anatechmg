@@ -155,6 +155,7 @@ function tick() {
       m.status = a.status || 'aguardando';
       if (!m.andando) m.acao = a.ultima_acao || 'sem atividade';
     }
+    for (var i8 = 0; i8 < tar.length; i8++) { var t9 = tar[i8]; if (String(t9.status || '').toLowerCase() === 'concluida' && t9.resultado) { if (t9.id !== ultimaConcluida) { ultimaConcluida = t9.id; var mm = agentes[t9.agente]; if (mm) { mm.fala = '✅ entregue: ' + String(t9.resultado).slice(0, 42); mm.festeja = Date.now() + 7000; } } break; } }
     gatilhos(d);
   }).catch(function() { setStatus('sem conexão com dados — escritório local', '#eab308'); });
 }
@@ -176,8 +177,11 @@ var AMBIENTE = [
 ];
 var filaDialogos = [], dlg = null, ultimoScan = null, ultimaTarefa = null;
 var pausas = [], proxPausa = Date.now() + 3000;
-var MSG_PAUSA = ['🎮 jogando', '🍿 pipoca e série', '☕ cafezinho', '🏓 pingue-pongue', '🕹️ fliperama', '🎧 música'];
-var SPOTS = [{ x: 27.2, z: -9.8 }, { x: 25.8, z: -5.6 }, { x: 31.5, z: -7.2 }, { x: 30.8, z: -10.5 }];
+var proxStandup = Date.now() + 40000;
+var ultimaConcluida = null;
+var MSG_STANDUP = ['🎤 standup: o que entreguei ontem', '🎤 standup: minha pauta de hoje', '🎤 standup: metas em dia', '🎤 standup: nenhuma pendência'];
+var MSG_PAUSA = ['🎮 jogando', '🍿 pipoca e série', '☕ cafezinho', '🏓 pingue-pongue', '🕹️ fliperama', '🎧 música', '🏋️ treinando skill'];
+var SPOTS = [{ x: 27.2, z: -9.8 }, { x: 25.8, z: -5.6 }, { x: 31.5, z: -7.2 }, { x: 30.8, z: -10.5 }, { x: 32.2, z: -10.2 }];
 function rotaDe(m, destino) {
   var sl = SALAS[m.zona];
   var zPorta = sl.z2 === -1 ? -0.2 : 2.2;
@@ -213,7 +217,7 @@ function passoPausas(agora) {
       if (k >= 1) { p.fase = 'pausa'; p.tFase = agora; }
       vivos.push(p);
     } else if (p.fase === 'pausa') {
-      if (agora - p.tFase > 8000) { p.fase = 'voltando'; p.tFase = agora; p.dur = (distRota(p.volta) / 7) * 1000; }
+      if (agora - p.tFase > (p.hold || 8000)) { p.fase = 'voltando'; p.tFase = agora; p.dur = (distRota(p.volta) / 7) * 1000; }
       vivos.push(p);
     } else {
       var k2 = Math.min(1, (agora - p.tFase) / p.dur); var e2 = k2 * k2 * (3 - 2 * k2);
@@ -247,9 +251,14 @@ function gatilhos(d) {
 function iniciaDialogo(d) {
   var mDe = agentes[d.de], mPara = agentes[d.para];
   if (!mDe || !mPara || mDe.andando || mPara.andando || mDe.emPausa || mPara.emPausa) return false;
-  var r1 = rotaDe(mDe, CAFE[0]), r2 = rotaDe(mPara, CAFE[1]);
+  var visita = Math.random() < 0.5;
+  var r1, r2;
+  if (visita) {
+    r1 = rotaDe(mDe, { x: mPara.casa.x + 1.7, z: mPara.casa.z });
+    r2 = [mPara.casa, mPara.casa];
+  } else { r1 = rotaDe(mDe, CAFE[0]); r2 = rotaDe(mPara, CAFE[1]); }
   var dMax = Math.max(distRota(r1), distRota(r2));
-  dlg = { de: d.de, para: d.para, linhas: d.linhas, fase: 'indo', tFase: Date.now(), dur: (dMax / 7) * 1000, r1: r1, r2: r2, etapa: -1, mDe: mDe, mPara: mPara };
+  dlg = { de: d.de, para: d.para, linhas: d.linhas, fase: 'indo', tFase: Date.now(), dur: (dMax / 7) * 1000, r1: r1, r2: r2, etapa: -1, mDe: mDe, mPara: mPara, visita: visita };
   mDe.andando = true; mPara.andando = true;
   return true;
 }
@@ -269,7 +278,7 @@ function passoDialogo(agora) {
         dlg.tFase = agora;
         var quem = dlg.linhas[dlg.etapa][0];
         if (agentes[quem]) agentes[quem].fala = dlg.linhas[dlg.etapa][1];
-      } else { dlg.fase = 'voltando'; dlg.tFase = agora; dlg.r1 = [CAFE[0], { x: SALAS[dlg.mDe.zona].porta, z: SALAS[dlg.mDe.zona].z2 === -1 ? -0.2 : 2.2 }, dlg.mDe.casa]; dlg.r2 = [CAFE[1], { x: SALAS[dlg.mPara.zona].porta, z: SALAS[dlg.mPara.zona].z2 === -1 ? -0.2 : 2.2 }, dlg.mPara.casa]; }
+      } else { dlg.fase = 'voltando'; dlg.tFase = agora; var f1 = dlg.visita ? { x: dlg.mPara.casa.x + 1.7, z: dlg.mPara.casa.z } : CAFE[0]; dlg.r1 = [f1, { x: SALAS[dlg.mDe.zona].porta, z: SALAS[dlg.mDe.zona].z2 === -1 ? -0.2 : 2.2 }, dlg.mDe.casa]; dlg.r2 = dlg.visita ? [dlg.mPara.casa, dlg.mPara.casa] : [CAFE[1], { x: SALAS[dlg.mPara.zona].porta, z: SALAS[dlg.mPara.zona].z2 === -1 ? -0.2 : 2.2 }, dlg.mPara.casa]; dlg.dur = (distRota(dlg.r1) / 7) * 1000; }
     }
   } else {
     var k2 = Math.min(1, (agora - dlg.tFase) / dlg.dur); var e2 = k2 * k2 * (3 - 2 * k2);
@@ -291,6 +300,26 @@ function motorDialogos(agora) {
     for (var n2 in agentes) { var m = agentes[n2]; if (!m.andando && !m.emPausa) livres.push(n2); }
     if (livres.length) iniciaPausa(agentes[livres[Math.floor(Math.random() * livres.length)]]);
     proxPausa = agora + 4000 + Math.random() * 5000;
+  }
+  for (var nF in agentes) { var mF = agentes[nF]; if (mF.festeja && agora > mF.festeja) { mF.fala = null; mF.festeja = null; } }
+  if (!dlg && agora > proxStandup) {
+    var livres2 = [];
+    for (var n3 in agentes) { var m3 = agentes[n3]; if (!m3.andando && !m3.emPausa) livres2.push(m3); }
+    if (livres2.length > 2) {
+      var SPOT_STAND = [{ x: -1.5, z: 1 }, { x: 0, z: -0.5 }, { x: 2, z: -0.5 }, { x: 3.5, z: 1 }, { x: 0, z: 2.7 }, { x: 2, z: 2.7 }];
+      var qtd = Math.min(6, 3 + Math.floor(Math.random() * (livres2.length - 2)));
+      for (var iS = 0; iS < qtd && iS < SPOT_STAND.length; iS++) {
+        var mS = livres2.splice(Math.floor(Math.random() * livres2.length), 1)[0];
+        var sl2 = SALAS[mS.zona]; var dP2 = { x: sl2.porta, z: sl2.z2 === -1 ? -0.2 : 2.2 };
+        var sp = SPOT_STAND[iS];
+        var rt = [{ x: mS.casa.x, z: sl2.fundo + (sl2.z2 === -1 ? -2.2 : 2.2) }, dP2, sp];
+        var rv = [sp, dP2, mS.casa];
+        var msg = MSG_STANDUP[Math.floor(Math.random() * MSG_STANDUP.length)];
+        pausas.push({ m: mS, rota: rt, volta: rv, fase: 'indo', tFase: Date.now(), dur: (distRota(rt) / 7) * 1000, msg: msg, hold: 20000 });
+        mS.andando = true; mS.emPausa = true; mS.fala = msg;
+      }
+      proxStandup = agora + 120000 + Math.random() * 60000;
+    } else proxStandup = agora + 15000;
   }
   if (dlg) { passoDialogo(agora); return; }
   if (filaDialogos.length && agora > proxAmbiente) {
@@ -629,6 +658,13 @@ function movelPong() {
   ctx.font = Math.round(8 * u) + 'px system-ui, sans-serif'; ctx.textAlign = 'center';
   ctx.fillText('🏓', p.x, p.y - 9 * u);
 }
+function movelGym() {
+  piso(31, -11, 33.5, -9, '#ede9fe', '#7c3aed');
+  var g1 = iso(32.2, -10, .6);
+  ctx.font = '13px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.fillText('🏋️', g1.x, g1.y);
+  var g2 = iso(32.2, -9.6, 0);
+  ctx.fillStyle = '#1e293b'; ctx.font = '700 8px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.fillText('ACADEMIA', g2.x, g2.y + 12);
+}
 function movelPlantas() {
   var u = Math.max(view.z, .5) * 1.2;
   var p1 = iso(-9, 1, 0), p2 = iso(14, 1, 0);
@@ -679,7 +715,7 @@ function desenha(agora) {
     ctx.fillText(s.nome, pl.x, pl.y);
   }
   drawCandles(t); drawTicker(t);
-  movelSofa(t); movelTV(t); movelArcade(); movelPong(); movelPlantas();
+  movelSofa(t); movelTV(t); movelArcade(); movelPong(); movelPlantas(); movelGym();
   var nomes = [];
   for (var nn in agentes) nomes.push(nn);
   nomes.sort(function(a, b) { return (agentes[a].x + agentes[a].z) - (agentes[b].x + agentes[b].z); });
