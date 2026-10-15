@@ -175,7 +175,7 @@ var AMBIENTE = [
   { de: 'Ana', para: 'Jurídico', linhas: [['Ana', 'Precisamos revisar o regulamento da rifa.'], ['Jurídico', 'Já estou nele, mando o parecer até o fim do dia.']] }
 ];
 var filaDialogos = [], dlg = null, ultimoScan = null, ultimaTarefa = null;
-var pausas = [], proxPausa = Date.now() + 15000;
+var pausas = [], proxPausa = Date.now() + 3000;
 var MSG_PAUSA = ['🎮 jogando', '🍿 pipoca e série', '☕ cafezinho', '🏓 pingue-pongue', '🕹️ fliperama', '🎧 música'];
 var SPOTS = [{ x: 27.2, z: -9.8 }, { x: 25.8, z: -5.6 }, { x: 31.5, z: -7.2 }, { x: 30.8, z: -10.5 }];
 function rotaDe(m, destino) {
@@ -213,7 +213,7 @@ function passoPausas(agora) {
       if (k >= 1) { p.fase = 'pausa'; p.tFase = agora; }
       vivos.push(p);
     } else if (p.fase === 'pausa') {
-      if (agora - p.tFase > 10000) { p.fase = 'voltando'; p.tFase = agora; p.dur = (distRota(p.volta) / 7) * 1000; }
+      if (agora - p.tFase > 8000) { p.fase = 'voltando'; p.tFase = agora; p.dur = (distRota(p.volta) / 7) * 1000; }
       vivos.push(p);
     } else {
       var k2 = Math.min(1, (agora - p.tFase) / p.dur); var e2 = k2 * k2 * (3 - 2 * k2);
@@ -283,14 +283,14 @@ function passoDialogo(agora) {
     }
   }
 }
-var proxAmbiente = Date.now() + 6000;
+var proxAmbiente = Date.now() + 3500;
 function motorDialogos(agora) {
   passoPausas(agora);
-  if (pausas.length < 2 && !dlg && agora > proxPausa) {
+  if (pausas.length < 5 && !dlg && agora > proxPausa) {
     var livres = [];
     for (var n2 in agentes) { var m = agentes[n2]; if (!m.andando && !m.emPausa) livres.push(n2); }
     if (livres.length) iniciaPausa(agentes[livres[Math.floor(Math.random() * livres.length)]]);
-    proxPausa = agora + 16000 + Math.random() * 14000;
+    proxPausa = agora + 4000 + Math.random() * 5000;
   }
   if (dlg) { passoDialogo(agora); return; }
   if (filaDialogos.length && agora > proxAmbiente) {
@@ -300,7 +300,7 @@ function motorDialogos(agora) {
   }
   if (agora > proxAmbiente) {
     var d2 = AMBIENTE[Math.floor(Math.random() * AMBIENTE.length)];
-    if (iniciaDialogo(d2)) proxAmbiente = agora + 13000 + Math.random() * 8000;
+    if (iniciaDialogo(d2)) proxAmbiente = agora + 7000 + Math.random() * 5000;
   }
 }
 </script>
