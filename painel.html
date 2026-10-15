@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel de Controle — Anatechmg</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#070b14;color:#dbe4f0;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;min-height:100%}
+a{color:#4ade80}
+.wrap{max-width:1180px;margin:0 auto;padding:14px 14px 60px}
+.topo{display:flex;justify-content:space-between;align-items:center;padding:10px 0 14px;border-bottom:1px solid #1e293b;flex-wrap:wrap;gap:8px}
+.topo h1{font-size:1.05rem;font-weight:700;letter-spacing:.5px}
+.topo h1 span{color:#4ade80}
+#relogio{font-size:.78rem;color:#94a3b8}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:14px 0}
+.kpi{background:#0d1526;border:1px solid #1e293b;border-radius:10px;padding:10px 12px}
+.kpi b{display:block;font-size:1.25rem;color:#4ade80;margin-top:2px}
+.kpi i{font-style:normal;font-size:.68rem;color:#64748b;text-transform:uppercase;letter-spacing:.4px}
+.meta{background:#0d1526;border:1px solid #1e293b;border-radius:10px;padding:12px;margin-bottom:14px}
+.meta .barra{height:8px;background:#1e293b;border-radius:6px;margin-top:8px;overflow:hidden}
+.meta .fill{height:100%;background:linear-gradient(90deg,#22c55e,#4ade80);width:0%;border-radius:6px;transition:width .6s}
+.aprovs{background:#2a1215;border:1px solid #7f1d1d;border-radius:10px;padding:10px 12px;margin-bottom:14px;display:none}
+.aprovs b{color:#f87171;font-size:.8rem}
+.sec{margin:18px 0 8px;font-size:.72rem;color:#64748b;text-transform:uppercase;letter-spacing:1px}
+.gridA{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.cardA{background:#0d1526;border:1px solid #1e293b;border-radius:12px;padding:12px;position:relative}
+.cardA .cabeca{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.cardA .cabeca .em{font-size:1.3rem}
+.cardA .cabeca .nm{font-weight:700;font-size:.85rem;line-height:1.2}
+.cardA .cabeca .pp{font-size:.66rem;color:#64748b;display:block;font-weight:400}
+.pill{font-size:.6rem;padding:2px 8px;border-radius:20px;font-weight:700;letter-spacing:.3px;margin-left:auto}
+.p-ativo{background:#052e16;color:#4ade80;border:1px solid #14532d}
+.p-aguardando{background:#2a2105;color:#eab308;border:1px solid #422006}
+.p-pausado,.p-erro{background:#2a1215;color:#f87171;border:1px solid #7f1d1d}
+.cardA .acao{font-size:.72rem;color:#94a3b8;min-height:30px;line-height:1.35}
+.cardA .rodape{display:flex;justify-content:space-between;margin-top:8px;font-size:.64rem;color:#64748b;border-top:1px solid #1a2334;padding-top:6px}
+.cardA .rodape b{color:#7dd3fc;font-weight:600}
+.colunas{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.colunas{grid-template-columns:1fr}}
+.box{background:#0d1526;border:1px solid #1e293b;border-radius:12px;padding:12px}
+.box h3{font-size:.72rem;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.feed{max-height:340px;overflow:auto}
+.fitem{padding:7px 0;border-bottom:1px solid #1a2334;font-size:.72rem;line-height:1.4}
+.fitem .t{color:#64748b;font-size:.62rem;margin-right:6px}
+.fitem .ag{color:#7dd3fc;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:.7rem}
+th{color:#64748b;text-align:left;font-weight:600;padding:4px 6px;border-bottom:1px solid #1e293b;font-size:.62rem;text-transform:uppercase;letter-spacing:.4px}
+td{padding:6px;border-bottom:1px solid #1a2334;vertical-align:top;line-height:1.35}
+.st{font-size:.58rem;padding:1px 7px;border-radius:20px;font-weight:700;white-space:nowrap}
+.s-pendente{background:#2a2105;color:#eab308}
+.s-concluida{background:#052e16;color:#4ade80}
+.s-aprov{background:#2a1215;color:#f87171}
+.s-outro{background:#1e293b;color:#94a3b8}
+.form{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.form select,.form input{background:#091020;border:1px solid #1e293b;color:#dbe4f0;border-radius:8px;padding:8px;font-size:.72rem}
+.form select{max-width:150px}
+.form input{flex:1;min-width:150px}
+.form button{background:#16a34a;border:none;color:#fff;border-radius:8px;padding:8px 14px;font-size:.72rem;font-weight:700;cursor:pointer}
+.tri{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.mini{background:#091020;border:1px solid #1a2334;border-radius:10px;padding:8px 10px;font-size:.68rem;line-height:1.45}
+.mini b{color:#4ade80}
+.mini .neg{color:#f87171}
+#diag{font-size:.62rem;color:#475569;padding:8px 0}
+.nojs{position:fixed;inset:0;background:#070b14;display:flex;align-items:center;justify-content:center;color:#f87171;font-size:.8rem;padding:30px;text-align:center;z-index:9}
+</style></head><body>
+<div class="nojs" id="nojs">Ativando o painel de controle...</div>
+<div class="wrap">
+<div class="topo"><h1>🏢 ANATECHMG <span>· Painel de Controle</span></h1><div id="relogio">carregando...</div></div>
+<div id="diag">conectando aos agentes...</div>
+<div class="kpis" id="kpis"></div>
+<div class="meta"><div style="display:flex;justify-content:space-between;font-size:.72rem"><span><b style="color:#4ade80" id="vMeta">R$ 0</b> faturados</span><span style="color:#64748b">Meta 2026: <b style="color:#dbe4f0">R$ 1.000.000</b></span></div><div class="barra"><div class="fill" id="mFill"></div></div></div>
+<div class="aprovs" id="aprovs"></div>
+<div class="sec">Equipe — o que cada agente está fazendo e entregando</div>
+<div class="gridA" id="agentes"></div>
+<div class="colunas" style="margin-top:14px">
+<div class="box"><h3>📡 Atividade ao vivo</h3><div class="feed" id="feed"></div></div>
+<div class="box"><h3>✅ Tarefas e entregas</h3><div style="max-height:300px;overflow:auto"><table><thead><tr><th>Agente</th><th>Tarefa</th><th>Entrega</th><th>Status</th></tr></thead><tbody id="tarefas"></tbody></table></div>
+<div class="form"><select id="fAg"></select><input id="fTxt" placeholder="Atribuir nova tarefa a um agente..."><button onclick="atribuir()">Atribuir</button></div></div>
+</div>
+<div class="sec">Trading — QuantBot</div>
+<div class="tri" id="trading"></div>
+<div class="sec">Vendas e publicações</div>
+<div class="colunas">
+<div class="box"><h3>💰 Vendas</h3><div style="max-height:220px;overflow:auto"><table><thead><tr><th>Produto</th><th>Cliente</th><th>Valor</th><th>Status</th></tr></thead><tbody id="vendas"></tbody></table></div></div>
+<div class="box"><h3>📱 Publicações</h3><div style="max-height:220px;overflow:auto"><table><thead><tr><th>Título</th><th>Plataforma</th><th>Status</th></tr></thead><tbody id="posts"></tbody></table></div></div>
+</div>
+</div>
+<script>
+var API='https://ana-a391f94e.base44.app/functions/opsOffice';
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function fmtV(v){var n=Number(v||0);return 'R$ '+n.toLocaleString('pt-BR',{minimumFractionDigits:0});}
+function quando(d){if(!d)return '';try{return new Date(d).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});}catch(e){return '';}}
+var D={agentes:[],logs:[],tarefas:[],decisoes:[],scans:[],posicoes:[],vendas:[],posts:[]};
+function render(){
+  document.getElementById('relogio').textContent='ao vivo · '+D.agora+' (auto)';
+  var pend=0,conc=0,aprov=[];
+  var porAgente={};
+  for(var i=0;i<D.tarefas.length;i++){var t=D.tarefas[i];var a=String(t.agente||t.data&&t.data.agente||'—');if(!porAgente[a])porAgente[a]={pend:0,conc:0,atual:null,entrega:null};
+    var st=String(t.status||t.data&&t.data.status||'');var fn=String(t.funcao||t.data&&t.data.funcao||'');
+    var rs=String(t.resultado||t.data&&t.data.resultado||'');
+    if(st==='pendente'){pend++;porAgente[a].pend++;porAgente[a].atual=fn;if(fn.indexOf('AGUARDANDO APROVA')>=0)aprov.push({a:a,fn:fn});}
+    else if(st==='concluida'){conc++;porAgente[a].conc++;if(rs)porAgente[a].entrega=rs;}}
+  var vPagas=0;for(var i=0;i<D.vendas.length;i++){var v=D.vendas[i];var vd=v.data||v;if(String(vd.status||'').toLowerCase()==='paga')vPagas+=Number(vd.valor||0);}
+  document.getElementById('vMeta').textContent=fmtV(vPagas);
+  document.getElementById('mFill').style.width=Math.min(100,(vPagas/1000000)*100).toFixed(2)+'%';
+  var ap=document.getElementById('aprovs');
+  if(aprov.length){ap.style.display='block';ap.innerHTML='<b>🛑 '+aprov.length+' ação(ões) aguardando sua aprovação:</b><div style="font-size:.72rem;margin-top:4px">'+aprov.slice(0,4).map(function(x){return esc(x.a)+': '+esc(x.fn.slice(0,110));}).join('<br>')+'</div>';}else{ap.style.display='none';}
+  var ativos=0;var cards='';
+  for(var i=0;i<D.agentes.length;i++){var g=D.agentes[i];var gd=g.data||g;var nm=String(gd.nome||g.nome||'—');var st=String(gd.status||g.status||'').toLowerCase();
+    if(st==='ativo')ativos++;
+    var cls=st==='ativo'?'p-ativo':(st==='aguardando'?'p-aguardando':'p-pausado');
+    var pg=porAgente[nm]||{pend:0,conc:0,atual:null,entrega:null};
+    cards+='<div class="cardA"><div class="cabeca"><div class="em">'+esc(gd.emoji||g.emoji||'🤖')+'</div><div class="nm">'+esc(nm)+'<span class="pp">'+esc(gd.papel||g.papel||'')+'</span></div><span class="pill '+cls+'">'+esc(st||'?')+'</span></div>';
+    cards+='<div class="acao">'+(pg.atual?'▶ <b style="color:#eab308">Executando:</b> '+esc(pg.atual.slice(0,120)):esc(gd.ultima_acao||g.ultima_acao||'aguardando instruções'))+'</div>';
+    if(pg.entrega)cards+='<div class="acao" style="color:#4ade80">📦 Última entrega: '+esc(pg.entrega.slice(0,110))+'</div>';
+    cards+='<div class="rodape"><span>✅ '+pg.conc+' entregue(s)</span><span>⏳ '+pg.pend+' em andamento</span></div></div>';}
+  document.getElementById('agentes').innerHTML=cards;
+  document.getElementById('kpis').innerHTML=
+    '<div class="kpi"><i>Agentes ativos</i><b>'+ativos+'/'+D.agentes.length+'</b></div>'+
+    '<div class="kpi"><i>Em andamento</i><b>'+pend+'</b></div>'+
+    '<div class="kpi"><i>Entregas feitas</i><b>'+conc+'</b></div>'+
+    '<div class="kpi"><i>Faturamento</i><b>'+fmtV(vPagas)+'</b></div>';
+  var fh='';for(var i=0;i<D.logs.length;i++){var l=D.logs[i];var ld=l.data||l;
+    fh+='<div class="fitem"><span class="t">'+quando(ld.created_date||l.created_date)+'</span><span class="ag">'+esc(ld.agente||l.agente)+'</span> · '+esc(ld.evento||l.evento)+(ld.detalhes?' <span style="color:#475569">— '+esc(String(ld.detalhes).slice(0,80))+'</span>':'')+'</div>';}
+  document.getElementById('feed').innerHTML=fh||'<div class="fitem">aguardando eventos...</div>';
+  var th='';for(var i=0;i<D.tarefas.length;i++){var t=D.tarefas[i];var td=t.data||t;var st=String(td.status||'');
+    var cls=st==='pendente'?(String(td.funcao||'').indexOf('AGUARDANDO APROVA')>=0?'s-aprov':'s-pendente'):(st==='concluida'?'s-concluida':'s-outro');
+    th+='<tr><td style="color:#7dd3fc">'+esc(td.agente)+'</td><td>'+esc(String(td.funcao||'').slice(0,90))+'</td><td style="color:#4ade80">'+esc(String(td.resultado||'—').slice(0,90))+'</td><td><span class="st '+cls+'">'+esc(st||'?')+'</span></td></tr>';}
+  document.getElementById('tarefas').innerHTML=th;
+  var opts='<option value="">Agente...</option>';for(var i=0;i<D.agentes.length;i++){var g=D.agentes[i];var gd=g.data||g;opts+='<option>'+esc(gd.nome||g.nome)+'</option>';}
+  document.getElementById('fAg').innerHTML=opts;
+  var tr='';
+  for(var i=0;i<D.decisoes.length;i++){var d2=D.decisoes[i];var dd=d2.data||d2;tr+='<div class="mini">📊 <b>'+esc(dd.symbol||d2.symbol)+'</b> '+esc(dd.acao||d2.acao)+'<br><span style="color:#64748b">'+esc(dd.detalhe||d2.detalhe||'')+'</span></div>';}
+  for(var i=0;i<D.posicoes.length;i++){var p2=D.posicoes[i];var pd=p2.data||p2;var pnl=Number(pd.pnl_pct||0);
+    tr+='<div class="mini">📈 <b>'+esc(pd.symbol)+'</b> '+(pnl>=0?'<b>+'+pnl.toFixed(1)+'%</b>':'<span class="neg">'+pnl.toFixed(1)+'%</span>')+'<br><span style="color:#64748b">'+esc(pd.modo||'')+' · '+esc(pd.status||'')+'</span></div>';}
+  for(var i=0;i<D.scans.length;i++){var s2=D.scans[i];var sd=s2.data||s2;tr+='<div class="mini">🔎 <b>'+esc(sd.symbol)+'</b> score '+esc(sd.score||'—')+'<br><span style="color:#64748b">'+esc(String(sd.status||'').slice(0,40))+'</span></div>';}
+  document.getElementById('trading').innerHTML=tr||'<div class="mini" style="color:#64748b">sem operações no momento</div>';
+  var vh='';for(var i=0;i<D.vendas.length;i++){var v3=D.vendas[i];var vd3=v3.data||v3;
+    vh+='<tr><td>'+esc(vd3.produto||'—')+'</td><td>'+esc(vd3.cliente||'—')+'</td><td>'+fmtV(vd3.valor)+'</td><td><span class="st '+(String(vd3.status||'').toLowerCase()==='paga'?'s-concluida':'s-pendente')+'">'+esc(vd3.status||'?')+'</span></td></tr>';}
+  document.getElementById('vendas').innerHTML=vh||'<tr><td colspan="4" style="color:#475569">nenhuma venda registrada ainda</td></tr>';
+  var ph='';for(var i=0;i<D.posts.length;i++){var p3=D.posts[i];var pd3=p3.data||p3;
+    ph+='<tr><td>'+esc(String(pd3.titulo||'').slice(0,60))+'</td><td>'+esc(pd3.plataforma||'—')+'</td><td><span class="st s-outro">'+esc(pd3.status||'?')+'</span></td></tr>';}
+  document.getElementById('posts').innerHTML=ph;
+}
+function tick(){
+  fetch(API+'?view=data').then(function(r){return r.json();}).then(function(d){
+    if(!d||!d.ok){document.getElementById('diag').textContent='sem dados ainda...';return;}
+    D=d;document.getElementById('diag').textContent='conectado ✓ '+(d.agora||'');
+    render();document.getElementById('nojs').style.display='none';
+  }).catch(function(e){document.getElementById('diag').textContent='reconectando... ('+String(e).slice(0,40)+')';});
+}
+function atribuir(){
+  var a=document.getElementById('fAg').value, f=document.getElementById('fTxt').value;
+  if(!a||!f)return;
+  fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({acao:'atribuir',agente:a,funcao:f})})
+    .then(function(r){return r.json();}).then(function(d){if(d&&d.ok){document.getElementById('fTxt').value='';tick();}});
+}
+tick();setInterval(tick,10000);
+</script></body></html>
