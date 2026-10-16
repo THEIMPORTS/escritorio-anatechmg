@@ -197,7 +197,7 @@ function calcAll(cs){
   var e9=ema(cl,9),e21=ema(cl,21),high=cs.map(function(c){return c.h}),low=cs.map(function(c){return c.l}),vol=cs.map(function(c){return c.v});
   var tp=[],tpv=0,vv=0;for(var i=0;i<n;i++){var t=(cs[i].h+cs[i].l+cs[i].c)/3;tp.push(t)}
   var vwap=null,pv=0;for(i=0;i<n;i++){var dk=dayKey(cs[i].t);if(i===0||dayKey(cs[i-1].t)!==dk){pv=0;vv=0}pv+=tp[i]*cs[i].v;vv+=cs[i].v;cs[i]._vwap=(vv>0?pv/vv:null)}
-  var r=rsi(cl,14),a=atr(cs,14);
+  var r=rsi(cl,9),a=atr(cs,14);
   // MACD
   var m12=ema(cl,12),m26=ema(cl,26),macd=[],sig=[],hist=[];for(i=0;i<n;i++){macd[i]=m12[i]-m26[i]}
   sig=ema(macd,9);for(i=0;i<n;i++)hist[i]=macd[i]-sig[i];
@@ -320,7 +320,7 @@ function openPos(sig_,tNow){
   pos={dir:sig_.dir,entry:sig_.entry,stop:sig_.stop,t1:sig_.t1,t2:sig_.t2,rPts:sig_.rPts,score:sig_.score,t:tNow,trail:null,reasons:sig_.reasons.join("; ")};
   opsDia++;lastAlertKey=sig_.dir+"@"+sig_.entry;
   var risk=(sig_.rPts*CFG.vpt*CFG.ctr+CFG.cust).toFixed(0);
-  bigAlert((sig_.dir==="LONG"?"🟢 LONG CONFIRMADO":"🔴 SHORT CONFIRMADO")+" — WIN<br>Entrada: "+Math.round(sig_.entry)+" · Stop: "+Math.round(sig_.stop)+"<br>Alvo 1: "+Math.round(sig_.t1)+" · Alvo 2: "+Math.round(sig_.t2)+"<br>Contratos: "+CFG.ctr+" · Score: "+sig_.score+"/100<br>Risco bruto/op: R$ "+risk,sig_.dir==="LONG"?"#22c55e":"#ef4444",sig_.dir==="LONG"?1:2);
+  bigAlert((sig_.dir==="LONG"?"🟢 HORA DE COMPRAR (entrada)":"🔴 HORA DE VENDER (entrada)")+" — indicação, você decide — WIN<br>Entrada: "+Math.round(sig_.entry)+" · Stop: "+Math.round(sig_.stop)+"<br>Alvo 1: "+Math.round(sig_.t1)+" · Alvo 2: "+Math.round(sig_.t2)+"<br>Contratos: "+CFG.ctr+" · Score: "+sig_.score+"/100<br>Risco bruto/op: R$ "+risk,sig_.dir==="LONG"?"#22c55e":"#ef4444",sig_.dir==="LONG"?1:2);
   render();
 }
 function managePos(px,atNow){
