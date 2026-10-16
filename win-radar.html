@@ -66,12 +66,12 @@ label{font-size:11px;color:var(--dim);display:block;margin-top:8px}
       <h3>Gráfico 5 min · EMA9/21 · VWAP · Bollinger 20/2 · HILO Flow · Volume</h3>
       <canvas id="chart" height="420"></canvas>
       <div class="tools">
-        <button onclick="startAuto()">🔗 Modo AUTO (ponte ProfitDLL)</button><button onclick="startDemo()">▶ Modo Demo (dados sintéticos)</button>
+        <button onclick="startLiveTV()">🟢 AO VIVO — dados reais</button><button onclick="startAuto()">🔗 Modo AUTO (ponte ProfitDLL)</button><button onclick="startDemo()">▶ Modo Demo (dados sintéticos)</button>
         <label style="margin:0">Importar CSV (Profit Pro / histórico): <input type="file" id="csvFile" accept=".csv,.txt"></label>
         <button onclick="replayStep(1)">⏭ 1 candle</button>
         <button onclick="replayPlay()">▶ Replay</button>
         <button onclick="replayStop()">⏸</button>
-        <span class="d" id="repInfo"></span>
+        <span class="d" id="repInfo"></span><span class="d" id="liveInfo" style="color:#22c55e"></span>
       </div>
       <div class="note">Contato manual em tempo real: cole cotações recebidas do Profit Pro (DDE/exportação) abaixo — o radar calcula na hora. Nunca exibimos cotações fictícias como reais.</div>
       <div class="tools"><input id="manualPrice" placeholder="preço atual (ex.: 152340)" style="width:160px"><input id="manualVol" placeholder="volume" style="width:110px"><button onclick="pushManual()">Atualizar cotação</button><button class="danger" onclick="clearManual()">Encerrar sessão manual</button></div>
@@ -560,6 +560,41 @@ function startAuto(){
   },5000);
 }
 function stopAuto(){if(autoTimer){clearInterval(autoTimer);autoTimer=null}}
+// ===== MODO AO VIVO — DADOS REAIS (IBOV->WIN via backend) =====
+var LIVEURL="https://ana-a391f94e.base44.app/functions/winRadarLive",liveTimer=null;
+function stopLive(){if(liveTimer){clearInterval(liveTimer);liveTimer=null}}
+function feedLive(p,v){
+  var now=Date.now(),slot=Math.floor(now/(5*60*1000))*5*60*1000,cur=null;
+  for(var j=candles.length-1;j>=0;j--){if(candles[j].t===slot){cur=candles[j];break}}
+  if(!cur){processCandleClose();cur={t:slot,o:p,h:p,l:p,c:p,v:v||1};candles.push(cur);candles.sort(function(a,b){return a.t-b.t})}
+  cur.h=Math.max(cur.h,p);cur.l=Math.min(cur.l,p);cur.c=p;cur.v=Math.max(cur.v,v||1);
+  shown=candles.length;manualAt=now;window._staleSnd=false;
+  if(pos)managePos(p,now);
+  render();
+}
+function livePoll(){
+  fetch(LIVEURL+"?ts="+Date.now()).then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.ok||!d.candles||!d.candles.length)return;
+    if(Date.now()-d.t>25*60*1000){if(!window._staleSnd){window._staleSnd=true;sfx(7);bigAlert("⚠️ Sem dados frescos da fonte ao vivo — sinais bloqueados.","#ef4444",7)}return}
+    window._staleSnd=false;
+    if(MODE!=="live"){candles=d.candles;shown=candles.length;pos=null;var ev0=evaluate(candles.slice(0,shown));lastCalc=ev0;render()}
+    else{
+      var lastT=candles.length?candles[candles.length-1].t:0,fresh=false;
+      for(var i=0;i<d.candles.length;i++){if(d.candles[i].t>lastT){fresh=true;break}}
+      if(fresh){processCandleClose();candles=d.candles;shown=candles.length;render()}
+      feedLive(d.last||d.candles[d.candles.length-1].c,d.candles[d.candles.length-1].v);
+    }
+    var hh=new Date(d.t).toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+    g("liveInfo").textContent="AO VIVO · "+(d.pregao?"pregão aberto":"fora do pregão do índice")+" · atualizado "+hh+" · atraso ~15 min";
+  }).catch(function(){});
+}
+function startLiveTV(){
+  stopAuto();stopLive();MODE="live";pos=null;manualAt=Date.now();
+  g("liveInfo").textContent="AO VIVO — carregando dados reais...";
+  bigAlert("🟢 AO VIVO: dados reais do mercado (IBOV→WIN estimado 1,022x; feed público com ~15 min de atraso).<br>Sinais LONG/SHORT no fechamento de cada candle 5m. O radar indica — quem decide é você.","#22c55e",8);
+  livePoll();
+  liveTimer=setInterval(livePoll,30000);
+}
 function pushManual(){
   var p=parseFloat((g("manualPrice").value||"").replace(/\./g,"").replace(",","."));if(!p)return;
   var v=parseFloat(g("manualVol").value)||1;
@@ -575,7 +610,7 @@ function pushManual(){
   if(pos)managePos(p,now);
   render();
 }
-function clearManual(){stopAuto();MODE="off";candles=[];shown=0;pos=null;render()}
+function clearManual(){stopAuto();stopLive();MODE="off";candles=[];shown=0;pos=null;render()}
 // ===== DIÁRIO/STATS =====
 function renderJ(){
   var tb=g("jTable").querySelector("tbody");tb.innerHTML="";
