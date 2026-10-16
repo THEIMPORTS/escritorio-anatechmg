@@ -373,7 +373,7 @@ function render(){
   g("hQuote").textContent=q?("WIN "+q.toLocaleString("pt-BR",{maximumFractionDigits:0})):"—";
   g("hTime").textContent=vis.length?hhmm(vis[vis.length-1].t):"—";
   var src=g("hSrc");src.className="badge "+(MODE==="demo"?"demo":MODE==="csv"?"csv":MODE==="manual"?"manual":"off");
-  src.textContent=autoTimer?"AUTO — PONTE PROFITDLL":MODE==="demo"?"DEMO — DADOS SINTÉTICOS":MODE==="csv"?"CSV IMPORTADO (replay/backtest)":MODE==="manual"?"MANUAL/PROFIT PRO (cotações coladas)":"SEM DADOS";
+  src.textContent=autoTimer?"AUTO — PONTE PROFITDLL":MODE==="demo"?"DEMO — DADOS SINTÉTICOS":MODE==="csv"?"CSV IMPORTADO (replay/backtest)":MODE==="live"?"AO VIVO — DADOS REAIS (IBOV→WIN)":MODE==="manual"?"MANUAL/PROFIT PRO (cotações coladas)":"SEM DADOS";
   resetDia();
   var blocked=blocks();
   var stale=MODE==="manual"&&Date.now()-manualAt>120000;
