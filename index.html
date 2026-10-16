@@ -5,6 +5,9 @@
 var __err = null;
 window.onerror = function(m) { __err = String(m); var d = document.getElementById('diag'); if (d) { d.textContent = 'ERRO: ' + __err; d.style.color = '#f87171'; } return false; };
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden;background:#04060c;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
@@ -38,7 +41,12 @@ html,body{height:100%;overflow:hidden;background:#04060c;font-family:system-ui,-
 #carta .msg{font-size:.68rem;min-height:15px;margin-top:5px;color:#4ade80}
 #carta .fx{text-align:right}
 #carta .fx a{color:#60a5fa;font-size:.64rem;text-decoration:none;cursor:pointer}
+
+#topo h1{font-family:'Press Start 2P',monospace;font-size:.72rem;letter-spacing:1px}
+#toast{position:fixed;top:64px;left:50%;transform:translateX(-50%);background:#16a34a;color:#fff;font-family:'Press Start 2P',monospace;font-size:9px;padding:8px 14px;border:2px solid #0b3d1e;border-radius:4px;box-shadow:0 3px 0 #0b3d1e;animation:toast 7s forwards;z-index:50;white-space:nowrap}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,-8px)}10%{opacity:1;transform:translate(-50%,0)}85%{opacity:1}100%{opacity:0;visibility:hidden}}
 </style></head><body>
+<div id="toast">ANATECHMG ATUALIZOU!</div>
 <canvas id="c2d"></canvas>
 <div class="hud" id="nojs" style="top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;background:rgba(9,13,22,.96);border:1px solid #f87171;border-radius:16px;padding:18px;max-width:86vw;font-size:.8rem;line-height:1.6"><div style="font-size:1.6rem">📱⚠️</div><b>Se esta mensagem não sumir em 2 segundos,</b><br>o JavaScript não rodou neste navegador.<br><b>1.</b> Abra no Chrome<br><b>2.</b> Ou me avise que esta tela ficou parada</div>
 <div class="hud" id="topo"><span class="dot"></span><h1>🏢 Escritório <span style="color:#eab308">Anatechmg</span></h1><span id="relogio">carregando...</span></div>
@@ -462,10 +470,25 @@ function parede(x1, z1, x2, z2, h, corF) {
   ctx.fillStyle = corF; ctx.fill();
   ctx.strokeStyle = '#9db1cc'; ctx.lineWidth = 1; ctx.stroke();
 }
+function tom(hex, f) {
+  var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+  var m = function (v) { return Math.max(0, Math.min(255, Math.round(f >= 0 ? v + (255 - v) * f : v * (1 + f)))); };
+  return '#' + [m(r), m(g), m(b)].map(function (v) { return ('0' + v.toString(16)).slice(-2); }).join('');
+}
+function pisoXadrez(x1, z1, x2, z2, cor) {
+  var t = 2.5;
+  for (var x = x1; x < x2; x += t) {
+    for (var z = z1; z < z2; z += t) {
+      var alt = (Math.floor((x - x1) / t) + Math.floor((z - z1) / t)) % 2 === 0;
+      piso(x, z, Math.min(x + t, x2), Math.min(z + t, z2), alt ? tom(cor, .45) : tom(cor, .22), null);
+    }
+  }
+  piso(x1, z1, x2, z2, null, tom(cor, -.35));
+}
 function piso(x1, z1, x2, z2, cor, borda) {
   var a = iso(x1, z1, 0), b = iso(x2, z1, 0), c = iso(x2, z2, 0), d = iso(x1, z2, 0);
   ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.lineTo(c.x, c.y); ctx.lineTo(d.x, d.y); ctx.closePath();
-  ctx.fillStyle = cor; ctx.fill();
+  if (cor) { ctx.fillStyle = cor; ctx.fill(); }
   if (borda) { ctx.strokeStyle = borda; ctx.lineWidth = 1.5; ctx.stroke(); }
 }
 function pessoa(px, py, as, m, t, i, detalhe, sentado) {
@@ -688,10 +711,16 @@ function desenha(agora) {
   var g = ctx.createRadialGradient(W / 2, H * .5, 40, W / 2, H * .5, Math.max(W, H) * .8);
   g.addColorStop(0, '#eef5fc'); g.addColorStop(1, '#c8dbee');
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  for (var nc = 0; nc < 4; nc++) {
+    var cx = ((t * (6 + nc * 3) + nc * 260) % (W + 160)) - 80;
+    var cy = 40 + nc * 34;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(cx, cy, 46, 12); ctx.fillRect(cx + 10, cy - 8, 26, 8); ctx.fillRect(cx + 30, cy + 12, 16, 6);
+  }
   motorDialogos(agora);
-  piso(-25, -1, 35, 3, '#b0854e', null);
+  pisoXadrez(-25, -1, 35, 3, '#b0854e');
   var sg = iso(6, 1, 2.8);
-  ctx.fillStyle = '#eab308'; ctx.font = '800 14px system-ui, sans-serif'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#eab308'; ctx.font = '11px "Press Start 2P", monospace'; ctx.textAlign = 'center';
   ctx.shadowColor = '#eab308'; ctx.shadowBlur = 12;
   ctx.fillText('ANATECHMG', sg.x, sg.y - Math.sin(t * 1.4) * 3);
   ctx.shadowBlur = 0;
@@ -705,7 +734,7 @@ function desenha(agora) {
   for (var oi = 0; oi < ordem.length; oi++) {
     var s = SALAS[ordem[oi]];
     var hAlta = 2.6, hBaixa = .5;
-    piso(s.x1, s.z1, s.x2, s.z2, s.cor + '2e', s.cor);
+    pisoXadrez(s.x1, s.z1, s.x2, s.z2, s.cor);
     if (s.z2 === -1) {
       parede(s.x1, s.z1, s.porta - 1.3, s.z1, hAlta, '#f5f8fd');
       parede(s.porta + 1.3, s.z1, s.x2, s.z1, hAlta, '#f5f8fd');
@@ -719,7 +748,7 @@ function desenha(agora) {
     parede(s.x2, s.z1, s.x2, s.z2, hBaixa, '#e4ebf4');
     var pz = s.z2 === -1 ? s.z1 : s.z2;
     var pl = iso(s.porta, pz, 2.9);
-    ctx.fillStyle = s.cor; ctx.font = '800 10px system-ui, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillStyle = tom(s.cor, -.3); ctx.font = '7px "Press Start 2P", monospace'; ctx.textAlign = 'center';
     ctx.fillText(s.nome, pl.x, pl.y);
   }
   drawCandles(t); drawTicker(t);
