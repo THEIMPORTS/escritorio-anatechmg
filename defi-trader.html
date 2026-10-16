@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeFi Intel — Simulação (BNB Chain)</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--bd:#30363d;--tx:#e6edf3;--mut:#8b949e;--green:#3fb950;--red:#f85149;--amber:#d29922;--blue:#58a6ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font:14px/1.5 system-ui,-apple-system,sans-serif;padding:16px;max-width:1100px;margin:auto}
+h1{font-size:20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tag{padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700}
+.ok{background:rgba(63,185,80,.2);color:var(--green)}
+.warn{background:rgba(210,153,34,.2);color:var(--amber)}
+.off{background:rgba(248,81,73,.2);color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:14px 0}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px}
+.kpi .l{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.kpi .v{font-size:20px;font-weight:800}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;margin-bottom:14px}
+.card h3{font-size:14px;margin-bottom:8px;color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top}
+th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.pos{color:var(--green)}.neg{color:var(--red)}
+.mini{color:var(--mut);font-size:11px}
+button{background:#21262d;color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
+button:hover{border-color:var(--blue)}
+.disc{color:var(--mut);font-size:11px;margin-top:16px;line-height:1.6}
+#st{margin:10px 0;color:var(--amber);font-weight:700;min-height:20px}
+@media(max-width:600px){table{font-size:11px}th,td{padding:4px 4px}.overflow{overflow-x:auto}}
+</style></head><body>
+<h1>DeFi Intel <span id="modo" class="tag warn">carregando…</span></h1>
+<div id="sub" class="mini"></div>
+<div class="grid">
+<div class="kpi"><div class="l">Capital (sim)</div><div class="v" id="kCap">—</div><div class="mini" id="kRisco">—</div></div>
+<div class="kpi"><div class="l">Scans</div><div class="v" id="kScans">—</div><div class="mini">tokens avaliados</div></div>
+<div class="kpi"><div class="l">Posições abertas</div><div class="v" id="kPos">—</div><div class="mini">simulação</div></div>
+<div class="kpi"><div class="l">Perda do dia</div><div class="v" id="kPerda">—</div><div class="mini" id="kLimite">—</div></div>
+</div>
+<div class="card"><h3>Controles</h3>
+<button id="btnScan">🔍 Scan agora</button>
+<button id="btnPausa">⏸ Pausar</button>
+<button id="btnRetoma">▶ Retomar</button>
+<button id="btnEmerg">🚨 Emergência</button>
+<div id="st"></div>
+</div>
+<div class="card"><h3>Últimos tokens avaliados</h3><div class="overflow"><div id="tScans" class="mini">carregando…</div></div></div>
+<div class="card"><h3>Posições simuladas abertas</h3><div class="overflow"><div id="tPos" class="mini">carregando…</div></div></div>
+<div class="card"><h3>Posições fechadas</h3><div class="overflow"><div id="tFech" class="mini">carregando…</div></div></div>
+<div class="card"><h3>Histórico de decisões</h3><div class="overflow"><div id="tDec" class="mini">carregando…</div></div></div>
+<div class="disc">Tecnologia de automação em simulação — não é recomendação de investimento. Rendimentos não são garantidos; perdas, inclusive totais, são possíveis. Fontes gratuitas: DexScreener, RPC público BSC, GoPlus (quando disponível). Stops não garantem preço nem execução. ANATECHMG LTDA — CNPJ 61.517.427/0001-56. Atualiza a cada 60s.</div>
+<script>
+var DATA='https://base44.app/api/apps/69b1d5cd9842092aa391f94e/functions/defiTrader?view=data';
+var SC='https://base44.app/api/apps/69b1d5cd9842092aa391f94e/functions/defiScanner?acao=';
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var usd=function(n){return Number(n)>=0?'$'+Number(n).toLocaleString('pt-BR',{maximumFractionDigits:0}):'não verificado'};
+var cls=function(v){return v>=0?'pos':'neg'};
+var hr=function(iso){if(!iso)return'';try{return new Date(iso).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}catch(e){return''}};
+function badge(st){var m={aprovado:'ok',monitorando:'warn',rejeitado:'off'};return'<span class="tag '+(m[st]||'off')+'">'+esc(st)+'</span>'}
+function render(d){
+  var cfg=d.cfg||{};
+  var m=document.getElementById('modo');
+  m.textContent=cfg.pausado?'PAUSADO':'SIMULAÇÃO ATIVA';
+  m.className='tag '+(cfg.pausado?'off':'ok');
+  document.getElementById('sub').textContent=cfg.pausado?(cfg.pausa_motivo||''):'Varredura automática a cada 30 min';
+  document.getElementById('kCap').textContent='$'+esc(cfg.capital_usd||'—');
+  document.getElementById('kRisco').textContent=esc(cfg.risco_pct)+'% por posição · máx '+esc(cfg.pos_max)+' simultâneas';
+  document.getElementById('kScans').textContent=d.scans.length;
+  document.getElementById('kPos').textContent=d.pos.length;
+  document.getElementById('kPerda').textContent='$'+esc(cfg.perda_dia_usd||0);
+  document.getElementById('kLimite').textContent='limite $'+esc(cfg.perda_dia_limite_usd);
+  var s=d.scans.slice().reverse();
+  document.getElementById('tScans').innerHTML=s.length?'<table><tr><th>Token</th><th>Liquidez</th><th>Vol 24h</th><th>Score</th><th>Status</th></tr>'+
+    s.map(function(x){return'<tr><td><b>'+esc(x.symbol)+'</b></td><td>'+usd(x.liquidez_usd)+'</td><td>'+usd(x.vol24h_usd)+'</td><td>'+esc(x.score)+'</td><td>'+badge(x.status)+'</td></tr>'}).join('')+'</table>':'Nenhum scan ainda.';
+  document.getElementById('tPos').innerHTML=d.pos.length?'<table><tr><th>Token</th><th>Entrada</th><th>Atual</th><th>PnL</th><th>Realizado</th><th>Expira</th></tr>'+
+    d.pos.map(function(p){return'<tr><td><b>'+esc(p.symbol)+'</b></td><td>'+esc(p.entrada_preco)+'</td><td>'+esc(p.atual_preco)+'</td><td class="'+cls(p.pnl_pct)+'">'+esc(p.pnl_pct)+'%</td><td>'+esc(p.realizado_usd)+'</td><td class="mini">'+hr(p.vence_em)+'</td></tr>'}).join('')+'</table>':'Nenhuma posição aberta.';
+  document.getElementById('tFech').innerHTML=d.fechadas.length?'<table><tr><th>Token</th><th>PnL</th><th>Realizado</th><th>Motivo da saída</th></tr>'+
+    d.fechadas.map(function(p){return'<tr><td><b>'+esc(p.symbol)+'</b></td><td class="'+cls(p.pnl_pct)+'">'+esc(p.pnl_pct)+'%</td><td>$'+esc(p.realizado_usd)+'</td><td class="mini">'+esc(p.saida_motivo)+'</td></tr>'}).join('')+'</table>':'Nenhuma posição fechada ainda.';
+  document.getElementById('tDec').innerHTML=d.dec.length?'<table><tr><th>Quando</th><th>Ação</th><th>Token</th><th>Detalhe</th></tr>'+
+    d.dec.map(function(x){return'<tr><td class="mini">'+hr(x.ts)+'</td><td><b>'+esc(x.acao)+'</b></td><td>'+esc(x.symbol)+'</td><td class="mini">'+esc(x.detalhe)+'</td></tr>'}).join('')+'</table>':'Sem decisões registradas.';
+}
+function carregar(){
+  fetch(DATA,{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+    if(d&&d.ok)render(d);
+  }).catch(function(e){
+    document.getElementById('sub').textContent='Erro ao carregar: '+e.message;
+  });
+}
+function agir(acao,msg){
+  document.getElementById('st').textContent=msg+'...';
+  fetch(SC+acao).then(function(r){return r.json()}).then(function(j){
+    document.getElementById('st').textContent=(j.msg||j.detalhe||j.erro||'').slice(0,120);
+    setTimeout(carregar,2000);
+  }).catch(function(e){document.getElementById('st').textContent='Erro: '+e.message});
+}
+document.getElementById('btnScan').onclick=function(){agir('scan','Analisando (pode levar 1-2 min)')};
+document.getElementById('btnPausa').onclick=function(){agir('pausar','Pausando')};
+document.getElementById('btnRetoma').onclick=function(){agir('retomar','Retomando')};
+document.getElementById('btnEmerg').onclick=function(){agir('emergencia','Acionando emergência')};
+carregar();
+setInterval(carregar,60000);
+</script></body></html>
