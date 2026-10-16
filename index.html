@@ -19,6 +19,13 @@ canvas#cv{position:fixed;inset:0;display:block}
 #meta .mv{font-size:.82rem;font-weight:800;color:#7dd3fc}
 #metaBar{width:150px;height:5px;background:#10182b;border-radius:99px;margin-top:5px;overflow:hidden}
 #metaFill{height:100%;width:0%;background:linear-gradient(90deg,#4ade80,#22d3ee);border-radius:99px;transition:width 1s}
+#equipe{top:96px;right:12px;text-align:right}
+#eqBtn{background:rgba(9,13,22,.82);border:1px solid #1f2735;border-radius:12px;color:#7dd3fc;font-weight:800;font-size:.68rem;padding:8px 14px;cursor:pointer;backdrop-filter:blur(6px)}
+#eqLista{display:none;background:rgba(9,13,22,.94);border:1px solid #1f2735;border-radius:14px;padding:10px;max-height:46vh;overflow-y:auto;width:min(240px,72vw);text-align:left;margin-top:6px}
+#equipe.aberta #eqLista{display:block}
+#eqLista .eqz{font-size:.58rem;font-weight:800;letter-spacing:1px;margin:8px 0 3px}
+#eqLista .eqi{font-size:.7rem;color:#aeb7c9;padding:3px 6px;border-radius:6px;cursor:pointer}
+#eqLista .eqi:hover{background:#1f2735;color:#fff}
 #feed{bottom:12px;left:12px;width:min(300px,72vw);background:rgba(9,13,22,.82);border:1px solid #1f2735;border-radius:14px;padding:10px 12px;backdrop-filter:blur(6px)}
 #feed .ft{font-size:.64rem;font-weight:800;color:#8b93a3;letter-spacing:1px;margin-bottom:6px}
 #feed .it{font-size:.68rem;color:#aeb7c9;margin:4px 0;display:flex;gap:6px;align-items:baseline}
@@ -73,6 +80,7 @@ canvas#cv{position:fixed;inset:0;display:block}
   <div id="marca"><h1>CIDADE VIRTUAL ANATECHMG</h1><div class="sub">ao vivo · <b id="rel">--:--:--</b> · <b id="nfunc">0</b> funcionários trabalhando</div></div>
   <div id="meta"><div class="ml">META 2026 · R$ 1.000.000</div><div class="mv" id="metaVal">R$ 0,00</div><div id="metaBar"><div id="metaFill"></div></div></div>
 </div>
+<div class="hud" id="equipe"><button id="eqBtn">👥 EQUIPE</button><div id="eqLista"></div></div>
 <div class="hud" id="feed"><div class="ft">📡 ATIVIDADE AO VIVO</div><div id="feedIt"></div></div>
 <div class="hud" id="hint">🖱️ <b>arraste</b> pra girar · <b>scroll</b> pra zoom · <b>clique num funcionário</b> pra conversar</div>
 <div class="hud" id="carta">
@@ -212,7 +220,7 @@ function abreCarta(nome) {
   logEl.innerHTML = '';
   logEl.classList.toggle('on', !!(chatHist[nome] && chatHist[nome].length));
   if (chatHist[nome]) chatHist[nome].forEach(h => chatBubble(h.de, h.texto));
-  const p = povo.find(x => x.nome === nome); if (p) p.montaHolo();
+  const p = povo.find(x => x.nome === nome); if (p) { p.montaHolo(); voaPara(p); }
 }
 document.getElementById('qBtn').addEventListener('click', () => {
   const f = document.getElementById('qFuncao').value.trim();
@@ -480,6 +488,13 @@ function animate(ms) {
     const e = 1 - Math.pow(1 - intro, 3);
     camera.position.lerpVectors(new THREE.Vector3(0, 110, 150), posFinal, e);
   }
+  if (voando) {
+    const e = Math.min(1, (performance.now() - voando.t0) / 1300);
+    const ee = 1 - Math.pow(1 - e, 3);
+    camera.position.lerpVectors(voando.d0, voando.d1, ee);
+    controls.target.lerpVectors(voando.a0, voando.a1, ee);
+    if (e >= 1) { voando = null; controls.enabled = true; }
+  }
   controls.update();
   const agora = performance.now();
   for (const p of povo) p.tick(agora, dt);
@@ -490,6 +505,32 @@ function animate(ms) {
 }
 
 povoar();
+function montaEquipe() {
+  const box = document.getElementById('eqLista'); box.innerHTML = '';
+  const grupos = {};
+  Object.keys(ZONAS).forEach(n => { const z = ZONAS[n]; (grupos[z] = grupos[z] || []).push(n); });
+  for (const z of Object.keys(grupos)) {
+    const T = TORRES[z];
+    const h = document.createElement('div'); h.className = 'eqz';
+    h.textContent = '🏙 ' + T.nome; h.style.color = '#' + T.cor.toString(16).padStart(6, '0');
+    box.appendChild(h);
+    grupos[z].sort().forEach(n => {
+      const it = document.createElement('div'); it.className = 'eqi'; it.textContent = n;
+      it.onclick = () => abreCarta(n);
+      box.appendChild(it);
+    });
+  }
+}
+document.getElementById('eqBtn').addEventListener('click', () => document.getElementById('equipe').classList.toggle('aberta'));
+montaEquipe();
+let voando = null;
+function voaPara(p) {
+  const alvo = p.g.position.clone(); alvo.y = 2.2;
+  const dir = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
+  const pos = alvo.clone().addScaledVector(dir, 13); pos.y = Math.max(7, pos.y + 8);
+  voando = { t0: performance.now(), d0: camera.position.clone(), a0: controls.target.clone(), d1: pos, a1: alvo };
+  controls.autoRotate = false; controls.enabled = false;
+}
 carregaDados();
 setInterval(carregaDados, 30000);
 setInterval(() => { document.getElementById('rel').textContent = new Date().toLocaleTimeString('pt-BR'); }, 1000);
