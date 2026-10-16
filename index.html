@@ -72,9 +72,10 @@ var SALAS = {
   comercial: { nome: 'COMERCIAL', cor: '#4ade80', x1: -12, z1: 3, x2: 0, z2: 13, porta: -6, fundo: 11 },
   rifa: { nome: 'RIFA & OPERAÇÕES', cor: '#fbbf24', x1: 2, z1: 3, x2: 12, z2: 13, porta: 7, fundo: 11 },
   juridico: { nome: 'JURÍDICO & CONTÁBIL', cor: '#38bdf8', x1: 14, z1: 3, x2: 24, z2: 13, porta: 19, fundo: 11 },
+  loja: { nome: 'TIKTOK SHOP', cor: '#22d3ee', x1: 26, z1: 3, x2: 36, z2: 13, porta: 31, fundo: 11 },
   lazer: { nome: 'SALA DE DESCANSO', cor: '#fb7185', x1: 24, z1: -13, x2: 34, z2: -1, porta: 29, fundo: -11 }
 };
-var ZONAS = { 'Ana': 'diretoria', 'Agente Social': 'marketing', 'Agente Facebook': 'marketing', 'Copy': 'marketing', 'Designer': 'marketing', 'Gestor de Tráfego': 'marketing', 'Vendedor Expert': 'comercial', 'Follow-up': 'comercial', 'Operações Rifa': 'rifa', 'QuantBot Copy': 'trading', 'QuantBot Direcional': 'trading', 'QuantBot Carry': 'trading', 'Scanner DeFi': 'trading', 'WIN Radar Pro': 'trading', 'Jurídico': 'juridico', 'Contábil': 'juridico', 'Programador': 'tech', 'Web Segurança': 'tech', 'Growth Hacker': 'marketing', 'Otimizador de Vídeo': 'marketing', 'Estrategista de E-mail': 'marketing', 'PR & Comunicação': 'marketing', 'Estrategista de Iscas': 'comercial', 'Analista de Pipeline': 'comercial', 'Suporte Pós-Venda': 'comercial', 'Sintetizador de Feedback': 'comercial', 'Pesquisador de Mercado': 'diretoria', 'Product Manager': 'diretoria' };
+var ZONAS = { 'Ana': 'diretoria', 'Agente Social': 'marketing', 'Agente Facebook': 'marketing', 'Copy': 'marketing', 'Designer': 'marketing', 'Gestor de Tráfego': 'marketing', 'Vendedor Expert': 'comercial', 'Follow-up': 'comercial', 'Operações Rifa': 'rifa', 'QuantBot Copy': 'trading', 'QuantBot Direcional': 'trading', 'QuantBot Carry': 'trading', 'Scanner DeFi': 'trading', 'WIN Radar Pro': 'trading', 'Jurídico': 'juridico', 'Contábil': 'juridico', 'Programador': 'tech', 'Web Segurança': 'tech', 'Growth Hacker': 'marketing', 'Otimizador de Vídeo': 'marketing', 'Estrategista de E-mail': 'marketing', 'PR & Comunicação': 'marketing', 'Estrategista de Iscas': 'comercial', 'Analista de Pipeline': 'comercial', 'Suporte Pós-Venda': 'comercial', 'Sintetizador de Feedback': 'comercial', 'Pesquisador de Mercado': 'diretoria', 'Product Manager': 'diretoria', 'Agente TikTok Shop': 'loja', 'Afiliado TikTok': 'loja', 'Host de Lives': 'loja', 'Logística': 'loja', 'Produtor de Reels': 'marketing', 'Arquiteto do Escritório': 'tech' };
 var CAFE = [{ x: -3.4, z: 1.1 }, { x: -1.6, z: .9 }];
 var mercado = { usd: null, btc: null, ouro: null, clima: null };
 function tickMercado() {
@@ -665,6 +666,13 @@ function movelGym() {
   var g2 = iso(32.2, -9.6, 0);
   ctx.fillStyle = '#1e293b'; ctx.font = '700 8px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.fillText('ACADEMIA', g2.x, g2.y + 12);
 }
+function movelVitrine() {
+  var v1 = iso(29.5, 10.5, .4);
+  ctx.fillStyle = '#0f172a'; ctx.font = '700 9px system-ui, sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('🛍️ VITRINE TIKTOK SHOP', v1.x, v1.y - 6);
+  var v2 = iso(33, 10.5, .4);
+  ctx.fillText('🔴 🎤', v2.x, v2.y - 6);
+}
 function movelPlantas() {
   var u = Math.max(view.z, .5) * 1.2;
   var p1 = iso(-9, 1, 0), p2 = iso(14, 1, 0);
@@ -715,7 +723,7 @@ function desenha(agora) {
     ctx.fillText(s.nome, pl.x, pl.y);
   }
   drawCandles(t); drawTicker(t);
-  movelSofa(t); movelTV(t); movelArcade(); movelPong(); movelPlantas(); movelGym();
+  movelSofa(t); movelTV(t); movelArcade(); movelPong(); movelPlantas(); movelGym(); movelVitrine();
   var nomes = [];
   for (var nn in agentes) nomes.push(nn);
   nomes.sort(function(a, b) { return (agentes[a].x + agentes[a].z) - (agentes[b].x + agentes[b].z); });
