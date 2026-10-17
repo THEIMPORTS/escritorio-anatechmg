@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sala de Sinais Anatechmg</title>
+<style>
+:root{--bg:#0A1633;--card:#101F42;--line:rgba(255,255,255,.1);--mut:#9DB2D0}
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Inter,sans-serif}
+body{background:var(--bg);color:#fff;padding:14px;max-width:1100px;margin:0 auto}
+h1{font-size:22px;margin-bottom:4px}h3{font-size:14px;margin:10px 0 8px}
+.mini{font-size:11.5px;color:var(--mut)}
+.tag{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:10px}
+.tag.ok{background:#10b98133;color:#6ee7b7}.tag.off{background:#ef444433;color:#fca5a5}.tag.warn{background:#f59e0b33;color:#fcd34d}
+.sinal,.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:16px}
+.lin{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;margin-bottom:8px}
+.lin span{color:var(--mut);font-size:11px}
+canvas.g{width:100%;height:130px;display:block}
+.pos{color:#6ee7b7}.neg{color:#fca5a5}
+table{width:100%;border-collapse:collapse;font-size:12.5px}th,td{padding:6px;text-align:left;border-bottom:1px solid var(--line)}th{color:var(--mut);font-size:11px}
+.disc{margin-top:14px;font-size:11px;color:var(--mut);line-height:1.6}
+#vig{margin:6px 0}
+input{background:#0A1633;border:1px solid var(--line);color:#fff;border-radius:8px;padding:6px 8px;font-size:13px;width:100%}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kpi{background:#0A1633;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.kpi b{display:block;font-size:16px;margin-top:2px}
+</style></head><body>
+<h1>Sala de Sinais Anatechmg <span class="tag ok">SINAIS AO VIVO</span></h1>
+<div class="mini">Sistema de SINALIZAÇÃO (nunca execução automática): cada sinal traz entrada, stop, alvos e gestão. Você opera o próprio capital seguindo o plano. Alertas de sinal novo chegam no WhatsApp.</div>
+<div class="mini" id="vig">atualizando…</div>
+
+<div class="card"><h3>💰 Modo capital real — dimensionamento e proteção</h3>
+<div class="grid2">
+<div><div class="mini">Seu capital (US$)</div><input id="cap" type="number" value="1000" min="1"/></div>
+<div><div class="mini">Risco por trade (% do capital)</div><input id="risco" type="number" value="1" min="0.1" step="0.1" max="3"/></div>
+</div>
+<div class="lin" style="margin-top:8px">
+<div class="kpi"><span class="mini">Risco por trade</span><b id="k-risco">—</b></div>
+<div class="kpi"><span class="mini">Tamanho da posição</span><b id="k-tam">—</b></div>
+<div class="kpi"><span class="mini">Perda máx. do dia (disjuntor)</span><b id="k-lim">—</b></div>
+<div class="kpi"><span class="mini">Status do disjuntor</span><b id="k-disj">—</b></div>
+</div>
+<div class="mini" style="margin-top:6px">Regra de proteção: se a perda do dia atingir o limite, o sistema PAUSA e não gera novo sinal até o reset do dia. Stop de 10% em todo sinal, parcial de 25% no alvo 1, breakeven após pico de +5% e trailing de 6% — o lucro conquistado volta pro capital.</div>
+</div>
+
+<h3>Sinais ativos (DeFi Intel — regime v2)</h3>
+<div id="lista"></div>
+
+<div class="card"><h3>📈 Histórico real do regime v2 (desde 17/10, 13h55)</h3>
+<div class="lin" style="margin-top:4px">
+<div class="kpi"><span class="mini">Sinais</span><b id="h-v2-n">—</b></div>
+<div class="kpi"><span class="mini">Acerto</span><b id="h-v2-ac">—</b></div>
+<div class="kpi"><span class="mini">Ganho médio</span><b id="h-v2-g" class="pos">—</b></div>
+<div class="kpi"><span class="mini">Perda média</span><b id="h-v2-p" class="neg">—</b></div>
+<div class="kpi"><span class="mini">Melhor</span><b id="h-v2-m">—</b></div>
+<div class="kpi"><span class="mini">Pior</span><b id="h-v2-pi">—</b></div>
+</div>
+<div class="mini" id="h-v2-t" style="margin-top:6px">…</div>
+<div class="mini">O histórico conta a verdade do sistema, inclusive quando é ruim — é assim que uma sala de sinais séria se diferencia de golpe. Resultado somado em % dos sinais fechados, com a mesma gestão que o sinal manda você fazer.</div>
+</div>
+
+<div class="card"><h3>WIN — gráfico real 5m + indicador de compra/venda (EMA9 x EMA21 + RSI14)</h3>
+<canvas id="win" style="width:100%;height:160px;display:block"></canvas>
+<div class="mini" id="winfo">carregando candles reais…</div></div>
+
+<h3>Últimos sinais encerrados</h3>
+<div class="card"><table id="hist"><tr><th>Token</th><th>Resultado</th><th>Realizado</th><th>Motivo</th><th>Quando</th></tr></table></div>
+
+<div class="disc">Sinais gerados por automação com dados reais (DexScreener/RPC BSC; WIN via IBOV 5m com escala estimada — feed da B3 tem ~15 min de atraso; tempo real exige feed licenciado). Este painel NÃO promete rendimento fixo, diário ou garantido de qualquer espécie; qualquer meta de performance é interna e de gestão, jamais promessa ao cliente. Não é recomendação de investimento. Cripto pode perder 100% do valor. Gestão de risco sugerida: 1% do capital por posição. ANATECHMG LTDA — CNPJ 61.517.427/0001-56.</div>
+
+<script>
+(function(){
+var SINAIS=null, series={};
+function fmt(x){return '$'+Number(x).toPrecision(4)}
+function sizing(){
+  var cap=parseFloat(document.getElementById('cap').value)||0, r=parseFloat(document.getElementById('risco').value)||1;
+  var risco=cap*r/100, tam=risco/(10/100), lim=cap*0.03;
+  document.getElementById('k-risco').textContent='$'+risco.toFixed(2);
+  document.getElementById('k-tam').textContent='$'+tam.toFixed(2);
+  document.getElementById('k-lim').textContent='$'+lim.toFixed(2);
+  return {cap:cap,risco:risco,tam:tam};
+}
+document.getElementById('cap').addEventListener('input',render);
+document.getElementById('risco').addEventListener('input',render);
+var PROT=null;
+function disj(){
+  var d=document.getElementById('k-disj');
+  if(!PROT){d.textContent='—';return}
+  var pausado=PROT.pausado;
+  d.textContent=pausado?('PAUSADO — '+(PROT.pausa_motivo||'perda do dia')):(('operando · perda hoje $'+PROT.perda_dia_usd.toFixed(2)+' / $'+PROT.limite_usd.toFixed(2)));
+  d.className=pausado?'neg':'pos';
+}
+function render(){
+  if(!SINAIS)return; var sz=sizing();
+  var L=document.getElementById('lista');
+  L.innerHTML=SINAIS.length?SINAIS.map(function(s){
+    var qtd=sz.tam>0&&s.entrada>0?(sz.tam/s.entrada):0;
+    return '<div class="sinal"><div class="sh"><b>'+s.symbol+'</b><span class="tag '+(s.pnl_pct>=0?'ok':'off')+'">'+(s.pnl_pct>=0?'+':'')+s.pnl_pct.toFixed(1)+'% · '+s.status+'</span></div>'
+    +'<div class="lin"><span>Entrada</span><b>$'+s.entrada+'</b><span>Stop -10%</span><b class="neg">'+fmt(s.stop)+'</b><span>Alvo1 +8%</span><b class="pos">'+fmt(s.alvo1)+'</b><span>Alvo2 +20%</span><b class="pos">'+fmt(s.alvo2)+'</b><span>Qtd sugerida</span><b>'+(qtd?qtd.toPrecision(3):'—')+'</b></div>'
+    +'<canvas class="g" id="g-'+s.id+'"></canvas>'
+    +'<div class="mini">R/R '+s.rr+' · risco $'+sz.risco.toFixed(2)+' nesta entrada · atual $'+s.atual+' · expira '+new Date(s.vence_em).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' · gestão: parcial 25% no alvo1, breakeven após +5% de pico, trailing 6%</div></div>';
+  }).join(''):'<div class="card"><div class="mini">Nenhum sinal ativo agora. O scanner avalia tokens a cada 30 min; quando um passa todos os filtros (score ≥85), o sinal aparece aqui e o alerta vai no WhatsApp.</div></div>';
+  SINAIS.forEach(function(s){ desenhar(s); });
+}
+function desenhar(s){
+  var c=document.getElementById('g-'+s.id); if(!c)return;
+  var w=c.width=(c.clientWidth||600)*2, h=c.height=260, ctx=c.getContext('2d');
+  ctx.clearRect(0,0,w,h);
+  var pts=(series[s.id]||[]);
+  var vals=[s.entrada,s.stop,s.alvo1,s.alvo2].concat(pts.map(function(p){return p.v}),[s.atual||s.entrada]);
+  var mx=Math.max.apply(null,vals), mn=Math.min.apply(null,vals);
+  if(mx===mn)mx=mn+1;
+  mx+=(mx-mn)*.08; mn-=(mx-mn)*.08;
+  function Y(v){return h-(v-mn)/(mx-mn)*h}
+  function linha(v,cor,rot){
+    ctx.strokeStyle=cor;ctx.lineWidth=2;ctx.setLineDash([8,6]);
+    ctx.beginPath();ctx.moveTo(0,Y(v));ctx.lineTo(w,Y(v));ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle=cor;ctx.font='20px system-ui';ctx.fillText(rot+' '+fmt(v),10,Y(v)-6);
+  }
+  linha(s.alvo2,'#34d399','ALVO2');linha(s.alvo1,'#6ee7b7','ALVO1');linha(s.entrada,'#ffffff','ENTRADA');linha(s.stop,'#f87171','STOP');
+  if(pts.length>1){
+    ctx.strokeStyle='#7DD3FC';ctx.lineWidth=3;ctx.beginPath();
+    pts.forEach(function(p,i){var x=i/(pts.length-1)*w;i?ctx.lineTo(x,Y(p.v)):ctx.moveTo(x,Y(p.v))});
+    ctx.stroke();
+    var lx=w;ctx.fillStyle='#7DD3FC';ctx.beginPath();ctx.arc(lx,Y(pts[pts.length-1].v),5,0,7);ctx.fill();
+  } else { ctx.fillStyle='#7DD3FC';ctx.font='22px system-ui';ctx.fillText('pontos ao vivo: 1 por minuto — aberto o painel',20,h/2); }
+}
+function ciclo(){
+  fetch('https://base44.app/api/apps/69b1d5cd9842092aa391f94e/functions/salaSinais?acao=sinais').then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.ok)return;
+    SINAIS=d.sinais||[]; PROT=d.protecao||null;
+    var v2=d.stats_v2||{};
+    document.getElementById('h-v2-n').textContent=v2.sinais||0;
+    document.getElementById('h-v2-ac').textContent=(v2.acerto_pct===null||v2.acerto_pct===undefined)?'—':(v2.acerto_pct+'% ('+v2.acertos+'/'+v2.sinais+')');
+    document.getElementById('h-v2-g').textContent=(v2.ganho_medio_pct>0?'+':'')+v2.ganho_medio_pct+'%';
+    document.getElementById('h-v2-p').textContent=v2.perda_media_pct+'%';
+    document.getElementById('h-v2-m').textContent=(v2.melhor_pct===null)?'—':('+'+v2.melhor_pct+'%');
+    document.getElementById('h-v2-pi').textContent=(v2.pior_pct===null)?'—':(v2.pior_pct+'%');
+    document.getElementById('h-v2-t').textContent='Resultado somado do regime v2: '+(v2.pnl_total_pct>=0?'+':'')+v2.pnl_total_pct+'% em '+v2.sinais+' sinal(is) fechado(s) · total histórico (v1+v2): '+d.stats.sinais+' sinais, '+d.stats.acertos+' no lucro. Acompanhamento em conta demonstração com a mesma gestão dos sinais.';
+    render(); disj();
+    document.getElementById('vig').textContent='atualizado agora · '+SINAIS.length+' sinal(is) ativo(s)';
+    var H=document.getElementById('hist');
+    (d.historico||[]).forEach(function(r){
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td><b>'+r.symbol+'</b></td><td class="'+(r.pnl_pct>=0?'pos':'neg')+'">'+(r.pnl_pct>=0?'+':'')+r.pnl_pct.toFixed(1)+'%</td><td class="'+(r.realizado_usd>=0?'pos':'neg')+'">$'+r.realizado_usd.toFixed(2)+'</td><td class="mini">'+r.motivo+'</td><td class="mini">'+new Date(r.fechada_em).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+'</td>';
+      H.appendChild(tr);
+    });
+  }).catch(function(){});
+  fetch('https://base44.app/api/apps/69b1d5cd9842092aa391f94e/functions/winRadarLive').then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.ok)return;
+    var c=document.getElementById('win'); if(!c)return;
+    var w=c.width=(c.clientWidth||600)*2, h=c.height=320, ctx=c.getContext('2d');
+    ctx.clearRect(0,0,w,h);
+    var cs=d.candles||[]; if(!cs.length)return;
+    var vals=[];cs.forEach(function(k){vals.push(k.h,k.l)});
+    var mx=Math.max.apply(null,vals),mn=Math.min.apply(null,vals);if(mx===mn)mx=mn+1;
+    mx+=(mx-mn)*.06;mn-=(mx-mn)*.06;
+    function Y(v){return h-(v-mn)/(mx-mn)*h}
+    var cw=w/Math.max(cs.length,1);
+    cs.forEach(function(k,i){
+      var up=k.c>=k.o, x=i*cw;
+      ctx.strokeStyle=up?'#34d399':'#f87171';ctx.fillStyle=up?'rgba(52,211,153,.5)':'rgba(248,113,113,.5)';
+      ctx.beginPath();ctx.moveTo(x+cw/2,Y(k.h));ctx.lineTo(x+cw/2,Y(k.l));ctx.stroke();
+      var y1=Y(Math.max(k.o,k.c)),y2=Y(Math.min(k.o,k.c));
+      ctx.fillRect(x+2,y1,cw-4,Math.max(2,y2-y1));
+    });
+    (d.sinais||[]).forEach(function(sg){
+      var k=cs[sg.i]; if(!k)return;
+      var x=sg.i*cw+cw/2;
+      ctx.font='bold 28px system-ui';
+      if(sg.tipo==='compra'){
+        ctx.fillStyle='#34d399';
+        ctx.beginPath();ctx.moveTo(x,Y(k.l)-4);ctx.lineTo(x-11,Y(k.l)-32);ctx.lineTo(x+11,Y(k.l)-32);ctx.closePath();ctx.fill();
+        ctx.fillText('C',x-8,Y(k.l)-40);
+      } else {
+        ctx.fillStyle='#f87171';
+        ctx.beginPath();ctx.moveTo(x,Y(k.h)+4);ctx.lineTo(x-11,Y(k.h)+32);ctx.lineTo(x+11,Y(k.h)+32);ctx.closePath();ctx.fill();
+        ctx.fillText('V',x-8,Y(k.h)+58);
+      }
+    });
+    var u=d.ultimo;
+    var wt='WINZ26 ~'+d.last.toLocaleString('pt-BR')+' · '+cs.length+' candles 5m reais (IBOV escalado) · pregão: '+(d.pregao?'aberto':'fechado')+' · feed ~15 min atrasado';
+    if(u){wt+=' · INDICADOR: '+(u.tipo==='compra'?'COMPRA':'VENDA')+' às '+new Date(u.t).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' (RSI '+u.rsi+')';}
+    wt+=' · regra: EMA9 x EMA21 + filtro RSI14 (compra <70, venda >30)';
+    document.getElementById('winfo').textContent=wt;
+  }).catch(function(){});
+}
+document.getElementById('hist').innerHTML='<tr><th>Token</th><th>Resultado</th><th>Realizado</th><th>Motivo</th><th>Quando</th></tr>';
+ciclo();
+setInterval(ciclo,60000);
+})();
+</script></body></html>
