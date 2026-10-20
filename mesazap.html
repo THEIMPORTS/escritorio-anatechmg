@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MesaZap — Monitor Inteligente de Mesas | Anatechmg</title>
+<meta name="description" content="MesaZap transforma a câmera que já existe no seu restaurante em monitor inteligente de mesas: mesa livre ou ocupada em tempo real, alerta de cliente esperando garçom, mesa liberada e relatório de horários de pico.">
+<link rel="icon" href="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/965128b02_favicon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--azul:#009CFE;--marinho:#001336;--inst:#12386B;--laranja:#FF8100;--claro:#F5F5F3}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:var(--marinho);color:#fff;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+header img{height:52px}
+nav a{color:#cfe0f5;text-decoration:none;margin-left:22px;font-size:14px;font-weight:600}
+nav a:hover{color:var(--azul)}
+.hero{padding:56px 0 72px;text-align:center;background:radial-gradient(900px 380px at 85% -10%,rgba(0,156,254,.25),transparent),radial-gradient(700px 320px at 0% 110%,rgba(255,129,0,.12),transparent)}
+.hero h1{font-size:clamp(32px,5.5vw,56px);font-weight:800;line-height:1.15}
+.hero h1 span{color:var(--azul)}
+.hero p.sub{font-size:clamp(16px,2.2vw,21px);color:#cfe0f5;max-width:760px;margin:18px auto 34px}
+.badge{display:inline-block;background:var(--laranja);color:var(--marinho);font-weight:700;font-size:13px;padding:8px 18px;border-radius:20px;margin-bottom:18px;letter-spacing:.5px}
+.btn{display:inline-block;background:var(--laranja);color:var(--marinho);font-weight:700;font-size:18px;padding:16px 40px;border-radius:10px;text-decoration:none;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,129,0,.35)}
+.btn.ghost{background:transparent;color:var(--azul);border:2px solid var(--azul);margin-left:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:44px;text-align:left}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(0,156,254,.25);border-radius:12px;padding:26px}
+.card b{color:var(--azul)}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{font-size:14px;color:#cfe0f5}
+section{padding:64px 0}
+section.claro{background:var(--claro);color:var(--inst)}
+section.claro h2{color:var(--inst)}
+h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;margin-bottom:12px;text-align:center}
+.lead{text-align:center;color:#5a7392;max-width:720px;margin:0 auto 40px;font-size:17px}
+section.claro .lead{color:#5a7392}
+.passos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;counter-reset:passo}
+.passo{background:#fff;border-radius:12px;padding:28px;box-shadow:0 4px 18px rgba(0,19,54,.08)}
+.passo::before{counter-increment:passo;content:counter(passo);display:flex;width:44px;height:44px;border-radius:50%;background:var(--azul);color:#fff;font-weight:800;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px}
+.passo h3{color:var(--inst);font-size:17px;margin-bottom:8px}
+.passo p{color:#4a5f7a;font-size:14px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.mini{background:rgba(255,255,255,.06);border-left:4px solid var(--laranja);border-radius:8px;padding:20px 24px}
+.mini b{color:var(--laranja)}
+.mini p{font-size:14.5px;color:#cfe0f5}
+.preco{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;max-width:900px;margin:40px auto 0}
+.box{background:#fff;color:var(--inst);border-radius:14px;padding:36px;text-align:center;box-shadow:0 8px 30px rgba(0,19,54,.12)}
+.box.destaque{border:3px solid var(--laranja);position:relative}
+.box.destaque::after{content:"Piloto 30 dias";position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--laranja);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:16px}
+.box h3{font-size:18px;margin-bottom:6px}
+.box .valor{font-size:40px;font-weight:800;color:var(--inst)}
+.box .valor small{font-size:15px;font-weight:600;color:#5a7392}
+.box ul{list-style:none;text-align:left;margin:18px 0;font-size:14px;color:#4a5f7a}
+.box ul li{padding:6px 0;border-bottom:1px dashed #d8e2ef}
+.box ul li:last-child{border:none}
+.box a{background:var(--laranja);color:#fff;text-decoration:none;font-weight:700;padding:12px 28px;border-radius:8px;display:inline-block;margin-top:8px}
+.lgpd{background:rgba(0,156,254,.1);border:1px solid rgba(0,156,254,.4);border-radius:12px;padding:24px 28px;margin-top:44px;max-width:900px;margin-left:auto;margin-right:auto}
+.lgpd h3{color:var(--azul);font-size:17px;margin-bottom:8px}
+.lgpd p{font-size:14px;color:#cfe0f5}
+.faq{max-width:760px;margin:36px auto 0}
+.faq details{background:rgba(255,255,255,.06);border-radius:10px;padding:18px 22px;margin-bottom:12px}
+.faq summary{cursor:pointer;font-weight:600;font-size:15.5px}
+.faq p{font-size:14px;color:#cfe0f5;margin-top:10px}
+footer{padding:44px 0;text-align:center;border-top:1px solid rgba(255,255,255,.1)}
+footer img{height:44px;margin-bottom:14px;opacity:.95}
+footer p{font-size:13px;color:#8fa8c4}
+footer a{color:var(--azul);text-decoration:none}
+.whats{position:fixed;bottom:22px;right:22px;background:#25D366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:9}
+@media(max-width:640px){.btn.ghost{margin:12px 0 0}.whats{bottom:14px;right:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<img src="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/905c9cd34_logo-completo-branco.png" alt="Anatechmg">
+<nav><a href="#como">Como funciona</a><a href="#piloto">Piloto</a><a href="#preco">Preço</a></nav>
+</header>
+</div>
+<div class="hero"><div class="wrap">
+<span class="badge">NOVO DA FÁBRICA DE SOFTWARE ANATECHMG</span>
+<h1>Suas mesas falando <span>com você.</span></h1>
+<p class="sub">O <b>MesaZap</b> transforma a câmera que já está no teto do seu restaurante em um monitor inteligente: mesa livre ou ocupada em tempo real, cronômetro por mesa e alertas no seu WhatsApp.</p>
+<a class="btn" href="https://wa.me/5531989513698?text=Quero%20entrar%20na%20lista%20de%20espera%20do%20MesaZap" target="_blank">Entrar na lista de espera</a>
+<a class="btn ghost" href="#como">Ver como funciona</a>
+<div class="cards">
+<div class="card"><h3>🪑 Mesa ocupada cronometrada</h3><p>Verde: livre. Vermelho: cliente sentado — e o <b>cronômetro começa a contar</b> na hora.</p></div>
+<div class="card"><h3>🔔 Alerta de garçom atrasado</h3><p>Cliente sentado há 5 minutos sem atendimento? <b>Você recebe o alerta</b> no WhatsApp.</p></div>
+<div class="card"><h3>🧹 Mesa liberada, mesa limpa</h3><p>Mesa vagou e ainda não foi limpa? Avisamos. Ela fica pronta mais rápido e você gira mais clientes por turno.</p></div>
+<div class="card"><h3>📊 Picos reais de movimento</h3><p>Relatório semanal com os <b>horários de pico de verdade</b> pra escalar a equipe certa na hora certa.</p></div>
+</div>
+</div></div>
+
+<section class="claro" id="como"><div class="wrap">
+<h2>Como funciona</h2>
+<p class="lead">Sem obra, sem câmera nova, sem trocar nada na sua operação. A inteligência entra por cima do que você já tem.</p>
+<div class="passos">
+<div class="passo"><h3>A gente olha sua câmera</h3><p>Nossa equipe mapeia cada mesa como uma zona de monitoramento na câmera que já existe no salão.</p></div>
+<div class="passo"><h3>A IA aprende seu salão</h3><p>Deteção de ocupação em tempo real, rodando localmente, sem depender de internet de alta velocidade.</p></div>
+<div class="passo"><h3>Você recebe os alertas</h3><p>Cliente esperando, mesa pra limpar, mesa que vai liberar primeiro: tudo chega no seu WhatsApp.</p></div>
+<div class="passo"><h3>Dados viram decisão</h3><p>Relatório semanal de pico e giro de mesas pra você dimensionar equipe e reduzir espera na porta.</p></div>
+</div>
+</div></section>
+
+<section><div class="wrap">
+<h2>O que muda no seu dia a dia</h2>
+<div class="grid2">
+<div class="mini"><b>Menos cliente esquecido</b><p>Nenhum cliente senta e fica invisível. O cronômetro avisa antes do problema virar reclamação.</p></div>
+<div class="mini"><b>Mais giros por turno</b><p>Mesa que vagou é limpa na hora. No fim de semana, isso vira mesa extra faturada.</p></div>
+<div class="mini"><b>Fila de espera inteligente</b><p>Tem gente na porta? Você sabe qual mesa libera primeiro e dá uma estimativa honesta de espera.</p></div>
+<div class="mini"><b>Escala com dados</b><p>Chega de adivinhar horário de pico. O relatório mostra o movimento real pra dimensionar garçons.</p></div>
+</div>
+</div></section>
+
+<section class="claro" id="piloto" style="background:#fff"><div class="wrap">
+<h2 id="preco">Investimento honesto</h2>
+<p class="lead">Sem promessa de resultado garantido: o ganho depende da sua operação. O que garantimos é o sistema funcionando e a equipe junto do começo ao fim.</p>
+<div class="preco">
+<div class="box"><h3>Implantação</h3><div class="valor">R$ 997</div><small style="color:#5a7392;font-size:13px">pagamento único</small><ul>
+<li>Configuração das zonas por mesa</li>
+<li>Instalação do monitor local (mini PC)</li>
+<li>Testes com seu salão real</li><li>Treinamento da equipe</li></ul></div>
+<div class="box destaque"><h3>Monitoramento mensal</h3><div class="valor">R$ 197<small>/mês</small></div><ul>
+<li>Alertas no WhatsApp ilimitados</li>
+<li>Relatório semanal de picos e giro</li>
+<li>Suporte da Anatechmg</li>
+<li>Ajustes de zonas sempre que mudar o salão</li></ul>
+<a href="https://wa.me/5531989513698?text=Quero%20entrar%20na%20lista%20de%20espera%20do%20MesaZap" target="_blank">Quero ser piloto</a></div>
+</div>
+<div class="lgpd" style="background:#f0f6ff;border-color:#009CFE">
+<h3 style="color:#009CFE">Privacidade e LGPD, do jeito certo</h3>
+<p style="color:#4a5f7a">A IA processa as imagens <b>localmente</b>, no equipamento do seu restaurante: sem rosto ou nome de cliente em relatório, sem dado de pessoa saindo do seu salão. Fornecemos os avisos de videomonitoramento para a entrada e orientamos o que a LGPD exige no seu caso. Você continua sendo o responsável pelo seu circuito de câmeras — nós entregamos a camada de inteligência.</p>
+</div>
+<div class="faq">
+<details><summary>Preciso trocar minhas câmeras?</summary><p>Não. Usamos a câmera que já cobre o salão. Se o ângulo não cobrir todas as mesas, indicamos o ajuste.</p></details>
+<details><summary>Precisa de internet?</summary><p>Só para enviar os alertas ao WhatsApp. A detecção roda no equipamento local, mesmo se a internet cair.</p></details>
+<details><summary>Funciona para bar, hamburgueria e praia de galpão?</summary><p>Sim. Cada mesa vira uma zona. Fazemos a validação no seu salão antes de fechar o plano.</p></details>
+<details><summary>E se não funcionar no meu salão?</summary><p>O piloto de 30 dias existe pra isso: se não fizer sentido, você não continua. Sem fidelização.</p></details>
+</div>
+</div></section>
+
+<footer><div class="wrap">
+<img src="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/905c9cd34_logo-completo-branco.png" alt="Anatechmg">
+<p>MesaZap é um produto da <a href="https://anatechmg.com.br">Anatechmg</a> · WhatsApp 31 98951-3698</p>
+<p>Sem promessa de resultado garantido. Desempenho varia por operação. Videomonitoramento sujeito às regras da LGPD.</p>
+</div></footer>
+</div>
+<a class="whats" href="https://wa.me/5531989513698?text=Quero%20entrar%20na%20lista%20de%20espera%20do%20MesaZap" target="_blank" aria-label="WhatsApp"><svg width="32" height="32" viewBox="0 0 32 32" fill="#fff"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.3c1.9 1 4 1.6 6.3 1.6h.5c6.6 0 12-5.4 12-12S22.6 3 16 3zm7 17c-.3.9-1.8 1.7-2.5 1.8-.6.1-1.4.1-2.3-.2-.5-.2-1.2-.4-2-.8-3.5-1.5-5.8-5-6-5.3-.2-.3-1.4-1.9-1.4-3.6 0-1.7.9-2.5 1.2-2.8.3-.3.7-.4 1-.4h.7c.2 0 .5 0 .8.6.3.7 1 2.4 1.1 2.6.1.2.2.4 0 .7-.1.3-.2.4-.4.7-.2.2-.4.5-.5.7-.2.2-.4.4-.2.7.2.3.9 1.5 1.9 2.4 1.3 1.2 2.4 1.5 2.7 1.7.3.2.5.1.7-.1.2-.2.9-1 1.1-1.4.2-.4.5-.3.8-.2.3.1 1.8.9 2.1 1 .3.2.5.2.5.4.1.1.1.7-.2 1.5z"/></svg></a>
+</body>
+</html>
