@@ -579,7 +579,6 @@ function animate(){
   requestAnimationFrame(animate);
   const dt=Math.min(.35,clock.getDelta()),t=clock.elapsedTime;
   salas3d.forEach(s=>atualizaAgente(s,dt,t));
-  window.__ag=salas3d.map(s=>s.avatar.position.x.toFixed(1)+','+s.avatar.position.z.toFixed(1)+'|'+s.anSt.modo);
   if(voando){
     const k=Math.min(1,(performance.now()-vooInicio)/1700);
     const e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
