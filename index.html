@@ -78,7 +78,7 @@ canvas#cv{position:fixed;inset:0;display:block}
 <div id="load"><h2>🏙️ CIDADE VIRTUAL ANATECHMG</h2><p>construindo a cidade…</p></div>
 <div class="hud" id="topo">
   <div id="marca"><h1>CIDADE VIRTUAL ANATECHMG</h1><div class="sub">ao vivo · <b id="rel">--:--:--</b> · <b id="nfunc">0</b> funcionários trabalhando · +<b id="nreserva">0</b> especialistas na reserva</div></div>
-  <div id="meta"><div class="ml">META 2026 · R$ 1.000.000</div><div class="mv" id="metaVal">R$ 0,00</div><div id="metaBar"><div id="metaFill"></div></div></div>  <a href="escritorios.html" style="display:block;margin-top:8px;background:linear-gradient(90deg,#009CFE22,#FF810022);border:1px solid #009CFE;border-radius:12px;color:#7dd3fc;font-weight:800;font-size:.68rem;padding:8px 12px;text-decoration:none;backdrop-filter:blur(6px)">🏢 ENTRAR NOS ESCRITÓRIOS</a>
+  <div id="meta"><div class="ml">META 2026 · R$ 1.000.000</div><div class="mv" id="metaVal">R$ 0,00</div><div id="metaBar"><div id="metaFill"></div></div></div>
 </div>
 <div class="hud" id="equipe"><button id="eqBtn">👥 EQUIPE</button><div id="eqLista"></div></div>
 <div class="hud" id="feed"><div class="ft">📡 ATIVIDADE AO VIVO</div><div id="feedIt"></div></div>
@@ -541,5 +541,6 @@ setInterval(carregaDados, 30000);
 setInterval(() => { document.getElementById('rel').textContent = new Date().toLocaleTimeString('pt-BR'); }, 1000);
 animate(0);
 </script>
+<a id="entrarEsc" href="escritorios.html" style="position:fixed;z-index:30;top:150px;right:12px;pointer-events:auto;background:rgba(9,13,22,.92);border:1px solid #009CFE;border-radius:12px;color:#7dd3fc;font-weight:800;font-size:.72rem;padding:10px 14px;text-decoration:none;box-shadow:0 0 14px #009CFE55">🏢 ENTRAR NOS ESCRITÓRIOS</a>
 </body>
 </html>
