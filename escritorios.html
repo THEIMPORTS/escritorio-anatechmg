@@ -521,9 +521,9 @@ function atualizaAgente(s,dt,t){
     const dx=st.alvo[0]-hx,dz=st.alvo[1]-hz,dist=Math.hypot(dx,dz);
     const ang=Math.atan2(dx,dz);
     g.rotation.y=angLerp(g.rotation.y,ang,.18);
-    const passo=.85*dt;st.passo+=dt*6.2;
+    const avanca=Math.min(.85*dt,dist);st.passo+=avanca*7.5;
     if(dist<.12){g.position.x=st.alvo[0];g.position.z=st.alvo[1];st.modo=st.fim;st.tmr=st.fim==='digita'?4+Math.random()*5:(st.fim==='fone'?3+Math.random()*3:2+Math.random()*3);zerarPose(u);}
-    else{g.position.x+=dx/dist*passo;g.position.z+=dz/dist*passo;u.quadril.position.y=.96+Math.abs(Math.sin(st.passo))*.03;}
+    else{g.position.x+=dx/dist*avanca;g.position.z+=dz/dist*avanca;u.quadril.position.y=.96+Math.abs(Math.sin(st.passo))*.03;}
     const ph=st.passo;
     u.pE.piv.rotation.x=Math.sin(ph)*.55;u.pD.piv.rotation.x=Math.sin(ph+Math.PI)*.55;
     u.pE.joel.rotation.x=Math.max(0,Math.sin(ph+2.6))*.65;u.pD.joel.rotation.x=Math.max(0,Math.sin(ph+Math.PI+2.6))*.65;
@@ -577,7 +577,7 @@ function prox(s,t){
 
 function animate(){
   requestAnimationFrame(animate);
-  const dt=Math.min(.05,clock.getDelta()),t=clock.elapsedTime;
+  const dt=Math.min(.35,clock.getDelta()),t=clock.elapsedTime;
   salas3d.forEach(s=>atualizaAgente(s,dt,t));
   window.__ag=salas3d.map(s=>s.avatar.position.x.toFixed(1)+','+s.avatar.position.z.toFixed(1)+'|'+s.anSt.modo);
   if(voando){
