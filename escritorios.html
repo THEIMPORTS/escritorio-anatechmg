@@ -82,6 +82,7 @@ canvas#cv{position:fixed;inset:0;display:block}
 } }
 </script>
 <script type="module">
+window.addEventListener('error',e=>{const el=document.getElementById('load');if(el){el.innerHTML='<h2>ERRO</h2><p>'+String(e.message).slice(0,180)+'</p>'}document.title='ERRO: '+e.message});
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
