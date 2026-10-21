@@ -15,7 +15,7 @@ canvas#cv{position:fixed;inset:0;display:block}
 #marca h1{font-size:1rem;font-weight:800;letter-spacing:.4px;background:linear-gradient(90deg,#009CFE,#FF8100);-webkit-background-clip:text;background-clip:text;color:transparent}
 #marca .sub{font-size:.62rem;color:#8b93a3;margin-top:2px}
 #marca .sub b{color:#25B760}
-#botoes{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;pointer-events:auto;max-width:min(520px,92vw)}
+#botoes{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;pointer-events:auto;max-width:min(560px,92vw);max-height:40vh;overflow-y:auto}
 .rb{background:rgba(12,18,30,.9);border:1px solid #1f2735;border-radius:999px;color:#c7d0e0;font-size:.62rem;font-weight:700;padding:6px 11px;cursor:pointer;transition:all .2s;backdrop-filter:blur(6px)}
 .rb:hover,.rb.on{background:linear-gradient(90deg,#009CFE22,#FF810022);border-color:#009CFE;color:#fff;transform:translateY(-1px)}
 .rb.on{box-shadow:0 0 14px #009CFE44}
@@ -93,21 +93,39 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 const OPS='https://ana-a391f94e.base44.app/functions/opsOffice';
 const CHAT='https://ana-a391f94e.base44.app/functions/escritorioChat';
 const LIVE='https://ana-a391f94e.base44.app/functions/winRadarLive?api=1';
+const HBCR='https://ana-a391f94e.base44.app/functions/homebrokerCripto';
 const TERM='https://ana-a391f94e.base44.app/functions/quantbotTerminal?api=1';
 const LOGO='https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/d808348e2_logo-completo.png';
 
 /* ---------- salas ---------- */
 const SALAS=[
- {id:'ana',    nome:'Ana',            cargo:'Coordenadora Geral',   tela:'dashboard', titulo:'COMMAND CENTER',      camisa:0x009CFE, tapete:0x0d1a2c, chat:'Ana (Qualificação)'},
- {id:'trade',  nome:'SinalBot',       cargo:'Sala de Trade IA',     tela:'homebroker',titulo:'HOMEBROKER WIN',      camisa:0x1a5c2a, tapete:0x0c1512, chat:'SinalBot', trade:true},
- {id:'conway', nome:'Conway',         cargo:'Fiscal Financeiro',     tela:'financeiro', titulo:'PLACAR SOBREVIVÊNCIA',camisa:0xF07B0A, tapete:0x1a1108, chat:'Conway'},
- {id:'monty',  nome:'Monty',          cargo:'Estúdio de Vídeo IA',  tela:'pipeline',  titulo:'PIPELINE DE VÍDEO',   camisa:0x876EA2, tapete:0x140f1c, chat:'Monty'},
- {id:'ranko',  nome:'Ranko',          cargo:'Marketing & SEO',      tela:'checklist', titulo:'SEO & INSTAGRAM',    camisa:0xFF8100, tapete:0x1a1208, chat:'Ranko'},
- {id:'otto',   nome:'Otto',           cargo:'Inovação & Arsenal',   tela:'grid',       titulo:'ARSENAL',            camisa:0x474747, tapete:0x101012, chat:'Otto'},
- {id:'vera',   nome:'Vera',           cargo:'Pesquisa & Dados',     tela:'grid',       titulo:'PESQUISA',           camisa:0x12386B, tapete:0x0a1018, chat:'Vera'},
- {id:'helena', nome:'Helena',         cargo:'Treinamento & Trilhas',tela:'trilhas',    titulo:'TRILHAS 617',        camisa:0x25B760, tapete:0x0c1810, chat:'Helena'},
- {id:'trafego',nome:'Trader de Mídia',cargo:'Tráfego Pago (Meta)',  tela:'trafego',    titulo:'META ADS',           camisa:0x009CFE, tapete:0x0d1a2c, chat:'Trader de Mídia'},
- {id:'locutor',nome:'Locutor',        cargo:'Rádio Anatechmg',       tela:'waveform',   titulo:'AO VIVO',            camisa:0xb34700, tapete:0x150e08, chat:'Locutor Anatechmg'}
+ {id:'ana',    nome:'Ana',        cargo:'Coordenadora Geral',    tela:'dashboard', titulo:'COMMAND CENTER', camisa:0x009CFE, tapete:0x0d1a2c, chat:'Ana (Qualificação)'},
+ {id:'trade',  nome:'Trade IA',   cargo:'Sala de Trade — Opções Cripto', tela:'homebroker', titulo:'TRADE', camisa:0x1a5c2a, tapete:0x0c1512, chat:'SinalBot', trade:true, icone:'📈',
+  equipe:[{n:'SinalBot',c:'Head Trader',chef:1},{n:'Igor',c:'Quant'},{n:'Talita',c:'Risco',f:1},{n:'Renan',c:'Opções & Cripto'}]},
+ {id:'marketing',nome:'Marketing',cargo:'Marketing, Conteúdo & SEO', tela:'checklist', titulo:'SEO & INSTAGRAM', camisa:0xFF8100, tapete:0x1a1208, chat:'Marketing', icone:'🚀',
+  equipe:[{n:'Ranko',c:'Marketing & SEO',chef:1},{n:'Mia',c:'Social Media',f:1},{n:'Bruno',c:'Tráfego Pago'},{n:'Lia',c:'Copywriting',f:1}]},
+ {id:'comercial',nome:'Comercial',cargo:'Comercial & Vendas', tela:'comercial', titulo:'FUNIL DE VENDAS', camisa:0x009CFE, tapete:0x0d1526, chat:'Comercial', icone:'💰',
+  equipe:[{n:'Diego',c:'Closer',chef:1},{n:'Sandra',c:'SDR',f:1},{n:'Paula',c:'Customer Success',f:1},{n:'Beto',c:'Pré-venda'}]},
+ {id:'juridico',nome:'Jurídico',  cargo:'Jurídico & Compliance', tela:'juridico', titulo:'JURÍDICO', camisa:0x12386B, tapete:0x0a0f1c, chat:'Jurídico', icone:'⚖️',
+  equipe:[{n:'Dr. Eduardo',c:'Contratos',chef:1},{n:'Dra. Camila',c:'Compliance & LGPD',f:1},{n:'Dr. Sérgio',c:'Regulatório'},{n:'Dra. Beatriz',c:'Marcas & PI',f:1}]},
+ {id:'contabil',nome:'Contábil',  cargo:'Contábil & Financeiro', tela:'contabil', titulo:'CONTABILIDADE', camisa:0x25B760, tapete:0x0c1810, chat:'Contábil', icone:'🧮',
+  equipe:[{n:'Márcia',c:'Contabilidade',chef:1,f:1},{n:'Felipe',c:'Folha & Proventos'},{n:'Renata',c:'Fechamento Mensal',f:1},{n:'Carlos',c:'Custos'}]},
+ {id:'fiscal',  nome:'Fiscal',    cargo:'Fiscal & Tributário', tela:'fiscal', titulo:'TRIBUTOS', camisa:0xF07B0A, tapete:0x1a1108, chat:'Fiscal', icone:'🧾',
+  equipe:[{n:'Letícia',c:'Impostos',chef:1,f:1},{n:'Marcos',c:'SPED & Obrigações'},{n:'Vanessa',c:'Parcelamentos',f:1},{n:'Cleber',c:'Consultoria Tributária'}]},
+ {id:'pesquisa',nome:'Pesquisa',  cargo:'Pesquisa de Mercado & Estratégias', tela:'pesquisa', titulo:'PESQUISA & DADOS', camisa:0x12386B, tapete:0x0a1018, chat:'Pesquisa & Estratégia', icone:'🔍',
+  equipe:[{n:'Vera',c:'Pesquisa & Dados',chef:1,f:1},{n:'Davi',c:'Análise de Mercado'},{n:'Larissa',c:'Estratégia',f:1},{n:'Caio',c:'BI & Relatórios'}]},
+ {id:'devsec',  nome:'DevSec',    cargo:'Programação & Cibersegurança', tela:'devsec', titulo:'DEVSECOPS', camisa:0x474747, tapete:0x101012, chat:'Programação & Cibersegurança', icone:'🛡️',
+  equipe:[{n:'Nathan',c:'DevSecOps Líder',chef:1},{n:'Érika',c:'Segurança Ofensiva',f:1},{n:'Douglas',c:'Backend'},{n:'Pedro',c:'Infra & Monitoramento'}]},
+ {id:'software',nome:'Software',  cargo:'Desenvolvimento de Software', tela:'software', titulo:'ENGENHARIA', camisa:0x876EA2, tapete:0x140f1c, chat:'Desenvolvimento de Software', icone:'💻',
+  equipe:[{n:'Alisson',c:'Tech Lead',chef:1},{n:'Bia',c:'Full-stack',f:1},{n:'Fábio',c:'Mobile'},{n:'Greice',c:'QA & Testes',f:1}]},
+ {id:'licitacao',nome:'Licitação', cargo:'Licitação & Editais Públicos', tela:'licitacao', titulo:'LICITAÇÕES', camisa:0x0d5e6e, tapete:0x0a1518, chat:'Licitação', icone:'📜',
+  equipe:[{n:'Dra. Regina',c:'Licitações',chef:1,f:1},{n:'Tarcísio',c:'Editais & Prazos'},{n:'Amanda',c:'Propostas',f:1},{n:'Jorge',c:'Contratos Públicos'}]},
+ {id:'conway', nome:'Conway',     cargo:'Fiscal Financeiro',     tela:'financeiro', titulo:'PLACAR SOBREVIVÊNCIA',camisa:0xF07B0A, tapete:0x1a1108, chat:'Conway'},
+ {id:'monty',  nome:'Monty',      cargo:'Estúdio de Vídeo IA',  tela:'pipeline',  titulo:'PIPELINE DE VÍDEO',   camisa:0x876EA2, tapete:0x140f1c, chat:'Monty'},
+ {id:'otto',   nome:'Otto',       cargo:'Inovação & Arsenal',   tela:'grid',       titulo:'ARSENAL',            camisa:0x474747, tapete:0x101012, chat:'Otto'},
+ {id:'helena', nome:'Helena',     cargo:'Treinamento & Trilhas',tela:'trilhas',    titulo:'TRILHAS 617',        camisa:0x25B760, tapete:0x0c1810, chat:'Helena'},
+ {id:'trafego',nome:'Trader de Mídia',cargo:'Tráfego Pago (Meta)', tela:'trafego', titulo:'META ADS',          camisa:0x009CFE, tapete:0x0d1a2c, chat:'Trader de Mídia'},
+ {id:'locutor',nome:'Locutor',    cargo:'Rádio Anatechmg',       tela:'waveform',   titulo:'AO VIVO',            camisa:0xb34700, tapete:0x150e08, chat:'Locutor Anatechmg'}
 ];
 
 /* ---------- base ---------- */
@@ -137,65 +155,19 @@ function box(w,h,d,o){return new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat(o))
 function lit(cor,i,dist,px,py,pz){const l=new THREE.PointLight(cor,i,dist,1.6);l.position.set(px,py,pz);scene.add(l);return l}
 function cTex(w,h,draw){const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t}
 function txt(ctx,s,x,y,cor,size,w){ctx.fillStyle=cor;ctx.font=(w||800)+' '+size+'px system-ui,Segoe UI,sans-serif';ctx.textBaseline='top';ctx.fillText(s,x,y)}
+function novaTela(titulo){const c=document.createElement('canvas');c.width=512;c.height=288;const ctx=c.getContext('2d');fundoTela(ctx,512,288,titulo);
+  txt(ctx,'carregando...',22,60,'#8b93a3',12,600);
+  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return {tex:t,ctx:ctx}}
 function fundoTela(ctx,w,h,titulo){const g=ctx.createLinearGradient(0,0,0,h);g.addColorStop(0,'#0a1220');g.addColorStop(1,'#050a12');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);ctx.strokeStyle='#12203a';ctx.strokeRect(2,2,w-4,h-4);txt(ctx,titulo,14,10,'#009CFE',15);ctx.fillStyle='#FF8100';ctx.fillRect(14,32,44,3)}
 
 /* ---------- dados ao vivo ---------- */
-const dados={sinal:'',last:0,rsi:0,e9:0,e21:0,qual:null,pregao:false,candles:[]};
-async function carregaTrade(){
-  try{
-    const [lr,tr]=await Promise.all([fetch(LIVE).then(r=>r.json()),fetch(TERM).then(r=>r.json())]);
-    if(lr&&lr.candles){dados.candles=lr.candles;dados.last=lr.last||0;dados.pregao=!!lr.pregao}
-    if(tr&&tr.head){dados.sinal=tr.sinal||'';dados.rsi=tr.head.rsi||0;dados.e9=tr.head.e9||0;dados.e21=tr.head.e21||0;dados.qual=tr.qualidade||null}
-    desenhaHomebroker();atualizaCard();
-  }catch(e){}
-}
-function desenhaHomebroker(){
-  const r=SALAS.find(s=>s.trade);if(!r||!r.ctx)return;
-  const ctx=r.ctx,w=512,h=288;
-  fundoTela(ctx,w,h,'HOMEBROKER WIN — AO VIVO');
-  const sig=dados.sinal||'—';
-  ctx.fillStyle=(sig==='COMPRA')?'#25B760':(sig==='VENDA'?'#ef4444':'#8b93a3');
-  ctx.beginPath();ctx.roundRect(352,8,148,26,6);ctx.fill();
-  txt(ctx,'SINAL: '+sig,364,13,'#fff',13,800);
-  const cs=dados.candles.slice(-52);
-  if(cs.length>1){
-    let mn=1e12,mx=0;cs.forEach(c=>{mn=Math.min(mn,c.l);mx=Math.max(mx,c.h)});
-    const pad=(mx-mn)*.12||10;mn-=pad;mx+=pad;
-    const x0=16,y0=44,cw=(w-32)/cs.length,chh=h-112;
-    ctx.strokeStyle='#1f2735';ctx.beginPath();ctx.moveTo(14,44.5);ctx.lineTo(w-14,44.5);ctx.moveTo(14,h-66.5);ctx.lineTo(w-14,h-66.5);ctx.stroke();
-    cs.forEach((c,i)=>{
-      const x=x0+i*cw+cw*.5;
-      const yv=v=>y0+(1-(v-mn)/(mx-mn))*chh;
-      const up=c.c>=c.o;
-      ctx.strokeStyle=up?'#25B760':'#ef4444';
-      ctx.beginPath();ctx.moveTo(x,yv(c.h));ctx.lineTo(x,yv(c.l));ctx.stroke();
-      ctx.fillStyle=up?'#25B760':'#ef4444';
-      const yo=yv(Math.max(c.o,c.c)),yb=yv(Math.min(c.o,c.c));
-      ctx.fillRect(x-cw*.28,yo,cw*.56,Math.max(2,yb-yo));
-    });
-    txt(ctx,'R$ '+Number(dados.last).toLocaleString('pt-BR'),16,48,'#fff',20,800);
-    txt(ctx,'RSI '+dados.rsi.toFixed(1)+'  EMA9 '+Math.round(dados.e9)+'  EMA21 '+Math.round(dados.e21),16,72,'#7dd3fc',11,600);
-  } else {
-    txt(ctx,'carregando feed...',16,48,'#8b93a3',12,600);
-  }
-  ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(14,h-58,484,46,6);ctx.fill();
-  txt(ctx,dados.pregao?'PREGÃO ABERTO • feed ~15min (B3)':'PREGÃO FECHADO • feed em espera',22,h-52,dados.pregao?'#25B760':'#8b93a3',11,700);
-  txt(ctx,'sinalização educacional — not financial advice',22,h-34,'#66708a',10,600);
-  if(dados.qual){
-    txt(ctx,'validação: '+(dados.qual.ok?'OK':'ALERTA')+' • gaps '+(dados.qual.gaps??'—')+' • idade '+(dados.qual.idadeMin??'—')+'min',186,h-52,dados.qual.ok?'#25B760':'#FF8100',11,700);
-    txt(ctx,'camadas v4: fail-loud • lag-test • motor de risco • monte carlo',186,h-34,'#7dd3fc',10,600);
-  }
-  r.tex.needsUpdate=true;
-}
-
-/* ---------- telas por papel ---------- */
 function desenhaTela(r){
   const c=document.createElement('canvas');c.width=512;c.height=288;const ctx=c.getContext('2d');
   const w=512,h=288;fundoTela(ctx,w,h,r.titulo);
   if(r.tela==='dashboard'){
-    const kpis=[['AGENTES','34'],['RESERVA','234'],['VENDAS','4'],['META 2026','R$ 1M']];
+    const kpis=[['AGENTES','43'],['RESERVA','234'],['VENDAS','4'],['META 2026','R$ 1M']];
     kpis.forEach((k,i)=>{const x=16+(i%2)*246,y=44+Math.floor(i/2)*66;ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(x,y,236,58,8);ctx.fill();txt(ctx,k[0],x+12,y+8,'#8b93a3',11,700);txt(ctx,k[1],x+12,y+26,'#fff',19,800);});
-    txt(ctx,'PACOTE IA • QUANTBOT • RIFA • AGENDAZAP',16,182,'#7dd3fc',11,700);
+    txt(ctx,'10 SETORES • 4 ESPECIALISTAS CADA • 24/7',16,182,'#7dd3fc',11,700);
     ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(16,198,480,58,8);ctx.fill();
     ctx.fillStyle='#1f2735';ctx.fillRect(28,220,456,10);ctx.fillStyle='#FF8100';ctx.fillRect(28,220,45,10);
     txt(ctx,'progresso da meta 2026 (acumulado)',28,238,'#66708a',10,600);
@@ -212,7 +184,7 @@ function desenhaTela(r){
   }
   if(r.tela==='pipeline'){
     const steps=['ROTEIRO','KLING 4.0','LIP-SYNC','ENDCARD','FINAL 4K'];
-    steps.forEach((s,i)=>{const x=16+i*97,y=70;const on=i<4;ctx.fillStyle=on?'#25B760':'#1f2735';ctx.beginPath();ctx.arc(x+40,y,16,0,7);ctx.fill();txt(ctx,s,x+8,y+44,on?'#c7d0e0':'#66708a',9,700);
+    steps.forEach((st,i)=>{const x=16+i*97,y=70;const on=i<4;ctx.fillStyle=on?'#25B760':'#1f2735';ctx.beginPath();ctx.arc(x+40,y,16,0,7);ctx.fill();txt(ctx,st,x+8,y+44,on?'#c7d0e0':'#66708a',9,700);
       if(i<4){ctx.strokeStyle='#25B760';ctx.beginPath();ctx.moveTo(x+58,y);ctx.lineTo(x+92,y);ctx.stroke();}});
     txt(ctx,'padrão cinematográfico • avatar com lip-sync • 24fps',16,150,'#7dd3fc',11,700);
     ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(16,176,480,88,8);ctx.fill();
@@ -246,101 +218,178 @@ function desenhaTela(r){
     txt(ctx,'BOLETIM + SPOT AGENDAZAP',20,182,'#c7d0e0',12,700);
     txt(ctx,'prontos para publicar • 30s e 15s',20,208,'#25B760',11,700);
   }
+  if(r.tela==='comercial'){
+    const etapas=[['LEADS',128,'#009CFE'],['CONTATO',64,'#25B760'],['REUNIÕES',22,'#FF8100'],['FECHADAS',7,'#7dd3fc']];
+    etapas.forEach((e,i)=>{const x=16+i*124,y=54;ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(x,y,112,74,8);ctx.fill();
+      txt(ctx,e[0],x+10,y+8,'#8b93a3',10,700);txt(ctx,String(e[1]),x+10,y+28,e[2],24,800);});
+    ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(16,150,480,84,8);ctx.fill();
+    txt(ctx,'pipeline: MultiSender R$29,90/ano • Pacote IA R$1.500+297/mês',26,166,'#c7d0e0',12,700);
+    txt(ctx,'meta do mês: 10 fechamentos • follow-up automático ativo',26,192,'#7dd3fc',11,600);
+    txt(ctx,'contato direto: WhatsApp 31 98951-3698',26,214,'#FF8100',11,800);
+  }
+  if(r.tela==='juridico'){
+    const itens=[['contratos ativos','12'],['avisos LGPD','0 abertos'],['processos','1 em andamento'],['marcas registradas','3']];
+    itens.forEach((it,i)=>{const x=16+(i%2)*246,y=52+Math.floor(i/2)*62;ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(x,y,236,54,8);ctx.fill();
+      txt(ctx,it[0],x+12,y+8,'#8b93a3',11,700);txt(ctx,it[1],x+12,y+26,'#fff',16,800);});
+    ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(16,190,480,60,8);ctx.fill();
+    txt(ctx,'revisão: termos dos apps • compliance rifa (ação entre amigos)',26,206,'#c7d0e0',12,700);
+    txt(ctx,'LGPD: opt-in registrado por canal',26,228,'#25B760',11,700);
+  }
+  if(r.tela==='contabil'){
+    const dr=[['RECEITA','R$ 8.914'],['CUSTOS','R$ 2.102'],['MARGEM','76%'],['CAIXA','SALDO POSITIVO']];
+    dr.forEach((k,i)=>{const x=16+(i%2)*246,y=50+Math.floor(i/2)*64;ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(x,y,236,56,8);ctx.fill();
+      txt(ctx,k[0],x+12,y+8,'#8b93a3',11,700);txt(ctx,k[1],x+12,y+26,i===3?'#25B760':'#fff',15,800);});
+    const barras=[.62,.38,.77,.51];
+    barras.forEach((b,i)=>{ctx.fillStyle='#1f2735';ctx.fillRect(20+i*122,196,110,30);ctx.fillStyle='#25B760';ctx.fillRect(20+i*122,196,110*b,30);});
+    txt(ctx,'fluxo de caixa últimos meses',20,236,'#8b93a3',10,600);
+  }
+  if(r.tela==='fiscal'){
+    const imp=[['DAS','05/11','OK'],['ISS','10/11','OK'],['ICMS','20/11','procurar'],['INPI','30/11','OK']];
+    imp.forEach((it,i)=>{const y=52+i*40;txt(ctx,it[0],20,y,'#c7d0e0',13,800);
+      ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(120,y,200,30,6);ctx.fill();txt(ctx,'vence '+it[1],132,y+6,'#fff',12,700);
+      ctx.fillStyle=it[2]==='OK'?'#25B760':'#FF8100';ctx.beginPath();ctx.roundRect(340,y,132,30,6);ctx.fill();txt(ctx,it[2],356,y+6,'#001336',12,800);});
+    txt(ctx,'SPED em dia • regime: Simples Nacional',20,236,'#7dd3fc',11,700);
+  }
+  if(r.tela==='pesquisa'){
+    const kpis=[['PESQUISAS','4 ativas'],['AMOSTRAS','1.283'],['ENTREVISTAS','37'],['INSIGHTS','12']];
+    kpis.forEach((k,i)=>{const x=16+i*124;ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(x,54,112,66,8);ctx.fill();
+      txt(ctx,k[0],x+10,60,'#8b93a3',9,700);txt(ctx,k[1],x+10,82,'#7dd3fc',15,800);});
+    const vals=[.7,.45,.85,.6,.3];
+    vals.forEach((v,i)=>{ctx.fillStyle='#1f2735';ctx.fillRect(20+i*95,180,84,60);ctx.fillStyle='#009CFE';ctx.fillRect(20+i*95,180+60*(1-v),84,60*v);});
+    txt(ctx,'demanda validada por nicho (radar NEXUS)',20,252,'#8b93a3',10,600);
+  }
+  if(r.tela==='devsec'){
+    const kpis=[['UPTIME','99,97%'],['VULNS','0 críticas'],['BACKUPS','DIÁRIOS'],['WAF','ATIVO']];
+    kpis.forEach((k,i)=>{const x=16+i*124,y=52;ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(x,y,112,64,8);ctx.fill();
+      txt(ctx,k[0],x+10,y+8,'#8b93a3',9,700);txt(ctx,k[1],x+10,y+30,'#25B760',14,800);});
+    const linhas=['patchado: endpoint rifaSite (rate limit)','2FA habilitado: painel diretoria','secrets auditados: 41 rotativos','monitoramento: uptimeCheck 15min'];
+    linhas.forEach((l,i)=>{txt(ctx,'✓ '+l,20,138+i*26,'#c7d0e0',11,600)});
+    txt(ctx,'LGPD: sem dado de cliente fora do cofre',20,252,'#7dd3fc',11,700);
+  }
+  if(r.tela==='software'){
+    const colunas=[['BACKLOG',5,'#1f2735'],['DEV',3,'#009CFE'],['QA',2,'#FF8100'],['DEPLOY',4,'#25B760']];
+    colunas.forEach((cItem,i)=>{const x=16+i*122,y=50;ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(x,y,112,180,8);ctx.fill();
+      txt(ctx,cItem[0],x+10,y+8,'#8b93a3',10,700);
+      for(let k=0;k<cItem[1];k++){ctx.fillStyle=cItem[2];ctx.beginPath();ctx.roundRect(x+10,y+30+k*26,92,20,4);ctx.fill();}});
+    txt(ctx,'fábrica de software: 1 app/mês (NEXUS) • sprint AgendaZap',16,244,'#7dd3fc',11,700);
+  }
+  if(r.tela==='licitacao'){
+    const kpis=[['EDITAIS','34 monitorados'],['PROPOSTAS','2 em elaboração'],['PRÓX. PRAZO','26/10'],['PARCERIAS','3 OSCs']];
+    kpis.forEach((k,i)=>{const x=16+(i%2)*246,y=50+Math.floor(i/2)*62;ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(x,y,236,54,8);ctx.fill();
+      txt(ctx,k[0],x+12,y+8,'#8b93a3',10,700);txt(ctx,k[1],x+12,y+26,'#fff',15,800);});
+    ctx.fillStyle='#101827';ctx.beginPath();ctx.roundRect(16,188,480,62,8);ctx.fill();
+    txt(ctx,'emenda impositiva 2027 • projeto Trilhas BH (ABAFE)',26,204,'#c7d0e0',12,700);
+    txt(ctx,'R$ 75 mil • área: inovação e tecnologia • envio por e-mail',26,226,'#FF8100',11,700);
+  }
   const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;
   return {tex:t,ctx};
 }
-
-/* ---------- dimensões ---------- */
-const CORR=8, RW=6.4, RD=7.4, ALT=3.4;
-const EXT=CORR/2+RD;               // x externo das salas (±)
-const COMP=56;                    // comprimento total em z
-
-/* ---------- estrutura global ---------- */
-const piso=box(EXT*2+.6,.2,COMP,{color:0x1c2027,roughness:.28,metalness:.15});piso.position.y=-.1;scene.add(piso);
-const teto=box(EXT*2+.6,.2,COMP,{color:0x14171e,roughness:.9});teto.position.y=ALT;scene.add(teto);
-/* parede fundo (lobby) */
-const wFim=box(EXT*2+.6,ALT,.3,{color:0x23262e,roughness:.9});wFim.position.set(0,ALT/2,-COMP/2);scene.add(wFim);
-/* paredes externas laterais (fundo das salas) */
-[-1,1].forEach(s=>{const w=box(.3,ALT,COMP,{color:0x23262e,roughness:.9});w.position.set(s*EXT,ALT/2,0);scene.add(w)});
-/* parede frontal com janela panorâmica */
-const wTopo=box(EXT*2,.7,.3,{color:0x23262e,roughness:.9});wTopo.position.set(0,ALT-.35,COMP/2);scene.add(wTopo);
-const wBaixo=box(EXT*2,1.1,.3,{color:0x23262e,roughness:.9});wBaixo.position.set(0,.55,COMP/2);scene.add(wBaixo);
-[-1,1].forEach(s=>{const w=box(1.2,ALT,.3,{color:0x23262e,roughness:.9});w.position.set(s*(EXT-.6),ALT/2,COMP/2);scene.add(w)});
-/* skyline na janela */
-const skyTex=cTex(1024,512,(ctx,w,h)=>{
-  const g=ctx.createLinearGradient(0,0,0,h);g.addColorStop(0,'#02040c');g.addColorStop(1,'#0a1626');
-  ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
-  for(let x=0;x<w;x+=26){const bh=60+Math.random()*180;ctx.fillStyle='#0a1220';ctx.fillRect(x,h-bh,20,bh);
-    for(let y=h-bh+8;y<h-10;y+=16){if(Math.random()<.5){ctx.fillStyle=Math.random()<.8?'#ffd98a':'#7dd3fc';ctx.fillRect(x+4,y,6,7)}}}
-  const gl=ctx.createRadialGradient(w*.75,h*.22,4,w*.75,h*.22,70);gl.addColorStop(0,'rgba(255,247,220,.9)');gl.addColorStop(1,'transparent');ctx.fillStyle=gl;ctx.fillRect(0,0,w,h);
-});
-const janela=new THREE.Mesh(new THREE.PlaneGeometry(EXT*2-3,ALT-1.8),mat({color:0xffffff,map:skyTex,emissive:0xffffff,emissiveMap:skyTex,emissiveIntensity:1.2}));
-janela.position.set(0,ALT/2,COMP/2-.05);janela.rotation.y=Math.PI;scene.add(janela);
-/* faixas de luz no corredor */
-for(let i=0;i<7;i++){const fx=new THREE.Mesh(new THREE.BoxGeometry(1.4,.06,3.4),mat({color:0xffffff,emissive:0xcfe8ff,emissiveIntensity:2.2}));fx.position.set(0,ALT-.1,-21+i*7);scene.add(fx)}
-for(let i=0;i<5;i++)lit(0xfff2dd,.42,14,0,ALT-.8,-14+i*7);
-lit(0x9fd4ff,.7,16,0,2,COMP/2-2);
-
-/* lobby */
-const logoTex=new THREE.TextureLoader().load(LOGO,t=>{logoTex.colorSpace=THREE.SRGBColorSpace;logoTex.needsUpdate=true});
-const logoParede=new THREE.Mesh(new THREE.PlaneGeometry(5,2),mat({color:0xffffff,map:logoTex,emissive:0xffffff,emissiveMap:logoTex,emissiveIntensity:.5,transparent:true}));
-logoParede.position.set(0,1.9,-COMP/2+.2);scene.add(logoParede);
-const recep=box(3.4,1.05,.8,{color:0x15181f,roughness:.35,metalness:.4});recep.position.set(0,.55,-25.4);scene.add(recep);
-const recepTop=box(3.6,.1,1,{color:0x009CFE,roughness:.2,metalness:.6});recepTop.position.set(0,1.12,-25.4);scene.add(recepTop);
-lit(0xfff6e8,.5,9,0,2.6,-25);
-
-/* sombra de contato */
-const sombraTex=cTex(128,128,(ctx,w,h)=>{const g=ctx.createRadialGradient(64,64,6,64,64,62);g.addColorStop(0,'rgba(0,0,0,.55)');g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h)});
-function sombra(x,z,s){const p=new THREE.Mesh(new THREE.PlaneGeometry(s,s),new THREE.MeshBasicMaterial({map:sombraTex,transparent:true,depthWrite:false}));p.rotation.x=-Math.PI/2;p.position.set(x,.015,z);scene.add(p)}
-
-/* ---------- avatar ---------- */
-const PELES=[0xd9a679,0xc98d63,0x8d5a3a,0xe8b48f,0xb87a52];
-const CABELOS=[0x18120c,0x2a1b10,0x0d0d0d,0x3a2a16,0x1c1c20];
-function humano(r,idx){
-  const camisa=r.camisa, pele=PELES[idx%PELES.length], cabelo=CABELOS[(idx+2)%CABELOS.length];
-  const fem=['ana','vera','helena'].includes(r.id);
-  const mPel=mat({color:pele,roughness:.55});
-  const mCab=mat({color:cabelo,roughness:.85});
-  const mCam=mat({color:camisa,roughness:.7});
-  const mCal=mat({color:fem?0x23283a:0x1b1e26,roughness:.8});
-  const g=new THREE.Group();
-  const quadril=new THREE.Group();quadril.position.y=.96;g.add(quadril);
-  /* tronco */
-  const tor=new THREE.Mesh(new THREE.CapsuleGeometry(.155,.32,6,14),mCam);tor.position.y=.34;quadril.add(tor);
-  const col=box(.34,.1,.2,{color:camisa,roughness:.7});col.position.y=.58;quadril.add(col);
-  const pesc=new THREE.Mesh(new THREE.CylinderGeometry(.05,.055,.09,10),mPel);pesc.position.y=.68;quadril.add(pesc);
-  /* cabeça (frente = +z) */
-  const cabG=new THREE.Group();cabG.position.y=.74;quadril.add(cabG);
-  const cab=new THREE.Mesh(new THREE.SphereGeometry(.105,20,16),mPel);cabG.add(cab);
-  const chl=new THREE.Mesh(new THREE.SphereGeometry(.11,20,12,0,Math.PI*2,0,Math.PI*.52),mCab);chl.position.y=.015;cabG.add(chl);
-  if(fem){const lk=new THREE.Mesh(new THREE.CylinderGeometry(.075,.05,.34,10),mCab);lk.position.set(0,-.09,-.06);cabG.add(lk);}
-  [-1,1].forEach(ex=>{const ol=new THREE.Mesh(new THREE.SphereGeometry(.013,8,8),mat({color:0x101014,roughness:.3}));ol.position.set(ex*.036,.012,.094);cabG.add(ol);});
-  const sombr=new THREE.Mesh(new THREE.SphereGeometry(.012,8,8),mPel);sombr.position.set(0,-.02,.102);cabG.add(sombr);
-  /* braços: ombro -> cotovelo -> mão */
-  function braco(ex){
-    const ombro=new THREE.Group();ombro.position.set(ex*.225,.52,0);quadril.add(ombro);
-    const sup=new THREE.Mesh(new THREE.CapsuleGeometry(.05,.18,4,10),mCam);sup.position.y=-.14;ombro.add(sup);
-    const cot=new THREE.Group();cot.position.y=-.3;ombro.add(cot);
-    const ant=new THREE.Mesh(new THREE.CapsuleGeometry(.043,.16,4,10),mPel);ant.position.y=-.12;cot.add(ant);
-    const mao=new THREE.Mesh(new THREE.SphereGeometry(.042,10,8),mPel);mao.position.y=-.26;cot.add(mao);
-    return {ombro,cot};
-  }
-  const bE=braco(-1),bD=braco(1);
-  /* pernas: quadril -> joelho -> pé */
-  function perna(ex){
-    const piv=new THREE.Group();piv.position.set(ex*.09,-.02,0);quadril.add(piv);
-    const cox=new THREE.Mesh(new THREE.CapsuleGeometry(.068,.24,4,10),mCal);cox.position.y=-.2;piv.add(cox);
-    const joel=new THREE.Group();joel.position.y=-.42;piv.add(joel);
-    const can=new THREE.Mesh(new THREE.CapsuleGeometry(.052,.22,4,10),mCal);can.position.y=-.17;joel.add(can);
-    const pe=box(.11,.06,.25,{color:0x101014,roughness:.5});pe.position.set(0,-.42,.045);joel.add(pe);
-    return {piv,joel};
-  }
-  const pE=perna(-1),pD=perna(1);
-  g.userData={quadril,cabG,cab,bE,bD,pE,pD,tor,fem,fase:idx*1.37};
-  return g;
+const dados={sinal:'',last:0,rsi:0,e9:0,e21:0,qual:null,pregao:false,candles:[],cripto:null};
+async function carregaTrade(){
+  try{
+    const [lr,tr]=await Promise.all([fetch(LIVE).then(r=>r.json()),fetch(TERM).then(r=>r.json())]);
+    if(lr&&lr.candles){dados.candles=lr.candles;dados.last=lr.last||0;dados.pregao=!!lr.pregao}
+    if(tr&&tr.head){dados.sinal=tr.sinal||'';dados.rsi=tr.head.rsi||0;dados.e9=tr.head.e9||0;dados.e21=tr.head.e21||0;dados.qual=tr.qualidade||null}
+    drawTradeTabs();atualizaCard();
+  }catch(e){}
 }
-
-/* ---------- mobília ---------- */
+async function carregaCripto(){
+  try{
+    const d=await fetch(HBCR).then(r=>r.json());
+    dados.cripto=d||null;
+    drawTradeTabs();atualizaHolograma();atualizaCard();
+  }catch(e){}
+}
+const fmt=n=>Number(n).toLocaleString('pt-BR');
+function drawTradeTabs(){
+  const r=SALAS.find(s=>s.trade);if(!r||!r.ctxs)return;
+  const k=dados.cripto,btc=k?k.btc:null,eth=k?k.eth:null;
+  /* TAB 1 — MERCADO */
+  const c0=r.ctxs[0];fundoTela(c0,512,288,'MERCADO — BTC / ETH / WIN');
+  txt(c0,'BTC',22,54,'#8b93a3',13,700);txt(c0,btc?('$'+fmt(btc.spot)):'…',22,72,'#fff',26,800);
+  txt(c0,'IV ATM',190,54,'#8b93a3',13,700);txt(c0,btc&&btc.iv_atm?btc.iv_atm.toFixed(1)+'%':'…',190,72,'#FF8100',26,800);
+  txt(c0,'ETH',330,54,'#8b93a3',13,700);txt(c0,eth&&eth.spot?('$'+fmt(eth.spot)):'…',330,72,'#fff',26,800);
+  const cs=dados.candles.slice(-52);
+  if(cs.length>1){let mn=1e12,mx=0;cs.forEach(c=>{mn=Math.min(mn,c.l);mx=Math.max(mx,c.h)});const pad=(mx-mn)*.12||10;mn-=pad;mx+=pad;
+    const x0=16,y0=120,cw=(512-32)/cs.length,chh=100;
+    cs.forEach((c,i)=>{const x=x0+i*cw+cw*.5;const yv=v=>y0+(1-(v-mn)/(mx-mn))*chh;const up=c.c>=c.o;
+      c0.strokeStyle=up?'#25B760':'#ef4444';c0.beginPath();c0.moveTo(x,yv(c.h));c0.lineTo(x,yv(c.l));c0.stroke();
+      c0.fillStyle=up?'#25B760':'#ef4444';const yo=yv(Math.max(c.o,c.c)),yb=yv(Math.min(c.o,c.c));c0.fillRect(x-cw*.28,yo,cw*.56,Math.max(2,yb-yo));});
+    txt(c0,'WIN R$ '+fmt(dados.last)+' • RSI '+(dados.rsi?dados.rsi.toFixed(1):'—'),22,226,'#7dd3fc',12,700);
+  }
+  txt(c0,'fonte: '+(k?(k.fonte==='deribit'?'Deribit (real)':'demo'):'…')+' • '+(dados.pregao?'pregão B3 aberto':'pregão B3 fechado'),22,252,'#8b93a3',11,600);
+  txt(c0,'simulação educacional — not financial advice',22,272,'#66708a',9,600);
+  /* TAB 2 — CADEIA */
+  const c1=r.ctxs[1];fundoTela(c1,512,288,'CADEIA DE OPÇÕES (BTC)');
+  txt(c1,'STRIKE',22,52,'#8b93a3',11,800);txt(c1,'DIAS',122,52,'#8b93a3',11,800);txt(c1,'IV%',180,52,'#8b93a3',11,800);txt(c1,'BID',290,52,'#8b93a3',11,800);txt(c1,'ASK',370,52,'#8b93a3',11,800);txt(c1,'Δ',450,52,'#8b93a3',11,800);
+  const lin=k?k.cadeia.filter(x=>x.ativo.startsWith('BTC')).slice(0,11):[];
+  lin.forEach((o,i)=>{const y=70+i*19;const cor=i%2?'#0d1522':'#101827';c1.fillStyle=cor;c1.fillRect(16,y-3,482,17);
+    txt(c1,fmt(o.strike),22,y,'#c7d0e0',11,700);txt(c1,String(o.exp),130,y,'#8b93a3',11,700);
+    txt(c1,o.iv?o.iv.toFixed(1):'—',184,y,'#FF8100',11,800);txt(c1,o.bid?fmt(o.bid):'—',290,y,'#25B760',11,700);txt(c1,o.ask?fmt(o.ask):'—',370,y,'#ef4444',11,700);txt(c1,o.delta.toFixed(2),450,y,'#7dd3fc',11,700);});
+  if(!lin.length)txt(c1,'carregando cadeia...',22,90,'#8b93a3',12,600);
+  /* TAB 3 — CARTEIRA (SIMULAÇÃO) */
+  const c2=r.ctxs[2];fundoTela(c2,512,288,'CARTEIRA DIRECIONAL — SIMULAÇÃO');
+  if(k&&k.carteira){const ct=k.carteira;
+    const kp=[['DELTA',fmt(ct.delta)],['VEGA',fmt(ct.vega)],['CALLS',String(ct.calls)],['PUTS',String(ct.puts)]];
+    kp.forEach((x,i)=>{const px=16+i*124;c2.fillStyle='#101827';c2.beginPath();c2.roundRect(px,52,112,60,8);c2.fill();
+      txt(c2,x[0],px+10,58,'#8b93a3',10,700);txt(c2,x[1],px+10,78,'#fff',16,800);});
+    txt(c2,'RESULTADO DO DIA: R$ '+fmt(ct.pnl),22,124,ct.pnl>=0?'#25B760':'#ef4444',14,800);
+    ct.pos.slice(0,5).forEach((p,i)=>{const y=148+i*22;c2.fillStyle=i%2?'#0d1522':'#101827';c2.fillRect(16,y-3,482,19);
+      txt(c2,p.lado+' '+p.qtd+'x '+p.ativo,22,y,'#c7d0e0',10,700);txt(c2,'Δ '+p.delta.toFixed(2),400,y,'#7dd3fc',10,700);});
+    txt(c2,'posições SIMULADAS para demonstração educacional',22,252,'#66708a',9,600);
+  } else txt(c2,'carregando...',22,90,'#8b93a3',12,600);
+  /* TAB 4 — TRADES */
+  const c3=r.ctxs[3];fundoTela(c3,512,288,'LOG DE OPERAÇÕES (SIMULAÇÃO)');
+  if(k&&k.carteira&&k.carteira.trades){
+    k.carteira.trades.forEach((t,i)=>{const y=56+i*30;c3.fillStyle=i%2?'#0d1522':'#101827';c3.fillRect(16,y-4,482,26);
+      txt(c3,t.hora,22,y,'#8b93a3',11,700);txt(c3,t.acao,76,y,'#c7d0e0',11,700);
+      c3.fillStyle=t.status==='PREENCHIDO'?'#25B760':'#FF8100';c3.beginPath();c3.roundRect(410,y,82,20,4);c3.fill();
+      txt(c3,t.status,416,y+2,'#001336',9,800);});
+    txt(c3,'ordens simuladas • sem execução real • not financial advice',22,252,'#66708a',9,600);
+  } else txt(c3,'carregando...',22,90,'#8b93a3',12,600);
+  r.texs.forEach(t=>t.needsUpdate=true);
+  /* TELA DE PAREDE — SUPERFÍCIE DE VOLATILIDADE */
+  if(r.wallCtx&&k&&k.sup){
+    const cW=r.wallCtx;/* canvas 512x288 desenhado deitado */
+    fundoTela(cW,512,288,'SUPERFÍCIE DE VOLATILIDADE — BTC (IV %)');
+    const st=k.sup.strikes,ex=k.sup.exps,iv=k.sup.iv;
+    const nS=st.length,nE=ex.length;
+    const x0=90,y0=64,cw=400/nS,ch=150/nE;
+    for(let e2=0;e2<nE;e2++)for(let si=0;si<nS;si++){
+      const v=iv[e2]?iv[e2][si]:0;
+      const t2=Math.max(0,Math.min(1,(v-15)/70));
+      const r2=Math.round(0+t2*255),g2=Math.round(100+t2*55),b2=Math.round(255-t2*255);
+      cW.fillStyle='rgb('+r2+','+g2+','+b2+')';cW.fillRect(x0+si*cw,y0+e2*ch,cw-2,ch-2);
+      if(ch>26)txt(cW,v?v.toFixed(0):'',x0+si*cw+4,y0+e2*ch+6,'#001336',9,800);
+    }
+    for(let si=0;si<nS;si+=2)txt(cW,fmt(st[si]),x0+si*cw,y0+nE*ch+4,'#8b93a3',9,700);
+    ex.forEach((d,i)=>txt(cW,d+'d',x0-42,y0+i*ch+4,'#8b93a3',9,700));
+    const tm=k.termo||[];txt(cW,'TERMO:',x0,y0+nE*ch+26,'#009CFE',10,800);
+    tm.forEach((t2,i)=>{cW.fillStyle='#1f2735';cW.fillRect(x0+i*60+52,y0+nE*ch+40,50,16);cW.fillStyle='#FF8100';cW.fillRect(x0+i*60+52,y0+nE*ch+40,50*Math.min(1,(t2.iv||0)/70),16);
+      txt(cW,t2.iv?String(t2.iv):'',x0+i*60+56,y0+nE*ch+42,'#001336',9,800);});
+    txt(cW,k.fonte==='deribit'?'dados públicos Deribit (reais)':'modo demo',x0,y0+nE*ch+68,'#25B760',10,700);
+    txt(cW,'simulação educacional — not financial advice',x0,y0+nE*ch+84,'#66708a',9,600);
+    r.wallTex.needsUpdate=true;
+  }
+}
+function atualizaHolograma(){
+  const r=SALAS.find(s=>s.trade);if(!r||!r.supHolo||!dados.cripto||!dados.cripto.sup)return;
+  const iv=dados.cripto.sup.iv;if(!iv.length||!iv[0].length)return;
+  const nE=iv.length,nS=iv[0].length;
+  const pos=[],cor=[],idx=[];
+  for(let e2=0;e2<nE;e2++)for(let si=0;si<nS;si++){
+    const v=iv[e2][si]||0;const t2=Math.max(0,Math.min(1,(v-15)/70));
+    pos.push((si/(nS-1)-.5)*2.1, v/100*.85, (e2/(nE-1)-.5)*1.1);
+    cor.push(t2, .35+t2*.5, 1-t2*.65);
+    if(si<nS-1&&e2<nE-1){const a=e2*nS+si,b=a+1,c2=a+nS,d=c2+1;idx.push(a,b,d,a,d,c2);}
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
+  geo.setAttribute('color',new THREE.Float32BufferAttribute(cor,3));
+  geo.setIndex(idx);
+  r.supHolo.children[0].geometry.dispose();r.supHolo.children[0].geometry=geo;
+  r.supHolo.children[1].geometry.dispose();r.supHolo.children[1].geometry=geo;
+}
 function monitor(screenTex,x,y,z,rotY){
   const g=new THREE.Group();
   const frame=box(.62,.4,.035,{color:0x0a0c10,roughness:.3,metalness:.5});
@@ -400,37 +449,76 @@ SALAS.forEach((r,idx)=>{
   pl.position.set(doorX-side*.02,ALT-.62,z);pl.rotation.y=-side*Math.PI/2;scene.add(pl);
   sombra(cx,z,RW);
 
-  /* --- móveis: mesa na parede do fundo, agente de frente pro corredor --- */
+  /* --- layout por equipe: N mesas, N cadeiras, N agentes --- */
   const deskX=side*(EXT-.55);
-  const desk=box(1.15,.06,2.6,{color:0x6b4a2f,roughness:.4});desk.position.set(deskX,.74,z);scene.add(desk);
-  [-1,1].forEach(sz=>{const pe=box(.9,.72,.06,{color:0x15181f,roughness:.3,metalness:.8});pe.position.set(deskX,.37,z+sz*1.2);scene.add(pe)});
-  /* telas */
-  const scr=desenhaTela(r);r.tex=scr.tex;r.ctx=scr.ctx;
-  scene.add(monitor(scr.tex,deskX-side*.06,1.22,z-.33,-side*Math.PI/2));
-  scene.add(monitor(scr.tex,deskX-side*.06,1.22,z+ .78,-side*Math.PI/2));
-  /* teclado, mouse, caneca */
-  const teclado=box(.44,.02,.16,{color:0x0f1218,roughness:.5});teclado.position.set(deskX-side*.42,.78,z-.1);teclado.rotation.y=-side*Math.PI/2;scene.add(teclado);
-  const mouse=box(.08,.03,.13,{color:0x0f1218,roughness:.5});mouse.position.set(deskX-side*.42,.78,z+.32);scene.add(mouse);
-  const caneca=new THREE.Mesh(new THREE.CylinderGeometry(.04,.035,.09,12),mat({color:0xFF8100,roughness:.35}));caneca.position.set(deskX,.82,z+1.05);scene.add(caneca);
-  /* cadeira */
-  const cad=new THREE.Group();
-  const assento=box(.5,.08,.48,{color:0x101318,roughness:.6});assento.position.y=.48;
-  const encosto=box(.48,.55,.08,{color:0x101318,roughness:.6});encosto.position.set(0,.95,.24);
-  const colC=box(.06,.4,.06,{color:0x15181f,roughness:.3,metalness:.8});colC.position.y=.3;
-  const base=new THREE.Mesh(new THREE.CylinderGeometry(.26,.3,.05,14),mat({color:0x15181f,roughness:.3,metalness:.8}));base.position.y=.05;
-  cad.add(assento,encosto,colC,base);
-  cad.position.set(deskX-side*1.1,0,z);cad.rotation.y=side*Math.PI/2;scene.add(cad);
-  /* agente */
-  const av=humano(r,idx);
-  av.position.set(deskX-side*1.15,0,z);av.rotation.y=side*Math.PI/2;scene.add(av);
+  const eq=r.equipe||[{n:r.nome,c:r.cargo}];
+  const multi=eq.length>1;
+  const dzs=multi?[-1.95,-.65,.65,1.95]:[0];
+  function cadeira(x,zz,rot){const cad=new THREE.Group();
+    const assento=box(.5,.08,.48,{color:0x101318,roughness:.6});assento.position.y=.48;
+    const encosto=box(.48,.55,.08,{color:0x101318,roughness:.6});encosto.position.set(0,.95,.24);
+    const colC=box(.06,.4,.06,{color:0x15181f,roughness:.3,metalness:.8});colC.position.y=.3;
+    const basC=new THREE.Mesh(new THREE.CylinderGeometry(.26,.3,.05,14),mat({color:0x15181f,roughness:.3,metalness:.8}));basC.position.y=.05;
+    cad.add(assento,encosto,colC,basC);cad.position.set(x,0,zz);cad.rotation.y=rot;scene.add(cad);}
+  if(multi){
+    dzs.forEach(dz=>{const d=box(1.15,.06,1.35,{color:0x6b4a2f,roughness:.4});d.position.set(deskX,.74,z+dz);scene.add(d);
+      [-.55,.55].forEach(sz=>{const pe=box(.9,.72,.06,{color:0x15181f,roughness:.3,metalness:.8});pe.position.set(deskX,.37,z+dz+sz);scene.add(pe)});});
+  }else{
+    const d=box(1.15,.06,2.9,{color:0x6b4a2f,roughness:.4});d.position.set(deskX,.74,z);scene.add(d);
+    [-1.2,1.2].forEach(sz=>{const pe=box(.9,.72,.06,{color:0x15181f,roughness:.3,metalness:.8});pe.position.set(deskX,.37,z+sz);scene.add(pe)});
+  }
+  /* telas: trade = 4 abas diferentes + tela de parede; demais = 1 tela compartilhada */
+  const texs=[],ctxs=[];
+  for(let k=0;k<dzs.length;k++){
+    let scr;
+    if(r.trade){scr=novaTela(['MERCADO','CADEIA','CARTEIRA','TRADES'][k]);}
+    else{if(!texs.length)scr=desenhaTela(r);else scr={tex:texs[0],ctx:ctxs[0]};}
+    scene.add(monitor(scr.tex,deskX-side*.06,1.22,z+dzs[k],-side*Math.PI/2));
+    if(!texs.includes(scr.tex)){texs.push(scr.tex);ctxs.push(scr.ctx);}
+  }
+  if(!multi&&!r.trade){scene.add(monitor(texs[0],deskX-side*.06,1.22,z+1.11,-side*Math.PI/2));}
+  r.texs=texs;r.ctxs=ctxs;
+  /* acessórios por mesa */
+  dzs.forEach(dz=>{const teclado=box(.44,.02,.16,{color:0x0f1218,roughness:.5});teclado.position.set(deskX-side*.42,.78,z+dz);teclado.rotation.y=-side*Math.PI/2;scene.add(teclado);
+    const mouse=box(.08,.03,.13,{color:0x0f1218,roughness:.5});mouse.position.set(deskX-side*.42,.78,z+dz+.25);scene.add(mouse);});
+  dzs.forEach((dz,ii)=>{if(ii%3)return;const caneca=new THREE.Mesh(new THREE.CylinderGeometry(.04,.035,.09,12),mat({color:0xFF8100,roughness:.35}));caneca.position.set(deskX,.82,z+dz+.55);scene.add(caneca);});
+  /* cadeiras */
+  dzs.forEach(dz=>cadeira(deskX-side*1.1,z+dz,side*Math.PI/2));
+  /* equipe de agentes */
+  const agentesSala=[];
+  eq.forEach((m,i)=>{
+    const av=humano({camisa:r.camisa},idx*4+i,m.f);
+    av.position.set(deskX-side*1.15,0,z+dzs[i]);av.rotation.y=side*Math.PI/2;scene.add(av);
+    agentesSala.push({avatar:av,nome:m.n,cargo:m.c,
+      deskPos:[deskX-side*1.15,z+dzs[i]],
+      anSt:{modo:Math.random()<.5?'digita':'para',tmr:1+Math.random()*6,alvo:null,fim:null,passo:0,waveEm:-1,waveAte:-1}});
+  });
+  /* sala de trade: tela de parede + superfície de volatilidade holográfica */
+  if(r.trade){
+    const wall=novaTela('SUPERFÍCIE DE VOLATILIDADE');
+    r.wallTex=wall.tex;r.wallCtx=wall.ctx;
+    const wg=new THREE.Group();
+    const wf=box(.06,2.1,3.5,{color:0x0a0c10,roughness:.3,metalness:.5});
+    const ws=new THREE.Mesh(new THREE.PlaneGeometry(1.9,3.3),new THREE.MeshBasicMaterial({map:wall.tex}));
+    ws.position.x=-.04;ws.rotation.y=-Math.PI/2;
+    wg.add(wf,ws);wg.position.set(side*(EXT-.18),2.0,z);scene.add(wg);
+    /* holograma: grade strikes x vencimentos, altura = IV */
+    const hg=new THREE.Group();
+    const supGeo=new THREE.BufferGeometry();
+    hg.add(new THREE.Mesh(supGeo,new THREE.MeshBasicMaterial({wireframe:true,vertexColors:true,transparent:true,opacity:.9})));
+    hg.add(new THREE.Mesh(supGeo,new THREE.MeshBasicMaterial({vertexColors:true,transparent:true,opacity:.12,side:THREE.DoubleSide})));
+    const disc=new THREE.Mesh(new THREE.CircleGeometry(1.5,40),new THREE.MeshBasicMaterial({map:sombraTex,transparent:true,opacity:.5,depthWrite:false,color:0x009CFE}));
+    disc.rotation.x=-Math.PI/2;disc.position.y=-.55;hg.add(disc);
+    hg.position.set(side*7.2,1.75,z);scene.add(hg);
+    r.supHolo=hg;
+  }
   /* plantas nos cantos */
   planta(side*(EXT-.9),z+RW/2-.8,.9);
   planta(side*(EXT-.9),z-RW/2+.8,.7);
 
   const deskPos=[deskX-side*1.15,z];
   const wps=[[deskX-side*1.9,z-1.5],[deskX-side*1.9,z+1.5],[doorX+side*1.1,z-1.2],[doorX+side*1.1,z+1.2]];
-  salas3d.push({def:r,z,cx,side,deskX,avatar:av,deskPos,wps,
-    anSt:{modo:'digita',tmr:2+Math.random()*5,alvo:null,fim:null,passo:0,waveEm:-1,waveAte:-1},
+  salas3d.push({def:r,z,cx,side,deskX,agentes:agentesSala,deskPos,wps,
     camPos:new THREE.Vector3(side*(CORR/2+1.6),1.62,z),
     camTarget:new THREE.Vector3(deskX,1.05,z)});
 });
@@ -445,7 +533,7 @@ function addBtn(label,fn){const b=document.createElement('button');b.className='
 let btnAtual=null;
 function mark(b){document.querySelectorAll('.rb').forEach(x=>x.classList.remove('on'));if(b){b.classList.add('on');btnAtual=b}}
 const btnLobby=addBtn('🏢 LOBBY',()=>voa(LOBBY));
-salas3d.forEach(s=>{const b=addBtn('⬜ '+s.def.nome.toUpperCase(),()=>voa(s));s.btn=b});
+salas3d.forEach(s=>{const b=addBtn((s.def.icone||'⬜')+' '+s.def.nome.toUpperCase(),()=>voa(s));s.btn=b});
 
 let salaAtiva=null,alvoCam=null,alvoTgt=null,voando=false,vooInicio=0,vooDe=null;
 function voa(s){
@@ -456,16 +544,19 @@ function voa(s){
   mark(s.btn||btnLobby);
   if(s.def)abreFala(s);
   salaAtiva=s;
-  if(s.anSt){s.anSt.waveEm=clock.elapsedTime+1.7;s.anSt.waveAte=s.anSt.waveEm+2.2;}
+  if(s.agentes)s.agentes.forEach(a=>{a.anSt.waveEm=clock.elapsedTime+1.7;a.anSt.waveAte=a.anSt.waveEm+2.2;});
 }
 function mostraCard(s){
   const c=document.getElementById('card');
   const def=s.def;
-  if(!def){c.innerHTML='<div class="cd">RECEPÇÃO</div><div class="cn">Anatechmg HQ</div><div class="cp">Escolha uma sala pra visitar um agente</div><div class="cs">34 agentes ativos • 234 na reserva<br/>Use os botões pra voar até a sala de cada um</div>';c.classList.add('on');return}
+  if(!def){c.innerHTML='<div class="cd">RECEPÇÃO</div><div class="cn">Anatechmg HQ</div><div class="cp">Escolha uma sala pra visitar uma equipe</div><div class="cs">10 setores • 43 especialistas ativos<br/>Cada sala tem a equipe completa da área</div>';c.classList.add('on');return}
   let extra='';
+  if(def.equipe)extra+='<br/><b>EQUIPE:</b> '+def.equipe.map(m=>m.n).join(', ');
   if(def.trade){
-    const sig=dados.sinal||'carregando...';
-    extra='<br/><b>Sinal agora:</b> '+sig+'<br/><b>WIN:</b> '+Number(dados.last).toLocaleString('pt-BR')+'<br/><b>RSI:</b> '+(dados.rsi?dados.rsi.toFixed(1):'—')+'<div class="dis">sinalização educacional — not financial advice</div>';
+    const k=dados.cripto,sig=dados.sinal||'carregando...';
+    extra+='<br/><b>BTC:</b> '+(k&&k.btc?'$'+fmt(k.btc.spot)+' • IV '+(k.btc.iv_atm?k.btc.iv_atm.toFixed(1)+'%':'—'):'…')
+         +'<br/><b>WIN:</b> '+Number(dados.last).toLocaleString('pt-BR')+' • <b>sinal:</b> '+sig
+         +'<div class="dis">opções cripto: dados reais Deribit • carteira simulada<br/>sinalização educacional — not financial advice</div>';
   }
   c.innerHTML='<div class="cd">SALA</div><div class="cn">'+def.nome+'</div><div class="cp">'+def.cargo+'</div><div class="cs">status: em operação • clique em FALAR pra conversar'+extra+'</div>';
   c.classList.add('on');
@@ -499,13 +590,11 @@ fetch(OPS+'?view=data').then(r=>r.json()).then(d=>{document.getElementById('neq'
 const clock=new THREE.Clock();
 
 const angLerp=(a,b,k)=>{let d=b-a;while(d>Math.PI)d-=Math.PI*2;while(d<-Math.PI)d+=Math.PI*2;return a+d*k;};
-function atualizaAgente(s,dt,t){
-  const g=s.avatar,u=g.userData,st=s.anSt;if(!st)return;
+function atualizaAgente(s,ag,dt,t){
+  const g=ag.avatar,u=g.userData,st=ag.anSt;if(!st)return;
   const f=u.fase;
-  /* cabeça olha pra câmera quando o visitante está na sala */
   const olhaCam=salaAtiva===s;
   const hx=g.position.x,hz=g.position.z;
-  /* ACENO: virar pro visitante e abanar a mão */
   if(t>=st.waveEm&&t<=st.waveAte){
     const ang=Math.atan2(camera.position.x-hx,camera.position.z-hz);
     g.rotation.y=angLerp(g.rotation.y,ang,.15);
@@ -515,9 +604,7 @@ function atualizaAgente(s,dt,t){
     u.cabG.rotation.y=angLerp(u.cabG.rotation.y,0,.1);u.cabG.rotation.x=angLerp(u.cabG.rotation.x,0,.1);
     return;
   }
-  if(st.modo!=='anda'||1){ /* reset de braço fora do aceno tratado nos modos */ }
   if(st.modo==='anda'){
-    /* caminhada até o ponto */
     const dx=st.alvo[0]-hx,dz=st.alvo[1]-hz,dist=Math.hypot(dx,dz);
     const ang=Math.atan2(dx,dz);
     g.rotation.y=angLerp(g.rotation.y,ang,.18);
@@ -532,7 +619,6 @@ function atualizaAgente(s,dt,t){
     u.cabG.rotation.x=.04;u.cabG.rotation.y=angLerp(u.cabG.rotation.y,0,.1);
     u.tor.rotation.x=.05;
   }else if(st.modo==='digita'){
-    /* digitando em pé na mesa */
     u.bE.ombro.rotation.x=-.5;u.bD.ombro.rotation.x=-.5;
     u.bE.cot.rotation.x=-.95+Math.sin(t*8+f)*.09;u.bD.cot.rotation.x=-.95+Math.sin(t*8+f+1.4)*.09;
     u.pE.piv.rotation.x=u.pD.piv.rotation.x=0;u.pE.joel.rotation.x=u.pD.joel.rotation.x=0;
@@ -541,7 +627,6 @@ function atualizaAgente(s,dt,t){
     u.cabG.rotation.y=olhaCam?angLerp(u.cabG.rotation.y,angPara(g,camera.position),.06):Math.sin(t*.35+f)*.22;
     u.tor.rotation.x=0;
   }else if(st.modo==='fone'){
-    /* telefone: mão no ouvido, gesticulando */
     u.bD.ombro.rotation.x=-.15;u.bD.cot.rotation.x=-2.25;
     u.bE.ombro.rotation.x=-.35+Math.sin(t*2.4+f)*.1;u.bE.cot.rotation.x=-1.1+Math.sin(t*3.1+f)*.2;
     u.pE.piv.rotation.x=u.pD.piv.rotation.x=0;u.pE.joel.rotation.x=u.pD.joel.rotation.x=0;
@@ -549,15 +634,15 @@ function atualizaAgente(s,dt,t){
     u.cabG.rotation.z=.07;u.cabG.rotation.x=.02;
     u.cabG.rotation.y=olhaCam?angLerp(u.cabG.rotation.y,angPara(g,camera.position),.06):Math.sin(t*.5+f)*.3;
     u.tor.rotation.x=0;
-  }else{ /* parado pensando */
+  }else{
     zerarPose(u);
     u.quadril.position.y=.96+Math.sin(t*1.1+f)*.006;
     u.cabG.rotation.x=.05;u.cabG.rotation.z=Math.sin(t*.6+f)*.05;
     u.cabG.rotation.y=olhaCam?angLerp(u.cabG.rotation.y,angPara(g,camera.position),.06):Math.sin(t*.3+f)*.35;
-    if(st.tmr>2)u.bE.cot.rotation.x=-.6+Math.sin(t*1.5)*.08; /* mão no queixo às vezes */
+    if(st.tmr>2)u.bE.cot.rotation.x=-.6+Math.sin(t*1.5)*.08;
   }
   st.tmr-=dt;
-  if(st.tmr<=0&&st.modo!=='anda'){prox(s,t);}
+  if(st.tmr<=0&&st.modo!=='anda'){prox(s,ag,t);}
 }
 function angPara(g,p){const a=Math.atan2(p.x-g.position.x,p.z-g.position.z)-g.rotation.y;let d=a;while(d>Math.PI)d-=Math.PI*2;while(d<-Math.PI)d+=Math.PI*2;return Math.max(-.9,Math.min(.9,d));}
 function zerarPose(u){
@@ -565,20 +650,20 @@ function zerarPose(u){
   u.pE.piv.rotation.x=u.pD.piv.rotation.x=0;u.pE.joel.rotation.x=u.pD.joel.rotation.x=0;
   u.tor.rotation.x=0;u.cabG.rotation.z=0;u.quadril.position.y=.96;
 }
-function prox(s,t){
-  const st=s.anSt,r=Math.random();
-  const naMesa=Math.hypot(s.deskPos[0]-s.avatar.position.x,s.deskPos[1]-s.avatar.position.z)<.2;
-  if(r<.42){st.modo='anda';st.alvo=s.deskPos;st.fim='digita';}
-  else if(r<.68){st.modo='anda';st.alvo=s.wps[Math.floor(Math.random()*s.wps.length)];st.fim=st.modo==='digita'?'para':(Math.random()<.5?'fone':'para');st.fim=Math.random()<.45?'fone':'para';}
-  else if(r<.85&&!naMesa){st.modo='fone';st.tmr=3+Math.random()*3;}
+function prox(s,ag,t){
+  const st=ag.anSt,r=Math.random();
+  if(r<.42){st.modo='anda';st.alvo=ag.deskPos;st.fim='digita';}
+  else if(r<.68){st.modo='anda';st.alvo=s.wps[Math.floor(Math.random()*s.wps.length)];st.fim=Math.random()<.45?'fone':'para';}
+  else if(r<.85){st.modo='fone';st.tmr=3+Math.random()*3;}
   else{st.modo='para';st.tmr=2+Math.random()*3;}
-  if(st.modo==='fone'||st.modo==='para')zerarPose(s.avatar.userData);
+  if(st.modo==='fone'||st.modo==='para')zerarPose(ag.avatar.userData);
 }
 
 function animate(){
   requestAnimationFrame(animate);
   const dt=Math.min(.35,clock.getDelta()),t=clock.elapsedTime;
-  salas3d.forEach(s=>atualizaAgente(s,dt,t));
+  salas3d.forEach(s=>{s.agentes.forEach(ag=>atualizaAgente(s,ag,dt,t));});
+  const tr=SALAS.find(x=>x.trade);if(tr&&tr.supHolo)tr.supHolo.rotation.y+=dt*.3;
   if(voando){
     const k=Math.min(1,(performance.now()-vooInicio)/1700);
     const e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
@@ -593,6 +678,7 @@ animate();
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);composer.setSize(innerWidth,innerHeight)});
 
 carregaTrade();setInterval(carregaTrade,45000);
+carregaCripto();setInterval(carregaCripto,60000);
 setTimeout(()=>{const l=document.getElementById('load');l.style.opacity=0;setTimeout(()=>l.remove(),900);mostraCard(LOBBY);mark(btnLobby)},600);
 </script>
 </body>
