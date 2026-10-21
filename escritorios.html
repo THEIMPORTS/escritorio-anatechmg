@@ -38,6 +38,11 @@ canvas#cv{position:fixed;inset:0;display:block}
 #fala .m{font-size:.66rem;padding:5px 8px;border-radius:8px;margin:4px 0;line-height:1.4;white-space:pre-wrap}
 #fala .m.eu{background:#12386B;color:#fff;text-align:right}
 #fala .m.ag{background:#101827;color:#c7d0e0}
+#fala .chips{display:none;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+#fala .chp{font-size:.58rem;font-weight:700;background:#101827;color:#8b93a3;border:1px solid #1f2735;border-radius:20px;padding:3px 9px;cursor:pointer}
+#fala .chp.on{background:#FF8100;color:#001336;border-color:#FF8100}
+#fala #delegaBtn{background:#12386B;color:#fff}
+#fala #delegaBtn.on{background:#25B760;color:#001336}
 #fala form{display:flex;gap:6px}
 #fala input{flex:1;background:#0a101c;border:1px solid #1f2735;border-radius:9px;color:#fff;font-size:.7rem;padding:8px 10px;outline:none}
 #fala button{background:#FF8100;border:none;border-radius:9px;color:#001336;font-weight:800;font-size:.66rem;padding:8px 12px;cursor:pointer}
@@ -69,8 +74,9 @@ canvas#cv{position:fixed;inset:0;display:block}
 <div id="card" class="hud"></div>
 <div id="fala" class="hud">
   <div class="ft" id="falaTitulo">FALAR COM AGENTE</div>
+  <div id="falaChips" class="chips"></div>
   <div class="hist" id="falaHist"></div>
-  <form id="falaForm"><input id="falaIn" placeholder="Escreva para o agente..." maxlength="400" autocomplete="off"/><button type="submit">Enviar</button></form>
+  <form id="falaForm"><input id="falaIn" placeholder="Escreva para o agente..." maxlength="400" autocomplete="off"/><button type="button" id="delegaBtn">Delegar</button><button type="submit">Enviar</button></form>
 </div>
 <div id="hint" class="hud">Arraste pra girar • Roda do mouse: zoom • Botão <b>FALAR</b> conversa com o agente da sala</div>
 <div id="load"><h2>ANATECHMG HQ</h2><p>Construindo os escritórios ultra realistas...</p></div>
@@ -156,7 +162,7 @@ function box(w,h,d,o){return new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat(o))
 function lit(cor,i,dist,px,py,pz){const l=new THREE.PointLight(cor,i,dist,1.6);l.position.set(px,py,pz);scene.add(l);return l}
 function cTex(w,h,draw){const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t}
 function txt(ctx,s,x,y,cor,size,w){ctx.fillStyle=cor;ctx.font=(w||800)+' '+size+'px system-ui,Segoe UI,sans-serif';ctx.textBaseline='top';ctx.fillText(s,x,y)}
-function novaTela(titulo){const c=document.createElement('canvas');c.width=512;c.height=288;const ctx=c.getContext('2d');fundoTela(ctx,512,288,titulo);
+function novaTela(titulo,W=512,H=288){const c=document.createElement('canvas');c.width=W;c.height=H;const ctx=c.getContext('2d');fundoTela(ctx,W,H,titulo);
   txt(ctx,'carregando...',22,60,'#8b93a3',12,600);
   const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return {tex:t,ctx:ctx}}
 function fundoTela(ctx,w,h,titulo){const g=ctx.createLinearGradient(0,0,0,h);g.addColorStop(0,'#0a1220');g.addColorStop(1,'#050a12');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);ctx.strokeStyle='#12203a';ctx.strokeRect(2,2,w-4,h-4);txt(ctx,titulo,14,10,'#009CFE',15);ctx.fillStyle='#FF8100';ctx.fillRect(14,32,44,3)}
@@ -349,27 +355,75 @@ function drawTradeTabs(){
     txt(c3,'ordens simuladas • sem execução real • not financial advice',22,252,'#66708a',9,600);
   } else txt(c3,'carregando...',22,90,'#8b93a3',12,600);
   r.texs.forEach(t=>t.needsUpdate=true);
-  /* TELA DE PAREDE — SUPERFÍCIE DE VOLATILIDADE */
-  if(r.wallCtx&&k&&k.sup){
-    const cW=r.wallCtx;/* canvas 512x288 desenhado deitado */
-    fundoTela(cW,512,288,'SUPERFÍCIE DE VOLATILIDADE — BTC (IV %)');
-    const st=k.sup.strikes,ex=k.sup.exps,iv=k.sup.iv;
-    const nS=st.length,nE=ex.length;
-    const x0=90,y0=64,cw=400/nS,ch=150/nE;
-    for(let e2=0;e2<nE;e2++)for(let si=0;si<nS;si++){
-      const v=iv[e2]?iv[e2][si]:0;
-      const t2=Math.max(0,Math.min(1,(v-15)/70));
-      const r2=Math.round(0+t2*255),g2=Math.round(100+t2*55),b2=Math.round(255-t2*255);
-      cW.fillStyle='rgb('+r2+','+g2+','+b2+')';cW.fillRect(x0+si*cw,y0+e2*ch,cw-2,ch-2);
-      if(ch>26)txt(cW,v?v.toFixed(0):'',x0+si*cw+4,y0+e2*ch+6,'#001336',9,800);
+  /* TELÃO DE PAREDE — MESA DE OPERAÇÕES AO VIVO */
+  if(r.wallCtx&&k){
+    const cW=r.wallCtx;
+    fundoTela(cW,1024,480,'ANATECHMG TRADE — MESA DE OPERAÇÕES');
+    cW.fillStyle='#25B760';cW.beginPath();cW.arc(976,18,5,0,7);cW.fill();
+    txt(cW,'AO VIVO',930,12,'#25B760',11,800);
+    const horaAt=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    txt(cW,horaAt,860,12,'#8b93a3',11,700);
+    const btc=k.btc,vel=k.velas||[],ct=k.carteira;
+    /* ZONA A — gráfico de candles BTC real (Deribit) */
+    txt(cW,'BTC-PERP 15min — Deribit (real)',20,46,'#7dd3fc',12,800);
+    if(vel.length>1){
+      let mn=1e12,mx=0;vel.forEach(v=>{mn=Math.min(mn,v.l);mx=Math.max(mx,v.h)});
+      const pad=(mx-mn)*.1||10;mn-=pad;mx+=pad;
+      const x0=24,y0=84,cw=560/vel.length,chh=196;
+      vel.forEach((v,i)=>{const x=x0+i*cw+cw*.5;const yv=val=>y0+(1-(val-mn)/(mx-mn))*chh;
+        const up=v.c>=v.o;
+        cW.strokeStyle=up?'#25B760':'#ef4444';cW.beginPath();cW.moveTo(x,yv(v.h));cW.lineTo(x,yv(v.l));cW.stroke();
+        cW.fillStyle=up?'#25B760':'#ef4444';const yo=yv(Math.max(v.o,v.c)),yb=yv(Math.min(v.o,v.c));cW.fillRect(x-cw*.32,yo,cw*.64,Math.max(2,yb-yo));});
+      cW.strokeStyle='#1f2735';[0.25,.5,.75].forEach(fr=>{const yy=y0+chh*fr;cW.beginPath();cW.moveTo(x0,yy);cW.lineTo(x0+560,yy);cW.stroke();});
+      txt(cW,'$'+fmt(mx),x0+566,y0-4,'#8b93a3',9,700);
+      txt(cW,'$'+fmt(mn),x0+566,y0+chh-12,'#8b93a3',9,700);
     }
-    for(let si=0;si<nS;si+=2)txt(cW,fmt(st[si]),x0+si*cw,y0+nE*ch+4,'#8b93a3',9,700);
-    ex.forEach((d,i)=>txt(cW,d+'d',x0-42,y0+i*ch+4,'#8b93a3',9,700));
-    const tm=k.termo||[];txt(cW,'TERMO:',x0,y0+nE*ch+26,'#009CFE',10,800);
-    tm.forEach((t2,i)=>{cW.fillStyle='#1f2735';cW.fillRect(x0+i*60+52,y0+nE*ch+40,50,16);cW.fillStyle='#FF8100';cW.fillRect(x0+i*60+52,y0+nE*ch+40,50*Math.min(1,(t2.iv||0)/70),16);
-      txt(cW,t2.iv?String(t2.iv):'',x0+i*60+56,y0+nE*ch+42,'#001336',9,800);});
-    txt(cW,k.fonte==='deribit'?'dados públicos Deribit (reais)':'modo demo',x0,y0+nE*ch+68,'#25B760',10,700);
-    txt(cW,'simulação educacional — not financial advice',x0,y0+nE*ch+84,'#66708a',9,600);
+    cW.fillStyle='#101827';cW.beginPath();cW.roundRect(24,300,262,56,8);cW.fill();
+    txt(cW,'BTC '+('$'+fmt(btc.spot)),36,312,'#fff',18,800);
+    txt(cW,'IV ATM '+(btc.iv_atm!=null?btc.iv_atm+'%':'—'),36,336,'#FF8100',12,800);
+    cW.fillStyle='#101827';cW.beginPath();cW.roundRect(300,300,284,56,8);cW.fill();
+    const lastN=vel.length?vel[vel.length-1].c:0;const firstN=vel.length?vel[0].c:0;
+    const varPct=firstN?((lastN-firstN)/firstN*100):0;
+    txt(cW,'VAR. 6H',312,308,'#8b93a3',10,700);
+    txt(cW,(varPct>=0?'+':'')+varPct.toFixed(2)+'%',312,324,varPct>=0?'#25B760':'#ef4444',16,800);
+    txt(cW,'ETH '+(k.eth&&k.eth.spot?('$'+fmt(k.eth.spot)):'—'),440,324,'#c7d0e0',13,700);
+    /* ZONA B — operações ao vivo */
+    txt(cW,'OPERAÇÕES DO DIA (SIMULAÇÃO)',624,46,'#FF8100',12,800);
+    if(ct&&ct.trades){
+      ct.trades.slice(0,5).forEach((t,i)=>{const y=64+i*28;
+        cW.fillStyle=i%2?'#0d1522':'#101827';cW.fillRect(616,y-4,392,24);
+        txt(cW,t.hora,624,y,'#8b93a3',11,700);txt(cW,t.acao,682,y,'#c7d0e0',11,700);
+        cW.fillStyle=t.status==='PREENCHIDO'?'#25B760':'#FF8100';cW.beginPath();cW.roundRect(912,y,88,18,4);cW.fill();
+        txt(cW,t.status,918,y+2,'#001336',9,800);});
+    }
+    /* ZONA C — carteira gregas */
+    txt(cW,'CARTEIRA DIRECIONAL',624,220,'#FF8100',12,800);
+    if(ct){
+      const g=[['Δ DELTA',fmt(ct.delta)],['Γ VEGA',String(ct.vega)],['CALLS',String(ct.calls)],['PUTS',String(ct.puts)]];
+      g.forEach((it,i)=>{const px=616+i*100;cW.fillStyle='#101827';cW.beginPath();cW.roundRect(px,236,92,52,6);cW.fill();
+        txt(cW,it[0],px+8,242,'#8b93a3',9,700);txt(cW,it[1],px+8,260,'#fff',14,800);});
+      cW.fillStyle='#101827';cW.beginPath();cW.roundRect(616,300,392,56,8);cW.fill();
+      txt(cW,'RESULTADO DO DIA',628,308,'#8b93a3',10,700);
+      txt(cW,(ct.pnl>=0?'R$ +':'R$ ')+fmt(ct.pnl),628,322,ct.pnl>=0?'#25B760':'#ef4444',18,800);
+      if(ct.pos)txt(cW,ct.pos.length+' posições abertas (simuladas)',628,338,'#66708a',9,600);
+    }
+    /* faixa WIN + sinal */
+    cW.fillStyle='#101827';cW.beginPath();cW.roundRect(24,372,560,84,8);cW.fill();
+    const csW=dados.candles.slice(-40);
+    if(csW.length>1){let mn2=1e12,mx2=0;csW.forEach(cc=>{mn2=Math.min(mn2,cc.l);mx2=Math.max(mx2,cc.h)});const pad2=(mx2-mn2)*.15||5;mn2-=pad2;mx2+=pad2;
+      const x0=130,y0=386,cw2=300/csW.length,chh2=56;
+      csW.forEach((cc,i)=>{const x=x0+i*cw2+cw2*.5;const yv2=v=>y0-2+(1-(v-mn2)/(mx2-mn2))*chh2+2;
+        const up=cc.c>=cc.o;cW.strokeStyle=up?'#25B760':'#ef4444';cW.beginPath();cW.moveTo(x,yv2(cc.h));cW.lineTo(x,yv2(cc.l));cW.stroke();
+        cW.fillStyle=up?'#25B760':'#ef4444';const yo2=yv2(Math.max(cc.o,cc.c)),yb2=yv2(Math.min(cc.o,cc.c));cW.fillRect(x-cw2*.3,yo2,cw2*.6,Math.max(1.5,yb2-yo2));});}
+    txt(cW,'WIN R$ '+fmt(dados.last),32,388,'#fff',13,800);
+    txt(cW,'RSI '+(dados.rsi?dados.rsi.toFixed(1):'—'),32,408,'#7dd3fc',11,700);
+    cW.fillStyle=dados.sinal==='VENDA'?'#ef4444':(dados.sinal==='COMPRA'?'#25B760':'#1f2735');
+    cW.beginPath();cW.roundRect(440,386,128,26,6);cW.fill();
+    txt(cW,'SINAL: '+(dados.sinal||'—'),448,392,'#fff',11,800);
+    txt(cW,dados.pregao?'pregão B3 aberto':'pregão B3 fechado',440,422,dados.pregao?'#25B760':'#8b93a3',10,700);
+    /* rodapé */
+    txt(cW,'dados públicos Deribit (reais) • carteira/ordens: SIMULAÇÃO educacional',20,468,'#66708a',10,600);
+    txt(cW,'ANATECHMG • not financial advice',832,468,'#12386B',10,800);
     r.wallTex.needsUpdate=true;
   }
 }
@@ -564,13 +618,13 @@ SALAS.forEach((r,idx)=>{
   });
   /* sala de trade: tela de parede + superfície de volatilidade holográfica */
   if(r.trade){
-    const wall=novaTela('SUPERFÍCIE DE VOLATILIDADE');
+    const wall=novaTela('TELAO ANATECHMG',1024,480);
     r.wallTex=wall.tex;r.wallCtx=wall.ctx;
     const wg=new THREE.Group();
-    const wf=box(.06,2.1,3.5,{color:0x0a0c10,roughness:.3,metalness:.5});
-    const ws=new THREE.Mesh(new THREE.PlaneGeometry(1.9,3.3),new THREE.MeshBasicMaterial({map:wall.tex}));
+    const wf=box(.06,2.5,5.42,{color:0x0a0c10,roughness:.3,metalness:.5});
+    const ws=new THREE.Mesh(new THREE.PlaneGeometry(5.3,2.4),new THREE.MeshBasicMaterial({map:wall.tex}));
     ws.position.x=-.04;ws.rotation.y=-Math.PI/2;
-    wg.add(wf,ws);wg.position.set(side*(EXT-.18),2.0,z);scene.add(wg);
+    wg.add(wf,ws);wg.position.set(side*(EXT-.2),1.72,z);scene.add(wg);
     /* holograma: grade strikes x vencimentos, altura = IV */
     const hg=new THREE.Group();
     const supGeo=new THREE.BufferGeometry();
@@ -634,20 +688,36 @@ function atualizaCard(){if(chatSel&&chatSel.trade)mostraCard({def:chatSel,camPos
 
 /* ---------- chat ---------- */
 const fala=document.getElementById('fala'),falaHist=document.getElementById('falaHist');
-let chatSel=null,chatHist={};
-function abreFala(s){chatSel=s.def;document.getElementById('falaTitulo').textContent='FALAR COM '+s.def.nome.toUpperCase();fala.classList.add('on');
+let chatSel=null,chatHist={},chatPessoa=null,modoDelegar=false;
+function abreFala(s){chatSel=s.def;chatPessoa=null;setDelegar(false);
+  document.getElementById('falaTitulo').textContent='FALAR COM '+s.def.nome.toUpperCase();
+  renderChips();fala.classList.add('on');
   if(!chatHist[s.def.chat])chatHist[s.def.chat]=[];renderHist()}
-function renderHist(){const h=chatSel?chatHist[chatSel.chat]||[]:[];
+function renderChips(){const box=document.getElementById('falaChips');const eq=chatSel&&chatSel.equipe;
+  if(!eq||!eq.length){box.innerHTML='';box.style.display='none';return}
+  box.style.display='flex';
+  box.innerHTML='<span class="chp'+(chatPessoa?'':' on')+'">SETOR</span>'+eq.map((m,i)=>'<span class="chp'+(chatPessoa===m.n?' on':'')+'" data-i="'+i+'">'+m.n+'</span>').join('');
+  box.querySelector('.chp:not([data-i])').addEventListener('click',()=>{chatPessoa=null;renderChips();document.getElementById('falaTitulo').textContent='FALAR COM '+chatSel.nome.toUpperCase();renderHist()});
+  box.querySelectorAll('.chp[data-i]').forEach(el=>el.addEventListener('click',()=>{const m=eq[+el.dataset.i];chatPessoa=m.n;renderChips();
+    document.getElementById('falaTitulo').textContent='FALAR COM '+m.n.toUpperCase();
+    if(!chatHist[m.n])chatHist[m.n]=[];renderHist()}));
+}
+function setDelegar(on){modoDelegar=on;const b=document.getElementById('delegaBtn');b.classList.toggle('on',on);
+  document.getElementById('falaIn').placeholder=on?'Descreva a tarefa pra delegar...':'Escreva para o agente...';}
+document.getElementById('delegaBtn').addEventListener('click',()=>setDelegar(!modoDelegar));
+function renderHist(){const key=chatPessoa||chatSel.chat;const h=chatSel?(chatHist[key]||[]):[];
   falaHist.innerHTML=h.map(m=>'<div class="m '+m.de+'">'+m.texto.replace(/</g,'&lt;')+'</div>').join('');falaHist.scrollTop=1e6}
 document.getElementById('falaForm').addEventListener('submit',async e=>{
   e.preventDefault();const inp=document.getElementById('falaIn');const t=inp.value.trim();if(!t||!chatSel)return;
-  inp.value='';chatHist[chatSel.chat].push({de:'eu',texto:t});renderHist();
+  const key=chatPessoa||chatSel.chat;if(!chatHist[key])chatHist[key]=[];
+  const deleg=modoDelegar;setDelegar(false);
+  inp.value='';chatHist[key].push({de:'eu',texto:(deleg?'[DELEGAR] ':'')+t});renderHist();
   falaHist.insertAdjacentHTML('beforeend','<div class="m ag">…</div>');falaHist.scrollTop=1e6;
   try{
-    const r=await fetch(CHAT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({agente:chatSel.chat,mensagem:t,historico:chatHist[chatSel.chat].slice(-6)})});
+    const r=await fetch(CHAT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({agente:chatSel.chat,pessoa:chatPessoa||'',tipo:deleg?'tarefa':'chat',mensagem:t,historico:chatHist[key].slice(-6)})});
     const d=await r.json();const resp=d.resposta||'(sem resposta, chama a diretoria)';
-    chatHist[chatSel.chat].push({de:'ag',texto:resp});
-  }catch(err){chatHist[chatSel.chat].push({de:'ag',texto:'(erro de conexão, tenta de novo)'})}
+    chatHist[key].push({de:'ag',texto:resp});
+  }catch(err){chatHist[key].push({de:'ag',texto:'(erro de conexão, tenta de novo)'})}
   renderHist();
 });
 
