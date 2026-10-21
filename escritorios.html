@@ -422,6 +422,74 @@ function placaTx(nome){
 /* ---------- salas ---------- */
 const salas3d=[];
 const vidroMat=new THREE.MeshPhysicalMaterial({color:0x9db6c8,roughness:.05,metalness:0,transparent:true,opacity:.16,envMapIntensity:.9,side:THREE.DoubleSide});
+/* ---------- cenário: corredor, lobby, sombra ---------- */
+const COMP=84;                    // comprimento total em z (centrado em z=14)
+const CORR=8, RW=6.4, RD=7.4, ALT=3.4;
+const EXT=CORR/2+RD;               // x externo das salas (±)
+const piso=box(EXT*2+.6,.2,COMP,{color:0x1c2027,roughness:.28,metalness:.15});piso.position.set(0,-.1,14);scene.add(piso);
+const teto=box(EXT*2+.6,.2,COMP,{color:0x14171e,roughness:.9});teto.position.set(0,ALT,14);scene.add(teto);
+const wFim=box(EXT*2+.6,ALT,.3,{color:0x23262e,roughness:.9});wFim.position.set(0,ALT/2,-28);scene.add(wFim);
+[-1,1].forEach(sd=>{const w=box(.3,ALT,COMP,{color:0x23262e,roughness:.9});w.position.set(sd*EXT,ALT/2,14);scene.add(w)});
+const wTopo=box(EXT*2,.7,.3,{color:0x23262e,roughness:.9});wTopo.position.set(0,ALT-.35,56);scene.add(wTopo);
+const wBaixo=box(EXT*2,1.1,.3,{color:0x23262e,roughness:.9});wBaixo.position.set(0,.55,56);scene.add(wBaixo);
+for(let i=0;i<12;i++){const fx=new THREE.Mesh(new THREE.BoxGeometry(1.4,.06,3.4),mat({color:0xffffff,emissive:0xcfe8ff,emissiveIntensity:2.2}));fx.position.set(0,ALT-.1,-28+i*7.5);scene.add(fx)}
+for(let i=0;i<10;i++)lit(0xfff2dd,.42,14,0,ALT-.8,-24+i*8);
+lit(0x9fd4ff,.7,16,0,2,50);
+
+/* lobby */
+const logoTex=new THREE.TextureLoader().load(LOGO,t=>{logoTex.colorSpace=THREE.SRGBColorSpace;logoTex.needsUpdate=true});
+const logoParede=new THREE.Mesh(new THREE.PlaneGeometry(5,2),mat({color:0xffffff,map:logoTex,emissive:0xffffff,emissiveMap:logoTex,emissiveIntensity:.5,transparent:true}));
+logoParede.position.set(0,1.9,-27.8);scene.add(logoParede);
+const recep=box(3.4,1.05,.8,{color:0x15181f,roughness:.35,metalness:.4});recep.position.set(0,.55,-25.4);scene.add(recep);
+const recepTop=box(3.6,.1,1,{color:0x009CFE,roughness:.2,metalness:.6});recepTop.position.set(0,1.12,-25.4);scene.add(recepTop);
+lit(0xfff6e8,.5,9,0,2.6,-25);
+
+/* sombra de contato */
+const sombraTex=cTex(128,128,(ctx,w,h)=>{const g=ctx.createRadialGradient(64,64,6,64,64,62);g.addColorStop(0,'rgba(0,0,0,.55)');g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h)});
+function sombra(x,z,sz){const p=new THREE.Mesh(new THREE.PlaneGeometry(sz,sz),new THREE.MeshBasicMaterial({map:sombraTex,transparent:true,depthWrite:false}));p.rotation.x=-Math.PI/2;p.position.set(x,.015,z);scene.add(p)}
+
+/* ---------- avatar humanoide ---------- */
+const PELES=[0xd9a679,0xc98d63,0x8d5a3a,0xe8b48f,0xb87a52];
+const CABELOS=[0x18120c,0x2a1b10,0x0d0d0d,0x3a2a16,0x1c1c20];
+function humano(r,idx,fem){
+  const camisa=r.camisa, pele=PELES[idx%PELES.length], cabelo=CABELOS[(idx+2)%CABELOS.length];
+  const mPel=mat({color:pele,roughness:.55});
+  const mCab=mat({color:cabelo,roughness:.85});
+  const mCam=mat({color:camisa,roughness:.7});
+  const mCal=mat({color:fem?0x23283a:0x1b1e26,roughness:.8});
+  const g=new THREE.Group();
+  const quadril=new THREE.Group();quadril.position.y=.96;g.add(quadril);
+  const tor=new THREE.Mesh(new THREE.CapsuleGeometry(.155,.32,6,14),mCam);tor.position.y=.34;quadril.add(tor);
+  const col=box(.34,.1,.2,{color:camisa,roughness:.7});col.position.y=.58;quadril.add(col);
+  const pesc=new THREE.Mesh(new THREE.CylinderGeometry(.05,.055,.09,10),mPel);pesc.position.y=.68;quadril.add(pesc);
+  const cabG=new THREE.Group();cabG.position.y=.74;quadril.add(cabG);
+  const cab=new THREE.Mesh(new THREE.SphereGeometry(.105,20,16),mPel);cabG.add(cab);
+  const chl=new THREE.Mesh(new THREE.SphereGeometry(.11,20,12,0,Math.PI*2,0,Math.PI*.52),mCab);chl.position.y=.015;cabG.add(chl);
+  if(fem){const lk=new THREE.Mesh(new THREE.CylinderGeometry(.075,.05,.34,10),mCab);lk.position.set(0,-.09,-.06);cabG.add(lk);}
+  [-1,1].forEach(ex=>{const ol=new THREE.Mesh(new THREE.SphereGeometry(.013,8,8),mat({color:0x101014,roughness:.3}));ol.position.set(ex*.036,.012,.094);cabG.add(ol);});
+  const sombr=new THREE.Mesh(new THREE.SphereGeometry(.012,8,8),mPel);sombr.position.set(0,-.02,.102);cabG.add(sombr);
+  function braco(ex){
+    const ombro=new THREE.Group();ombro.position.set(ex*.225,.52,0);quadril.add(ombro);
+    const sup=new THREE.Mesh(new THREE.CapsuleGeometry(.05,.18,4,10),mCam);sup.position.y=-.14;ombro.add(sup);
+    const cot=new THREE.Group();cot.position.y=-.3;ombro.add(cot);
+    const ant=new THREE.Mesh(new THREE.CapsuleGeometry(.043,.16,4,10),mPel);ant.position.y=-.12;cot.add(ant);
+    const mao=new THREE.Mesh(new THREE.SphereGeometry(.042,10,8),mPel);mao.position.y=-.26;cot.add(mao);
+    return {ombro,cot};
+  }
+  const bE=braco(-1),bD=braco(1);
+  function perna(ex){
+    const piv=new THREE.Group();piv.position.set(ex*.09,-.02,0);quadril.add(piv);
+    const cox=new THREE.Mesh(new THREE.CapsuleGeometry(.068,.24,4,10),mCal);cox.position.y=-.2;piv.add(cox);
+    const joel=new THREE.Group();joel.position.y=-.42;piv.add(joel);
+    const can=new THREE.Mesh(new THREE.CapsuleGeometry(.052,.22,4,10),mCal);can.position.y=-.17;joel.add(can);
+    const pe=box(.11,.06,.25,{color:0x101014,roughness:.5});pe.position.set(0,-.42,.045);joel.add(pe);
+    return {piv,joel};
+  }
+  const pE=perna(-1),pD=perna(1);
+  g.userData={quadril,cabG,cab,bE,bD,pE,pD,tor,fem,fase:idx*1.37};
+  return g;
+}
+
 SALAS.forEach((r,idx)=>{
   const side=idx%2===0?-1:1;                 // -1 esquerda | +1 direita
   const z=-16.5+Math.floor(idx/2)*8.4;       // 5 profundidades por lado
