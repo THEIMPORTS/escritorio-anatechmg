@@ -519,6 +519,17 @@ function tick() {
   }).catch(function() {});
 }
 var ultConc = null;
+// link direto ?sel=Nome
+var selParam = new URLSearchParams(location.search).get('sel');
+var selTent = 0;
+function abreDireto() {
+  if (!selParam || sel || !mesas.length || selTent > 10) return;
+  selTent++;
+  for (var i = 0; i < mesas.length; i++) {
+    if (mesas[i].ag && String(mesas[i].ag.nome || '').indexOf(selParam) === 0) { abreCarta(mesas[i]); return; }
+  }
+}
+setInterval(abreDireto, 1500);
 // ambiente: diálogos casuais
 var FALAS = ['tô nisso 🔥', 'bora que dá', 'checando os dados…', 'missão do dia 🚀', 'foco total 💪', 'mais uma pro quadro ✅'];
 function ambiente() {
