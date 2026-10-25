@@ -65,8 +65,50 @@ html,body{height:100%;overflow:hidden;background:#07090f;font-family:'Segoe UI',
 #diag{bottom:12px;right:12px;display:none;font-size:.6rem;color:#8b93a3;background:rgba(9,13,22,.75);padding:3px 9px;border-radius:8px}
 #diag.mostra{display:block}
 @media (max-width:700px){#res{width:180px;top:60px}#marca .sub{display:none}#mkt{display:none}}
+
+/* ===== modo fotorreal v5 ===== */
+#fundo{position:fixed;inset:0;z-index:1;display:none;background:#07090f}
+#fundo .img{position:absolute;inset:-4%;background:url('escritorio_fotorreal.jpg') center/cover no-repeat;animation:kb 26s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1) translate(0,0)}to{transform:scale(1.06) translate(-1%,1%)}}
+@media (prefers-reduced-motion:reduce){#fundo .img{animation:none}}
+#fundo .veu{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,9,15,.42) 0%,rgba(7,9,15,0) 30%,rgba(7,9,15,0) 55%,rgba(7,9,15,.68) 100%)}
+#fundo .vinheta{position:absolute;inset:0;box-shadow:inset 0 0 180px 40px rgba(0,0,0,.55)}
+body.foto #fundo{display:block}
+body.foto #c2d{visibility:hidden}
+body.foto #btn3d{display:none}
+body.foto #cta{background:rgba(7,9,15,.78);border-color:rgba(0,156,254,.6);color:#7dd3fc;box-shadow:0 0 30px rgba(0,156,254,.18)}
+#zonas{position:fixed;left:0;right:0;top:0;bottom:0;z-index:8;display:none}
+body.foto #zonas{display:block}
+.zchip{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:6px;background:rgba(8,11,20,.74);border:1.5px solid var(--zc,#009CFE);border-radius:999px;padding:5px 12px 5px 7px;font-size:.66rem;font-weight:800;letter-spacing:.4px;color:#e6e9ef;cursor:pointer;backdrop-filter:blur(4px);box-shadow:0 0 18px var(--zg,rgba(0,156,254,.35));white-space:nowrap;transition:transform .15s}
+.zchip:hover,.zchip:active{transform:translate(-50%,-50%) scale(1.08)}
+.zchip .zn{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--zc,#009CFE);box-shadow:0 0 8px var(--zc,#009CFE)}
+.zchip .qc{font-size:.56rem;font-weight:900;color:#8b93a3}
+#roster{position:fixed;bottom:12px;right:12px;width:min(330px,88vw);max-height:56vh;overflow-y:auto;background:rgba(10,13,22,.96);border:1px solid #263048;border-radius:16px;padding:14px;display:none;z-index:11;box-shadow:0 0 40px rgba(0,156,254,.10)}
+#roster.aberto{display:block}
+#roster .rt{font-size:.6rem;font-weight:800;letter-spacing:.8px;color:#8b93a3;margin-bottom:8px}
+#roster .agl{display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:10px;cursor:pointer;border:1px solid transparent}
+#roster .agl:hover{background:#0b0e14;border-color:#263048}
+#roster .agl .em{font-size:1.25rem;filter:drop-shadow(0 0 6px rgba(0,156,254,.3))}
+#roster .agl .nm2{font-weight:800;font-size:.8rem}
+#roster .agl .pp{font-size:.6rem;color:#8b93a3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+#roster .agl .st2{margin-left:auto;font-size:.52rem;font-weight:800;padding:2px 8px;border-radius:999px;text-transform:uppercase;background:#132b1a;color:#4ade80;border:1px solid #1f4d2b;flex-shrink:0}
+#roster .agl .st2.aguardando{background:#2b2413;color:#facc15;border-color:#4d3f1f}
+#roster .agl .st2.pausado{background:#2b1313;color:#f87171;border-color:#4d1f1f}
+#roster .fx{text-align:right;margin-top:6px}
+#roster .fx a{color:#60a5fa;font-size:.62rem;text-decoration:none;cursor:pointer}
+#btnmodo{background:rgba(10,13,22,.85);border:1px solid #009CFE;border-radius:999px;padding:5px 14px;font-size:.64rem;font-weight:900;color:#009CFE;cursor:pointer;letter-spacing:.5px}
+#btnmodo.on{background:#009CFE;color:#001336}
+@media (max-width:700px){.zchip{font-size:.56rem;padding:4px 9px 4px 6px}.zchip .qc{display:none}}
 </style></head><body>
 <canvas id="c2d"></canvas>
+<div id="fundo"><div class="img"></div><div class="veu"></div><div class="vinheta"></div></div>
+<div id="zonas"></div>
+<div id="roster">
+  <div class="rt" id="rosterT">EQUIPE</div>
+  <div id="rosterL"></div>
+  <div class="fx"><a onclick="fechaRoster()">fechar ✕</a></div>
+</div>
+
 <div class="hud" id="topo">
   <div id="marca">
     <img src="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/905c9cd34_logo-completo-branco.png" alt="Anatech MG" onerror="this.style.display='none'">
@@ -74,7 +116,7 @@ html,body{height:100%;overflow:hidden;background:#07090f;font-family:'Segoe UI',
   </div>
   <div id="chips">
     <div id="mkt"></div>
-    <div id="ctl"><span id="relogio">ao vivo…</span><button id="btn3d" class="on">3D</button></div>
+    <div id="ctl"><span id="relogio">ao vivo…</span><button id="btnmodo" class="on">FOTORREAL</button><button id="btn3d" class="on">3D</button></div>
   </div>
 </div>
 <div class="hud" id="res"></div>
@@ -232,6 +274,7 @@ function iso4(x1, z1, x2, z2, h) {
   return [[a.x, a.y], [b.x, b.y], [c.x, c.y], [d.x, d.y]];
 }
 function desenha() {
+  if (MODO === "foto") return;
   ctx.clearRect(0, 0, W, H);
   var g = ctx.createRadialGradient(W * .35, H * .28, 40, W * .35, H * .28, Math.max(W, H) * .75);
   g.addColorStop(0, '#0c1120'); g.addColorStop(1, '#07090f');
@@ -551,6 +594,57 @@ document.getElementById('qBtn').onclick = function() {
 };
 </script>
 <script>
+
+// ===== MODO FOTORREAL v5 =====
+var MODO = 'foto';
+var SLOTS = [[7,20],[28,13],[49,10],[70,13],[89,20],[12,47],[33,44],[54,42],[75,45],[92,50],[20,74],[44,76],[68,74],[86,78]];
+function setaModo(m) {
+  MODO = m;
+  document.body.classList.toggle('foto', m === 'foto');
+  var bm = document.getElementById('btnmodo');
+  bm.classList.toggle('on', m === 'foto');
+  bm.textContent = m === 'foto' ? 'FOTORREAL' : 'VER 3D';
+  document.getElementById('cta').innerHTML = m === 'foto' ? '👆 TOQUE NUM SETOR · <u>VEJA A EQUIPE</u>' : '👆 TOQUE NUM FUNCIONÁRIO · <u>SAIBA MAIS</u>';
+  if (m !== 'foto') fechaRoster();
+  desenha();
+}
+document.getElementById('btnmodo').onclick = function() { setaModo(MODO === 'foto' ? 'canvas' : 'foto'); };
+function chpz() {
+  var zs = Object.keys(porZona).sort(function(a, b) { return b.length - a.length; });
+  var h = '';
+  for (var i = 0; i < zs.length; i++) {
+    var k = zs[i];
+    var info = ZONAS[k] || { nome: k.toUpperCase(), cor: '#8b93a3' };
+    var nAt = 0;
+    for (var j = 0; j < porZona[k].length; j++) if (String(porZona[k][j].status || '').toLowerCase() === 'ativo') nAt++;
+    var s = SLOTS[i % SLOTS.length];
+    h += '<div class="zchip" style="left:' + s[0] + '%;top:' + s[1] + '%;--zc:' + info.cor + ';--zg:' + hexa(info.cor) + '" onclick="abreRoster(\'' + k + '\')"><span class="zn"></span>' + info.nome + ' <span class="qc">' + nAt + '</span></div>';
+  }
+  document.getElementById('zonas').innerHTML = h;
+}
+function hexa(c) { return c + '55'; }
+var rosterZ = null;
+function abreRoster(k) {
+  var info = ZONAS[k] || { nome: k.toUpperCase(), cor: '#8b93a3' };
+  rosterZ = k;
+  document.getElementById('rosterT').textContent = 'EQUIPE · ' + info.nome;
+  document.getElementById('rosterT').style.color = info.cor;
+  var h = '';
+  var lista = porZona[k] || [];
+  for (var i = 0; i < lista.length; i++) {
+    var a = lista[i];
+    var st = String(a.status || 'aguardando').toLowerCase();
+    h += '<div class="agl" onclick="abreAgFoto(\'' + String(a.nome).replace(/'/g, '') + '\')"><span class="em">' + (a.emoji || '🤖') + '</span><div><div class="nm2">' + a.nome + '</div><div class="pp">' + (a.papel || '—') + '</div></div><span class="st2 ' + st + '">' + st + '</span></div>';
+  }
+  document.getElementById('rosterL').innerHTML = h || 'sem agentes nesta zona';
+  document.getElementById('roster').classList.add('aberto');
+}
+function fechaRoster() { document.getElementById('roster').classList.remove('aberto'); rosterZ = null; }
+function abreAgFoto(nome) {
+  for (var i = 0; i < mesas.length; i++) if (String(mesas[i].ag.nome) === nome) { abreCarta(mesas[i]); break; }
+}
+setaModo('foto');
+
 // ===== dados ao vivo =====
 var mercado = { usd: null, btc: null };
 function tickMercado() {
@@ -581,7 +675,7 @@ function tick() {
     dados = d;
     document.getElementById('nfunc').textContent = d.agentes.length;
     document.getElementById('relogio').textContent = 'ao vivo · ' + d.agora;
-    if (primeira && d.agentes.length) montar(d.agentes);
+    if (primeira && d.agentes.length) { montar(d.agentes); chpz(); }
     else {
       for (var i = 0; i < mesas.length; i++) {
         for (var j = 0; j < d.agentes.length; j++) if (d.agentes[j].nome === mesas[i].ag.nome) { mesas[i].ag = d.agentes[j]; break; }
