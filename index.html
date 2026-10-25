@@ -609,14 +609,21 @@ function setaModo(m) {
   desenha();
 }
 document.getElementById('btnmodo').onclick = function() { setaModo(MODO === 'foto' ? 'canvas' : 'foto'); };
+var ZCACHE = null;
 function chpz() {
-  var zs = Object.keys(porZona).sort(function(a, b) { return b.length - a.length; });
+  var pz = {};
+  for (var q = 0; q < (dados.agentes || []).length; q++) {
+    var qzn = zoneOf(dados.agentes[q].nome, dados.agentes[q].papel);
+    (pz[qzn] = pz[qzn] || []).push(dados.agentes[q]);
+  }
+  ZCACHE = pz;
+  var zs = Object.keys(pz).sort(function(a, b) { return b.length - a.length; });
   var h = '';
   for (var i = 0; i < zs.length; i++) {
     var k = zs[i];
     var info = ZONAS[k] || { nome: k.toUpperCase(), cor: '#8b93a3' };
     var nAt = 0;
-    for (var j = 0; j < porZona[k].length; j++) if (String(porZona[k][j].status || '').toLowerCase() === 'ativo') nAt++;
+    for (var j = 0; j < pz[k].length; j++) if (String(pz[k][j].status || '').toLowerCase() === 'ativo') nAt++;
     var s = SLOTS[i % SLOTS.length];
     h += '<div class="zchip" style="left:' + s[0] + '%;top:' + s[1] + '%;--zc:' + info.cor + ';--zg:' + hexa(info.cor) + '" onclick="abreRoster(\'' + k + '\')"><span class="zn"></span>' + info.nome + ' <span class="qc">' + nAt + '</span></div>';
   }
@@ -630,7 +637,7 @@ function abreRoster(k) {
   document.getElementById('rosterT').textContent = 'EQUIPE · ' + info.nome;
   document.getElementById('rosterT').style.color = info.cor;
   var h = '';
-  var lista = porZona[k] || [];
+  var lista = (ZCACHE || {})[k] || [];
   for (var i = 0; i < lista.length; i++) {
     var a = lista[i];
     var st = String(a.status || 'aguardando').toLowerCase();
