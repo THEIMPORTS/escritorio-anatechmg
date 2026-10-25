@@ -11,7 +11,6 @@ html,body{height:100%;overflow:hidden;background:#07090f;font-family:'Segoe UI',
 #c2d{position:fixed;inset:0;display:block;touch-action:none;cursor:grab}
 #c2d.mao{cursor:pointer}
 .hud{position:fixed;z-index:10}
-/* ---------- topo ---------- */
 #topo{top:10px;left:10px;right:10px;display:flex;align-items:flex-start;gap:8px;justify-content:space-between;pointer-events:none}
 #marca{display:flex;align-items:center;gap:10px;background:rgba(10,13,22,.88);border:1px solid #1c2437;border-radius:14px;padding:8px 14px;backdrop-filter:blur(8px)}
 #marca img{height:26px;display:block}
@@ -28,7 +27,6 @@ html,body{height:100%;overflow:hidden;background:#07090f;font-family:'Segoe UI',
 #relogio{background:rgba(10,13,22,.85);border:1px solid #1c2437;border-radius:999px;padding:5px 12px;font-size:.64rem;font-weight:700;color:#facc15}
 #btn3d{background:rgba(10,13,22,.85);border:1px solid #facc15;border-radius:999px;padding:5px 14px;font-size:.64rem;font-weight:900;color:#facc15;cursor:pointer;letter-spacing:.5px}
 #btn3d.on{background:#facc15;color:#07090f}
-/* ---------- card resultado ---------- */
 #res{top:66px;left:10px;width:230px;background:#f4f6fb;color:#111827;border-radius:14px;padding:12px 14px;box-shadow:0 12px 40px rgba(0,0,0,.55);display:none}
 #res .rt{font-size:.6rem;font-weight:800;letter-spacing:.8px;color:#6b7280}
 #res .rv{font-size:1.5rem;font-weight:900;color:#0b8f3c;margin:2px 0 6px}
@@ -40,15 +38,12 @@ html,body{height:100%;overflow:hidden;background:#07090f;font-family:'Segoe UI',
 #res .rk .v{font-size:.58rem;font-weight:700;color:#6b7280}
 #res .rvenda{margin-top:7px;font-size:.6rem;color:#6b7280;font-weight:600}
 #res .rvenda b{color:#111827}
-/* ---------- feed ---------- */
 #feed{bottom:12px;left:12px;width:min(300px,72vw);background:rgba(9,13,22,.88);border:1px solid #1c2437;border-radius:14px;padding:10px 12px;font-size:.66rem;line-height:1.55}
 #feed .t{font-weight:800;color:#009CFE;margin-bottom:4px;font-size:.64rem;letter-spacing:.6px}
 #feed .e{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#aeb7c9}
 #feed .e b{color:#e6e9ef}
 #feed .ok{color:#4ade80}#feed .er{color:#f87171}#feed .dec{color:#a78bfa}#feed .in{color:#60a5fa}
-/* ---------- cta ---------- */
 #cta{bottom:14px;left:50%;transform:translateX(-50%);background:rgba(7,9,15,.85);border:1px solid rgba(250,204,21,.55);border-radius:999px;padding:10px 22px;font-size:.78rem;font-weight:900;color:#facc15;letter-spacing:.4px;text-align:center;box-shadow:0 0 30px rgba(250,204,21,.12)}
-/* ---------- carta saiba mais ---------- */
 #carta{bottom:12px;right:12px;width:min(340px,88vw);max-height:calc(100vh - 90px);overflow-y:auto;background:rgba(10,13,22,.96);border:1px solid #263048;border-radius:16px;padding:14px;display:none;box-shadow:0 0 40px rgba(0,156,254,.08)}
 #carta.aberta{display:block}
 #carta .cab{display:flex;align-items:center;gap:10px;margin-bottom:6px}
@@ -84,7 +79,7 @@ html,body{height:100%;overflow:hidden;background:#07090f;font-family:'Segoe UI',
 </div>
 <div class="hud" id="res"></div>
 <div class="hud" id="feed"><div class="t">📡 ATIVIDADE AO VIVO</div><div id="flinhas"></div></div>
-<div class="hud" id="cta">👆 TOQUE NUMA MESA · <u>SAIBA MAIS</u></div>
+<div class="hud" id="cta">👆 TOQUE NUM FUNCIONÁRIO · <u>SAIBA MAIS</u></div>
 <div class="hud" id="carta">
   <div class="cab"><span class="emo" id="qEmoji">🤖</span><div><div class="nm" id="qNome">Agente</div><div class="pl" id="qPapel">—</div></div><span class="stt" id="qStatus">—</span></div>
   <div class="bloco"><div class="lb">ÚLTIMA AÇÃO</div><span id="qUlt">—</span></div>
@@ -97,10 +92,9 @@ html,body{height:100%;overflow:hidden;background:#07090f;font-family:'Segoe UI',
 </div>
 <div class="hud" id="diag"></div>
 <script>
-(function() { var d = document.getElementById('diag'); if (__err) { d.textContent = 'ERRO: ' + __err; d.style.color = '#f87171'; d.classList.add('mostra'); } })();
+(function() { var d = document.getElementById('diag'); if (__err) { d.textContent = 'ERRO: ' + __err; d.classList.add('mostra'); } })();
 </script>
 <script>
-// ===== zonas por setor (cores da marca + neon) =====
 function zoneOf(nome, papel) {
   var p = String(papel || '') + ' ' + String(nome || '');
   if (p.indexOf('Licitação') >= 0 || p.indexOf('Setor Público') >= 0) return 'licitacao';
@@ -112,7 +106,7 @@ function zoneOf(nome, papel) {
   if (p.indexOf('Pesquisa') >= 0) return 'pesquisa';
   if (p.indexOf('Marketing') >= 0 || p.indexOf('Vídeo') >= 0 || p.indexOf('Social') >= 0 || p.indexOf('Rankeamento') >= 0 || p.indexOf('SEO') >= 0 || p.indexOf('Locutor') >= 0 || p.indexOf('Avatar') >= 0 || p.indexOf('Visual') >= 0 || p.indexOf('Roteirista') >= 0) return 'marketing';
   if (p.indexOf('Comercial') >= 0 || p.indexOf('Vendas') >= 0 || p.indexOf('Qualificação') >= 0 || p.indexOf('Captação') >= 0 || p.indexOf('E-commerce') >= 0 || p.indexOf('TikTok') >= 0) return 'comercial';
-  if (p.indexOf('Sinal') >= 0 || p.indexOf('Quant') >= 0 || p.indexOf('tráfego') >= 0 || p.indexOf('Tráfego') >= 0 || p.indexOf('mídia') >= 0 || p.indexOf('Mídia') >= 0) return 'trading';
+  if (p.indexOf('Sinal') >= 0 || p.indexOf('Quant') >= 0 || p.indexOf('tráfego') >= 0 || p.indexOf('Tráfego') >= 0 || p.indexOf('Mídia') >= 0 || p.indexOf('mídia') >= 0) return 'trading';
   if (p.indexOf('Suporte') >= 0) return 'suporte';
   if (p.indexOf('Treinamento') >= 0) return 'pesquisa';
   if (p.indexOf('Inovação') >= 0 || p.indexOf('Arsenal') >= 0) return 'pesquisa';
@@ -139,7 +133,6 @@ var ZONAS = {
 var STCOR = { ativo: '#22c55e', aguardando: '#eab308', pausado: '#ef4444', erro: '#ef4444', concluida: '#22c55e', pendente: '#eab308' };
 </script>
 <script>
-// ===== câmera =====
 var cv = document.getElementById('c2d'), ctx = cv.getContext('2d');
 var W = 0, H = 0, modo3d = true;
 var view = { z: .5, ox: 0, oy: 0 };
@@ -151,20 +144,19 @@ function iso(x, z, h) {
 }
 function resize() { W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
 window.addEventListener('resize', resize); resize();
-// pan / zoom
-var arr = null, pinch = null, mexeu = false;
+var arr = null, pinch = null;
 cv.addEventListener('pointerdown', function(e) { arr = { x: e.clientX, y: e.clientY, ox: view.ox, oy: view.oy }; cv.setPointerCapture(e.pointerId); });
 cv.addEventListener('pointermove', function(e) {
-  if (arr) { view.ox = arr.ox + e.clientX - arr.x; view.oy = arr.oy + e.clientY - arr.y; mexeu = true; }
+  if (arr) { view.ox = arr.ox + e.clientX - arr.x; view.oy = arr.oy + e.clientY - arr.y; }
   hover(e.clientX, e.clientY);
 });
 cv.addEventListener('pointerup', function(e) { var mov = arr && (Math.abs(e.clientX - arr.x) + Math.abs(e.clientY - arr.y) > 6); arr = null; if (!mov) clique(e.clientX, e.clientY); });
-cv.addEventListener('wheel', function(e) { e.preventDefault(); var f = e.deltaY < 0 ? 1.12 : .89; view.z = Math.max(.14, Math.min(1.6, view.z * f)); mexeu = true; }, { passive: false });
+cv.addEventListener('wheel', function(e) { e.preventDefault(); var f = e.deltaY < 0 ? 1.12 : .89; view.z = Math.max(.14, Math.min(1.6, view.z * f)); }, { passive: false });
 cv.addEventListener('touchmove', function(e) {
   if (e.touches.length === 2) {
     var dx = e.touches[0].clientX - e.touches[1].clientX, dy = e.touches[0].clientY - e.touches[1].clientY;
     var d = Math.sqrt(dx * dx + dy * dy);
-    if (pinch) { view.z = Math.max(.14, Math.min(1.6, view.z * (d / pinch))); mexeu = true; }
+    if (pinch) view.z = Math.max(.14, Math.min(1.6, view.z * (d / pinch)));
     pinch = d;
   }
 }, { passive: true });
@@ -172,188 +164,313 @@ cv.addEventListener('touchend', function() { pinch = null; });
 document.getElementById('btn3d').onclick = function() { modo3d = !modo3d; this.textContent = modo3d ? '3D' : '2D'; this.classList.toggle('on', modo3d); };
 </script>
 <script>
-// ===== funcionários e mesas =====
+// ===== construção das salas completas =====
 var dados = { agentes: [], vendas: [], tarefas: [], logs: [], decisoes: [] };
-var mesas = [];   // {ag, x, z, zona, telas(screen center cache), brilho, festeja}
+var salas = [];  // {zona, x1,z1,x2,z2, mesas[]}
+var mesas = [];  // {ag, sala, x, z, ...}
 function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; }
 var SKINS = ['#f2cfa5', '#e8b083', '#c98a5b', '#9c6a44', '#7a4f31'];
-var HAIRS = ['#241a12', '#3a2a1a', '#553d24', '#101010', '#6b4a2a'];
+var HAIRS = ['#241a12', '#3a2a1a', '#553d24', '#101010', '#6b4a2a', '#8a6a3a'];
+var CAMISAS = ['#2b3a5c', '#3a2f4d', '#24473a', '#4d3524', '#37424f', '#4a2535', '#1f3a4a'];
 function montar(agentes) {
-  mesas = [];
+  mesas = []; salas = [];
   var porZona = {};
   for (var i = 0; i < agentes.length; i++) {
     var zn = zoneOf(agentes[i].nome, agentes[i].papel);
     (porZona[zn] = porZona[zn] || []).push(agentes[i]);
   }
-  var chaves = Object.keys(porZona).sort(function(a, b) { return porZona[b].length - porZona[a].length; });
-  var bx = 0, bz = 0, filaAlt = 0, col = 0;
+  var chaves = Object.keys(porZona);
+  var bx = 0, bz = 0, col = 0, filaAlt = 0;
   for (var k = 0; k < chaves.length; k++) {
     var zn2 = chaves[k], lista = porZona[zn2];
-    var porLinha = 4;
+    var porLinha = Math.min(3, Math.ceil(Math.sqrt(lista.length * 1.4)));
     var linhas = Math.ceil(lista.length / porLinha);
-    var largura = Math.min(lista.length, porLinha) * 3.6 + 2;
+    var larg = porLinha * 4 + 5;
+    var prof = linhas * 4 + 5;
+    var sala = { zona: zn2, cor: ZONAS[zn2].cor, nome: ZONAS[zn2].nome, x1: bx, z1: bz, x2: bx + larg, z2: bz + prof, mesas: [] };
+    salas.push(sala);
     for (var j = 0; j < lista.length; j++) {
       var a = lista[j];
       var hh = hash(a.nome || 'x');
-      mesas.push({
-        ag: a, zona: zn2,
-        x: bx + (j % porLinha) * 3.6 + 1.4,
-        z: bz + Math.floor(j / porLinha) * 3.6 + 1.2,
-        pele: SKINS[hh % SKINS.length], cabelo: HAIRS[(hh >> 3) % HAIRS.length],
-        brilho: 0, festeja: 0, falou: null
-      });
+      var m = {
+        ag: a, sala: sala,
+        x: sala.x1 + 2.5 + (j % porLinha) * 4,
+        z: sala.z1 + 2.5 + Math.floor(j / porLinha) * 4,
+        pele: SKINS[hh % SKINS.length], cabelo: HAIRS[(hh >> 3) % HAIRS.length], camisa: CAMISAS[(hh >> 5) % CAMISAS.length],
+        fone: (hh % 3 === 0), brilho: 0, festeja: 0, falou: null
+      };
+      mesas.push(m); sala.mesas.push(m);
     }
-    mesas.push({ zonaLabel: ZONAS[zn2].nome, cor: ZONAS[zn2].cor, x: bx + largura / 2 - .5, z: bz + linhas * 3.6 + 1.6 });
     col++;
-    filaAlt = Math.max(filaAlt, linhas * 3.6 + 3.4);
-    bx += largura + 2.4;
-    if (col >= 4) { bx = 0; bz += filaAlt + 2.2; filaAlt = 0; col = 0; }
+    filaAlt = Math.max(filaAlt, prof + 3);
+    bx += larg + 3;
+    if (col >= 3) { bx = 0; bz += filaAlt; filaAlt = 0; col = 0; }
   }
   encaixa();
 }
 function encaixa() {
   var mnx = 1e9, mxx = -1e9, mnz = 1e9, mxz = -1e9;
-  for (var i = 0; i < mesas.length; i++) { var m = mesas[i]; if (m.zonaLabel) continue; if (m.x < mnx) mnx = m.x; if (m.x > mxx) mxx = m.x; if (m.z < mnz) mnz = m.z; if (m.z > mxz) mxz = m.z; }
+  for (var i = 0; i < salas.length; i++) {
+    if (salas[i].x1 < mnx) mnx = salas[i].x1; if (salas[i].x2 > mxx) mxx = salas[i].x2;
+    if (salas[i].z1 < mnz) mnz = salas[i].z1; if (salas[i].z2 > mxz) mxz = salas[i].z2;
+  }
   var cxu = (mnx + mxx) / 2, czu = (mnz + mxz) / 2;
-  var zAntes = view.z;
   view.z = .5;
-  var p = iso(cxu, czu, 0);
-  view.ox = W / 2 - p.x; view.oy = H / 2 - p.y - 10;
-  var ex1 = iso(mnx, mnz, 0), ex2 = iso(mxx, mxz, 0);
-  var fx = Math.min(W / Math.max(160, Math.abs(ex2.x - ex1.x) + 140), H / Math.max(160, Math.abs(ex2.y - ex1.y) + 240));
+  var ex1 = iso(mnx, mnz, 0), ex2 = iso(mxx, mxz, 0), ex3 = iso(mnx, mxz, 0);
+  var fx = Math.min(W / Math.max(200, Math.abs(ex2.x - ex1.x) + 160), H / Math.max(200, ex3.y - ex1.y + 260));
   view.z = Math.max(.16, Math.min(1, fx));
   var p2 = iso(cxu, czu, 0);
-  view.ox = W / 2 - p2.x; view.oy = H / 2 - p2.y - 10;
-  void zAntes;
+  view.ox = W / 2 - p2.x; view.oy = H / 2 - p2.y - 20;
 }
 </script>
 <script>
-// ===== desenho =====
+// ===== desenho das salas e pessoas =====
 function rrect(x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+function polig(pts) { ctx.beginPath(); for (var i = 0; i < pts.length; i++) { if (i === 0) ctx.moveTo(pts[i][0], pts[i][1]); else ctx.lineTo(pts[i][0], pts[i][1]); } ctx.closePath(); }
+function iso4(x1, z1, x2, z2, h) {
+  var a = iso(x1, z1, h), b = iso(x2, z1, h), c = iso(x2, z2, h), d = iso(x1, z2, h);
+  return [[a.x, a.y], [b.x, b.y], [c.x, c.y], [d.x, d.y]];
+}
 function desenha() {
   ctx.clearRect(0, 0, W, H);
-  // fundo com brilho ambiente
-  var g = ctx.createRadialGradient(W * .32, H * .3, 40, W * .32, H * .3, Math.max(W, H) * .7);
-  g.addColorStop(0, '#0d1322'); g.addColorStop(1, '#07090f');
+  var g = ctx.createRadialGradient(W * .35, H * .28, 40, W * .35, H * .28, Math.max(W, H) * .75);
+  g.addColorStop(0, '#0c1120'); g.addColorStop(1, '#07090f');
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-  var amb = ctx.createRadialGradient(W * .75, H * .7, 10, W * .75, H * .7, W * .4);
-  amb.addColorStop(0, 'rgba(135,110,162,.10)'); amb.addColorStop(1, 'rgba(135,110,162,0)');
-  ctx.fillStyle = amb; ctx.fillRect(0, 0, W, H);
-  // grade do piso
-  ctx.strokeStyle = 'rgba(70,90,140,.10)'; ctx.lineWidth = 1;
-  var gx = -6, gz = -6;
-  for (var i = 0; i < 40; i++) {
-    var a = iso(gx + i * 3.6, -6, 0), b = iso(gx + i * 3.6, 60, 0);
+  // corredor entre salas
+  ctx.strokeStyle = 'rgba(60,80,130,.12)'; ctx.lineWidth = 1;
+  for (var i = 0; i < 60; i++) {
+    var a = iso(-10 + i * 4, -10, 0), b = iso(-10 + i * 4, 80, 0);
     ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-    var c = iso(-6, gz + i * 3.6, 0), d = iso(80, gz + i * 3.6, 0);
+    var c = iso(-10, -10 + i * 4, 0), d = iso(80, -10 + i * 4, 0);
     ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(d.x, d.y); ctx.stroke();
   }
-  // ordena por profundidade
-  var ord = mesas.slice().sort(function(a, b) { return (a.x + a.z) - (b.x + b.z); });
-  for (var k = 0; k < ord.length; k++) {
-    var m = ord[k];
-    if (m.zonaLabel) { desenhaLabel(m); continue; }
-    desenhaMesa(m);
-  }
+  var ord = salas.slice().sort(function(a, b) { return (a.x1 + a.z1) - (b.x1 + b.z1); });
+  for (var k = 0; k < ord.length; k++) desenhaSala(ord[k]);
   requestAnimationFrame(desenha);
 }
-function desenhaLabel(m) {
-  var p = iso(m.x, m.z, 0);
-  var zz = view.z;
+function desenhaSala(sl) {
+  var zz = view.z, s = S * zz;
+  var cor = sl.cor;
+  var hoverSala = sel && sel.sala === sl;
+  // piso
   ctx.save();
-  ctx.font = '800 ' + Math.max(9, 15 * zz) + 'px Segoe UI,system-ui,sans-serif';
-  ctx.fillStyle = 'rgba(255,255,255,.13)';
+  var piso = iso4(sl.x1, sl.z1, sl.x2, sl.z2, 0);
+  var pg = ctx.createLinearGradient(piso[0][0], piso[0][1], piso[2][0], piso[2][1]);
+  pg.addColorStop(0, '#10192c'); pg.addColorStop(1, '#0a0f1c');
+  ctx.fillStyle = pg; polig(piso); ctx.fill();
+  // tiles
+  ctx.strokeStyle = 'rgba(90,110,160,.14)'; ctx.lineWidth = 1;
+  var nx = Math.round(sl.x2 - sl.x1), nz2 = Math.round(sl.z2 - sl.z1);
+  for (var i = 1; i < nx; i++) {
+    var t1 = iso(sl.x1 + i, sl.z1, 0), t2 = iso(sl.x1 + i, sl.z2, 0);
+    ctx.beginPath(); ctx.moveTo(t1.x, t1.y); ctx.lineTo(t2.x, t2.y); ctx.stroke();
+  }
+  for (var j = 1; j < nz2; j++) {
+    var u1 = iso(sl.x1, sl.z1 + j, 0), u2 = iso(sl.x2, sl.z1 + j, 0);
+    ctx.beginPath(); ctx.moveTo(u1.x, u1.y); ctx.lineTo(u2.x, u2.y); ctx.stroke();
+  }
+  // brilho neon no piso na borda frontal
+  ctx.shadowColor = cor; ctx.shadowBlur = 16 * zz;
+  ctx.strokeStyle = cor; ctx.globalAlpha = .5 + (hoverSala ? .3 : 0); ctx.lineWidth = Math.max(1.2, 2.4 * zz);
+  polig(piso); ctx.stroke();
+  ctx.restore();
+  // paredes (fundo esquerda e fundo direita)
+  var hAlt = 2.6;
+  // parede de trás (z1)
+  ctx.save();
+  var parT = iso4(sl.x1, sl.z1, sl.x2, sl.z1, hAlt);
+  var parT0 = iso4(sl.x1, sl.z1, sl.x2, sl.z1, 0);
+  var wg = ctx.createLinearGradient(parT[0][0], parT[0][1], parT[1][0], parT[1][1]);
+  wg.addColorStop(0, '#18223a'); wg.addColorStop(1, '#121a2c');
+  ctx.fillStyle = wg; polig(parT.concat([[parT0[1][0], parT0[1][1]], [parT0[0][0], parT0[0][1]]])); ctx.fill();
+  ctx.strokeStyle = '#26314d'; ctx.lineWidth = 1; polig(parT.concat([[parT0[1][0], parT0[1][1]], [parT0[0][0], parT0[0][1]]])); ctx.stroke();
+  // janelas na parede de trás
+  var nj = Math.max(1, Math.floor((sl.x2 - sl.x1) / 5));
+  for (var w = 0; w < nj; w++) {
+    var wx1 = sl.x1 + (sl.x2 - sl.x1) * (.18 + .64 * (w / Math.max(1, nj - 1 || 1)));
+    var ww = Math.min(1.8, (sl.x2 - sl.x1) / (nj * 1.6));
+    var jn1 = iso(wx1, sl.z1, 1.1), jn2 = iso(wx1 + ww, sl.z1, 1.1), jn3 = iso(wx1 + ww, sl.z1, 2.1), jn4 = iso(wx1, sl.z1, 2.1);
+    ctx.save(); ctx.shadowColor = '#7dd3fc'; ctx.shadowBlur = 12 * zz;
+    ctx.fillStyle = 'rgba(125,211,252,.20)';
+    polig([[jn1.x, jn1.y], [jn2.x, jn2.y], [jn3.x, jn3.y], [jn4.x, jn4.y]]); ctx.fill();
+    ctx.strokeStyle = 'rgba(125,211,252,.55)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.restore();
+  }
+  // parede esquerda (x1)
+  var parL = iso4(sl.x1, sl.z1, sl.x1, sl.z2, hAlt);
+  var parL0 = iso4(sl.x1, sl.z1, sl.x1, sl.z2, 0);
+  ctx.fillStyle = '#0e1526';
+  polig(parL.concat([[parL0[3][0], parL0[3][1]], [parL0[0][0], parL0[0][1]]])); ctx.fill();
+  ctx.strokeStyle = '#1d2740'; ctx.lineWidth = 1; ctx.stroke();
+  // porta na parede esquerda (janela de entrada)
+  var pd1 = iso(sl.x1, sl.z1 + (sl.z2 - sl.z1) * .45, 0), pd2 = iso(sl.x1, sl.z1 + (sl.z2 - sl.z1) * .45 + 1.1, 0);
+  var pt1 = iso(sl.x1, sl.z1 + (sl.z2 - sl.z1) * .45, 2.1), pt2 = iso(sl.x1, sl.z1 + (sl.z2 - sl.z1) * .45 + 1.1, 2.1);
+  ctx.fillStyle = 'rgba(0,0,0,.35)';
+  polig([[pd1.x, pd1.y], [pd2.x, pd2.y], [pt2.x, pt2.y], [pt1.x, pt1.y]]); ctx.fill();
+  ctx.strokeStyle = cor; ctx.globalAlpha = .7; ctx.lineWidth = Math.max(1, 1.8 * zz); ctx.stroke(); ctx.globalAlpha = 1;
+  ctx.restore();
+  // nome da sala no piso
+  var c = iso((sl.x1 + sl.x2) / 2, sl.z1 + .9, 0);
+  ctx.save();
+  ctx.font = '800 ' + Math.max(9, 14 * zz) + 'px Segoe UI,system-ui,sans-serif';
   ctx.textAlign = 'center';
-  ctx.shadowColor = m.cor; ctx.shadowBlur = 12;
-  ctx.fillText(m.zonaLabel, p.x, p.y);
+  ctx.fillStyle = 'rgba(255,255,255,.16)';
+  ctx.shadowColor = cor; ctx.shadowBlur = 10;
+  ctx.fillText(sl.nome, c.x, c.y + 4);
+  ctx.restore();
+  // planta no canto
+  desenhaPlanta(sl.x2 - 1.2, sl.z2 - 1.2);
+  // mesas
+  var om = sl.mesas.slice().sort(function(a, b) { return (a.x + a.z) - (b.x + b.z); });
+  for (var m2 = 0; m2 < om.length; m2++) desenhaPosto(om[m2]);
+}
+function desenhaPlanta(x, z) {
+  var zz = view.z, s = S * zz;
+  var b = iso(x, z, 0);
+  // vaso
+  var vT = iso(x, z, .35), vB = iso(x, z, 0);
+  ctx.fillStyle = '#5b3a24';
+  ctx.beginPath(); ctx.moveTo(vB.x - .18 * s, vB.y); ctx.lineTo(vB.x + .18 * s, vB.y - .09 * s); ctx.lineTo(vT.x + .15 * s, vT.y - .07 * s); ctx.lineTo(vT.x - .15 * s, vT.y + .02 * s); ctx.closePath(); ctx.fill();
+  // folhas
+  ctx.save(); ctx.shadowColor = '#25B760'; ctx.shadowBlur = 8 * zz;
+  for (var i = 0; i < 3; i++) {
+    var f = iso(x, z, .55 + i * .22);
+    ctx.fillStyle = i % 2 ? '#2f9e5f' : '#25B760';
+    ctx.beginPath(); ctx.ellipse(f.x, f.y - .1 * s, (.34 - i * .06) * s, (.2 - i * .04) * s, -.4, 0, Math.PI * 2); ctx.fill();
+  }
   ctx.restore();
 }
-function desenhaMesa(m) {
+function desenhaPosto(m) {
+  var zz = view.z, s = S * zz;
   var st = String(m.ag.status || 'aguardando').toLowerCase();
-  var cor = ZONAS[m.zona].cor;
   var hover = (hoverMesa === m);
-  var zz = view.z;
-  var base = iso(m.x, m.z, 0);
-  var s = S * zz;
-  // base neon no chão
+  var x = m.x, z = m.z;
+  // tapete/base neon
   ctx.save();
-  var bw = 2.7 * s, bh = modo3d ? 1.35 * s : 2.7 * s;
-  var bx = base.x - bw / 2, by = base.y - bh / 2 - (modo3d ? bh * .18 : 0);
-  var glow = .5 + m.brilho + (m.festeja > Date.now() ? .6 : 0);
-  ctx.shadowColor = cor; ctx.shadowBlur = (18 + m.brilho * 26) * zz;
-  ctx.globalAlpha = .16 + m.brilho * .3 + (hover ? .18 : 0);
-  ctx.fillStyle = cor;
-  if (modo3d) {
-    // losango
-    var pts = [[m.x - 1.35, m.z - 1.35], [m.x + 1.35, m.z - 1.35], [m.x + 1.35, m.z + 1.35], [m.x - 1.35, m.z + 1.35]];
-    ctx.beginPath();
-    for (var pi = 0; pi < 4; pi++) { var q = iso(pts[pi][0], pts[pi][1], 0); if (pi === 0) ctx.moveTo(q.x, q.y); else ctx.lineTo(q.x, q.y); }
-    ctx.closePath(); ctx.fill();
-    ctx.globalAlpha = .8; ctx.lineWidth = Math.max(1, 2.2 * zz); ctx.strokeStyle = cor; ctx.stroke();
-  } else {
-    rrect(bx, by, bw, bh, 8 * zz); ctx.fill();
-    ctx.globalAlpha = .8; ctx.lineWidth = Math.max(1, 2.2 * zz); ctx.strokeStyle = cor; ctx.stroke();
-  }
+  ctx.shadowColor = m.sala.cor; ctx.shadowBlur = (12 + m.brilho * 20) * zz;
+  ctx.fillStyle = m.sala.cor; ctx.globalAlpha = .10 + m.brilho * .25 + (hover ? .12 : 0);
+  polig(iso4(x - 1.5, z - 1.5, x + 1.5, z + 1.5, 0)); ctx.fill();
+  ctx.globalAlpha = .75; ctx.lineWidth = Math.max(1, 2 * zz); ctx.strokeStyle = m.sala.cor;
+  polig(iso4(x - 1.5, z - 1.5, x + 1.5, z + 1.5, 0)); ctx.stroke();
   ctx.restore();
-  // mesa
-  var top = iso(m.x, m.z, modo3d ? 1.0 : 0.9);
-  ctx.fillStyle = '#171e2e';
-  ctx.strokeStyle = '#2b3550'; ctx.lineWidth = 1;
-  if (modo3d) {
-    var d1 = iso(m.x - .8, m.z - .45, 1.0), d2 = iso(m.x + .8, m.z - .45, 1.0), d3 = iso(m.x + .8, m.z + .45, 1.0), d4 = iso(m.x - .8, m.z + .45, 1.0);
-    // frente
-    var f1 = iso(m.x - .8, m.z + .45, 0), f2 = iso(m.x + .8, m.z + .45, 0);
-    ctx.beginPath(); ctx.moveTo(f1.x, f1.y); ctx.lineTo(f2.x, f2.y); ctx.lineTo(d3.x, d3.y); ctx.lineTo(d4.x, d4.y); ctx.closePath(); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(d1.x, d1.y); ctx.lineTo(d2.x, d2.y); ctx.lineTo(d3.x, d3.y); ctx.lineTo(d4.x, d4.y); ctx.closePath(); ctx.fill(); ctx.stroke();
-  } else {
-    var tw = 1.6 * s;
-    rrect(top.x - tw / 2, top.y - tw * .28, tw, tw * .56, 4); ctx.fill(); ctx.stroke();
-  }
-  // monitor
-  var mo = iso(m.x, m.z - (modo3d ? .18 : 0), modo3d ? 1.75 : 1.7);
-  ctx.save();
-  ctx.shadowColor = '#00F0FF'; ctx.shadowBlur = 10 * zz;
-  ctx.fillStyle = '#0b1420';
-  var mw = .95 * s * (modo3d ? 1 : 1), mh = .55 * s;
-  if (modo3d) {
-    var moA = iso(m.x - .45, m.z - .6, 1.75), moB = iso(m.x + .45, m.z - .6, 1.75);
-    ctx.beginPath(); ctx.moveTo(moA.x, moA.y); ctx.lineTo(moB.x, moB.y - mh * .2); ctx.lineTo(moB.x + (moB.x - moA.x) * .0 + 3 * zz, moB.y - mh * .2 + mh * .1); ctx.closePath();
-    ctx.fillStyle = '#7dd3fc'; ctx.globalAlpha = .55; ctx.fill(); ctx.globalAlpha = 1;
-  } else {
-    rrect(mo.x - mw / 2, mo.y - mh / 2, mw, mh, 3); ctx.fill();
-    ctx.fillStyle = 'rgba(125,211,252,.5)'; rrect(mo.x - mw / 2 + 2, mo.y - mh / 2 + 2, mw - 4, mh - 4, 2); ctx.fill();
-  }
-  ctx.restore();
-  // personagem sentado (atrás da mesa)
-  var pc = iso(m.x, m.z + (modo3d ? .55 : .3), modo3d ? 1.15 : 1.1);
-  var r = .34 * s;
-  // corpo
-  ctx.fillStyle = '#232c40';
-  ctx.beginPath(); ctx.ellipse(pc.x, pc.y + r * .75, r * 1.05, r * 1.25, 0, 0, Math.PI * 2); ctx.fill();
-  // cabeça
+  // ===== cadeira + pessoa de costas + mesa =====
+  // pessoa fica entre a mesa (em z-.75) e o viewer (z+)
+  // cadeira encosto (atrás da pessoa)
+  var enc = iso(x, z + .78, 1.35);
+  ctx.fillStyle = '#20293e';
+  rrect(enc.x - .42 * s, enc.y - .5 * s, .84 * s, .62 * s, .18 * s); ctx.fill();
+  ctx.strokeStyle = '#2c3853'; ctx.lineWidth = 1; ctx.stroke();
+  // corpo (de costas): ombros + tronco
+  var cor = iso(x, z + .62, .75);       // quadril/baixo do tronco
+  var omb = iso(x, z + .62, 1.55);      // linha dos ombros
+  ctx.fillStyle = m.camisa;
+  ctx.beginPath();
+  ctx.moveTo(omb.x - .5 * s, omb.y);
+  ctx.quadraticCurveTo(omb.x, omb.y - .22 * s, omb.x + .5 * s, omb.y);
+  ctx.lineTo(cor.x + .38 * s, cor.y + .06 * s);
+  ctx.quadraticCurveTo(cor.x, cor.y + .18 * s, cor.x - .38 * s, cor.y + .06 * s);
+  ctx.closePath(); ctx.fill();
+  // sombra do tronco
+  ctx.fillStyle = 'rgba(0,0,0,.22)';
+  ctx.beginPath(); ctx.moveTo(omb.x, omb.y + .05 * s); ctx.lineTo(cor.x + .38 * s, cor.y + .06 * s); ctx.quadraticCurveTo(cor.x, cor.y + .18 * s, cor.x - .38 * s, cor.y + .06 * s); ctx.closePath(); ctx.fill();
+  // braços indo pra mesa
+  var maoD = iso(x - .55, z + .05, 1.15), maoE = iso(x + .55, z + .05, 1.15);
+  var ombD = iso(x - .5, z + .62, 1.5), ombE = iso(x + .5, z + .62, 1.5);
+  ctx.strokeStyle = m.camisa; ctx.lineWidth = .2 * s; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(ombD.x, ombD.y + .06 * s); ctx.lineTo(maoD.x, maoD.y); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ombE.x, ombE.y + .06 * s); ctx.lineTo(maoE.x, maoE.y); ctx.stroke();
+  // mãos (pele)
   ctx.fillStyle = m.pele;
-  ctx.beginPath(); ctx.arc(pc.x, pc.y, r, 0, Math.PI * 2); ctx.fill();
-  // cabelo
+  ctx.beginPath(); ctx.arc(maoD.x, maoD.y, .09 * s, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(maoE.x, maoE.y, .09 * s, 0, Math.PI * 2); ctx.fill();
+  // cabeça (nuca: cabelo domina)
+  var cb = iso(x, z + .62, 1.95);
+  ctx.fillStyle = m.pele;
+  ctx.beginPath(); ctx.arc(cb.x, cb.y, .26 * s, 0, Math.PI * 2); ctx.fill();
+  // cabelo cobrindo a parte de trás/topo
   ctx.fillStyle = m.cabelo;
-  ctx.beginPath(); ctx.arc(pc.x, pc.y - r * .18, r * .92, Math.PI, Math.PI * 2); ctx.fill();
-  // status ring
-  ctx.beginPath(); ctx.arc(pc.x, pc.y, r + 2.5 * zz, 0, Math.PI * 2);
-  ctx.strokeStyle = STCOR[st] || STCOR.aguardando; ctx.lineWidth = Math.max(1, 2 * zz);
-  ctx.shadowColor = STCOR[st] || STCOR.aguardando; ctx.shadowBlur = 6 * zz; ctx.stroke(); ctx.shadowBlur = 0;
-  // nome
+  ctx.beginPath(); ctx.arc(cb.x, cb.y - .03 * s, .27 * s, Math.PI * .95, Math.PI * 2.05); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(cb.x, cb.y + .05 * s, .24 * s, .2 * s, 0, 0, Math.PI); ctx.fill();
+  // fone de ouvido em alguns
+  if (m.fone) {
+    ctx.strokeStyle = '#111'; ctx.lineWidth = .07 * s;
+    ctx.beginPath(); ctx.arc(cb.x, cb.y - .02 * s, .29 * s, Math.PI, Math.PI * 2); ctx.stroke();
+    ctx.fillStyle = '#009CFE';
+    ctx.beginPath(); ctx.arc(cb.x - .27 * s, cb.y, .08 * s, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cb.x + .27 * s, cb.y, .08 * s, 0, Math.PI * 2); ctx.fill();
+  }
+  // mesa na frente da pessoa (z-.75)
+  var dTop = iso4(x - 1.1, z - 1.15, x + 1.1, z - .35, 1.05);
+  var dFac = iso4(x - 1.1, z - .35, x + 1.1, z - .35, 1.05);
+  var dFac0 = iso4(x - 1.1, z - .35, x + 1.1, z - .35, 0);
+  ctx.fillStyle = '#222d45';
+  polig(dTop); ctx.fill();
+  ctx.strokeStyle = '#3a4a70'; ctx.lineWidth = 1; polig(dTop); ctx.stroke();
+  ctx.fillStyle = '#19223a';
+  polig([[dFac[3][0], dFac[3][1]], [dFac[2][0], dFac[2][1]], [dFac0[2][0], dFac0[2][1]], [dFac0[3][0], dFac0[3][1]]]); ctx.fill(); ctx.stroke();
+  // pés da mesa
+  var p1 = iso(x - 1, z - .42, 0), p2 = iso(x - 1, z - .42, 1.02);
+  var p3 = iso(x + 1, z - .42, 0), p4 = iso(x + 1, z - .42, 1.02);
+  ctx.strokeStyle = '#2b3550'; ctx.lineWidth = Math.max(1.5, .08 * s);
+  ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(p3.x, p3.y); ctx.lineTo(p4.x, p4.y); ctx.stroke();
+  // monitor de costas pra nós (painel escuro) sobre a mesa
+  var moBase = iso(x, z - 1.05, 1.05);
+  var moTopo = iso(x, z - 1.05, 1.85);
+  ctx.fillStyle = '#0c1220';
+  polig([
+    [moBase.x - .55 * s, moBase.y - .06 * s],
+    [moBase.x + .55 * s, moBase.y - .1 * s],
+    [moTopo.x + .55 * s, moTopo.y - .1 * s],
+    [moTopo.x - .55 * s, moTopo.y - .06 * s]
+  ]); ctx.fill();
+  ctx.strokeStyle = '#26314d'; ctx.lineWidth = 1; ctx.stroke();
+  // glow do monitor vazando (luz ciano no ambiente)
+  ctx.save();
+  ctx.shadowColor = '#00F0FF'; ctx.shadowBlur = 14 * zz;
+  ctx.strokeStyle = 'rgba(0,240,255,.35)';
+  ctx.lineWidth = Math.max(1, 1.5 * zz);
+  polig([
+    [moBase.x - .55 * s, moBase.y - .06 * s],
+    [moBase.x + .55 * s, moBase.y - .1 * s],
+    [moTopo.x + .55 * s, moTopo.y - .1 * s],
+    [moTopo.x - .55 * s, moTopo.y - .06 * s]
+  ]); ctx.stroke();
+  ctx.restore();
+  // suporte do monitor
+  ctx.strokeStyle = '#2b3550'; ctx.lineWidth = Math.max(1.5, .07 * s);
+  var su1 = iso(x, z - 1.05, 1.05), su2 = iso(x, z - 1.05, 1.25);
+  ctx.beginPath(); ctx.moveTo(su1.x, su1.y); ctx.lineTo(su2.x, su2.y); ctx.stroke();
+  // segunda tela dupla em alguns postos
+  if (hash(m.ag.nome || 'x') % 2 === 0) {
+    var m2b = iso(x - .95, z - 1.18, 1.05), m2t = iso(x - .95, z - 1.18, 1.7);
+    ctx.fillStyle = '#0c1220';
+    polig([[m2b.x - .4 * s, m2b.y - .04 * s], [m2b.x + .12 * s, m2b.y - .1 * s], [m2t.x + .12 * s, m2t.y - .1 * s], [m2t.x - .4 * s, m2t.y - .04 * s]]);
+    ctx.fill(); ctx.strokeStyle = '#26314d'; ctx.lineWidth = 1; ctx.stroke();
+  }
+  // luminária de status no canto da mesa
+  var lu = iso(x + 1.05, z - 1.05, 1.3);
+  ctx.save();
+  ctx.shadowColor = STCOR[st] || STCOR.aguardando; ctx.shadowBlur = 9 * zz;
+  ctx.fillStyle = STCOR[st] || STCOR.aguardando;
+  ctx.beginPath(); ctx.arc(lu.x, lu.y, .07 * s, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+  // nome embaixo do posto
   var nome = String(m.ag.nome || '?').replace(/\s*\(.*\)/, '');
   if (nome.length > 14) nome = nome.slice(0, 13) + '…';
-  var np = iso(m.x, m.z, 0);
-  ctx.font = '700 ' + Math.max(8, 10.5 * zz) + 'px Segoe UI,system-ui,sans-serif';
+  var np = iso(x, z + 1.15, 0);
+  ctx.font = '700 ' + Math.max(8, 10 * zz) + 'px Segoe UI,system-ui,sans-serif';
   ctx.textAlign = 'center';
-  var tw2 = ctx.measureText(nome).width;
-  ctx.fillStyle = hover ? 'rgba(10,14,24,.95)' : 'rgba(9,12,20,.8)';
-  rrect(np.x - tw2 / 2 - 5, np.y + 4, tw2 + 10, 15 * zz + 5, 6); ctx.fill();
+  var tw = ctx.measureText(nome).width;
+  ctx.fillStyle = hover ? 'rgba(10,14,24,.95)' : 'rgba(9,12,20,.82)';
+  rrect(np.x - tw / 2 - 5, np.y - 9 * zz, tw + 10, 14 * zz + 5, 6); ctx.fill();
+  ctx.strokeStyle = hover ? m.sala.cor : 'transparent';
+  ctx.lineWidth = 1; rrect(np.x - tw / 2 - 5, np.y - 9 * zz, tw + 10, 14 * zz + 5, 6); ctx.stroke();
   ctx.fillStyle = hover ? '#ffffff' : '#c9d3e8';
-  ctx.fillText(nome, np.x, np.y + 15 * zz);
+  ctx.fillText(nome, np.x, np.y + 1 * zz);
   // balão de fala
   if (m.falou && Date.now() < m.falou.ate) {
-    var bp = iso(m.x, m.z + .4, modo3d ? 2.4 : 2.2);
+    var bp = iso(x, z + .5, 2.6);
     ctx.font = '600 ' + Math.max(8, 10 * zz) + 'px Segoe UI,sans-serif';
     var txt = m.falou.txt;
     var tw3 = ctx.measureText(txt).width;
@@ -362,21 +479,23 @@ function desenhaMesa(m) {
     ctx.fillStyle = '#0b1220';
     ctx.fillText(txt, bp.x, bp.y + 1);
   }
-  // decaimento do brilho
-  if (m.brilho > 0) m.brilho = Math.max(0, m.brilho - .02);
+  // festinha: brilho pulsando
+  if (m.festeja > Date.now()) {
+    m.brilho = Math.max(m.brilho, .35 + .3 * Math.sin(Date.now() / 160));
+  }
+  if (m.brilho > 0) m.brilho = Math.max(0, m.brilho - .012);
 }
 </script>
 <script>
 // ===== hover / clique =====
-var hoverMesa = null, ultimas = [];
-function telaMesa(m) { var p = iso(m.x, m.z, 0); return { x: p.x, y: p.y }; }
+var hoverMesa = null, sel = null;
 function hit(sx, sy) {
   var melhor = null, md = 1e9;
   for (var i = 0; i < mesas.length; i++) {
-    var m = mesas[i]; if (m.zonaLabel) continue;
-    var p = telaMesa(m);
+    var m = mesas[i];
+    var p = iso(m.x, m.z + .4, 1.2);
     var d = Math.sqrt((sx - p.x) * (sx - p.x) + (sy - p.y) * (sy - p.y));
-    if (d < 2.2 * S * view.z + 14 && d < md) { md = d; melhor = m; }
+    if (d < 2 * S * view.z + 16 && d < md) { md = d; melhor = m; }
   }
   return melhor;
 }
@@ -400,7 +519,6 @@ function abreCarta(m) {
   var st = String(a.status || 'aguardando').toLowerCase();
   stEl.textContent = st; stEl.className = 'stt ' + (st === 'ativo' ? '' : st);
   document.getElementById('qUlt').textContent = a.ultima_acao || 'sem atividade registrada';
-  // tarefas do agente
   var minhas = [];
   for (var i = 0; i < (dados.tarefas || []).length; i++) {
     var t = dados.tarefas[i];
@@ -416,7 +534,6 @@ function abreCarta(m) {
   document.getElementById('qFuncao').value = '';
   document.getElementById('carta').classList.add('aberta');
 }
-var sel = null;
 function fechaCarta() { document.getElementById('carta').classList.remove('aberta'); sel = null; }
 document.getElementById('qBtn').onclick = function() {
   if (!sel) return;
@@ -438,9 +555,7 @@ document.getElementById('qBtn').onclick = function() {
 var mercado = { usd: null, btc: null };
 function tickMercado() {
   fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL').then(function(r) { return r.json(); }).then(function(d) { if (d && d.USDBRL && d.USDBRL.bid) mercado.usd = parseFloat(d.USDBRL.bid); }).catch(function() {});
-  try {
-    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=brl').then(function(r) { return r.json(); }).then(function(d) { if (d && d.bitcoin) mercado.btc = d.bitcoin.brl; }).catch(function() {});
-  } catch (e) {}
+  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=brl').then(function(r) { return r.json(); }).then(function(d) { if (d && d.bitcoin) mercado.btc = d.bitcoin.brl; }).catch(function() {});
 }
 function chipsMkt() {
   var h = '';
@@ -448,7 +563,17 @@ function chipsMkt() {
   if (mercado.btc) h += '<span class="chip">BTC <b>R$ ' + (mercado.btc >= 1000 ? Math.round(mercado.btc / 1000) + 'k' : mercado.btc) + '</b></span>';
   document.getElementById('mkt').innerHTML = h;
 }
-function hoje() { var d = new Date(); return d.toISOString().slice(0, 10); }
+function hoje() { return new Date().toISOString().slice(0, 10); }
+var ultConc = null;
+var selParam = new URLSearchParams(location.search).get('sel');
+var selTent = 0;
+function abreDireto() {
+  if (!selParam || sel || !mesas.length || selTent > 10) return;
+  selTent++;
+  for (var i = 0; i < mesas.length; i++) {
+    if (mesas[i].ag && String(mesas[i].ag.nome || '').indexOf(selParam) === 0) { abreCarta(mesas[i]); return; }
+  }
+}
 function tick() {
   fetch('https://ana-a391f94e.base44.app/functions/opsOffice?view=data').then(function(r) { return r.json(); }).then(function(d) {
     if (!d.ok) return;
@@ -459,11 +584,9 @@ function tick() {
     if (primeira && d.agentes.length) montar(d.agentes);
     else {
       for (var i = 0; i < mesas.length; i++) {
-        var m = mesas[i]; if (m.zonaLabel) continue;
-        for (var j = 0; j < d.agentes.length; j++) if (d.agentes[j].nome === m.ag.nome) { m.ag = d.agentes[j]; break; }
+        for (var j = 0; j < d.agentes.length; j++) if (d.agentes[j].nome === mesas[i].ag.nome) { mesas[i].ag = d.agentes[j]; break; }
       }
     }
-    // card de resultado
     var hq = hoje();
     var venHoje = [], total = 0;
     for (var v = 0; v < (d.vendas || []).length; v++) {
@@ -496,7 +619,6 @@ function tick() {
     html += '</div>';
     document.getElementById('res').innerHTML = html;
     document.getElementById('res').style.display = 'block';
-    // feed
     var linhas = [];
     var dec = d.decisoes || [], scn = d.scans || [], pos2 = d.posicoes || [], tar = d.tarefas || [], lg = d.logs || [];
     for (var i2 = 0; i2 < Math.min(2, dec.length); i2++) linhas.push(['dec', '📈 QuantBot: ' + (dec[i2].acao || '') + ' ' + (dec[i2].symbol || '')]);
@@ -508,7 +630,6 @@ function tick() {
     var lin2 = linhas.slice(0, 6);
     for (var i6 = 0; i6 < lin2.length; i6++) { var s2 = lin2[i6][1]; fh += '<div class="e"><span class="' + lin2[i6][0] + '">●</span> <b>' + s2.split(':')[0] + ':</b>' + s2.split(':').slice(1).join(':') + '</div>'; }
     document.getElementById('flinhas').innerHTML = fh || '<div class="e">aguardando eventos...</div>';
-    // festeja tarefas concluídas
     for (var i7 = 0; i7 < tar.length; i7++) {
       var t9 = tar[i7];
       if (String(t9.status || '').toLowerCase() === 'concluida' && t9.id !== ultConc) {
@@ -518,34 +639,23 @@ function tick() {
     }
   }).catch(function() {});
 }
-var ultConc = null;
-// link direto ?sel=Nome
-var selParam = new URLSearchParams(location.search).get('sel');
-var selTent = 0;
-function abreDireto() {
-  if (!selParam || sel || !mesas.length || selTent > 10) return;
-  selTent++;
-  for (var i = 0; i < mesas.length; i++) {
-    if (mesas[i].ag && String(mesas[i].ag.nome || '').indexOf(selParam) === 0) { abreCarta(mesas[i]); return; }
-  }
-}
-setInterval(abreDireto, 1500);
-// ambiente: diálogos casuais
 var FALAS = ['tô nisso 🔥', 'bora que dá', 'checando os dados…', 'missão do dia 🚀', 'foco total 💪', 'mais uma pro quadro ✅'];
 function ambiente() {
   var vivos = [];
-  for (var i = 0; i < mesas.length; i++) if (mesas[i].ag && !mesas[i].zonaLabel) vivos.push(mesas[i]);
+  for (var i = 0; i < mesas.length; i++) vivos.push(mesas[i]);
   if (vivos.length) {
     var m = vivos[Math.floor(Math.random() * vivos.length)];
     m.falou = { txt: FALAS[Math.floor(Math.random() * FALAS.length)], ate: Date.now() + 3800 };
     m.brilho = Math.max(m.brilho, .5);
   }
 }
-document.getElementById('diag').textContent = '';
+document.getElementById('diag').textContent = 'escritório 3D carregando…';
 document.getElementById('diag').classList.add('mostra');
+setTimeout(function() { document.getElementById('diag').classList.remove('mostra'); }, 9000);
 tickMercado(); setInterval(tickMercado, 120000); setInterval(chipsMkt, 5000);
 tick(); setInterval(tick, 20000);
 setInterval(ambiente, 7000);
+setInterval(abreDireto, 1500);
 requestAnimationFrame(desenha);
 </script>
 </body></html>
