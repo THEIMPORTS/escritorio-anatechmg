@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Cidade Virtual Anatechmg 🏙️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#04060d;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#e6e9ef}
+canvas#cv{position:fixed;inset:0;display:block}
+.hud{position:fixed;z-index:10}
+#topo{top:10px;left:10px;right:10px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between;pointer-events:none}
+#marca{background:rgba(9,13,22,.82);border:1px solid #1f2735;border-radius:14px;padding:10px 14px;backdrop-filter:blur(6px)}
+#marca h1{font-size:1.02rem;font-weight:800;letter-spacing:.4px;background:linear-gradient(90deg,#7dd3fc,#e879f9);-webkit-background-clip:text;background-clip:text;color:transparent}
+#marca .sub{font-size:.66rem;color:#8b93a3;margin-top:2px}
+#marca .sub b{color:#4ade80}
+#meta{background:rgba(9,13,22,.82);border:1px solid #1f2735;border-radius:14px;padding:9px 13px;text-align:right;backdrop-filter:blur(6px)}
+#meta .ml{font-size:.6rem;color:#8b93a3}
+#meta .mv{font-size:.82rem;font-weight:800;color:#7dd3fc}
+#metaBar{width:150px;height:5px;background:#10182b;border-radius:99px;margin-top:5px;overflow:hidden}
+#metaFill{height:100%;width:0%;background:linear-gradient(90deg,#4ade80,#22d3ee);border-radius:99px;transition:width 1s}
+#equipe{top:96px;right:12px;text-align:right}
+#eqBtn{background:rgba(9,13,22,.82);border:1px solid #1f2735;border-radius:12px;color:#7dd3fc;font-weight:800;font-size:.68rem;padding:8px 14px;cursor:pointer;backdrop-filter:blur(6px)}
+#eqLista{display:none;background:rgba(9,13,22,.94);border:1px solid #1f2735;border-radius:14px;padding:10px;max-height:46vh;overflow-y:auto;width:min(240px,72vw);text-align:left;margin-top:6px}
+#equipe.aberta #eqLista{display:block}
+#eqLista .eqz{font-size:.58rem;font-weight:800;letter-spacing:1px;margin:8px 0 3px}
+#eqLista .eqi{font-size:.7rem;color:#aeb7c9;padding:3px 6px;border-radius:6px;cursor:pointer}
+#eqLista .eqi:hover{background:#1f2735;color:#fff}
+#feed{bottom:12px;left:12px;width:min(300px,72vw);background:rgba(9,13,22,.82);border:1px solid #1f2735;border-radius:14px;padding:10px 12px;backdrop-filter:blur(6px)}
+#feed .ft{font-size:.64rem;font-weight:800;color:#8b93a3;letter-spacing:1px;margin-bottom:6px}
+#feed .it{font-size:.68rem;color:#aeb7c9;margin:4px 0;display:flex;gap:6px;align-items:baseline}
+#feed .it b{color:#7dd3fc;font-weight:700}
+#feed .it .d{color:#8b93a3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:170px}
+#hint{bottom:12px;left:50%;transform:translateX(-50%);background:rgba(9,13,22,.82);border:1px solid #1f2735;border-radius:999px;padding:7px 16px;font-size:.62rem;color:#8b93a3;backdrop-filter:blur(6px);white-space:nowrap}
+#hint b{color:#7dd3fc}
+#load{position:fixed;inset:0;background:#04060d;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:50;transition:opacity .8s}
+#load h2{font-size:1.2rem;background:linear-gradient(90deg,#7dd3fc,#e879f9);-webkit-background-clip:text;background-clip:text;color:transparent}
+#load p{font-size:.7rem;color:#8b93a3;margin-top:8px}
+#carta{bottom:12px;right:12px;width:min(330px,86vw);background:rgba(9,13,22,.94);border:1px solid #1f2735;border-radius:16px;padding:14px;display:none;z-index:20}
+#carta.aberta{display:block}
+#carta .cab{display:flex;align-items:center;gap:9px;margin-bottom:5px}
+#carta .emo{font-size:1.8rem}
+#carta .nm{font-weight:800;font-size:.95rem}
+#carta .pl{font-size:.68rem;color:#8b93a3}
+#carta .stt{margin-left:auto;font-size:.58rem;font-weight:800;padding:3px 9px;border-radius:999px;text-transform:uppercase;background:#14351f;color:#4ade80}
+#carta .stt.off{background:#3a2610;color:#fbbf24}
+#carta .pers{font-size:.68rem;color:#a78bfa;font-style:italic;margin-bottom:5px}
+#carta .zona{font-size:.62rem;color:#8b93a3;margin-bottom:5px}
+#carta .ult{font-size:.72rem;color:#aeb7c9;background:#0b0e14;border-radius:8px;padding:7px;margin:7px 0}
+#carta label{font-size:.64rem;color:#8b93a3;display:block;margin-bottom:3px}
+#carta textarea{width:100%;background:#0b0e14;border:1px solid #1f2735;color:#e6e9ef;border-radius:10px;padding:8px;font:.74rem/1.35 system-ui,sans-serif;resize:vertical;min-height:42px}
+#carta button{width:100%;margin-top:9px;border:0;border-radius:10px;padding:9px;background:#2563eb;color:#fff;font-weight:700;font-size:.78rem;cursor:pointer}
+#carta .msg{font-size:.68rem;min-height:15px;margin-top:5px;color:#4ade80}
+#carta .chatlog{max-height:132px;overflow-y:auto;background:#0b0e14;border-radius:8px;padding:6px;display:none}
+#carta .chatlog.on{display:block}
+#carta .chatlog .dv{font-size:.7rem;color:#93c5fd;text-align:right;margin:3px 6px}
+#carta .chatlog .da{font-size:.7rem;color:#e6e9ef;background:#1f2735;border-radius:8px 8px 8px 2px;padding:5px 8px;margin:3px 0;max-width:88%}
+#carta .chatlog .dt{font-size:.66rem;color:#8b93a3;font-style:italic;margin:4px 6px}
+#carta .sep{border-top:1px solid #1f2735;margin:11px 0 6px}
+#carta .chatrow{display:flex;gap:6px;margin-top:6px}
+#carta .chatrow input{flex:1;background:#0b0e14;border:1px solid #1f2735;color:#e6e9ef;border-radius:10px;padding:8px;font-size:.78rem;min-width:0}
+#carta .chatrow button{width:auto;padding:9px 14px;margin-top:0}
+#carta .chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+#carta .chip{font-size:.62rem;background:#1f2735;border-radius:999px;padding:4px 9px;cursor:pointer;color:#a5b4fc}
+#carta .fx{text-align:right}
+#carta .fx a{color:#60a5fa;font-size:.64rem;text-decoration:none;cursor:pointer}
+@media (max-width:640px){#feed{display:none}#hint{font-size:.56rem}#meta .mv{font-size:.7rem}}
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<div id="load"><h2>🏙️ CIDADE VIRTUAL ANATECHMG</h2><p>construindo a cidade…</p></div>
+<div class="hud" id="topo">
+  <div id="marca"><h1>CIDADE VIRTUAL ANATECHMG</h1><div class="sub">ao vivo · <b id="rel">--:--:--</b> · <b id="nfunc">0</b> funcionários trabalhando · +<b id="nreserva">0</b> especialistas na reserva</div></div>
+  <div id="meta"><div class="ml">META 2026 · R$ 1.000.000</div><div class="mv" id="metaVal">R$ 0,00</div><div id="metaBar"><div id="metaFill"></div></div></div>
+</div>
+<div class="hud" id="equipe"><button id="eqBtn">👥 EQUIPE</button><div id="eqLista"></div></div>
+<div class="hud" id="feed"><div class="ft">📡 ATIVIDADE AO VIVO</div><div id="feedIt"></div></div>
+<div class="hud" id="hint">🖱️ <b>arraste</b> pra girar · <b>scroll</b> pra zoom · <b>clique num funcionário</b> pra conversar</div>
+<div class="hud" id="carta">
+  <div class="cab"><span class="emo" id="qEmoji">🤖</span><div><div class="nm" id="qNome">Agente</div><div class="pl" id="qPapel">—</div></div><span class="stt" id="qStatus">—</span></div>
+  <div class="pers" id="qPers">—</div>
+  <div class="zona" id="qZona">—</div>
+  <div class="ult" id="qUlt">—</div>
+  <label>Atribuir função a este funcionário:</label>
+  <textarea id="qFuncao" placeholder="ex. Monitorar leads do Instagram e reportar 2x ao dia"></textarea>
+  <button id="qBtn">🚀 Atribuir função</button>
+  <div class="sep"></div>
+  <label>💬 Conversar com este funcionário:</label>
+  <div class="chatlog" id="qChatLog"></div>
+  <div class="chips">
+    <span class="chip" data-q="O que você faz aqui na empresa?">o que você faz?</span>
+    <span class="chip" data-q="Como estão suas tarefas hoje?">suas tarefas</span>
+    <span class="chip" data-q="O que a gente precisa fazer pra chegar na meta de R$ 1 milhão?">a meta</span>
+  </div>
+  <div class="chatrow">
+    <input id="qChatInput" placeholder="Escreva sua mensagem..." />
+    <button id="qChatBtn">➤</button>
+  </div>
+  <div class="msg" id="qMsg"></div>
+  <div class="fx"><a onclick="fechaCarta()">fechar ✕</a></div>
+</div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const OPS = 'https://ana-a391f94e.base44.app/functions/opsOffice';
+const CHAT = 'https://ana-a391f94e.base44.app/functions/escritorioChat';
+
+const TORRES = {
+  diretoria: { nome: 'DIRETORIA · HQ', cor: 0x60a5fa, pos: [0, 0], h: 34, w: 9, d: 9 },
+  trading: { nome: 'QUANTBOT · TRADING', cor: 0xeab308, pos: [-34, 0], h: 26, w: 8, d: 8 },
+  marketing: { nome: 'MARKETING', cor: 0xf472b6, pos: [34, 0], h: 22, w: 8, d: 8 },
+  tech: { nome: 'TECNOLOGIA', cor: 0xf87171, pos: [0, -34], h: 20, w: 9, d: 9 },
+  comercial: { nome: 'COMERCIAL', cor: 0x4ade80, pos: [-26, 24], h: 15, w: 8, d: 8 },
+  rifa: { nome: 'RIFA & OPERAÇÕES', cor: 0xfbbf24, pos: [26, 24], h: 14, w: 8, d: 8 },
+  juridico: { nome: 'JURÍDICO & CONTÁBIL', cor: 0x38bdf8, pos: [-36, -22], h: 12, w: 7, d: 7 },
+  loja: { nome: 'TIKTOK SHOP', cor: 0x22d3ee, pos: [36, -22], h: 15, w: 7, d: 7 },
+  lazer: { nome: 'CAFÉ & DESCANSO', cor: 0xfb7185, pos: [-15, 32], h: 5, w: 12, d: 7 },
+  reuniao: { nome: 'SALA DE REUNIÃO', cor: 0xa78bfa, pos: [15, 32], h: 9, w: 9, d: 9 }
+};
+const ZONAS = { 'Ana': 'diretoria', 'Agente Social': 'marketing', 'Agente Facebook': 'marketing', 'Copy': 'marketing', 'Designer': 'marketing', 'Gestor de Tráfego': 'marketing', 'Vendedor Expert': 'comercial', 'Follow-up': 'comercial', 'Operações Rifa': 'rifa', 'QuantBot Copy': 'trading', 'QuantBot Direcional': 'trading', 'QuantBot Carry': 'trading', 'Scanner DeFi': 'trading', 'WIN Radar Pro': 'trading', 'Jurídico': 'juridico', 'Contábil': 'juridico', 'Programador': 'tech', 'Web Segurança': 'tech', 'Growth Hacker': 'marketing', 'Otimizador de Vídeo': 'marketing', 'Estrategista de E-mail': 'marketing', 'PR & Comunicação': 'marketing', 'Estrategista de Iscas': 'comercial', 'Analista de Pipeline': 'comercial', 'Suporte Pós-Venda': 'comercial', 'Sintetizador de Feedback': 'comercial', 'Pesquisador de Mercado': 'diretoria', 'Product Manager': 'diretoria', 'Agente TikTok Shop': 'loja', 'Afiliado TikTok': 'loja', 'Host de Lives': 'loja', 'Logística': 'loja', 'Produtor de Reels': 'marketing', 'Arquiteto do Escritório': 'tech', 'Social Mídia': 'marketing', 'Analista Financeiro': 'juridico', 'Programador Sênior': 'tech', 'Vídeo Maker': 'marketing', 'Editor de Vídeos': 'marketing' };
+var PERSONALIDADES = {
+  'Ana': 'Empreendedora e resoluta — resolve antes de perguntar.',
+  'Follow-up': 'Persistente, nunca deixa um lead esfriar.',
+  'Agente Social': 'Criativo, vive pensando no próximo viral.',
+  'Agente Facebook': 'Comunitário, semeia conteúdo em cada grupo do ramo.',
+  'QuantBot Copy': 'Metódico, copia os melhores com disciplina.',
+  'QuantBot Direcional': 'Ousado, segue a tendência sem pestanejar.',
+  'QuantBot Carry': 'Paciente, colhe devagar e sem sustos.',
+  'Scanner DeFi': 'Curioso, fareja pools novas 24h por dia.',
+  'Copy': 'Persuasivo, cada palavra tem função.',
+  'Designer': 'Perfeccionista, detalhe é tudo.',
+  'Gestor de Tráfego': 'Obcecado por ROI, corta o que não converte.',
+  'Vendedor Expert': 'Experiente, lê o cliente pela ponta dos dedos.',
+  'Operações Rifa': 'Organizado, nada sai sem registro.',
+  'Jurídico': 'Cauteloso, protege a empresa antes de tudo.',
+  'Contábil': 'Rigoroso, nenhum centavo some no dele.',
+  'Programador': 'Pragmático, código limpo que funciona.',
+  'Web Segurança': 'Desconfiado por vocação, tudo é vetado até provado seguro.',
+  'Social Mídia': 'Antenado, vive colado nas trends e no calendário editorial.',
+  'Analista Financeiro': 'Frio com números, nada escapa do fluxo de caixa.',
+  'Programador Sênior': 'Veterano, refatora antes de qualquer deploy às pressas.',
+  'Vídeo Maker': 'Prático, transforma roteiro em vídeo no mesmo dia.',
+  'Editor de Vídeos': 'Detalhista, corta no frame exato do gancho.'
+};
+
+// ===== dados vivos =====
+const dados = { agentes: [], logs: [], vendas: [] };
+let sel = null, metaVendas = 0;
+const chatHist = {};
+
+async function carregaDados() {
+  try {
+    const r = await fetch(OPS + '?view=data');
+    const d = await r.json();
+    if (!d.ok) return;
+    dados.agentes = d.agentes || []; dados.logs = (d.logs || []).slice(0, 6); dados.vendas = d.vendas || [];
+    document.getElementById('nfunc').textContent = dados.agentes.length; dados.reserva = d.reserva; try { var nr = (typeof d.reserva === 'number') ? d.reserva : (d.reserva && d.reserva.length) || 0; var rs = document.getElementById('nreserva'); if (rs) rs.textContent = nr; } catch(e){}
+    metaVendas = dados.vendas.filter(v => String(v.status || '').toLowerCase() === 'paga').reduce((s, v) => s + (Number(v.valor) || 0), 0);
+    document.getElementById('metaVal').textContent = 'R$ ' + metaVendas.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    document.getElementById('metaFill').style.width = Math.max(1.5, Math.min(100, metaVendas / 10000)) + '%';
+    const box = document.getElementById('feedIt'); box.innerHTML = '';
+    dados.logs.forEach(l => {
+      const it = document.createElement('div'); it.className = 'it';
+      it.innerHTML = '<b>' + (l.agente || '—').slice(0, 18) + '</b><span class="d">' + String(l.evento || '').slice(0, 40) + '</span>';
+      box.appendChild(it);
+    });
+    for (const p of povo) {
+      const a = dados.agentes.find(x => x.nome === p.nome);
+      if (a) { p.dados = a; p.atualizaHolo(); }
+    }
+  } catch (e) { /* tenta de novo no próximo ciclo */ }
+}
+
+// ===== cartão =====
+function chatBubble(tipo, txt) {
+  const log = document.getElementById('qChatLog');
+  const div = document.createElement('div');
+  div.className = tipo === 'voce' ? 'dv' : (tipo === 'digitando' ? 'dt' : 'da');
+  div.textContent = txt;
+  log.appendChild(div); log.scrollTop = log.scrollHeight;
+}
+window.enviaChat = function (msg) {
+  if (!sel || !msg) return;
+  const log = document.getElementById('qChatLog'); log.classList.add('on');
+  if (!chatHist[sel]) chatHist[sel] = [];
+  chatHist[sel].push({ de: 'voce', texto: msg });
+  chatBubble('voce', msg);
+  chatBubble('digitando', sel + ' está digitando...');
+  document.getElementById('qChatInput').value = '';
+  fetch(CHAT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ agente: sel, mensagem: msg, historico: chatHist[sel].slice(-6) }) })
+    .then(r => r.json()).then(d => {
+      const dt = document.querySelector('#qChatLog .dt'); if (dt) dt.remove();
+      if (d.ok) { chatHist[sel].push({ de: 'ag', texto: d.resposta }); chatBubble('ag', d.resposta); }
+      else chatBubble('digitando', '❌ ' + (d.erro || 'erro'));
+    }).catch(() => { const dt = document.querySelector('#qChatLog .dt'); if (dt) dt.remove(); chatBubble('digitando', '❌ falha de conexão'); });
+};
+window.fechaCarta = function () { document.getElementById('carta').classList.remove('aberta'); sel = null; povo.forEach(p => p.limpaHolo()); };
+function abreCarta(nome) {
+  const alvo = dados.agentes.find(a => a.nome === nome); if (!alvo) return;
+  sel = nome;
+  document.getElementById('carta').classList.add('aberta');
+  document.getElementById('qEmoji').textContent = alvo.emoji || '🤖';
+  document.getElementById('qNome').textContent = alvo.nome;
+  document.getElementById('qPapel').textContent = alvo.papel || '—';
+  const st = document.getElementById('qStatus');
+  st.textContent = alvo.status || 'aguardando';
+  st.className = 'stt' + (String(alvo.status).toLowerCase() === 'ativo' ? '' : ' off');
+  document.getElementById('qPers').textContent = PERSONALIDADES[nome] || '';
+  document.getElementById('qZona').textContent = '🏙️ Torre: ' + (TORRES[ZONAS[nome]] || TORRES.diretoria).nome;
+  document.getElementById('qUlt').textContent = '⚡ ' + (alvo.ultima_acao || 'sem atividade registrada');
+  document.getElementById('qMsg').textContent = '';
+  const logEl = document.getElementById('qChatLog');
+  logEl.innerHTML = '';
+  logEl.classList.toggle('on', !!(chatHist[nome] && chatHist[nome].length));
+  if (chatHist[nome]) chatHist[nome].forEach(h => chatBubble(h.de, h.texto));
+  const p = povo.find(x => x.nome === nome); if (p) { p.montaHolo(); voaPara(p); }
+}
+document.getElementById('qBtn').addEventListener('click', () => {
+  const f = document.getElementById('qFuncao').value.trim();
+  if (!sel || !f) return;
+  document.getElementById('qMsg').textContent = 'enviando…';
+  fetch(OPS, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ acao: 'atribuir', agente: sel, funcao: f }) })
+    .then(r => r.json()).then(d => { document.getElementById('qMsg').textContent = d.ok ? '✅ função atribuída!' : '❌ ' + (d.erro || 'erro'); if (d.ok) document.getElementById('qFuncao').value = ''; })
+    .catch(() => { document.getElementById('qMsg').textContent = '❌ falha de conexão'; });
+});
+document.getElementById('qChatBtn').addEventListener('click', () => enviaChat(document.getElementById('qChatInput').value.trim()));
+document.getElementById('qChatInput').addEventListener('keydown', e => { if (e.key === 'Enter') enviaChat(e.target.value.trim()); });
+document.querySelectorAll('#carta .chip').forEach(c => c.addEventListener('click', () => enviaChat(c.getAttribute('data-q'))));
+
+// ===== cena =====
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('cv'), antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x04060d, 0.0055);
+const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, 0.1, 800);
+camera.position.set(0, 110, 150);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 8, 0);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.maxPolarAngle = 1.45;
+controls.minDistance = 14;
+controls.maxDistance = 190;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.35;
+
+// céu com gradiente
+{
+  const c = document.createElement('canvas'); c.width = 8; c.height = 256;
+  const g = c.getContext('2d').createLinearGradient(0, 0, 0, 256);
+  g.addColorStop(0, '#04060d'); g.addColorStop(.55, '#0a1230'); g.addColorStop(1, '#1a2b6b');
+  const cx = c.getContext('2d'); cx.fillStyle = g; cx.fillRect(0, 0, 8, 256);
+  const tex = new THREE.CanvasTexture(c);
+  scene.background = tex;
+}
+// estrelas
+{
+  const g = new THREE.BufferGeometry(); const n = 700; const arr = new Float32Array(n * 3);
+  for (let i = 0; i < n; i++) { arr[i * 3] = (Math.random() - .5) * 500; arr[i * 3 + 1] = 60 + Math.random() * 200; arr[i * 3 + 2] = (Math.random() - .5) * 500; }
+  g.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+  scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0x9db8ff, size: 0.7, transparent: true, opacity: .8 })));
+}
+// chão + grade neon
+{
+  const chao = new THREE.Mesh(new THREE.PlaneGeometry(320, 320), new THREE.MeshStandardMaterial({ color: 0x070b16, roughness: .85, metalness: .25 }));
+  chao.rotation.x = -Math.PI / 2; scene.add(chao);
+  const grade = new THREE.GridHelper(320, 80, 0x123, 0x0e1a33);
+  grade.position.y = .02; scene.add(grade);
+  const plaza = new THREE.Mesh(new THREE.CircleGeometry(17, 48), new THREE.MeshStandardMaterial({ color: 0x0b1228, roughness: .6, metalness: .4 }));
+  plaza.rotation.x = -Math.PI / 2; plaza.position.y = .04; scene.add(plaza);
+  const anel = new THREE.Mesh(new THREE.RingGeometry(16.4, 17, 64), new THREE.MeshBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: .8, side: THREE.DoubleSide }));
+  anel.rotation.x = -Math.PI / 2; anel.position.y = .06; scene.add(anel);
+}
+// luzes
+scene.add(new THREE.AmbientLight(0x1b2b50, 1.1));
+const lua = new THREE.DirectionalLight(0x8fb0ff, 0.7); lua.position.set(40, 90, 20); scene.add(lua);
+const lCiano = new THREE.PointLight(0x22d3ee, 250, 120); lCiano.position.set(-30, 14, -6); scene.add(lCiano);
+const lMagenta = new THREE.PointLight(0xe879f9, 220, 120); lMagenta.position.set(30, 14, 6); scene.add(lMagenta);
+const lTorre = new THREE.PointLight(0x60a5fa, 320, 130); lTorre.position.set(0, 40, 0); scene.add(lTorre);
+
+function texturaJanelas(cor) {
+  const c = document.createElement('canvas'); c.width = 64; c.height = 160;
+  const x = c.getContext('2d');
+  x.fillStyle = '#0a0f1e'; x.fillRect(0, 0, 64, 160);
+  const cores = [cor, '#ffd39b', '#7dd3fc', '#0a0f1e', '#0a0f1e'];
+  for (let i = 0; i < 8; i++) for (let j = 0; j < 20; j++) {
+    x.fillStyle = cores[Math.floor(Math.random() * cores.length)];
+    x.globalAlpha = .55 + Math.random() * .45;
+    x.fillRect(4 + i * 7.4, 3 + j * 7.8, 4.6, 4.6);
+  }
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+function textoSprite(txt, cor, escala = 1) {
+  const c = document.createElement('canvas'); c.width = 512; c.height = 96;
+  const x = c.getContext('2d');
+  x.font = '800 44px system-ui, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.shadowColor = cor; x.shadowBlur = 18;
+  x.fillStyle = cor; x.fillText(txt, 256, 48);
+  x.shadowBlur = 0; x.fillStyle = 'rgba(4,6,13,.35)'; // leve placa
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+  const m = new THREE.SpriteMaterial({ map: t, transparent: true, depthWrite: false });
+  const s = new THREE.Sprite(m);
+  s.scale.set(14 * escala, 2.6 * escala, 1);
+  return s;
+}
+// prédios
+const alvos = [];
+for (const [z, T] of Object.entries(TORRES)) {
+  const grupo = new THREE.Group();
+  const mat = new THREE.MeshStandardMaterial({ color: 0x0d1526, roughness: .55, metalness: .45, emissive: 0xffffff, emissiveMap: texturaJanelas('#' + T.cor.toString(16).padStart(6, '0')), emissiveIntensity: .9 });
+  const corpo = new THREE.Mesh(new THREE.BoxGeometry(T.w, T.h, T.d), mat);
+  corpo.position.y = T.h / 2; grupo.add(corpo);
+  // trim neon no topo
+  const trim = new THREE.Mesh(new THREE.BoxGeometry(T.w + .5, .35, T.d + .5), new THREE.MeshBasicMaterial({ color: T.cor }));
+  trim.position.y = T.h + .1; grupo.add(trim);
+  // antena nas torres altas
+  if (T.h >= 20) {
+    const ant = new THREE.Mesh(new THREE.CylinderGeometry(.12, .12, 5, 6), new THREE.MeshStandardMaterial({ color: 0x334155 }));
+    ant.position.y = T.h + 2.6; grupo.add(ant);
+    const bico = new THREE.Mesh(new THREE.SphereGeometry(.5, 12, 12), new THREE.MeshBasicMaterial({ color: T.cor }));
+    bico.position.y = T.h + 5.2; grupo.add(bico); bico.userData.beacon = true;
+  }
+  // rua até o centro
+  const [bx, bz] = T.pos;
+  const dist = Math.hypot(bx, bz);
+  if (dist > 12) {
+    const rua = new THREE.Mesh(new THREE.BoxGeometry(1.2, .06, dist - 17), new THREE.MeshBasicMaterial({ color: T.cor, transparent: true, opacity: .4 }));
+    const fr = 12 + (dist - 17) / 2;
+    rua.position.set(bx / dist * fr, .05, bz / dist * fr);
+    rua.lookAt(0, .05, 0);
+    scene.add(rua);
+  }
+  grupo.position.set(bx, 0, bz);
+  scene.add(grupo);
+  const rot = textoSprite(T.nome, '#' + T.cor.toString(16).padStart(6, '0'), T === TORRES.diretoria ? 1.6 : 1.05);
+  rot.position.set(bx, T.h + 3.4, bz);
+  scene.add(rot);
+}
+// letreiro HQ
+{
+  const letreiro = textoSprite('ANATECHMG · 24/7', '#7dd3fc', 2.1);
+  letreiro.position.set(0, 44, 0); scene.add(letreiro);
+}
+
+// ===== pessoas =====
+const povo = [];
+const SKINS = [0xf1c27d, 0xe0ac69, 0xc68642, 0x8d5524, 0xffdbac];
+class Pessoa {
+  constructor(nome) {
+    this.nome = nome;
+    this.zona = ZONAS[nome] || 'diretoria';
+    const T = TORRES[this.zona];
+    const ang = Math.random() * Math.PI * 2;
+    const rr = Math.hypot(T.pos[0], T.pos[1]);
+    const casaAng = rr > 1 ? Math.atan2(T.pos[1], T.pos[0]) : ang;
+    this.casa = new THREE.Vector3(T.pos[0] + Math.cos(casaAng + (rr > 1 ? Math.PI : 0)) * (TORRES[this.zona].w / 2 + 4), 0, T.pos[1] + Math.sin(casaAng + (rr > 1 ? Math.PI : 0)) * (TORRES[this.zona].d / 2 + 4));
+    const g = new THREE.Group();
+    const corHex = T.cor;
+    const corpo = new THREE.Mesh(new THREE.CapsuleGeometry(.42, 1.0, 4, 10), new THREE.MeshStandardMaterial({ color: corHex, roughness: .7, emissive: corHex, emissiveIntensity: .18 }));
+    corpo.position.y = 1.15; corpo.castShadow = false; g.add(corpo);
+    const cabeca = new THREE.Mesh(new THREE.SphereGeometry(.34, 14, 14), new THREE.MeshStandardMaterial({ color: SKINS[Math.floor(Math.random() * SKINS.length)], roughness: .6 }));
+    cabeca.position.y = 2.18; g.add(cabeca);
+    // pés
+    for (const s of [-1, 1]) {
+      const pe = new THREE.Mesh(new THREE.CapsuleGeometry(.12, .3, 3, 6), new THREE.MeshStandardMaterial({ color: 0x1f2937 }));
+      pe.position.set(s * .22, .35, 0); g.add(pe); (this.pes = this.pes || []).push(pe);
+    }
+    // nome
+    const rot = textoSprite(nome, '#dbeafe', .62);
+    rot.position.y = 3.1; rot.scale.set(6.4, 1.2, 1); g.add(rot);
+    g.position.copy(this.casa).add(new THREE.Vector3((Math.random() - .5) * 6, 0, (Math.random() - .5) * 6));
+    scene.add(g);
+    this.g = g; this.corpo = corpo;
+    this.estado = 'parado'; this.prox = performance.now() + 800 + Math.random() * 3000;
+    this.dest = null; this.holo = null;
+    this.vel = 1.6 + Math.random() * 1.1;
+  }
+  novoDestino() {
+    const r = Math.random();
+    let alvo;
+    if (r < .55) { // perto da própria torre
+      alvo = new THREE.Vector3(this.casa.x + (Math.random() - .5) * 10, 0, this.casa.z + (Math.random() - .5) * 10);
+    } else if (r < .78) { // praça central
+      const a = Math.random() * Math.PI * 2, rad = Math.random() * 12;
+      alvo = new THREE.Vector3(Math.cos(a) * rad, 0, Math.sin(a) * rad);
+    } else if (r < .92) { // café
+      alvo = new THREE.Vector3(TORRES.lazer.pos[0] + (Math.random() - .5) * 8, 0, TORRES.lazer.pos[1] - 8 - Math.random() * 4);
+    } else { // reunião
+      alvo = new THREE.Vector3(TORRES.reuniao.pos[0] + (Math.random() - .5) * 7, 0, TORRES.reuniao.pos[1] - 7 - Math.random() * 4);
+    }
+    // fora do miolo das torres
+    for (const T of Object.values(TORRES)) {
+      const d = Math.hypot(alvo.x - T.pos[0], alvo.z - T.pos[1]);
+      const min = Math.max(T.w, T.d) / 2 + 1.6;
+      if (d < min) { const a = Math.atan2(alvo.z - T.pos[1], alvo.x - T.pos[0]); alvo.x = T.pos[0] + Math.cos(a) * min; alvo.z = T.pos[1] + Math.sin(a) * min; }
+    }
+    this.dest = alvo; this.estado = 'andando';
+  }
+  montaHolo() {
+    this.limpaHolo();
+    const a = this.dados || {}; const T = TORRES[this.zona];
+    const c = document.createElement('canvas'); c.width = 512; c.height = 224;
+    const x = c.getContext('2d');
+    x.fillStyle = 'rgba(6,10,22,.82)'; x.fillRect(0, 0, 512, 224);
+    x.strokeStyle = '#22d3ee'; x.lineWidth = 5; x.strokeRect(3, 3, 506, 218);
+    x.fillStyle = 'rgba(34,211,238,.15)'; x.fillRect(3, 3, 506, 44);
+    x.font = '800 34px system-ui,sans-serif'; x.textAlign = 'left'; x.fillStyle = '#7dd3fc';
+    x.fillText((a.emoji || '🤖') + ' ' + this.nome.slice(0, 22), 18, 38);
+    x.font = '600 26px system-ui,sans-serif'; x.fillStyle = '#e2e8f0';
+    x.fillText(String(a.papel || '—').slice(0, 38), 18, 86);
+    x.fillStyle = '#4ade80'; x.font = '700 24px system-ui,sans-serif';
+    x.fillText('● ' + String(a.status || 'aguardando').slice(0, 24), 18, 124);
+    x.fillStyle = '#a7f3d0'; x.font = '500 23px system-ui,sans-serif';
+    const acao = String(a.ultima_acao || 'sem atividade').slice(0, 64);
+    x.fillText('▸ ' + acao.slice(0, 40), 18, 166);
+    if (acao.length > 40) x.fillText('▸ ' + acao.slice(40), 18, 198);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+    this.holo = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, depthWrite: false }));
+    this.holo.scale.set(7.2, 3.15, 1); this.holo.position.y = 4.6;
+    this.g.add(this.holo);
+  }
+  atualizaHolo() { if (sel === this.nome) this.montaHolo(); }
+  limpaHolo() { if (this.holo) { this.g.remove(this.holo); this.holo = null; } }
+  tick(agora, dt) {
+    if (sel === this.nome && this.holo) { this.holo.position.y = 4.6 + Math.sin(agora * .003) * .08; }
+    if (this.estado === 'parado') {
+      this.corpo.position.y = 1.15 + Math.sin(agora * .004 + this.casa.x) * .04;
+      if (agora > this.prox) this.novoDestino();
+    } else if (this.dest) {
+      const d = new THREE.Vector3().subVectors(this.dest, this.g.position); d.y = 0;
+      const dist = d.length();
+      if (dist < .3) { this.estado = 'parado'; this.prox = agora + 1500 + Math.random() * 4500; return; }
+      d.normalize();
+      this.g.position.addScaledVector(d, this.vel * dt);
+      const ang = Math.atan2(d.x, d.z);
+      this.g.rotation.y += (ang - this.g.rotation.y) * Math.min(1, dt * 8);
+      const passo = Math.sin(agora * .012) * .18;
+      this.pes[0].position.z = passo; this.pes[1].position.z = -passo;
+    }
+  }
+}
+function povoar() {
+  for (const nome of Object.keys(ZONAS)) povo.push(new Pessoa(nome));
+  alvos.push(...povo.map(p => p.g));
+}
+
+// ===== interação =====
+const ray = new THREE.Raycaster(); const ndc = new THREE.Vector2();
+let downX = 0, downY = 0;
+renderer.domElement.addEventListener('pointerdown', e => { downX = e.clientX; downY = e.clientY; controls.autoRotate = false; });
+renderer.domElement.addEventListener('pointerup', e => {
+  if (Math.hypot(e.clientX - downX, e.clientY - downY) > 6) return;
+  ndc.x = (e.clientX / innerWidth) * 2 - 1; ndc.y = -(e.clientY / innerHeight) * 2 + 1;
+  ray.setFromCamera(ndc, camera);
+  const hits = ray.intersectObjects(alvos, true);
+  if (hits.length) {
+    let obj = hits[0].object;
+    while (obj && obj.parent && !alvos.includes(obj)) obj = obj.parent;
+    const p = povo.find(q => q.g === obj);
+    if (p) abreCarta(p.nome);
+  }
+});
+addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); });
+
+// ===== bloom =====
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), .85, .55, .22);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+// ===== intro =====
+let intro = 0; const posFinal = new THREE.Vector3(46, 32, 52);
+function animate(ms) {
+  requestAnimationFrame(animate);
+  const dt = Math.min(.05, (ms - (animate.ult || ms)) / 1000); animate.ult = ms;
+  if (intro < 1) {
+    intro = Math.min(1, intro + dt / 2.6);
+    const e = 1 - Math.pow(1 - intro, 3);
+    camera.position.lerpVectors(new THREE.Vector3(0, 110, 150), posFinal, e);
+  }
+  if (voando) {
+    const e = Math.min(1, (performance.now() - voando.t0) / 1300);
+    const ee = 1 - Math.pow(1 - e, 3);
+    camera.position.lerpVectors(voando.d0, voando.d1, ee);
+    controls.target.lerpVectors(voando.a0, voando.a1, ee);
+    if (e >= 1) { voando = null; controls.enabled = true; }
+  }
+  controls.update();
+  const agora = performance.now();
+  for (const p of povo) p.tick(agora, dt);
+  lCiano.intensity = 250 + Math.sin(agora * .0011) * 60;
+  lMagenta.intensity = 220 + Math.cos(agora * .0013) * 55;
+  composer.render();
+  if (animate.prim === undefined) { animate.prim = true; const l = document.getElementById('load'); l.style.opacity = 0; setTimeout(() => l.remove(), 900); }
+}
+
+povoar();
+function montaEquipe() {
+  const box = document.getElementById('eqLista'); box.innerHTML = '';
+  const grupos = {};
+  Object.keys(ZONAS).forEach(n => { const z = ZONAS[n]; (grupos[z] = grupos[z] || []).push(n); });
+  for (const z of Object.keys(grupos)) {
+    const T = TORRES[z];
+    const h = document.createElement('div'); h.className = 'eqz';
+    h.textContent = '🏙 ' + T.nome; h.style.color = '#' + T.cor.toString(16).padStart(6, '0');
+    box.appendChild(h);
+    grupos[z].sort().forEach(n => {
+      const it = document.createElement('div'); it.className = 'eqi'; it.textContent = n;
+      it.onclick = () => abreCarta(n);
+      box.appendChild(it);
+    });
+  }
+}
+document.getElementById('eqBtn').addEventListener('click', () => document.getElementById('equipe').classList.toggle('aberta'));
+montaEquipe();
+let voando = null;
+function voaPara(p) {
+  const alvo = p.g.position.clone(); alvo.y = 2.2;
+  const dir = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
+  const pos = alvo.clone().addScaledVector(dir, 13); pos.y = Math.max(7, pos.y + 8);
+  voando = { t0: performance.now(), d0: camera.position.clone(), a0: controls.target.clone(), d1: pos, a1: alvo };
+  controls.autoRotate = false; controls.enabled = false;
+}
+carregaDados();
+setInterval(carregaDados, 30000);
+setInterval(() => { document.getElementById('rel').textContent = new Date().toLocaleTimeString('pt-BR'); }, 1000);
+animate(0);
+</script>
+<a id="entrarEsc" href="escritorios.html" style="position:fixed;z-index:30;top:150px;right:12px;pointer-events:auto;background:rgba(9,13,22,.92);border:1px solid #009CFE;border-radius:12px;color:#7dd3fc;font-weight:800;font-size:.72rem;padding:10px 14px;text-decoration:none;box-shadow:0 0 14px #009CFE55">🏢 ENTRAR NOS ESCRITÓRIOS</a>
+</body>
+</html>
