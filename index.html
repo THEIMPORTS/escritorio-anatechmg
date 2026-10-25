@@ -99,10 +99,37 @@ body.foto #zonas{display:block}
 #btnmodo{background:rgba(10,13,22,.85);border:1px solid #009CFE;border-radius:999px;padding:5px 14px;font-size:.64rem;font-weight:900;color:#009CFE;cursor:pointer;letter-spacing:.5px}
 #btnmodo.on{background:#009CFE;color:#001336}
 @media (max-width:700px){.zchip{font-size:.56rem;padding:4px 9px 4px 6px}.zchip .qc{display:none}}
+
+/* ===== salas fotorrealistas v5.1 ===== */
+#salaBar{position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:9;display:none;gap:8px;align-items:center}
+body.emSala #salaBar{display:flex}
+#salaBar button{background:rgba(10,13,22,.88);border:1px solid #263048;color:#e6e9ef;border-radius:999px;padding:7px 14px;font-size:.66rem;font-weight:800;cursor:pointer;letter-spacing:.4px}
+#salaBar button:hover{border-color:#009CFE}
+#salaBar .stit{background:rgba(10,13,22,.88);border:1px solid var(--zc,#009CFE);border-radius:999px;padding:7px 16px;font-size:.66rem;font-weight:900;letter-spacing:.8px;color:var(--zc,#009CFE);box-shadow:0 0 18px var(--zg,rgba(0,156,254,.3))}
+#salas{position:fixed;inset:0;z-index:8;display:none;pointer-events:none}
+body.emSala #zonas{display:none}
+body.emSala #salas{display:block}
+.badgeA{position:absolute;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;text-align:center;transition:filter .15s}
+.badgeA:hover{filter:drop-shadow(0 0 10px var(--zc,#009CFE))}
+.badgeA .av{width:44px;height:44px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.18),rgba(10,13,22,.92));border:2px solid var(--zc,#009CFE);display:flex;align-items:center;justify-content:center;font-size:1.35rem;box-shadow:0 0 16px var(--zg,rgba(0,156,254,.4));animation:flut 4.2s ease-in-out infinite alternate}
+.badgeA .nmt{margin-top:3px;font-size:.56rem;font-weight:800;color:#e6e9ef;background:rgba(8,11,20,.72);border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:1px 6px;white-space:nowrap;max-width:110px;overflow:hidden;text-overflow:ellipsis}
+.badgeA .stq{display:inline-block;width:6px;height:6px;border-radius:50%;margin-left:3px;background:#4ade80;vertical-align:middle}
+.badgeA .stq.aguardando{background:#facc15}
+.badgeA .stq.pausado{background:#f87171}
+@keyframes flut{from{transform:translate(-50%,-100%) translateY(0)}to{transform:translate(-50%,-100%) translateY(-9px)}}
+.bolha{position:absolute;transform:translate(-50%,-115%);max-width:240px;background:rgba(244,246,251,.97);color:#111827;border-radius:12px;padding:7px 11px;font-size:.62rem;font-weight:600;line-height:1.35;box-shadow:0 8px 26px rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .5s;z-index:9}
+.bolha.vis{opacity:1}
+.bolha .quem{font-weight:900;color:#12386B;display:block;margin-bottom:1px}
+.bolha:after{content:"";position:absolute;left:50%;bottom:-6px;margin-left:-6px;border:6px solid transparent;border-bottom:0;border-top:6px solid rgba(244,246,251,.97)}
+@media (prefers-reduced-motion:reduce){.badgeA .av{animation:none}}
+@media (max-width:700px){.badgeA .av{width:34px;height:34px;font-size:1rem}.badgeA .nmt{font-size:.5rem;max-width:84px}}
 </style></head><body>
 <canvas id="c2d"></canvas>
 <div id="fundo"><div class="img"></div><div class="veu"></div><div class="vinheta"></div></div>
 <div id="zonas"></div>
+<div id="salaBar"><button onclick="saiSala()">← hall</button><span class="stit" id="salaTit">SALA</span><button onclick="abreRoster(SALA)">ver equipe</button></div>
+<div id="salas"></div>
+
 <div id="roster">
   <div class="rt" id="rosterT">EQUIPE</div>
   <div id="rosterL"></div>
@@ -625,12 +652,13 @@ function chpz() {
     var nAt = 0;
     for (var j = 0; j < pz[k].length; j++) if (String(pz[k][j].status || '').toLowerCase() === 'ativo') nAt++;
     var s = SLOTS[i % SLOTS.length];
-    h += '<div class="zchip" style="left:' + s[0] + '%;top:' + s[1] + '%;--zc:' + info.cor + ';--zg:' + hexa(info.cor) + '" onclick="abreRoster(\'' + k + '\')"><span class="zn"></span>' + info.nome + ' <span class="qc">' + nAt + '</span></div>';
+    h += '<div class="zchip" style="left:' + s[0] + '%;top:' + s[1] + '%;--zc:' + info.cor + ';--zg:' + hexa(info.cor) + '" onclick="chipClique(\'' + k + '\')"><span class="zn"></span>' + info.nome + ' <span class="qc">' + nAt + '</span></div>';
   }
   document.getElementById('zonas').innerHTML = h;
 }
 function hexa(c) { return c + '55'; }
 var rosterZ = null;
+function chipClique(k) { if (SALA) { abreRoster(k); return; } entraSala(k); }
 function abreRoster(k) {
   var info = ZONAS[k] || { nome: k.toUpperCase(), cor: '#8b93a3' };
   rosterZ = k;
@@ -651,6 +679,85 @@ function abreAgFoto(nome) {
   for (var i = 0; i < mesas.length; i++) if (String(mesas[i].ag.nome) === nome) { abreCarta(mesas[i]); break; }
 }
 setaModo('foto');
+
+
+// ===== salas fotorrealistas v5.1 =====
+var FOTOS = { trading: 'sala_trading.jpg', marketing: 'sala_marketing.jpg', comercial: 'sala_comercial.jpg', pesquisa: 'sala_pesquisa.jpg', devsec: 'sala_devsec.jpg', software: 'sala_software.jpg', contabil: 'sala_contabil.jpg', fiscal: 'sala_fiscal.jpg', juridico: 'sala_juridico.jpg', licitacao: 'sala_licitacao.jpg', suporte: 'sala_suporte.jpg', diretoria: null };
+var SALA = null;
+var bolhaTimer = null;
+function entraSala(k) {
+  if (!FOTOS[k]) return;
+  SALA = k;
+  var info = ZONAS[k] || { nome: k.toUpperCase(), cor: '#8b93a3' };
+  document.body.classList.add('emSala');
+  var sal = document.querySelector('#fundo .img');
+  sal.style.animation = 'none';
+  sal.style.backgroundImage = "url('" + FOTOS[k] + "')";
+  sal.offsetHeight; sal.style.animation = '';
+  var tinta = document.getElementById('tinta');
+  if (tinta) tinta.style.background = info.cor;
+  document.getElementById('salaBar').style.setProperty('--zc', info.cor);
+  document.getElementById('salaBar').style.setProperty('--zg', info.cor + '55');
+  document.getElementById('salaTit').textContent = info.nome;
+  montaBadges(k, info.cor);
+  document.getElementById('roster').classList.remove('aberto');
+}
+function saiSala() {
+  SALA = null;
+  document.body.classList.remove('emSala');
+  var sal = document.querySelector('#fundo .img');
+  sal.style.backgroundImage = "url('escritorio_fotorreal.jpg')";
+  clearInterval(bolhaTimer);
+  document.getElementById('salas').innerHTML = '';
+  document.getElementById('roster').classList.remove('aberto');
+}
+function posBadges(n) {
+  var pos = [];
+  var cols = n <= 5 ? n : Math.min(7, Math.ceil(n / 2));
+  var rows = Math.ceil(n / cols);
+  for (var r = 0; r < rows; r++) for (var c = 0; c < cols && pos.length < n; c++) {
+    var x = cols === 1 ? 50 : 8 + (c * 84) / (cols - 1);
+    var y = 62 + r * (n > 7 ? 17 : 0);
+    pos.push([x, y]);
+  }
+  return pos;
+}
+function montaBadges(k, cor) {
+  var lista = (ZCACHE || {})[k] || [];
+  var pos = posBadges(Math.max(1, lista.length));
+  var h = '';
+  for (var i = 0; i < lista.length; i++) {
+    var a = lista[i];
+    var st = String(a.status || 'aguardando').toLowerCase();
+    h += '<div class="badgeA" id="bdg' + i + '" style="left:' + pos[i][0] + '%;top:' + pos[i][1] + '%;--zc:' + cor + ';--zg:' + cor + '55" onclick="abreAgFoto(\'' + String(a.nome).replace(/'/g, '') + '\')"><div class="av">' + (a.emoji || '🤖') + '</div><div class="nmt">' + a.nome + '<span class="stq ' + st + '"></span></div></div>';
+  }
+  document.getElementById('salas').innerHTML = h + '<div class="bolha" id="bolha"></div>';
+  conversa(k, lista, cor);
+}
+function conversa(k, lista, cor) {
+  clearInterval(bolhaTimer);
+  if (!lista.length) return;
+  var idx = 0;
+  var CHAT = ['já viu o resultado de hoje?', 'isso aqui tá fluindo bem', 'manda o relatório pra diretoria', 'boa! já tô cuidando disso', 'reunião rápida em 5 min?'];
+  function mostra() {
+    var a = lista[idx % lista.length];
+    var b = document.getElementById('bolha');
+    if (!b) return;
+    var bdg = document.getElementById('bdg' + (idx % lista.length));
+    if (bdg) { b.style.left = bdg.style.left; b.style.top = bdg.style.top; b.style.transform = 'translate(-50%,-115%)'; }
+    var txt = a.ultima_acao || CHAT[idx % CHAT.length];
+    if (txt.length > 110) txt = txt.slice(0, 108) + '…';
+    b.innerHTML = '<span class="quem">' + a.nome + ':</span>' + txt.replace(/</g, '&lt;');
+    b.style.setProperty('--zc', cor);
+    b.classList.add('vis');
+    setTimeout(function() { b.classList.remove('vis'); }, 3600);
+    idx++;
+  }
+  mostra();
+  bolhaTimer = setInterval(mostra, 4400);
+}
+var salaParam = new URLSearchParams(location.search).get('sala');
+if (salaParam && FOTOS[salaParam]) setTimeout(function() { entraSala(salaParam); }, 2200);
 
 // ===== dados ao vivo =====
 var mercado = { usd: null, btc: null };
