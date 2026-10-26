@@ -49,6 +49,7 @@ html,body{height:100%;overflow:hidden;background:#01030c}
 <div id="dica">🖱️ gire a cidade · clique num andar da torre ou num chip pra visitar o setor · clique num agente pra ver a ficha</div>
 <div id="carta"><span class="fx" onclick="fechaCarta()">fechar ✕</span><div id="cBody"></div></div>
 <div id="load"><div class="sp"></div><div style="font-size:13px;color:#7fa4d9">erguendo a cidade…</div></div>
+<script>window.addEventListener('error',function(e){document.title='ERRO: '+(e.message||'desconhecido')});</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
@@ -97,7 +98,7 @@ renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.
 document.getElementById('c3d').appendChild(renderer.domElement);
 var scene=new THREE.Scene();
 scene.background=new THREE.Color(0x01030c);
-scene.fog=new THREE.FogExp2(0x01030c,0.011);
+scene.fog=new THREE.FogExp2(0x01030c,0.0026);
 var camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,0.1,2600);
 camera.position.set(150,95,190);
 var controls=new OrbitControls(camera,renderer.domElement);
@@ -192,7 +193,7 @@ scene.add(vIns);
     pts.push(Math.cos(a)*Math.cos(e)*r2,Math.sin(e)*r2*.85+60,Math.sin(a)*Math.cos(e)*r2);
   }
   sg.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));
-  scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xbfd7ff,size:1.4,sizeAttenuation:false,transparent:true,opacity:.8})));
+  scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xbfd7ff,size:1.4,sizeAttenuation:false,transparent:true,opacity:.8,fog:false})));
 })();
 
 /* ===== TORRE HQ: 12 andares (11 setores + lobby) ===== */
@@ -218,12 +219,12 @@ ORDEM.forEach(function(zk,ix){
     new THREE.MeshBasicMaterial({color:cor}));
   anel.rotation.x=Math.PI/2;anel.position.y=8+ix*FANDAR+.62;
   torre.add(anel);anels.push(anel);
-  var etiqueta=spriteTexto(ZONAS[zk].nome,cor.getStyle());
+  var etiqueta=spriteTexto(ZONAS[zk].nome,cor.getStyle());etiqueta.material.fog=false;
   etiqueta.position.set(19.5,8+ix*FANDAR+1.6,0);
   torre.add(etiqueta);
 });
 // hologramas: logo giratório + anéis orbitais + feixe
-var logoH=spriteImagem(LOGO_URL);logoH.scale.set(26,10,1);logoH.position.y=ORDEM.length*FANDAR+16;torre.add(logoH);
+var logoH=spriteImagem(LOGO_URL);logoH.scale.set(26,10,1);logoH.material.fog=false;logoH.position.y=ORDEM.length*FANDAR+16;torre.add(logoH);
 var holoRings=[];
 for(var hg=0;hg<3;hg++){
   var hr=new THREE.Mesh(new THREE.TorusGeometry(14+hg*2.6,.09,8,72),new THREE.MeshBasicMaterial({color:hg%2?0xFF8100:0x009CFE}));
