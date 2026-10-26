@@ -67,19 +67,24 @@ var ORDEM = ['diretoria','marketing','comercial','trading','juridico','contabil'
 var STCOR = {ativo:'#22c55e',aguardando:'#eab308',pausado:'#ef4444',erro:'#ef4444',concluida:'#22c55e',pendente:'#eab308'};
 var AMBIENTE = ['coffee gelado acabou de novo','esse lead respondeu na hora!','relatório saindo do forno','deploy verde, finalmente','client pediu reunião amanhã','conferindo os números do mês','idea pra campanha ficou top','pergunta do cliente resolvida'];
 function zoneOf(nome,papel){
-  var t=(nome+' '+papel).toLowerCase();
-  if(t.indexOf('conway')>=0||t.indexOf('ana')>=0&&t.indexOf('diretoria')>=0||t.indexOf('diretoria')>=0)return 'diretoria';
-  if(t.indexOf('marketing')>=0||t.indexOf('ranko')>=0||t.indexOf('tráfego')>=0||t.indexOf('trafego')>=0)return 'marketing';
-  if(t.indexOf('comercial')>=0||t.indexOf('venda')>=0)return 'comercial';
-  if(t.indexOf('quant')>=0||t.indexOf('trade')>=0||t.indexOf('sinal')>=0||t.indexOf('mídia')>=0||t.indexOf('midia')>=0)return 'trading';
-  if(t.indexOf('jurídic')>=0||t.indexOf('juridic')>=0||t.indexOf('dr.')>=0||t.indexOf('dra.')>=0)return 'juridico';
-  if(t.indexOf('contábil')>=0||t.indexOf('contabil')>=0)return 'contabil';
-  if(t.indexOf('fiscal')>=0)return 'fiscal';
-  if(t.indexOf('pesquisa')>=0||t.indexOf('ia')>=0&&t.indexOf('pesquisa')>=0)return 'pesquisa';
-  if(t.indexOf('devsec')>=0||t.indexOf('ciber')>=0||t.indexOf('segurança')>=0)return 'devsec';
-  if(t.indexOf('software')>=0||t.indexOf('programa')>=0||t.indexOf('dev')>=0)return 'software';
-  if(t.indexOf('licita')>=0)return 'licitacao';
-  if(t.indexOf('suporte')>=0||t.indexOf('atendimento')>=0)return 'suporte';
+  var p=String(papel||'')+' '+String(nome||'');
+  if(p.indexOf('Licitação')>=0||p.indexOf('Setor Público')>=0)return 'licitacao';
+  if(p.indexOf('Cibersegurança')>=0)return 'devsec';
+  if(p.indexOf('Software')>=0||p.indexOf('Programador')>=0)return 'software';
+  if(p.indexOf('Fiscal')>=0)return 'fiscal';
+  if(p.indexOf('Contábil')>=0||p.indexOf('Financeiro')>=0||p.indexOf('Financei')>=0)return 'contabil';
+  if(p.indexOf('Jurídico')>=0)return 'juridico';
+  if(p.indexOf('Pesquisa')>=0)return 'pesquisa';
+  if(p.indexOf('Marketing')>=0||p.indexOf('Vídeo')>=0||p.indexOf('Social')>=0||p.indexOf('Rankeamento')>=0||p.indexOf('SEO')>=0||p.indexOf('Locutor')>=0||p.indexOf('Avatar')>=0||p.indexOf('Visual')>=0||p.indexOf('Roteirista')>=0)return 'marketing';
+  if(p.indexOf('Comercial')>=0||p.indexOf('Vendas')>=0||p.indexOf('Qualificação')>=0||p.indexOf('Captação')>=0||p.indexOf('E-commerce')>=0||p.indexOf('TikTok')>=0)return 'comercial';
+  if(p.indexOf('Sinal')>=0||p.indexOf('Quant')>=0||p.indexOf('tráfego')>=0||p.indexOf('Tráfego')>=0||p.indexOf('Mídia')>=0||p.indexOf('mídia')>=0)return 'trading';
+  if(p.indexOf('Suporte')>=0)return 'suporte';
+  if(p.indexOf('Treinamento')>=0)return 'pesquisa';
+  if(p.indexOf('Inovação')>=0||p.indexOf('Arsenal')>=0)return 'pesquisa';
+  if(p.indexOf('Engenharia Reversa')>=0||p.indexOf('Segurança')>=0||p.indexOf('Acessos')>=0)return 'devsec';
+  if(p.indexOf('Educação')>=0)return 'pesquisa';
+  if(p.indexOf('Estrategista')>=0||p.indexOf('Monetização')>=0)return 'marketing';
+  if(nome==='Ana'||nome==='Conway'||nome==='Helena'||nome==='Otto'||nome==='Monty')return 'diretoria';
   return 'suporte';
 }
 var LOGO_URL='https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/905c9cd34_logo-completo-branco.png';
