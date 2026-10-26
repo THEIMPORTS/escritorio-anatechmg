@@ -340,8 +340,10 @@ pegaAgents().then(function(dados){
     c.addEventListener('click',function(){entraAndar(c.getAttribute('data-zona'))});
   });
   // constrói andares e humanos
+  var dbgEr='';
   ORDEM.forEach(function(zk){
     if(!agentesPorZona[zk])return;
+    try{
     buildAndar(zk,agentesPorZona[zk]);
     var g=grupos[zk];
     agentesPorZona[zk].forEach(function(a,i){
@@ -352,7 +354,9 @@ pegaAgents().then(function(dados){
       g.add(h);agentes.push(h);
     });
     g.visible=false;
+    }catch(e){dbgEr+=zk+': '+e.message+' | ';}
   });
+  document.title='DBG floors='+Object.keys(grupos).length+' ags='+agentes.length+(dbgEr?' ERR '+dbgEr:'');
   agendaConversas();
   document.getElementById('load').style.display='none';
   // deep link
