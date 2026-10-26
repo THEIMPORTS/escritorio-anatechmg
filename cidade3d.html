@@ -94,7 +94,7 @@ var LOGO_URL='https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/publ
 var renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.8));
 renderer.setSize(innerWidth,innerHeight);
-renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;
 document.getElementById('c3d').appendChild(renderer.domElement);
 var scene=new THREE.Scene();
 scene.background=new THREE.Color(0x01030c);
@@ -106,6 +106,7 @@ controls.enableDamping=true;controls.dampingFactor=.06;
 controls.maxDistance=420;controls.minDistance=8;controls.maxPolarAngle=Math.PI*.495;
 controls.target.set(0,42,0);
 scene.add(new THREE.AmbientLight(0x88aacc,.55));
+scene.add(new THREE.HemisphereLight(0x9fc4ff,0x0a1020,.5));
 var lua=new THREE.DirectionalLight(0x99c4ff,.5);lua.position.set(200,300,100);scene.add(lua);
 var neon=new THREE.PointLight(0x009CFE,1.2,400);neon.position.set(0,70,0);scene.add(neon);
 
@@ -243,11 +244,13 @@ function buildAndar(zk,lista){
   var g=new THREE.Group();g.position.y=8+ORDEM.indexOf(zk)*FANDAR+FANDAR/2+.56;
   var cor=new THREE.Color(ZONAS[zk].cor);
   var piso=new THREE.Mesh(new THREE.CircleGeometry(FLOOR_R,40),
-    new THREE.MeshStandardMaterial({color:0x0a1526,roughness:.6,emissive:0x061020}));
+    new THREE.MeshStandardMaterial({color:0x11213a,roughness:.55,emissive:0x081225}));
   piso.rotation.x=-Math.PI/2;g.add(piso);
   var tapete=new THREE.Mesh(new THREE.CircleGeometry(4.6,40),
     new THREE.MeshStandardMaterial({color:cor,emissive:cor,emissiveIntensity:.16,roughness:.9}));
   tapete.rotation.x=-Math.PI/2;tapete.position.y=.03;g.add(tapete);
+  var luzAndar=new THREE.PointLight(0xfff2dd,0,30);luzAndar.position.set(0,3.2,0);g.add(luzAndar);g.userData.luz=luzAndar;
+  var luzZona=new THREE.PointLight(cor,0,26);luzZona.position.set(0,2.2,4);g.add(luzZona);g.userData.luzZona=luzZona;
   var anelCentral=new THREE.Mesh(new THREE.TorusGeometry(4.7,.06,8,64),new THREE.MeshBasicMaterial({color:cor}));
   anelCentral.rotation.x=Math.PI/2;anelCentral.position.y=.06;g.add(anelCentral);
   // mesas: 2 arcos ao redor do centro
@@ -256,12 +259,12 @@ function buildAndar(zk,lista){
     var ang=(i/Math.max(nm,1))*Math.PI*2+(zk.length*.3);
     var rad=n<=4?8.4:10.8;
     var mesa=new THREE.Group();
-    var tampo=new THREE.Mesh(new THREE.BoxGeometry(2.4,.12,1.3),new THREE.MeshStandardMaterial({color:0x10233f,roughness:.4,metalness:.5}));
+    var tampo=new THREE.Mesh(new THREE.BoxGeometry(2.4,.12,1.3),new THREE.MeshStandardMaterial({color:0x24466e,roughness:.4,metalness:.5}));
     mesa.add(tampo);
     var pe=new THREE.Mesh(new THREE.BoxGeometry(.18,1.05,.18),new THREE.MeshStandardMaterial({color:0x0a1628}));
     pe.position.y=-.55;mesa.add(pe);
     var monitor=new THREE.Mesh(new THREE.BoxGeometry(1.15,.72,.06),
-      new THREE.MeshStandardMaterial({color:0x02060f,emissive:0x2f81f7,emissiveIntensity:.9}));
+      new THREE.MeshStandardMaterial({color:0x02060f,emissive:0x4f9fff,emissiveIntensity:1.6}));
     monitor.position.set(0,.42,-.28);monitor.rotation.x=-.12;mesa.add(monitor);
     var glow=new THREE.PointLight(0x2f81f7,.5,5);glow.position.set(0,.7,0);mesa.add(glow);
     mesa.position.set(Math.cos(ang)*rad,1.06,Math.sin(ang)*rad);
@@ -277,13 +280,13 @@ function fazHumano(a,cor){
   var h=new THREE.Group();
   var ccor=new THREE.Color(cor);
   var corpo=new THREE.Mesh(new THREE.CapsuleGeometry(.26,.62,4,10),
-    new THREE.MeshStandardMaterial({color:ccor.clone().multiplyScalar(.55),roughness:.7,emissive:ccor,emissiveIntensity:.14}));
+    new THREE.MeshStandardMaterial({color:ccor.clone().multiplyScalar(.95),roughness:.55,emissive:ccor,emissiveIntensity:.38}));
   corpo.position.y=.75;h.add(corpo);
   var cabeca=new THREE.Mesh(new THREE.SphereGeometry(.19,14,12),
     new THREE.MeshStandardMaterial({color:0xf3c9a5,roughness:.65}));
   cabeca.position.y=1.42;h.add(cabeca);
   var nome=spriteTexto((a.emoji||'🤖')+' '+a.nome,'#ffffff');
-  nome.scale.set(nome.scale.x*.8,nome.scale.y*.8,1);nome.position.y=2.05;h.add(nome);
+  nome.scale.set(nome.scale.x*1.05,nome.scale.y*1.05,1);nome.position.y=2.15;h.add(nome);
   var anel=new THREE.Mesh(new THREE.TorusGeometry(.42,.05,8,32),
     new THREE.MeshBasicMaterial({color:new THREE.Color(STCOR[a.status]||'#22c55e'),transparent:true,opacity:.8}));
   anel.rotation.x=Math.PI/2;anel.position.y=.06;h.add(anel);
@@ -378,9 +381,9 @@ function camTween(pos,tgt,dur){
 }
 function entraAndar(zk){
   if(andarAtivo===zk)return;
-  if(andarAtivo&&grupos[andarAtivo])grupos[andarAtivo].visible=false;
+  if(andarAtivo&&grupos[andarAtivo]){grupos[andarAtivo].visible=false;var ga=grupos[andarAtivo];if(ga.userData.luz)ga.userData.luz.intensity=0;if(ga.userData.luzZona)ga.userData.luzZona.intensity=0;}
   andarAtivo=zk;
-  var g=grupos[zk];g.visible=true;
+  var g=grupos[zk];g.visible=true;if(g.userData.luz)g.userData.luz.intensity=1.1;if(g.userData.luzZona)g.userData.luzZona.intensity=.7;
   var y=g.position.y;
   camTween(new THREE.Vector3(0,y+4.2,10.5),new THREE.Vector3(0,y+.9,0),1400);
   controls.minDistance=2.5;controls.maxDistance=40;
@@ -390,7 +393,7 @@ function entraAndar(zk){
   marcaChip(zk);
 }
 function visaoGeral(){
-  if(andarAtivo&&grupos[andarAtivo])grupos[andarAtivo].visible=false;
+  if(andarAtivo&&grupos[andarAtivo]){grupos[andarAtivo].visible=false;var gv=grupos[andarAtivo];if(gv.userData.luz)gv.userData.luz.intensity=0;if(gv.userData.luzZona)gv.userData.luzZona.intensity=0;}
   andarAtivo=null;fechaCarta();
   camTween(new THREE.Vector3(150,95,190),new THREE.Vector3(0,42,0),1500);
   controls.minDistance=8;controls.maxDistance=420;
