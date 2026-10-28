@@ -1,0 +1,22 @@
+<!DOCTYPE html><html><body><pre id="o">start</pre>
+<script type="module">
+const log=(m)=>{document.getElementById('o').textContent += '\n'+m};
+window.addEventListener('error',e=>log('ERRO: '+e.message));
+try{
+ const bip39 = await import('https://esm.sh/@scure/bip39@1.3.0');
+ const wl = await import('https://esm.sh/@scure/bip39@1.3.0/wordlists/english');
+ const hd = await import('https://esm.sh/@scure/bip32@1.4.0');
+ const btc = await import('https://esm.sh/@scure/btc-signer@1.4.0');
+ const qr = await import('https://esm.sh/qrcode-generator@1.4.4');
+ log('bip39:'+typeof bip39.generateMnemonic);
+ log('wordlist:'+typeof wl.wordlist);
+ log('hdkey:'+typeof hd.HDKey);
+ log('btc.p2wpkh:'+typeof btc.p2wpkh+' utils:'+typeof btc.utils+' bytesToHex:'+typeof (btc.utils&&btc.utils.bytesToHex));
+ log('qr default:'+typeof (qr.default||qr));
+ const m='abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about';
+ const seed=bip39.mnemonicToSeedSync(m);
+ const child=hd.HDKey.fromMasterSeed(seed).derive("m/84'/0'/0'/0/0");
+ const p2=btc.p2wpkh(child.publicKey, btc.NETWORK);
+ log('ADDR:'+p2.address);
+}catch(e){ log('FALHA: '+(e&&e.message)); }
+</script></body></html>
