@@ -1,57 +1,251 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pacote IA Anatechmg — Atendimento WhatsApp 24h</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pacote IA Anatechmg — Atendimento e captação 24h com IA</title>
+<meta name="description" content="Agente de IA no WhatsApp, Instagram e Facebook: capta leads, responde, agenda e vende 24 horas por dia. Implantação profissional Anatechmg.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-body{background:#0a1628;color:#eef4ff;line-height:1.6}
-.hero{text-align:center;padding:60px 20px;background:linear-gradient(160deg,#0a1628 0%,#123a6b 100%)}
-.hero h1{font-size:2.2rem;margin-bottom:16px}
-.hero h1 span{color:#25d366}
-.badge{display:inline-block;background:#25d366;color:#04220f;font-weight:700;border-radius:20px;padding:6px 18px;margin-bottom:18px;font-size:.85rem}
-.sub{max-width:640px;margin:0 auto 28px;color:#b9c9e2;font-size:1.1rem}
-.cta{display:inline-block;background:#25d366;color:#04220f;text-decoration:none;font-weight:800;font-size:1.15rem;padding:16px 42px;border-radius:14px}
-section{max-width:860px;margin:0 auto;padding:48px 20px}
-h2{text-align:center;margin-bottom:28px;color:#fff}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.card{background:#10243f;border:1px solid #1d3a63;border-radius:14px;padding:22px}
-.card b{color:#25d366}
-.price{text-align:center;background:#10243f;border:2px solid #25d366;border-radius:18px;padding:34px;margin:0 20px}
-.price .big{font-size:2.6rem;font-weight:900;color:#25d366}
-.price small{display:block;color:#b9c9e2;margin-top:6px}
-.foot{text-align:center;padding:36px 20px 52px;color:#8fa6c6;font-size:.85rem}
+:root{--azul:#009CFE;--marinho:#001336;--laranja:#FF8100;--fundo:#02060f;--card:#0a1226;--borda:#16244a;--txt:#e8eefb;--sub:#8fa3c4;--verde:#25d366}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--fundo);color:var(--txt);overflow-x:hidden}
+#fx{position:fixed;inset:0;z-index:0;opacity:.5}
+.wrap{position:relative;z-index:1}
+header{position:sticky;top:0;z-index:9;background:rgba(2,6,15,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--borda)}
+.nav{max-width:1160px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.nav img{height:32px}
+.nav a.wa{color:#fff;text-decoration:none;font-size:13px;font-weight:600;border:1px solid var(--azul);border-radius:999px;padding:9px 16px;background:rgba(0,156,254,.12);transition:.3s;white-space:nowrap}
+.nav a.wa:hover{background:rgba(0,156,254,.3);box-shadow:0 0 22px rgba(0,156,254,.5)}
+.hero{max-width:1160px;margin:0 auto;padding:80px 22px 48px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.selo{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--azul);border:1px solid rgba(0,156,254,.4);border-radius:999px;padding:8px 18px;background:rgba(0,156,254,.07);animation:flutua 5s ease-in-out infinite}
+h1{font-size:clamp(30px,4.6vw,52px);font-weight:800;line-height:1.12;margin:22px 0 16px;letter-spacing:-.02em}
+h1 span{background:linear-gradient(90deg,var(--azul),#7dd3fc 45%,var(--laranja));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--sub);font-size:clamp(14px,1.8vw,16.5px);line-height:1.75}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(90deg,var(--laranja),#ffa43d);color:var(--marinho);font-weight:700;font-size:14px;text-decoration:none;border:none;border-radius:12px;padding:15px 28px;cursor:pointer;transition:.3s;position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 34px -8px rgba(255,129,0,.65)}
+.btn::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-25deg);animation:brilho 3.2s ease-in-out infinite}
+.btn.zap{background:linear-gradient(90deg,#1fb45a,var(--verde));color:#fff}
+.btn.zap::after{display:none}
+.btn.zap:hover{box-shadow:0 12px 34px -8px rgba(37,211,102,.55)}
+.btn.ghost{background:transparent;color:var(--azul);border:1px solid rgba(0,156,254,.5)}
+.btn.ghost::after{display:none}
+.btn.ghost:hover{background:rgba(0,156,254,.12);box-shadow:0 12px 30px -10px rgba(0,156,254,.5)}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.kpi{background:var(--card);border:1px solid var(--borda);border-radius:14px;padding:14px 22px;min-width:132px}
+.kpi b{display:block;font-size:20px;color:#fff}
+.kpi small{color:var(--sub);font-size:10px;letter-spacing:.08em}
+/* chat de demonstração */
+.tela{position:relative;background:linear-gradient(180deg,#0b1530,#0a1226);border:1px solid var(--borda);border-radius:22px;padding:0;box-shadow:0 30px 90px -20px rgba(0,156,254,.35);overflow:hidden;animation:surge .8s cubic-bezier(.2,.8,.2,1) both .3s}
+.tela .topo{background:rgba(0,156,254,.08);border-bottom:1px solid var(--borda);padding:14px 18px;display:flex;align-items:center;gap:12px}
+.tela .topo .avt{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--azul),var(--laranja));display:flex;align-items:center;justify-content:center;font-size:19px}
+.tela .topo b{color:#fff;font-size:14px;display:block}
+.tela .topo small{color:var(--verde);font-size:11px;display:flex;align-items:center;gap:5px}
+.tela .topo small::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--verde);box-shadow:0 0 8px var(--verde)}
+.chat{padding:18px;min-height:330px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:82%;padding:11px 15px;border-radius:14px;font-size:13.5px;line-height:1.5;opacity:0;transform:translateY(12px);transition:.5s cubic-bezier(.2,.8,.2,1)}
+.msg.on{opacity:1;transform:none}
+.msg.cli{align-self:flex-end;background:linear-gradient(90deg,#0b7d33,#128c47);color:#fff;border-bottom-right-radius:4px}
+.msg.ia{align-self:flex-start;background:#16244a;color:var(--txt);border:1px solid var(--borda);border-bottom-left-radius:4px}
+.msg .hora{display:block;font-size:10px;opacity:.55;margin-top:4px}
+.digitando{align-self:flex-start;display:none;gap:5px;padding:12px 16px;background:#16244a;border:1px solid var(--borda);border-radius:14px;border-bottom-left-radius:4px}
+.digitando.on{display:flex}
+.digitando i{width:7px;height:7px;border-radius:50%;background:var(--azul);animation:pisca 1.2s infinite}
+.digitando i:nth-child(2){animation-delay:.2s}
+.digitando i:nth-child(3){animation-delay:.4s}
+.selodemo{position:absolute;top:64px;right:14px;background:rgba(255,129,0,.14);border:1px solid rgba(255,129,0,.45);color:#ffb066;font-size:10px;font-weight:700;letter-spacing:.12em;border-radius:999px;padding:5px 12px}
+h2.sec{font-size:clamp(22px,3.4vw,34px);font-weight:700;text-align:center;margin:76px 0 12px}
+p.sub{color:var(--sub);text-align:center;max-width:600px;margin:0 auto;line-height:1.7;font-size:14px}
+.grid{max-width:1160px;margin:42px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.card{background:linear-gradient(180deg,var(--card),#060c1c);border:1px solid var(--borda);border-radius:18px;padding:26px;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;opacity:0;transform:translateY(26px)}
+.card.viva{opacity:1;transform:none}
+.card:hover{transform:translateY(-8px);border-color:rgba(0,156,254,.55);box-shadow:0 22px 60px -18px rgba(0,156,254,.45)}
+.card::before{content:'';position:absolute;inset:0;border-radius:18px;padding:1px;background:linear-gradient(135deg,rgba(0,156,254,.5),transparent 40%,rgba(255,129,0,.4));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.4s;pointer-events:none}
+.card:hover::before{opacity:1}
+.icone{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(0,156,254,.12);border:1px solid rgba(0,156,254,.3);margin-bottom:16px;box-shadow:inset 0 0 18px rgba(0,156,254,.15)}
+.card h3{font-size:16px;font-weight:600;color:#fff;margin-bottom:8px}
+.card p{font-size:13px;color:var(--sub);line-height:1.65}
+/* passos */
+.passos{max-width:1160px;margin:46px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.passo{background:var(--card);border:1px solid var(--borda);border-radius:16px;padding:26px;transition:.35s;opacity:0;transform:translateY(26px)}
+.passo.viva{opacity:1;transform:none}
+.passo:hover{border-color:rgba(255,129,0,.5);transform:translateY(-4px)}
+.passo b{display:flex;align-items:center;gap:10px;color:#fff;font-size:15px;margin-bottom:10px}
+.passo b i{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--azul),var(--laranja));display:flex;align-items:center;justify-content:center;font-style:normal;font-size:13px;font-weight:700;color:var(--marinho);flex:none}
+.passo p{color:var(--sub);font-size:13px;line-height:1.65}
+/* preço */
+.precos{max-width:920px;margin:52px auto 0;padding:0 22px;display:grid;grid-template-columns:1fr;gap:0}
+.pcard{position:relative;background:linear-gradient(180deg,#0d1a3a,var(--card));border:1px solid rgba(0,156,254,.45);border-radius:24px;padding:44px 38px;box-shadow:0 30px 90px -20px rgba(0,156,254,.4);overflow:hidden}
+.pcard::before{content:'';position:absolute;top:-60%;left:50%;transform:translateX(-50%);width:130%;height:80%;background:radial-gradient(ellipse,rgba(0,156,254,.18),transparent 65%);pointer-events:none}
+.pcard .flame{position:absolute;top:22px;right:26px;background:linear-gradient(90deg,var(--laranja),#ffb066);color:var(--marinho);font-size:10px;font-weight:800;letter-spacing:.1em;border-radius:8px;padding:6px 12px;box-shadow:0 4px 18px rgba(255,129,0,.4)}
+.pcard h3{font-size:22px;color:#fff;font-weight:700}
+.pcard .desc{color:var(--sub);font-size:13.5px;margin-top:8px;line-height:1.7}
+.valores{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:30px 0}
+.valor{background:rgba(0,156,254,.06);border:1px solid var(--borda);border-radius:15px;padding:20px}
+.valor b{display:block;font-size:28px;font-weight:800;background:linear-gradient(90deg,#fff,var(--azul));-webkit-background-clip:text;background-clip:text;color:transparent}
+.valor small{color:var(--sub);font-size:12px}
+.valor small::before{content:'✓ ';color:var(--verde)}
+.inclui{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:6px 0 28px}
+.inclui span{color:var(--txt);font-size:13px;background:rgba(255,255,255,.03);border:1px solid var(--borda);border-radius:11px;padding:11px 14px}
+.inclui span::before{content:'✓ ';color:var(--azul);font-weight:700}
+.pcard .btn{width:100%;padding:17px;font-size:15px}
+.pcard .alt{display:block;text-align:center;margin-top:14px;color:var(--sub);font-size:12.5px}
+.pcard .alt a{color:var(--azul)}
+/* prova */
+.prova{max-width:920px;margin:0 auto;padding:0 22px}
+.pv{background:var(--card);border:1px solid var(--borda);border-radius:18px;padding:26px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.pv .esc{font-size:44px;filter:drop-shadow(0 0 18px rgba(0,156,254,.6))}
+.pv h4{color:#fff;font-size:17px;margin-bottom:6px}
+.pv p{color:var(--sub);font-size:13.5px;line-height:1.7;flex:1;min-width:260px}
+.pv a{color:var(--azul);font-size:13px;text-decoration:none;font-weight:600;white-space:nowrap}
+.pv a:hover{text-decoration:underline}
+/* faq */
+.faq{max-width:760px;margin:38px auto 0;padding:0 22px}
+details{background:var(--card);border:1px solid var(--borda);border-radius:14px;padding:18px 22px;margin-bottom:12px}
+summary{cursor:pointer;font-size:14px;font-weight:600;color:#fff;list-style:none}
+summary::after{content:'+';float:right;color:var(--azul);font-size:18px}
+details[open] summary::after{content:'–'}
+details p{color:var(--sub);font-size:13px;line-height:1.7;margin-top:10px}
+footer{margin-top:84px;background:linear-gradient(180deg,transparent,rgba(0,19,54,.85));border-top:1px solid var(--borda);padding:42px 22px;text-align:center}
+footer img{height:30px;margin-bottom:12px}
+footer p{color:var(--sub);font-size:12px;line-height:1.8}
+footer b{color:#fff}
+@keyframes flutua{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes brilho{0%{left:-80%}55%,100%{left:130%}}
+@keyframes surge{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pisca{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:56px;gap:34px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.card,.passo{opacity:1;transform:none}.msg{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<div class="hero">
-  <div class="badge">AUTOMAÇÃO WHATSAPP</div>
-  <h1>Seu negócio atende 8h por dia.<br>O cliente chama às 23h de domingo.<br><span>Quem responde?</span></h1>
-  <p class="sub">Com o Pacote IA Anatechmg, sua empresa responde todo cliente em segundos, 24 horas por dia, 7 dias por semana — no canal que o Brasil mais usa.</p>
-  <a class="cta" href="https://wa.me/5531989513698?text=Quero%20saber%20mais%20sobre%20o%20Pacote%20IA%20Anatechmg">QUERO MEU ATENDENTE 24H →</a>
+<canvas id="fx"></canvas>
+<div class="wrap">
+<header><nav class="nav"><img src="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/905c9cd34_logo-completo-branco.png" alt="Anatech MG"><a class="wa" href="https://wa.me/5531989513698" target="_blank">WhatsApp (31) 98951-3698</a></nav></header>
+
+<section class="hero">
+  <div>
+    <span class="selo">PACOTE IA · SISTEMA COMPLETO DE ATENDIMENTO</span>
+    <h1>Seu negócio respondendo <span>em segundos</span>, 24 horas por dia.</h1>
+    <p class="lead">Agente de IA no WhatsApp, Instagram e Facebook que capta leads, responde clientes, agenda reuniões e vende — enquanto a sua equipe foca no que só humanos fazem. Implantação profissional pela Anatechmg.</p>
+    <div class="ctas">
+      <a class="btn zap" href="https://wa.me/5531989513698?text=Quero%20conhecer%20o%20Pacote%20IA" target="_blank">💬 Falar com um especialista</a>
+      <a class="btn ghost" href="#como">Ver como funciona</a>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b>24/7</b><small>OPERAÇÃO CONTÍNUA</small></div>
+      <div class="kpi"><b>3</b><small>CANAIS ATENDIDOS</small></div>
+      <div class="kpi"><b>+60</b><small>AGENTES RODANDO HOJE</small></div>
+    </div>
+  </div>
+  <div class="tela" id="tela">
+    <div class="topo"><div class="avt">🤖</div><div><b>Ana · Atendimento Anatechmg</b><small>online agora</small></div></div>
+    <span class="selodemo">DEMONSTRAÇÃO</span>
+    <div class="chat" id="chat">
+      <div class="msg cli">Oi, vocês atendem no fim de semana?<span class="hora">sáb 22:47</span></div>
+      <div class="digitando" id="dig"><i></i><i></i><i></i></div>
+      <div class="msg ia">Oi! 👋 Sim — a gente atende 24 horas, todos os dias. É um negócio ou uso pessoal? Posso te mostrar como funciona em 2 minutinhos.<span class="hora">sáb 22:47 · resposta em 8s</span></div>
+      <div class="msg cli">É pro meu studio de sobrancelha, tô perdendo cliente fora do horário 😅<span class="hora">sáb 22:48</span></div>
+      <div class="msg ia">Entendi! Pro seu caso o ideal é o Pacote IA: cliente chama no WhatsApp ou Instagram, a IA responde na hora, mostra os serviços, agenda o horário e confirma — inclusive de madrugada. Quer que eu agende um diagnóstico gratuito com a equipe essa semana?<span class="hora">sáb 22:48</span></div>
+      <div class="msg cli">Quero! Terça de manhã tá ótimo 👏<span class="hora">sáb 22:48</span></div>
+      <div class="msg ia">Perfeito! Agendado: terça, 9h. Você recebe a confirmação agora e o link da reunião no mesmo dia. Qualquer dúvida, é só chamar por aqui. 🌟<span class="hora">sáb 22:49</span></div>
+    </div>
+  </div>
+</section>
+
+<h2 class="sec">O que o sistema faz</h2>
+<p class="sub">Um agente treinado no SEU negócio, operando nos três canais que seus clientes já usam.</p>
+<div class="grid">
+  <div class="card"><div class="icone">💬</div><h3>Atendimento automático 24h</h3><p>Responde na hora em WhatsApp, Instagram e Facebook — no plantão, feriado e madrugada. Nenhum cliente fica sem resposta.</p></div>
+  <div class="card"><div class="icone">🎯</div><h3>Captação de leads</h3><p>Quem chega pelas redes sociais vira lead registrado, com nome, interesse e canal — nada de mensagem perdida no direct.</p></div>
+  <div class="card"><div class="icone">📋</div><h3>Qualificação inteligente</h3><p>Pergunta o que importa (negócio, volume de clientes, maior desafio) e já encaminha pra pessoa certa ou pra oferta certa.</p></div>
+  <div class="card"><div class="icone">📅</div><h3>Agendamento automático</h3><p>Consulta a agenda, propõe horários, confirma e envia lembrete. Reunião marcada sem ninguém tocar no teclado.</p></div>
+  <div class="card"><div class="icone">🗂️</div><h3>Registro em sistema</h3><p>Cada conversa vira histórico organizado: quem é, o que quer, em que pé está. Seu comercial nunca mais perde o contexto.</p></div>
+  <div class="card"><div class="icone">📈</div><h3>Relatórios em tempo real</h3><p>Quantas conversas, quantos agendamentos, o que os clientes perguntam mais. Decisão baseada em dado, não em achismo.</p></div>
 </div>
-<section>
-  <h2>O que você recebe</h2>
-  <div class="grid">
-    <div class="card">🤖 <b>Atendente virtual</b> treinado com as informações do SEU negócio</div>
-    <div class="card">📥 <b>Captação automática</b> de leads de Instagram, Facebook e site</div>
-    <div class="card">📅 <b>Agendamento</b> de reuniões e follow-up automático</div>
-    <div class="card">🗂️ <b>Registro de clientes</b> em painel organizado</div>
-    <div class="card">📊 <b>Relatórios</b> de atendimento em tempo real</div>
-    <div class="card">🎙️ <b>Tom de voz</b> do seu jeito, ajustado junto com você</div>
+
+<h2 class="sec" id="como">Como funciona</h2>
+<p class="sub">Do primeiro contato ao sistema rodando, em três passos.</p>
+<div class="passos">
+  <div class="passo"><b><i>1</i>Diagnóstico gratuito</b><p>Conversa de 30 minutos por videochamada: a gente entende seu negócio, seu volume de atendimento e onde você está perdendo cliente.</p></div>
+  <div class="passo"><b><i>2</i>Implantação profissional</b><p>Nossa equipe configura os canais, treina a IA no seu negócio (serviços, preços, objeções) e faz o setup completo. Você não mexe em nada técnico.</p></div>
+  <div class="passo"><b><i>3</i>Operando 24/7</b><p>O agente entra no ar respondendo, captando e agendando. Você acompanha pelos relatórios e tem suporte humano contínuo da Anatechmg.</p></div>
+</div>
+
+<div class="prova">
+  <div class="pv">
+    <div class="esc">🏙️</div>
+    <div>
+      <h4>Nosso próprio escritório de IA</h4>
+      <p>A Anatechmg opera com mais de 60 agentes de IA em 11 setores — comercial, marketing, jurídico, fiscal, pesquisa — trabalhando agora, neste momento. Conheça a empresa que roda o que vende.</p>
+    </div>
+    <a href="https://theimports.github.io/escritorio-anatechmg/cidade3d.html" target="_blank">Visitar a cidade 3D →</a>
   </div>
-</section>
-<section>
-  <div class="price">
-    <div class="big">R$ 1.500 <span style="font-size:1rem">setup único</span> + R$ 297/mês</div>
-    <small>Setup inclui configuração completa, testes e 1 semana de acompanhamento junto.</small>
-    <p style="margin-top:18px"><a class="cta" href="https://wa.me/5531989513698?text=Quero%20o%20Pacote%20IA%20Anatechmg">FALAR COM A ANA AGORA</a></p>
+</div>
+
+<h2 class="sec">Investimento</h2>
+<p class="sub">Preço fechado, sem surpresa. Implantação única + operação mensal.</p>
+<div class="precos">
+  <div class="pcard">
+    <span class="flame">CARRO-CHEFE ANATECHMG</span>
+    <h3>Pacote IA</h3>
+    <p class="desc">Sistema completo de captação e atendimento com IA no WhatsApp, Instagram e Facebook.</p>
+    <div class="valores">
+      <div class="valor"><b>R$ 1.500</b><small>implantação completa, pagamento único</small></div>
+      <div class="valor"><b>R$ 297<small style="font-size:15px">/mês</small></b><small>operação, suporte e melhorias contínuas</small></div>
+    </div>
+    <div class="inclui">
+      <span>Configuração dos 3 canais</span><span>Treinamento da IA no seu negócio</span><span>Agendamento automático</span><span>Cadastro de leads no sistema</span><span>Relatórios em tempo real</span><span>Suporte humano Anatechmg</span>
+    </div>
+    <a class="btn zap" href="https://wa.me/5531989513698?text=Quero%20fechar%20o%20Pacote%20IA" target="_blank">💬 Quero o Pacote IA</a>
+    <span class="alt">Prefere comprar online? <a href="https://ana-a391f94e.base44.app/functions/marketplaceVendas" target="_blank">Comprar no marketplace →</a></span>
   </div>
-</section>
-<section>
-  <div class="card" style="text-align:center">⚠️ <b>Transparência:</b> é automação de atendimento, não promessa de vendas. O sistema qualifica e agenda; o fechamento é do seu time com nossos scripts.</div>
-</section>
-<div class="foot">Anatechmg — Automação de atendimento e captação · WhatsApp (31) 98951-3698<br>A tecnologia que vendemos é a que roda nossa própria empresa, ao vivo.</div>
+</div>
+
+<h2 class="sec">Perguntas frequentes</h2>
+<div class="faq">
+  <details><summary>Já uso outra ferramenta de atendimento. Por que trocar?</summary><p>O Pacote IA não é uma ferramenta que você administra — é um sistema que a Anatechmg implanta e opera pra você. Muitos clientes vieram de ferramentas genéricas que exigiam montar tudo sozinho. Aqui, o treinamento da IA no seu negócio já vem feito.</p></details>
+  <details><summary>Preciso de equipe técnica?</summary><p>Não. A implantação é 100% feita pela nossa equipe, de forma remota. Você recebe o sistema pronto e o suporte é humano, em português, pelo WhatsApp.</p></details>
+  <details><summary>Funciona pro meu tipo de negócio?</summary><p>Atendemos comércio, serviços, clínicas, e-commerces e indústrias. O diagnóstico gratuito serve exatamente pra isso: avaliar seu fluxo de atendimento e dizer com honestidade onde a IA gera resultado — e onde não vale a pena.</p></details>
+  <details><summary>Como funciona a mensalidade?</summary><p>R$ 297/mês cobre a operação contínua: manutenção dos canais, atualizações do agente conforme seu negócio muda e suporte. Sem fidelidade: pode cancelar quando quiser.</p></details>
+  <details><summary>E se eu quiser testar antes?</summary><p>Dá pra testar: conversando com a própria Ana pelo WhatsApp da Anatechmg você já está vendo o sistema em ação. No diagnóstico a gente apresenta um teste no SEU cenário antes de fechar.</p></details>
+</div>
+
+<footer>
+  <img src="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/905c9cd34_logo-completo-branco.png" alt="Anatech MG">
+  <p><b>Anatechmg</b> — automação, IA e transformação digital.<br>WhatsApp (31) 98951-3698 · theimports.github.io/escritorio-anatechmg<br>Implantação e suporte feitos por pessoas, operados por IA.</p>
+</footer>
+</div>
+<script>
+/* fundo: rede de partículas */
+const cv=document.getElementById('fx'),cx=cv.getContext('2d');let pt=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight;pt=Array.from({length:Math.min(90,innerWidth/14)},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}))}
+addEventListener('resize',rs);rs();
+function liga(){cx.clearRect(0,0,cv.width,cv.height);
+  for(const p of pt){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1}
+  for(let i=0;i<pt.length;i++)for(let j=i+1;j<pt.length;j++){const d=Math.hypot(pt[i].x-pt[j].x,pt[i].y-pt[j].y);
+    if(d<130){cx.strokeStyle='rgba(0,156,254,'+(0.16*(1-d/130))+')';cx.lineWidth=1;cx.beginPath();cx.moveTo(pt[i].x,pt[i].y);cx.lineTo(pt[j].x,pt[j].y);cx.stroke()}}
+  for(const p of pt){cx.fillStyle='rgba(125,211,252,.7)';cx.beginPath();cx.arc(p.x,p.y,1.3,0,7);cx.fill()}
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)requestAnimationFrame(liga)}
+liga();
+/* reveal no scroll */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.style.transitionDelay=(e.target.dataset.d||0)+'ms';e.target.classList.add('viva');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.card,.passo').forEach((c,i)=>{c.dataset.d=(i%3)*80;io.observe(c)});
+/* chat animado: mensagem por mensagem */
+const msgs=[...document.querySelectorAll('.msg')],dig=document.getElementById('dig');
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){msgs.forEach(m=>m.classList.add('on'));dig.classList.remove('on')}
+else{
+  let i=0;
+  function passo(){
+    if(i>=msgs.length)return;
+    const m=msgs[i];
+    if(!m.classList.contains('cli'))dig.classList.add('on');
+    setTimeout(()=>{dig.classList.remove('on');m.classList.add('on');i++;setTimeout(passo, i===1?2200:1300)},1200);
+  }
+  setTimeout(passo,600);
+}
+</script>
 </body>
 </html>
