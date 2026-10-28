@@ -226,6 +226,13 @@ ORDEM.forEach(function(zk,ix){
 });
 // hologramas: logo giratório + anéis orbitais + feixe
 var logoH=spriteImagem(LOGO_URL);logoH.scale.set(26,10,1);logoH.material.fog=false;logoH.position.y=ORDEM.length*FANDAR+16;torre.add(logoH);
+var TOPO=ORDEM.length*FANDAR+8;
+var elev=new THREE.Group();elev.position.set(FLOOR_R+2.4,3,0);torre.add(elev);
+var haste=new THREE.Mesh(new THREE.CylinderGeometry(.1,.1,TOPO,10),new THREE.MeshBasicMaterial({color:0x37c6ff,transparent:true,opacity:.2}));haste.position.y=TOPO/2+3;haste.position.x=FLOOR_R+2.4;torre.add(haste);
+var cab=new THREE.Mesh(new THREE.CapsuleGeometry(.5,.9,6,12),new THREE.MeshStandardMaterial({color:0x7dd3fc,emissive:0x2ea8ff,emissiveIntensity:.9,roughness:.2}));elev.add(cab);
+var ideia=new THREE.Mesh(new THREE.BoxGeometry(.34,.34,.34),new THREE.MeshStandardMaterial({color:0xFF8100,emissive:0xFF8100,emissiveIntensity:1.5}));ideia.position.y=-.15;elev.add(ideia);
+var luzCab=new THREE.PointLight(0x59c8ff,.9,18);elev.add(luzCab);
+var plataforma=0;
 var holoRings=[];
 for(var hg=0;hg<3;hg++){
   var hr=new THREE.Mesh(new THREE.TorusGeometry(14+hg*2.6,.09,8,72),new THREE.MeshBasicMaterial({color:hg%2?0xFF8100:0x009CFE}));
@@ -249,8 +256,11 @@ function buildAndar(zk,lista){
   var tapete=new THREE.Mesh(new THREE.CircleGeometry(4.6,40),
     new THREE.MeshStandardMaterial({color:cor,emissive:cor,emissiveIntensity:.16,roughness:.9}));
   tapete.rotation.x=-Math.PI/2;tapete.position.y=.03;g.add(tapete);
-  var luzAndar=new THREE.PointLight(0xfff2dd,0,30);luzAndar.position.set(0,3.2,0);g.add(luzAndar);g.userData.luz=luzAndar;
-  var luzZona=new THREE.PointLight(cor,0,26);luzZona.position.set(0,2.2,4);g.add(luzZona);g.userData.luzZona=luzZona;
+  var luzAndar=new THREE.PointLight(0xfff2dd,.5,30);luzAndar.position.set(0,3.2,0);g.add(luzAndar);g.userData.luz=luzAndar;
+  var luzZona=new THREE.PointLight(cor,.3,26);luzZona.position.set(0,2.2,4);g.add(luzZona);g.userData.luzZona=luzZona;
+  var vidro=new THREE.Mesh(new THREE.CylinderGeometry(FLOOR_R+.5,FLOOR_R+.5,FANDAR-.7,40,1,true),
+    new THREE.MeshStandardMaterial({color:0x9fd8ff,transparent:true,opacity:.08,roughness:.15,metalness:.4,side:THREE.DoubleSide,emissive:0x123a5f,emissiveIntensity:.3}));
+  vidro.position.y=(FANDAR-.7)/2+.4;g.add(vidro);g.userData.vidro=vidro;
   var anelCentral=new THREE.Mesh(new THREE.TorusGeometry(4.7,.06,8,64),new THREE.MeshBasicMaterial({color:cor}));
   anelCentral.rotation.x=Math.PI/2;anelCentral.position.y=.06;g.add(anelCentral);
   // mesas: 2 arcos ao redor do centro
@@ -356,10 +366,9 @@ pegaAgents().then(function(dados){
       h.userData.baseY=g.position.y;
       g.add(h);agentes.push(h);
     });
-    g.visible=false;
     }catch(e){dbgEr+=zk+': '+e.message+' | ';}
   });
-  document.title='DBG floors='+Object.keys(grupos).length+' ags='+agentes.length+(dbgEr?' ERR '+dbgEr:'');
+  document.title='Cidade Anatechmg — HQ 3D';
   agendaConversas();
   document.getElementById('load').style.display='none';
   // deep link
@@ -381,7 +390,7 @@ function camTween(pos,tgt,dur){
 }
 function entraAndar(zk){
   if(andarAtivo===zk)return;
-  if(andarAtivo&&grupos[andarAtivo]){grupos[andarAtivo].visible=false;var ga=grupos[andarAtivo];if(ga.userData.luz)ga.userData.luz.intensity=0;if(ga.userData.luzZona)ga.userData.luzZona.intensity=0;}
+  if(andarAtivo&&grupos[andarAtivo]){var ga=grupos[andarAtivo];if(ga.userData.luz)ga.userData.luz.intensity=.5;if(ga.userData.luzZona)ga.userData.luzZona.intensity=.3;}
   andarAtivo=zk;
   var g=grupos[zk];g.visible=true;if(g.userData.luz)g.userData.luz.intensity=1.1;if(g.userData.luzZona)g.userData.luzZona.intensity=.7;
   var y=g.position.y;
@@ -393,7 +402,7 @@ function entraAndar(zk){
   marcaChip(zk);
 }
 function visaoGeral(){
-  if(andarAtivo&&grupos[andarAtivo]){grupos[andarAtivo].visible=false;var gv=grupos[andarAtivo];if(gv.userData.luz)gv.userData.luz.intensity=0;if(gv.userData.luzZona)gv.userData.luzZona.intensity=0;}
+  if(andarAtivo&&grupos[andarAtivo]){var gv=grupos[andarAtivo];if(gv.userData.luz)gv.userData.luz.intensity=.5;if(gv.userData.luzZona)gv.userData.luzZona.intensity=.3;}
   andarAtivo=null;fechaCarta();
   camTween(new THREE.Vector3(150,95,190),new THREE.Vector3(0,42,0),1500);
   controls.minDistance=8;controls.maxDistance=420;
@@ -441,7 +450,8 @@ window.fechaCarta=fechaCarta;
 
 /* ===== raycast: clique em laje (andar) ou agente ===== */
 var ray=new THREE.Raycaster(),mx=new THREE.Vector2(),down=null;
-renderer.domElement.addEventListener('pointerdown',function(e){down={x:e.clientX,y:e.clientY}});
+renderer.domElement.addEventListener('pointerdown',function(e){down={x:e.clientX,y:e.clientY};controls.autoRotate=false;ultimaAcao=performance.now();});
+controls.autoRotate=true;controls.autoRotateSpeed=.4;var ultimaAcao=0;
 renderer.domElement.addEventListener('pointerup',function(e){
   if(!down)return;
   if(Math.abs(e.clientX-down.x)+Math.abs(e.clientY-down.y)>6){down=null;return;}
@@ -457,6 +467,8 @@ renderer.domElement.addEventListener('pointerup',function(e){
     }
   } else {
     var hl=ray.intersectObjects(lajes,false)[0];
+    var ha=ray.intersectObjects(agentes,true)[0];
+    if(ha){var oa=ha.object;while(oa&&!(oa.userData&&oa.userData.ag))oa=oa.parent;if(oa){abreCarta(oa);down=null;return;}}
     if(hl){entraAndar(hl.object.userData.zona);}
   }
   down=null;
@@ -482,6 +494,16 @@ function anima(){
   // anéis hologramas giram
   holoRings.forEach(function(hr,hi){hr.rotation.z+=dt*(.3+hi*.15);hr.position.y=ORDEM.length*FANDAR+16+Math.sin(t+hi)*1.2;});
   logoH.position.y=ORDEM.length*FANDAR+16+Math.sin(t*.8)*.8;
+  // elevador de vidro sobe e desce a torre levando a ideia (pausa curta em cada ponta)
+  var ciclo=(t*.09)%(2+0.9),fr;
+  if(ciclo<1)fr=(1-Math.cos(ciclo*Math.PI))/2; else if(ciclo<1.45)fr=1; else if(ciclo<2.45)fr=1-(1-Math.cos((ciclo-1.45)*Math.PI))/2; else fr=0;
+  elev.position.y=3+fr*(TOPO-6);ideia.rotation.y=t*2.2;luzCab.intensity=.8+Math.sin(t*3)*.25;
+  haste.material.opacity=.14+.08*Math.sin(t*2);
+  // vidros dos andares respiram
+  if(!(plataforma%23)){plataforma=0;for(var zk in grupos){var gv2=grupos[zk];if(gv2.userData.vidro)gv2.userData.vidro.material.emissiveIntensity=.26+.1*Math.sin(t*.7+gv2.position.y);}}
+  plataforma++;
+  // câmera volta a girar sozinha após 25s sem toque
+  if(!controls.autoRotate&&!andarAtivo&&performance.now()-ultimaAcao>25000)controls.autoRotate=true;
   feixe.material.opacity=.09+Math.sin(t*1.3)*.04;
   // agentes: andar / vagar / ir conversar
   agentes.forEach(function(ag){
