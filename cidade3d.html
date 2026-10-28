@@ -21,6 +21,7 @@ html,body{height:100%;overflow:hidden;background:#01030c}
 #andarBar{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:10;display:none;gap:8px}
 #andarBar button{border:1px solid rgba(255,255,255,.3);background:rgba(1,3,12,.8);color:#fff;font-weight:700;font-size:12px;padding:8px 16px;border-radius:14px;cursor:pointer}
 #andarBar .anome{color:var(--laranja);border-color:var(--laranja);cursor:default}
+.tbar{position:fixed;left:0;width:100%;height:9vh;background:#000;z-index:30;opacity:0;transition:opacity 1s;pointer-events:none}.tbar.on{opacity:1}#tBarTop{top:0}#tBarBt{bottom:0}#tourMsg{position:fixed;bottom:12vh;left:50%;transform:translateX(-50%);z-index:31;color:#fff;font-size:15px;font-weight:600;letter-spacing:2px;text-shadow:0 2px 14px #000;opacity:0;transition:opacity .8s;pointer-events:none;text-align:center}
 #dica{position:fixed;bottom:64px;left:50%;transform:translateX(-50%);z-index:9;color:#9db8e8;font-size:11.5px;background:rgba(1,3,12,.55);padding:6px 14px;border-radius:14px;letter-spacing:.4px}
 #carta{position:fixed;top:70px;right:14px;width:300px;z-index:12;background:rgba(1,8,26,.94);border:1px solid var(--azul);border-radius:16px;padding:16px;color:#fff;display:none;box-shadow:0 18px 50px rgba(0,0,0,.5)}
 #carta h3{font-size:17px;margin:2px 0 2px}
@@ -46,6 +47,7 @@ html,body{height:100%;overflow:hidden;background:#01030c}
 </div>
 <div id="andarBar"><button onclick="visaoGeral()">← cidade</button><span class="chip3 anome" id="andarNome" style="pointer-events:none"></span></div>
 <div id="chips"></div>
+<div class="tbar" id="tBarTop"></div><div class="tbar" id="tBarBt"></div><div id="tourMsg"></div>
 <div id="dica">🖱️ gire a cidade · clique num andar da torre ou num chip pra visitar o setor · clique num agente pra ver a ficha</div>
 <div id="carta"><span class="fx" onclick="fechaCarta()">fechar ✕</span><div id="cBody"></div></div>
 <div id="load"><div class="sp"></div><div style="font-size:13px;color:#7fa4d9">erguendo a cidade…</div></div>
@@ -378,6 +380,7 @@ pegaAgents().then(function(dados){
   var qs=up.get('andar');
   var qa=up.get('agente');
   if(qs&&grupos[qs])setTimeout(function(){entraAndar(qs)},1200);
+  if(up.get('tour')==='1')setTimeout(iniciaTour,2600);
   if(qa){
     var alvo=null;
     agentes.forEach(function(ag){if(!alvo&&ag.userData.ag&&ag.userData.ag.nome&&ag.userData.ag.nome.toLowerCase().indexOf(String(qa).toLowerCase())>-1)alvo=ag;});
@@ -437,6 +440,35 @@ function marcaChip(zk){
   });
 }
 window.visaoGeral=visaoGeral;window.entraAndar=entraAndar;
+function iniciaTour(){
+  controls.enabled=false;controls.autoRotate=false;andarAtivo=null;fechaCarta();
+  ['tBarTop','tBarBt'].forEach(function(i){document.getElementById(i).classList.add('on')});
+  ['dica','chips','andarBar'].forEach(function(i){var el=document.getElementById(i);if(el)el.style.display='none'});
+  var pontos=[
+    {p:[260,150,320],t:[0,52,0],d:8000,m:'CIDADE ANATECHMG — HQ 3D'},
+    {p:[92,72,128],t:[0,46,0],d:7000,m:'60 AGENTES DE IA · 11 SETORES · 24/7'},
+    {p:[40,26,58],t:[0,36,0],d:6000,m:'CADA ANDAR É UM SETOR DA EMPRESA'},
+    {p:[22,48,26],t:[15,56,4],d:6000,m:'O ELEVADOR LEVA A IDEIA AO TOPO'},
+    {p:[11,76,18],t:[0,85,0],d:5000,m:'PESQUISA, SINALIZAÇÃO E CONTEÚDO'},
+    {p:[4,33,9.5],t:[0,31.5,0],d:6000,m:'TRADING & MÍDIA EM OPERAÇÃO AGORA'},
+    {p:[2.6,31.7,1.4],t:[-1,31.4,-2.4],d:5000,m:'SIGNALBOT — OPERADOR DE SINAIS'},
+    {p:[280,155,345],t:[0,52,0],d:7000,m:'VISITE VOCÊ MESMO — LINK NA BIO'}
+  ];
+  var tm=document.getElementById('tourMsg');
+  pontos.forEach(function(pt,i){
+    camTween(new THREE.Vector3(pt.p[0],pt.p[1],pt.p[2]),new THREE.Vector3(pt.t[0],pt.t[1],pt.t[2]),pt.d);
+    setTimeout(function(){tm.style.opacity=0;},pt.d-900);
+    setTimeout(function(){tm.textContent=pt.m;tm.style.opacity=1;},pt.d+100);
+  });
+  var fim=pontos.reduce(function(a,b){return a+b.d},0);
+  setTimeout(function(){tm.style.opacity=0;},fim);
+  setTimeout(function(){
+    ['tBarTop','tBarBt'].forEach(function(i){document.getElementById(i).classList.remove('on')});
+    ['dica','chips'].forEach(function(i){var el=document.getElementById(i);if(el)el.style.display=''});
+    controls.enabled=true;controls.autoRotate=true;
+  },fim+1500);
+}
+window.iniciaTour=iniciaTour;
 
 /* ===== ficha do agente (HTML) ===== */
 var selAg=null;
