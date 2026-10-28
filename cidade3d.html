@@ -377,20 +377,25 @@ pegaAgents().then(function(dados){
   var qa=up.get('agente');
   if(qs&&grupos[qs])setTimeout(function(){entraAndar(qs)},1200);
   if(qa){
+    var dbg=function(m){try{document.getElementById('dica').textContent='DEEP: '+m}catch(e){}};
+    dbg('procurando '+qa);
     var alvo=null;
     agentes.forEach(function(ag){if(!alvo&&ag.userData.ag&&ag.userData.ag.nome&&ag.userData.ag.nome.toLowerCase().indexOf(String(qa).toLowerCase())>-1)alvo=ag;});
     if(alvo){
+      dbg('achou '+alvo.userData.ag.nome+' zona '+(alvo.userData.zona||'?'));
       var zkAlvo=alvo.userData.zona||null;
       setTimeout(function(){
         if(zkAlvo&&grupos[zkAlvo]&&andarAtivo!==zkAlvo)entraAndar(zkAlvo);
         setTimeout(function(){
-          var wp=new THREE.Vector3();alvo.getWorldPosition(wp);
-          var dir=new THREE.Vector3(0,0,3.4);
-          camTween(wp.clone().add(dir),wp.clone().add(new THREE.Vector3(0,.8,0)),1600);
-          setTimeout(function(){abreCarta(alvo);},1700);
+          try{
+            var wp=new THREE.Vector3();alvo.getWorldPosition(wp);
+            dbg('voando p/ '+wp.x.toFixed(1)+','+wp.y.toFixed(1)+','+wp.z.toFixed(1));
+            camTween(wp.clone().add(new THREE.Vector3(0,0,3.4)),wp.clone().add(new THREE.Vector3(0,.8,0)),1600);
+            setTimeout(function(){dbg('abrindo ficha');abreCarta(alvo);dbg('ficha aberta');},1700);
+          }catch(erro){dbg('ERRO '+String(erro).slice(0,60));}
         },andarAtivo===zkAlvo?600:2000);
       },600);
-    }
+    } else { dbg('NAO ACHOU '+qa); }
   }
 }).catch(function(e){
   document.getElementById('load').innerHTML='<div style="color:#f87171;font-size:13px">erro ao carregar agentes: '+e+'</div>';
