@@ -290,15 +290,15 @@ function fazHumano(a,cor){
   var h=new THREE.Group();
   var ccor=new THREE.Color(cor);
   var corpo=new THREE.Mesh(new THREE.CapsuleGeometry(.26,.62,4,10),
-    new THREE.MeshStandardMaterial({color:ccor.clone().multiplyScalar(.95),roughness:.55,emissive:ccor,emissiveIntensity:.38}));
+    new THREE.MeshStandardMaterial({color:ccor.clone().multiplyScalar(.95),roughness:.5,emissive:ccor,emissiveIntensity:.7}));
   corpo.position.y=.75;h.add(corpo);
   var cabeca=new THREE.Mesh(new THREE.SphereGeometry(.19,14,12),
     new THREE.MeshStandardMaterial({color:0xf3c9a5,roughness:.65}));
   cabeca.position.y=1.42;h.add(cabeca);
   var nome=spriteTexto((a.emoji||'🤖')+' '+a.nome,'#ffffff');
-  nome.scale.set(nome.scale.x*1.05,nome.scale.y*1.05,1);nome.position.y=2.15;h.add(nome);
+  nome.scale.set(nome.scale.x*1.25,nome.scale.y*1.25,1);nome.position.y=2.25;h.add(nome);
   var anel=new THREE.Mesh(new THREE.TorusGeometry(.42,.05,8,32),
-    new THREE.MeshBasicMaterial({color:new THREE.Color(STCOR[a.status]||'#22c55e'),transparent:true,opacity:.8}));
+    new THREE.MeshBasicMaterial({color:new THREE.Color(STCOR[a.status]||'#22c55e'),transparent:true,opacity:1}));
   anel.rotation.x=Math.PI/2;anel.position.y=.06;h.add(anel);
   h.userData={ag:a,zona:zoneOf(a.nome,a.papel),andando:false,alvo:null,vel:1.6+Math.random()*.9,
     fala:null,est:'livre',timer:2+Math.random()*6};
@@ -394,7 +394,7 @@ function entraAndar(zk){
   andarAtivo=zk;
   var g=grupos[zk];g.visible=true;if(g.userData.luz)g.userData.luz.intensity=1.1;if(g.userData.luzZona)g.userData.luzZona.intensity=.7;
   var y=g.position.y;
-  camTween(new THREE.Vector3(0,y+4.2,10.5),new THREE.Vector3(0,y+.9,0),1400);
+  camTween(new THREE.Vector3(0,y+2.6,8.6),new THREE.Vector3(0,y+1.1,0),1400);
   controls.minDistance=2.5;controls.maxDistance=40;
   document.getElementById('andarBar').style.display='flex';
   document.getElementById('andarNome').textContent=ZONAS[zk].nome;
