@@ -372,8 +372,26 @@ pegaAgents().then(function(dados){
   agendaConversas();
   document.getElementById('load').style.display='none';
   // deep link
-  var qs=new URLSearchParams(location.search).get('andar');
+  var up=new URLSearchParams(location.search);
+  var qs=up.get('andar');
+  var qa=up.get('agente');
   if(qs&&grupos[qs])setTimeout(function(){entraAndar(qs)},1200);
+  if(qa){
+    var alvo=null;
+    agentes.forEach(function(ag){if(!alvo&&ag.userData.ag&&ag.userData.ag.nome&&ag.userData.ag.nome.toLowerCase().indexOf(String(qa).toLowerCase())>-1)alvo=ag;});
+    if(alvo){
+      var zkAlvo=alvo.userData.zona||null;
+      setTimeout(function(){
+        if(zkAlvo&&grupos[zkAlvo]&&andarAtivo!==zkAlvo)entraAndar(zkAlvo);
+        setTimeout(function(){
+          var wp=new THREE.Vector3();alvo.getWorldPosition(wp);
+          var dir=new THREE.Vector3(0,0,3.4);
+          camTween(wp.clone().add(dir),wp.clone().add(new THREE.Vector3(0,.8,0)),1600);
+          setTimeout(function(){abreCarta(alvo);},1700);
+        },andarAtivo===zkAlvo?600:2000);
+      },600);
+    }
+  }
 }).catch(function(e){
   document.getElementById('load').innerHTML='<div style="color:#f87171;font-size:13px">erro ao carregar agentes: '+e+'</div>';
 });
