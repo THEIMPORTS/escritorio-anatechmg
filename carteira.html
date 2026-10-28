@@ -322,6 +322,7 @@ const b64d = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 const fmtBtc = (sats) => (Number(sats)/1e8).toFixed(8);
 const fmtBrl = (v) => 'R$ ' + Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
 const short = (a, n=10) => a ? a.slice(0,n) + '…' + a.slice(-6) : '';
+const toHex = (u8) => Array.from(u8).map(b => b.toString(16).padStart(2,'0')).join('');
 function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('on'),2600); }
 function openModal(html){ $('sheet').innerHTML = html; $('modal').classList.add('on'); }
 function closeModal(){ $('modal').classList.remove('on'); }
@@ -571,7 +572,7 @@ $('btnPrepare').addEventListener('click', async ()=>{
         if(change > 546n) tx.addOutputAddress(state.address, change, btc.NETWORK);
         tx.sign(state.priv);
         tx.finalize();
-        const hex = btc.utils.bytesToHex(tx.extract());
+        const hex = toHex(tx.extract());
         const r = await fetch(`${API}/tx`, {method:'POST', headers:{'Content-Type':'text/plain'}, body: hex});
         const tid = (await r.text()).trim();
         if(!r.ok) throw new Error(tid.slice(0,140));
