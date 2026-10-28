@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Ana BTC — Carteira e Centro de Mineração | Anatech MG</title>
+<meta name="description" content="Carteira Bitcoin não custodial e centro de mineração da Anatechmg: saldo real, envio, recebimento por QR e painel honesto de mineração com dados ao vivo da rede."/>
+<meta name="theme-color" content="#001336"/>
+<link rel="icon" href="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/965128b02_favicon-512.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#001336;--navy2:#041C42;--blue:#009CFE;--inst:#12386B;--orange:#FF8100;--green:#25D366;--red:#FF4D5E;--txt:#EAF2FF;--mut:#8FA6C6;--line:rgba(255,255,255,.10);--card:rgba(255,255,255,.045)}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',system-ui,-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{background:#000B1F;color:var(--txt);overflow-x:hidden}
+#fx{position:fixed;inset:0;z-index:0;pointer-events:none}
+#fx:before{content:'';position:absolute;inset:-20%;background:
+radial-gradient(38% 34% at 18% 8%,rgba(0,156,254,.30),transparent 70%),
+radial-gradient(34% 30% at 84% 16%,rgba(255,129,0,.20),transparent 70%),
+radial-gradient(44% 40% at 52% 96%,rgba(18,56,107,.55),transparent 72%);
+filter:blur(6px);animation:aur 18s ease-in-out infinite alternate}
+#fx:after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(circle at 50% 30%,#000 20%,transparent 78%);animation:grid 24s linear infinite}
+@keyframes aur{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(2%,-3%,0) scale(1.08)}}
+@keyframes grid{0%{background-position:0 0,0 0}100%{background-position:46px 46px,46px 46px}}
+@media(prefers-reduced-motion:reduce){#fx:before,#fx:after{animation:none}}
+.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:0 16px 40px}
+header{position:sticky;top:0;z-index:30;backdrop-filter:blur(14px);background:rgba(0,11,31,.72);border-bottom:1px solid var(--line)}
+.hd{max-width:520px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hd img{height:26px}
+.hd .nm{font-size:10px;font-weight:800;letter-spacing:2.4px;color:var(--mut);text-transform:uppercase}
+.live{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;color:#8EF0B5;background:rgba(37,211,102,.10);border:1px solid rgba(37,211,102,.28);padding:6px 10px;border-radius:20px;white-space:nowrap}
+.live i{width:6px;height:6px;border-radius:50%;background:#25D366;box-shadow:0 0 0 0 rgba(37,211,102,.7);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}70%{box-shadow:0 0 0 8px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+h1{font-size:26px;line-height:1.2;font-weight:900;letter-spacing:-.6px}
+h2{font-size:16px;font-weight:800;letter-spacing:-.2px}
+.sub{color:var(--mut);font-size:13px;line-height:1.6}
+.card{background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.028));border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 18px 44px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.07)}
+.card+.card{margin-top:12px}
+.glow{border-color:rgba(0,156,254,.30);box-shadow:0 18px 50px rgba(0,156,254,.18),inset 0 1px 0 rgba(255,255,255,.10)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;cursor:pointer;font-family:inherit;font-size:14.5px;font-weight:800;padding:15px 18px;border-radius:14px;background:linear-gradient(135deg,#FF9A2E,#FF8100);color:#0B1B33;transition:transform .14s,filter .14s,box-shadow .14s;box-shadow:0 12px 26px rgba(255,129,0,.28)}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:scale(.985)}
+.btn.blue{background:linear-gradient(135deg,#36B4FF,#009CFE);color:#04203A;box-shadow:0 12px 26px rgba(0,156,254,.30)}
+.btn.ghost{background:rgba(255,255,255,.06);color:var(--txt);border:1px solid var(--line);box-shadow:none}
+.btn.green{background:linear-gradient(135deg,#3BE37B,#18B457);color:#042014;box-shadow:0 12px 26px rgba(37,211,102,.26)}
+.btn.danger{background:rgba(255,77,94,.14);color:#FFB3BB;border:1px solid rgba(255,77,94,.34);box-shadow:none}
+.btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
+.row{display:flex;gap:10px}
+input,select{width:100%;background:rgba(0,0,0,.30);border:1px solid var(--line);border-radius:12px;color:var(--txt);padding:13px 14px;font-family:inherit;font-size:14.5px;font-weight:600;outline:none}
+input:focus,select:focus{border-color:rgba(0,156,254,.6);box-shadow:0 0 0 3px rgba(0,156,254,.14)}
+label{display:block;font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--mut);margin:0 0 7px}
+.field+.field{margin-top:12px}
+.bal{font-size:34px;font-weight:900;letter-spacing:-1px;line-height:1.1}
+.bal small{font-size:15px;font-weight:800;color:var(--mut);letter-spacing:0}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:6px 11px;border-radius:20px;background:rgba(0,156,254,.12);color:#7CCBFF;border:1px solid rgba(0,156,254,.28)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;word-break:break-all;line-height:1.6}
+.tabs{position:sticky;top:52px;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px 0;background:linear-gradient(180deg,#000B1F 60%,rgba(0,11,31,.6));margin-bottom:6px}
+.tabs button{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--mut);font-family:inherit;font-size:11.5px;font-weight:800;padding:10px 4px;border-radius:12px;cursor:pointer;transition:.15s}
+.tabs button.on{background:linear-gradient(135deg,rgba(0,156,254,.26),rgba(0,156,254,.10));color:#BFE4FF;border-color:rgba(0,156,254,.5);box-shadow:0 8px 22px rgba(0,156,254,.18)}
+.tab{display:none;animation:fade .28s ease}
+.tab.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.tx{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:14px;padding:12px 13px;text-decoration:none;color:inherit}
+.tx .ico{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:15px;flex:0 0 34px}
+.tx .in{background:rgba(37,211,102,.14);color:#5AE896}
+.tx .out{background:rgba(255,129,0,.14);color:#FFB066}
+.tx .t{flex:1;min-width:0}
+.tx .t b{display:block;font-size:12.5px;font-weight:800}
+.tx .t span{font-size:10.5px;color:var(--mut);font-weight:600}
+.tx .v{font-size:12.5px;font-weight:900;white-space:nowrap}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:15px;padding:13px}
+.kpi b{display:block;font-size:17px;font-weight:900;letter-spacing:-.4px}
+.kpi span{font-size:10px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--mut)}
+.tools{display:flex;flex-direction:column;gap:9px;margin-top:10px}
+.tool{display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:14px;padding:13px;text-decoration:none;color:inherit;transition:.15s}
+.tool:active{transform:scale(.99)}
+.tool .e{font-size:17px;line-height:1.2}
+.tool b{display:block;font-size:13px;font-weight:800}
+.tool small{display:block;font-size:11px;color:var(--mut);line-height:1.5;margin-top:2px}
+.warn{background:rgba(255,129,0,.10);border:1px solid rgba(255,129,0,.34);border-radius:16px;padding:14px;font-size:12px;line-height:1.65;color:#FFD9AE}
+.warn b{color:#FFB066}
+.ok{background:rgba(37,211,102,.10);border:1px solid rgba(37,211,102,.30);border-radius:16px;padding:14px;font-size:12px;line-height:1.65;color:#B7F5CE}
+.seed{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.seed div{background:rgba(0,0,0,.34);border:1px solid var(--line);border-radius:11px;padding:9px 6px;font-size:11.5px;font-weight:700;text-align:center;font-family:ui-monospace,monospace}
+.seed div i{color:var(--orange);font-style:normal;font-size:9px;margin-right:3px}
+.qr{background:#fff;border-radius:18px;padding:12px;display:grid;place-items:center;margin:14px auto;width:fit-content}
+.qr svg{display:block;width:220px;height:220px}
+.foot{text-align:center;color:#6E86A6;font-size:10.5px;line-height:1.8;margin-top:26px}
+.chip{font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#7CCBFF;background:rgba(0,156,254,.10);border:1px solid rgba(0,156,254,.24);border-radius:20px;padding:4px 9px;display:inline-block}
+.spin{width:15px;height:15px;border:2px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;display:inline-block}
+@keyframes sp{to{transform:rotate(360deg)}}
+.modal{position:fixed;inset:0;z-index:80;background:rgba(0,6,18,.82);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;padding:16px}
+.modal.on{display:flex}
+.sheet{width:100%;max-width:500px;background:linear-gradient(170deg,#0A2247,#04142E);border:1px solid var(--line);border-radius:22px;padding:20px;animation:up .3s ease}
+@keyframes up{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);z-index:90;background:#0A2247;border:1px solid rgba(37,211,102,.4);color:#C9F7DA;font-size:12.5px;font-weight:700;padding:12px 18px;border-radius:14px;opacity:0;transition:.25s;pointer-events:none;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.sm{font-size:11.5px;color:var(--mut);line-height:1.6}
+</style>
+</head>
+<body>
+<div id="fx"></div>
+
+<header>
+  <div class="hd">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/905c9cd34_logo-completo-branco.png" alt="Anatech MG"/>
+      <span class="nm">Ana BTC</span>
+    </div>
+    <div class="live"><i></i><span id="netStatus">rede ok</span></div>
+  </div>
+</header>
+
+<div class="wrap" id="root">
+
+  <!-- ============ ONBOARDING ============ -->
+  <section id="setup" style="padding-top:22px">
+    <span class="tag">Carteira não custodial</span>
+    <h1 style="margin:12px 0 8px">Sua carteira Bitcoin.<br/>Suas chaves. Sem intermediário.</h1>
+    <p class="sub">Crie uma carteira nova ou importe a sua. As chaves são geradas e cifradas <b style="color:#BFE4FF">no seu aparelho</b> — nada é enviado para servidor nenhum. O app só consulta saldo e transmite a transação na rede Bitcoin.</p>
+
+    <div class="card glow" style="margin-top:18px">
+      <h2>Criar carteira nova</h2>
+      <p class="sm" style="margin:6px 0 14px">Gera 12 palavras (padrão BIP-39) e um endereço SegWit nativo (bc1…), o formato com as menores taxas.</p>
+      <button class="btn" id="btnNew">Gerar minha carteira</button>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2>Já tenho carteira</h2>
+      <p class="sm" style="margin:6px 0 14px">Importe suas 12 ou 24 palavras — funciona com carteiras BIP-84 (ex.: BlueWallet, Sparrow, Electrum).</p>
+      <button class="btn ghost" id="btnImport">Importar palavras</button>
+    </div>
+
+    <div class="warn" style="margin-top:14px"><b>Segurança:</b> carteira não custodial significa que <b>só você</b> consegue movimentar o saldo. Se perder as 12 palavras, o dinheiro não é recuperável por ninguém — nem por nós. Guarde no papel, nunca em print ou foto.</div>
+  </section>
+
+  <!-- ============ DESBLOQUEIO ============ -->
+  <section id="unlock" style="display:none;padding-top:40px">
+    <div class="card glow">
+      <h2>Carteira bloqueada</h2>
+      <p class="sm" style="margin:6px 0 16px">Digite sua senha local para desbloquear as chaves neste aparelho.</p>
+      <div class="field"><label>Senha</label><input type="password" id="unlockPass" autocomplete="current-password" placeholder="••••••••"/></div>
+      <button class="btn blue" id="btnUnlock" style="margin-top:14px">Desbloquear</button>
+      <div style="height:10px"></div>
+      <button class="btn danger" id="btnWipe">Esquecer carteira deste aparelho</button>
+    </div>
+  </section>
+
+  <!-- ============ APP ============ -->
+  <section id="app" style="display:none">
+    <div class="tabs">
+      <button class="on" data-tab="wallet">Carteira</button>
+      <button data-tab="send">Enviar</button>
+      <button data-tab="recv">Receber</button>
+      <button data-tab="mine">Mineração</button>
+    </div>
+
+    <!-- CARTEIRA -->
+    <div class="tab on" id="tab-wallet">
+      <div class="card glow">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <label style="margin:0">Saldo total</label>
+          <button class="chip" id="btnRefresh" style="cursor:pointer">atualizar</button>
+        </div>
+        <div class="bal" id="balBtc">— <small>BTC</small></div>
+        <div class="sub" id="balBrl" style="margin-top:2px">—</div>
+        <div class="sm" id="balSplit" style="margin-top:10px"></div>
+        <hr/>
+        <label>Meu endereço</label>
+        <div class="mono" id="myAddr" style="margin-bottom:10px">—</div>
+        <div class="row">
+          <button class="btn ghost" id="btnCopy" style="font-size:12.5px;padding:12px">Copiar</button>
+          <button class="btn ghost" id="btnShare" style="font-size:12.5px;padding:12px">Compartilhar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <h2>Movimentações</h2><span class="sm" id="txCount"></span>
+        </div>
+        <div class="list" id="txList"><div class="sm">Carregando…</div></div>
+      </div>
+    </div>
+
+    <!-- ENVIAR -->
+    <div class="tab" id="tab-send">
+      <div class="card glow">
+        <h2>Enviar Bitcoin</h2>
+        <p class="sm" style="margin:6px 0 14px">Transfere pra qualquer endereço Bitcoin da rede. A transação é assinada no seu aparelho.</p>
+        <div class="field"><label>Endereço de destino</label><input id="fDest" placeholder="bc1…" autocapitalize="off" spellcheck="false"/></div>
+        <div class="field"><label>Valor</label>
+          <div class="row">
+            <div style="flex:1.3"><input id="fAmt" inputmode="decimal" placeholder="0.00000000"/></div>
+            <select id="fUnit" style="flex:1"><option value="BTC">BTC</option><option value="BRL">R$ (reais)</option><option value="SATS">sats</option></select>
+          </div>
+        </div>
+        <div class="field"><label>Prioridade da taxa</label>
+          <select id="fFee"><option value="fastestFee">Rápida (próximo bloco)</option><option value="halfHourFee" selected>Normal (~30 min)</option><option value="economyFee">Econômica</option></select>
+        </div>
+        <div class="sm" id="feeInfo" style="margin:10px 0 4px"></div>
+        <button class="btn green" id="btnPrepare" style="margin-top:8px">Revisar envio</button>
+      </div>
+      <div class="warn" style="margin-top:12px"><b>Atenção:</b> transação Bitcoin é irreversível. Confira o endereço caractere por caractere. Nunca envie para endereço de outro tipo de rede (ex.: BEP-20/ERC-20) — o valor se perde.</div>
+    </div>
+
+    <!-- RECEBER -->
+    <div class="tab" id="tab-recv">
+      <div class="card glow" style="text-align:center">
+        <h2>Receber Bitcoin</h2>
+        <p class="sm" style="margin:6px 0 0">Mostre o QR ou envie seu endereço. Só aceite BTC na rede Bitcoin.</p>
+        <div class="qr" id="qrBox"></div>
+        <div class="mono" id="recvAddr" style="margin-bottom:12px">—</div>
+        <div class="row">
+          <button class="btn blue" id="btnCopy2" style="font-size:12.5px;padding:13px">Copiar endereço</button>
+          <button class="btn green" id="btnShare2" style="font-size:12.5px;padding:13px">WhatsApp</button>
+        </div>
+      </div>
+      <div class="ok" style="margin-top:12px">Este é seu endereço fixo (m/84'/0'/0'/0/0). Pode receber quantas vezes quiser. O saldo aparece aqui assim que a rede confirmar.</div>
+    </div>
+
+    <!-- MINERAÇÃO -->
+    <div class="tab" id="tab-mine">
+      <div class="card glow">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h2>Rede Bitcoin agora</h2><span class="chip" id="heightChip">—</span>
+        </div>
+        <div class="kpis" style="margin-top:12px">
+          <div class="kpi"><span>Hashrate da rede</span><b id="kHash">—</b></div>
+          <div class="kpi"><span>Dificuldade</span><b id="kDiff">—</b></div>
+          <div class="kpi"><span>Recompensa/bloco</span><b id="kRew">3,125 BTC</b></div>
+          <div class="kpi"><span>Próximo ajuste</span><b id="kAdj">—</b></div>
+        </div>
+        <p class="sm" id="netNote" style="margin-top:10px"></p>
+      </div>
+
+      <div class="card">
+        <h2>Calculadora honesta</h2>
+        <p class="sm" style="margin:6px 0 12px">Coloque o hashrate e o consumo do equipamento. O resultado usa a rede real, não promessa.</p>
+        <div class="row">
+          <div class="field" style="flex:1"><label>Hashrate</label><input id="cHash" inputmode="decimal" value="1"/></div>
+          <div class="field" style="flex:1"><label>Unidade</label><select id="cUnit"><option value="1">H/s</option><option value="1e6">MH/s</option><option value="1e9">GH/s</option><option value="1e12" selected>TH/s</option><option value="1e15">PH/s</option></select></div>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <div class="field" style="flex:1"><label>Consumo (W)</label><input id="cWatt" inputmode="decimal" value="3000"/></div>
+          <div class="field" style="flex:1"><label>Energia R$/kWh</label><input id="cKwh" inputmode="decimal" value="0.75"/></div>
+        </div>
+        <div class="kpis" style="margin-top:14px">
+          <div class="kpi"><span>Receita/dia</span><b id="rRev">—</b></div>
+          <div class="kpi"><span>Custo energia/dia</span><b id="rCost">—</b></div>
+          <div class="kpi"><span>Resultado/dia</span><b id="rNet">—</b></div>
+          <div class="kpi"><span>Resultado/mês</span><b id="rMon">—</b></div>
+        </div>
+        <div id="rWarn" class="warn" style="margin-top:12px;display:none"></div>
+      </div>
+
+      <div class="card">
+        <h2>Meus equipamentos</h2>
+        <p class="sm" style="margin:6px 0 10px">Cadastre seus ASICs pra comparar o resultado real de cada um.</p>
+        <div class="list" id="hwList"><div class="sm">Nenhum equipamento cadastrado.</div></div>
+        <div class="row" style="margin-top:10px">
+          <input id="hwName" placeholder="Modelo (ex.: Bitaxe Gamma)" style="flex:1.4"/>
+          <input id="hwTh" placeholder="TH/s" inputmode="decimal" style="flex:.6"/>
+          <input id="hwW" placeholder="W" inputmode="decimal" style="flex:.6"/>
+        </div>
+        <button class="btn ghost" id="btnAddHw" style="margin-top:10px;font-size:12.5px;padding:12px">Adicionar equipamento</button>
+      </div>
+
+      <div class="card">
+        <h2>Softwares oficiais de mineração</h2>
+        <p class="sm" style="margin:6px 0 4px">Ferramentas de produção e estudo — todas abertas e auditáveis. Nenhuma delas promete lucro.</p>
+        <div class="tools">
+          <a class="tool" href="https://github.com/ckolivas/cgminer" target="_blank" rel="noopener"><span class="e">⚙️</span><span><b>cgminer (ckolivas)</b><small>O clássico em C, multi-thread, para ASIC e FPGA. Padrão de fato para operar hardware.</small></span></a>
+          <a class="tool" href="https://github.com/wareck/cgminer-gekko" target="_blank" rel="noopener"><span class="e">🔌</span><span><b>cgminer-gekko (wareck)</b><small>Variante focada em mineradores USB pequenos, como os GekkoScience.</small></span></a>
+          <a class="tool" href="https://github.com/skot/bitaxe" target="_blank" rel="noopener"><span class="e">🟧</span><span><b>Bitaxe (skot)</b><small>Minerador ASIC Bitcoin open hardware: esquemáticos e firmware para montar o seu.</small></span></a>
+          <a class="tool" href="https://github.com/HugoXOX3/PythonSHA256dMiner" target="_blank" rel="noopener"><span class="e">🐍</span><span><b>PythonSHA256dMiner</b><small>Didático: mostra Proof-of-Work e ajuste de dificuldade em Python puro.</small></span></a>
+          <a class="tool" href="https://github.com/chriskiehl/bitminer" target="_blank" rel="noopener"><span class="e">🧪</span><span><b>bitminer (chriskiehl)</b><small>Em Clojure, feito "por diversão e nenhum lucro" — ótimo para entender conexão com pool.</small></span></a>
+          <a class="tool" href="https://github.com/topics/bitcoin-mining" target="_blank" rel="noopener"><span class="e">🏷️</span><span><b>Tópico bitcoin-mining</b><small>Centenas de ferramentas, monitores e utilitários de pool no GitHub.</small></span></a>
+          <a class="tool" href="https://github.com/topics/cpuminer" target="_blank" rel="noopener"><span class="e">🏷️</span><span><b>Tópico cpuminer</b><small>Projetos de mineração em CPU — históricos e educativos.</small></span></a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Monitorar meu ASIC</h2>
+        <p class="sm" style="margin:6px 0 10px">O navegador não fala direto com o equipamento (cgminer usa TCP 4028 e o Bitaxe usa HTTP local). Duas formas reais:</p>
+        <div class="sm"><b style="color:#BFE4FF">1. cgminer</b> — ative a API no minerador com <span class="mono">--api-listen</span> e consulte a porta 4028: <span class="mono">{"command":"summary"}</span> devolve hashrate, aceitos e rejeitados.</div>
+        <div class="sm" style="margin-top:8px"><b style="color:#BFE4FF">2. Bitaxe / AxeOS</b> — o próprio aparelho serve a interface em <span class="mono">http://IP-do-bitaxe</span> e a API em <span class="mono">/api/system/info</span> (hashrate, temperatura, shares).</div>
+        <div class="warn" style="margin-top:12px"><b>Realidade da mineração:</b> CPU e GPU comuns não dão lucro — a dificuldade da rede tornou isso inviável. Lucro em BTC hoje só com ASIC eficiente e energia barata. Este painel existe para você medir a verdade, não para vender ilusão.</div>
+      </div>
+    </div>
+
+    <div class="foot">
+      Ana BTC · Anatech MG — carteira não custodial, sem cadastro e sem servidor de chaves.<br/>
+      Não somos exchange nem custodiamos seu dinheiro. Conteúdo informativo, não é recomendação de investimento.<br/>
+      Mineração envolve risco de prejuízo. Resultados passados não garantem resultados futuros.
+    </div>
+  </section>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import * as bip39 from 'https://esm.sh/@scure/bip39@1.3.0';
+import { wordlist } from 'https://esm.sh/@scure/bip39@1.3.0/wordlists/english';
+import { HDKey } from 'https://esm.sh/@scure/bip32@1.4.0';
+import * as btc from 'https://esm.sh/@scure/btc-signer@1.4.0';
+import qrcode from 'https://esm.sh/qrcode-generator@1.4.4';
+
+const API = 'https://mempool.space/api';
+const VAULT_KEY = 'anabtc_vault_v1';
+const HW_KEY = 'anabtc_hw_v1';
+const $ = (id) => document.getElementById(id);
+const state = { mnemonic:null, address:null, p2:null, priv:null, fees:null, priceUsd:0, usdBrl:0, net:null, hw:[] };
+
+/* ---------- helpers ---------- */
+const b64e = (u8) => btoa(String.fromCharCode(...u8));
+const b64d = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const fmtBtc = (sats) => (Number(sats)/1e8).toFixed(8);
+const fmtBrl = (v) => 'R$ ' + Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const short = (a, n=10) => a ? a.slice(0,n) + '…' + a.slice(-6) : '';
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('on'),2600); }
+function openModal(html){ $('sheet').innerHTML = html; $('modal').classList.add('on'); }
+function closeModal(){ $('modal').classList.remove('on'); }
+$('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal(); });
+
+/* ---------- criptografia local ---------- */
+async function kdf(pass, salt){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2', salt, iterations:210000, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']);
+}
+async function saveVault(mnemonic, pass){
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await kdf(pass, salt);
+  const ct = await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, new TextEncoder().encode(mnemonic));
+  localStorage.setItem(VAULT_KEY, JSON.stringify({v:1, s:b64e(salt), i:b64e(iv), c:b64e(new Uint8Array(ct))}));
+}
+async function loadVault(pass){
+  const raw = localStorage.getItem(VAULT_KEY);
+  if(!raw) throw new Error('sem carteira');
+  const v = JSON.parse(raw);
+  const key = await kdf(pass, b64d(v.s));
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64d(v.i)}, key, b64d(v.c));
+  return new TextDecoder().decode(pt);
+}
+
+/* ---------- derivação BIP84 ---------- */
+function derive(mnemonic){
+  const seed = bip39.mnemonicToSeedSync(mnemonic.trim().toLowerCase().replace(/\s+/g,' '));
+  const child = HDKey.fromMasterSeed(seed).derive("m/84'/0'/0'/0/0");
+  const p2 = btc.p2wpkh(child.publicKey, btc.NETWORK);
+  state.mnemonic = mnemonic.trim().toLowerCase().replace(/\s+/g,' ');
+  state.priv = child.privateKey;
+  state.p2 = p2;
+  state.address = p2.address;
+  return p2.address;
+}
+
+/* ---------- rede ---------- */
+async function getJson(u){ const r = await fetch(u, {cache:'no-store'}); if(!r.ok) throw new Error('http '+r.status); return r.json(); }
+async function loadMarket(){
+  try{
+    const p = await getJson(`${API}/v1/prices`); state.priceUsd = p.USD || 0;
+  }catch(e){}
+  try{
+    const fx = await getJson('https://economia.awesomeapi.com.br/last/USD-BRL'); state.usdBrl = Number(fx.USDBRL.bid) || 0;
+  }catch(e){}
+  try{ state.fees = await getJson(`${API}/v1/fees/recommended`); }catch(e){}
+}
+async function loadWallet(){
+  if(!state.address) return;
+  $('balBtc').innerHTML = '<span class="spin"></span>';
+  try{
+    const st = await getJson(`${API}/address/${state.address}`);
+    const c = st.chain_stats, m = st.mempool_stats;
+    const conf = BigInt(c.funded_txo_sum) - BigInt(c.spent_txo_sum);
+    const pend = BigInt(m.funded_txo_sum) - BigInt(m.spent_txo_sum);
+    const total = conf + pend;
+    const brl = (Number(total)/1e8) * state.priceUsd * state.usdBrl;
+    $('balBtc').innerHTML = `${fmtBtc(total)} <small>BTC</small>`;
+    $('balBrl').textContent = brl > 0 ? fmtBrl(brl) : (state.priceUsd ? fmtBrl(0) : '—');
+    $('balSplit').textContent = `Confirmado: ${fmtBtc(conf)} BTC` + (pend !== 0n ? ` · pendente: ${fmtBtc(pend)} BTC` : '');
+    $('txCount').textContent = (c.tx_count || 0) + ' tx';
+    loadTxs();
+  }catch(e){
+    $('balBtc').innerHTML = '— <small>BTC</small>';
+    $('balSplit').textContent = 'Não foi possível consultar agora (rede/API). Toque em atualizar.';
+  }
+}
+function deltaOf(tx, addr){
+  let d = 0n;
+  for(const v of tx.vout) if(v.scriptpubkey_address === addr) d += BigInt(v.value);
+  for(const i of tx.vin) if(i.prevout && i.prevout.scriptpubkey_address === addr) d -= BigInt(i.prevout.value);
+  return d;
+}
+async function loadTxs(){
+  try{
+    const txs = await getJson(`${API}/address/${state.address}/txs`);
+    if(!txs.length){ $('txList').innerHTML = '<div class="sm">Nenhuma movimentação ainda. Quando alguém enviar BTC, aparece aqui.</div>'; return; }
+    $('txList').innerHTML = txs.slice(0,10).map(tx=>{
+      const d = deltaOf(tx, state.address);
+      const inn = d >= 0n;
+      const when = tx.status && tx.status.block_time ? new Date(tx.status.block_time*1000).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit'}) : 'pendente';
+      return `<a class="tx" href="https://mempool.space/tx/${tx.txid}" target="_blank" rel="noopener">
+        <span class="ico ${inn?'in':'out'}">${inn?'↓':'↑'}</span>
+        <span class="t"><b>${inn?'Recebido':'Enviado'}</b><span>${when}${tx.status && !tx.status.confirmed ? ' · aguardando confirmação' : ''}</span></span>
+        <span class="v" style="color:${inn?'#5AE896':'#FFB066'}">${inn?'+':''}${fmtBtc(d)} BTC</span>
+      </a>`;
+    }).join('');
+  }catch(e){ $('txList').innerHTML = '<div class="sm">Histórico indisponível agora.</div>'; }
+}
+
+/* ---------- QR ---------- */
+function renderQR(el, data){
+  const q = qrcode(0, 'M'); q.addData(data); q.make();
+  el.innerHTML = q.createSvgTag({cellSize: 4, margin: 0, scalable: true});
+}
+
+/* ---------- onboarding ---------- */
+$('btnNew').addEventListener('click', async ()=>{
+  const mnemonic = bip39.generateMnemonic(wordlist, 128);
+  openModal(`
+    <h2>Suas 12 palavras</h2>
+    <p class="sm" style="margin:6px 0 4px">Anote <b>na ordem</b>, no papel. Estas palavras são a sua carteira — quem tem elas, tem o dinheiro.</p>
+    <div class="seed">${mnemonic.split(' ').map((w,i)=>`<div><i>${i+1}</i>${w}</div>`).join('')}</div>
+    <div class="field"><label>Crie uma senha local</label><input type="password" id="newPass" placeholder="mínimo 6 caracteres"/></div>
+    <div class="field"><label>Repita a senha</label><input type="password" id="newPass2" placeholder="repita"/></div>
+    <label style="display:flex;gap:9px;align-items:flex-start;margin:14px 0 4px;text-transform:none;letter-spacing:0;font-size:12px;color:#C7D8EF"><input type="checkbox" id="okSeed" style="width:auto;margin-top:2px"/> Anotei as 12 palavras em papel e guardei em local seguro.</label>
+    <button class="btn" id="btnSaveNew" style="margin-top:14px">Criar carteira</button>
+    <button class="btn ghost" id="btnCancelNew" style="margin-top:8px">Cancelar</button>
+    <p class="sm" style="margin-top:10px">A senha cifra as palavras neste aparelho (AES-256). Nós não temos cópia de nada.</p>
+  `);
+  $('btnCancelNew').onclick = closeModal;
+  $('btnSaveNew').onclick = async ()=>{
+    const p1 = $('newPass').value, p2 = $('newPass2').value;
+    if(!$('okSeed').checked) return toast('Confirme que anotou as palavras');
+    if(p1.length < 6) return toast('Senha curta (mín. 6)');
+    if(p1 !== p2) return toast('As senhas não conferem');
+    await saveVault(mnemonic, p1);
+    derive(mnemonic); closeModal(); enterApp();
+    toast('Carteira criada. Guarde as 12 palavras!');
+  };
+});
+
+$('btnImport').addEventListener('click', ()=>{
+  openModal(`
+    <h2>Importar carteira</h2>
+    <p class="sm" style="margin:6px 0 12px">Digite as 12 ou 24 palavras separadas por espaço.</p>
+    <div class="field"><label>Palavras</label><input id="impWords" placeholder="palavra palavra palavra…" autocapitalize="off" spellcheck="false"/></div>
+    <div class="field"><label>Senha local (nova)</label><input type="password" id="impPass" placeholder="mínimo 6 caracteres"/></div>
+    <button class="btn blue" id="btnDoImport" style="margin-top:14px">Importar</button>
+    <button class="btn ghost" id="btnCancelImp" style="margin-top:8px">Cancelar</button>
+  `);
+  $('btnCancelImp').onclick = closeModal;
+  $('btnDoImport').onclick = async ()=>{
+    const m = $('impWords').value.trim().toLowerCase().replace(/\s+/g,' ');
+    const pass = $('impPass').value;
+    if(!bip39.validateMnemonic(m, wordlist)) return toast('Palavras inválidas — confira a ordem e a escrita');
+    if(pass.length < 6) return toast('Senha curta (mín. 6)');
+    await saveVault(m, pass);
+    derive(m); closeModal(); enterApp();
+    toast('Carteira importada');
+  };
+});
+
+/* ---------- bloqueio ---------- */
+$('btnUnlock').addEventListener('click', async ()=>{
+  try{
+    const m = await loadVault($('unlockPass').value);
+    derive(m); enterApp();
+  }catch(e){ toast('Senha incorreta'); }
+});
+$('unlockPass').addEventListener('keydown', (e)=>{ if(e.key==='Enter') $('btnUnlock').click(); });
+$('btnWipe').addEventListener('click', ()=>{
+  if(!confirm('Apagar a carteira deste aparelho? Sem as 12 palavras o saldo fica inacessível.')) return;
+  localStorage.removeItem(VAULT_KEY); location.reload();
+});
+
+/* ---------- entrar no app ---------- */
+async function enterApp(){
+  $('setup').style.display='none'; $('unlock').style.display='none'; $('app').style.display='block';
+  $('myAddr').textContent = state.address;
+  $('recvAddr').textContent = state.address;
+  renderQR($('qrBox'), 'bitcoin:' + state.address);
+  await loadMarket();
+  loadWallet();
+  loadMining();
+  updateFeeInfo();
+}
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tabs button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    $('tab-'+b.dataset.tab).classList.add('on');
+  });
+});
+
+/* ---------- copiar / compartilhar ---------- */
+function copyAddr(){
+  navigator.clipboard.writeText(state.address).then(()=>toast('Endereço copiado')).catch(()=>{
+    const t=document.createElement('textarea'); t.value=state.address; document.body.appendChild(t); t.select();
+    document.execCommand('copy'); t.remove(); toast('Endereço copiado');
+  });
+}
+$('btnCopy').onclick = copyAddr; $('btnCopy2').onclick = copyAddr;
+$('btnShare').onclick = $('btnShare2').onclick = ()=>{
+  const txt = 'Meu endereço Bitcoin (Anatech MG): ' + state.address;
+  window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank');
+};
+$('btnRefresh').onclick = ()=>{ loadMarket().then(()=>{ loadWallet(); loadMining(); }); toast('Atualizando…'); };
+
+/* ---------- enviar ---------- */
+function updateFeeInfo(){
+  if(!state.fees) return;
+  const sats = state.fees[$('fFee').value] || state.fees.halfHourFee;
+  $('feeInfo').textContent = `Taxa da rede: ${sats} sat/vB · ~68 vB por entrada. Com 1 UTXO, taxa ≈ ${sats*180} sats.`;
+}
+$('fFee').addEventListener('change', updateFeeInfo);
+
+$('btnPrepare').addEventListener('click', async ()=>{
+  try{
+    const dest = $('fDest').value.trim();
+    if(!dest) return toast('Informe o endereço de destino');
+    const unit = $('fUnit').value;
+    const raw = parseFloat($('fAmt').value.replace(',','.'));
+    if(!raw || raw <= 0) return toast('Informe um valor');
+    let sats;
+    if(unit === 'BTC') sats = BigInt(Math.round(raw * 1e8));
+    else if(unit === 'SATS') sats = BigInt(Math.round(raw));
+    else { const price = state.priceUsd * state.usdBrl; if(!price) return toast('Cotação indisponível, use BTC'); sats = BigInt(Math.round(raw / price * 1e8)); }
+
+    const utxos = await getJson(`${API}/address/${state.address}/utxo`);
+    if(!utxos.length) return toast('Sem saldo confirmado para enviar');
+    const bal = utxos.reduce((a,u)=>a+BigInt(u.value), 0n);
+    const feeRate = (state.fees && state.fees[$('fFee').value]) || 2;
+    const estVb = 11 + utxos.length*68 + 62;
+    const fee = BigInt(Math.ceil(estVb * feeRate));
+    if(sats + fee > bal) return toast('Saldo insuficiente (valor + taxa)');
+
+    openModal(`
+      <h2>Confirmar envio</h2>
+      <p class="sm" style="margin:6px 0 14px">Revise com atenção. Depois de transmitida, não há como desfazer.</p>
+      <div class="mono" style="margin-bottom:10px"><b>Para:</b><br/>${dest}</div>
+      <div class="kpis">
+        <div class="kpi"><span>Valor</span><b>${fmtBtc(sats)} BTC</b></div>
+        <div class="kpi"><span>Taxa estimada</span><b>${fee.toString()} sats</b></div>
+      </div>
+      <div class="sm" style="margin-top:10px">Entradas usadas: ${utxos.length} · taxa ${feeRate} sat/vB</div>
+      <button class="btn green" id="btnSendNow" style="margin-top:16px">Assinar e enviar</button>
+      <button class="btn ghost" id="btnSendCancel" style="margin-top:8px">Cancelar</button>
+    `);
+    $('btnSendCancel').onclick = closeModal;
+    $('btnSendNow').onclick = async ()=>{
+      $('btnSendNow').disabled = true; $('btnSendNow').textContent = 'Assinando…';
+      try{
+        const tx = new btc.Transaction();
+        let total = 0n;
+        for(const u of utxos){
+          tx.addInput({ txid: u.txid, index: u.vout, witnessUtxo: { script: state.p2.script, amount: BigInt(u.value) } });
+          total += BigInt(u.value);
+        }
+        tx.addOutputAddress(dest, sats, btc.NETWORK);
+        const change = total - sats - fee;
+        if(change > 546n) tx.addOutputAddress(state.address, change, btc.NETWORK);
+        tx.sign(state.priv);
+        tx.finalize();
+        const hex = btc.utils.bytesToHex(tx.extract());
+        const r = await fetch(`${API}/tx`, {method:'POST', headers:{'Content-Type':'text/plain'}, body: hex});
+        const tid = (await r.text()).trim();
+        if(!r.ok) throw new Error(tid.slice(0,140));
+        $('sheet').innerHTML = `
+          <h2>Transação transmitida ✅</h2>
+          <p class="sm" style="margin:8px 0 12px">Ela entra no próximo bloco. Acompanhe pela rede:</p>
+          <div class="mono">${tid}</div>
+          <a class="btn blue" href="https://mempool.space/tx/${tid}" target="_blank" rel="noopener" style="margin-top:14px;text-decoration:none">Ver no mempool</a>
+          <button class="btn ghost" id="btnDone" style="margin-top:8px">Fechar</button>`;
+        $('btnDone').onclick = ()=>{ closeModal(); loadWallet(); };
+      }catch(err){
+        $('sheet').innerHTML = `<h2>Não foi possível enviar</h2><p class="sm" style="margin:8px 0">${String(err.message||err).slice(0,200)}</p><button class="btn ghost" id="btnErr" style="margin-top:12px">Fechar</button>`;
+        $('btnErr').onclick = closeModal;
+      }
+    };
+  }catch(e){ toast('Falha ao preparar envio'); console.error(e); }
+});
+
+/* ---------- mineração ---------- */
+function fmtHash(h){
+  const u = [[1e21,'ZH/s'],[1e18,'EH/s'],[1e15,'PH/s'],[1e12,'TH/s'],[1e9,'GH/s'],[1e6,'MH/s'],[1,'H/s']];
+  for(const [v,s] of u) if(h >= v) return (h/v).toFixed(2).replace('.',',') + ' ' + s;
+  return h + ' H/s';
+}
+async function loadMining(){
+  try{
+    const [hr, adj, tip] = await Promise.all([
+      getJson(`${API}/v1/mining/hashrate/3d`),
+      getJson(`${API}/v1/difficulty-adjustment`),
+      getJson(`${API}/blocks/tip/height`)
+    ]);
+    state.net = { hash: hr.currentHashrate, diff: hr.currentDifficulty, adj, tip };
+    $('kHash').textContent = fmtHash(hr.currentHashrate);
+    $('kDiff').textContent = (hr.currentDifficulty/1e12).toFixed(1).replace('.',',') + ' T';
+    $('heightChip').textContent = 'bloco ' + tip.toLocaleString('pt-BR');
+    const pct = adj.difficultyChange >= 0 ? '+' : '';
+    $('kAdj').textContent = pct + adj.difficultyChange.toFixed(2).replace('.',',') + '%';
+    const dt = adj.estimatedRetargetDate ? new Date(adj.estimatedRetargetDate) : null;
+    $('netNote').textContent = `Ajuste previsto em ~${adj.remainingBlocks} blocos${dt ? ' (' + dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'}) + ')' : ''} · recompensa 3,125 BTC + taxas por bloco, a cada ~10 min.`;
+    calc();
+  }catch(e){ $('kHash').textContent = '—'; $('netNote').textContent = 'Estatísticas da rede indisponíveis agora.'; }
+}
+function calc(){
+  if(!state.net) return;
+  const unit = parseFloat($('cUnit').value);
+  const h = (parseFloat($('cHash').value.replace(',','.')) || 0) * unit;
+  const watts = parseFloat($('cWatt').value.replace(',','.')) || 0;
+  const kwh = parseFloat($('cKwh').value.replace(',','.')) || 0;
+  const priceBrl = state.priceUsd * state.usdBrl;
+  const btcDay = (h / state.net.hash) * 144 * 3.125;
+  const rev = btcDay * priceBrl;
+  const cost = (watts/1000) * 24 * kwh;
+  const net = rev - cost;
+  $('rRev').textContent = fmtBrl(rev);
+  $('rCost').textContent = fmtBrl(cost);
+  $('rNet').textContent = fmtBrl(net);
+  $('rNet').style.color = net >= 0 ? '#5AE896' : '#FF8C99';
+  $('rMon').textContent = fmtBrl(net*30);
+  $('rMon').style.color = net >= 0 ? '#5AE896' : '#FF8C99';
+  const w = $('rWarn');
+  if(h < 1e12){
+    w.style.display='block';
+    w.innerHTML = `<b>CPU/GPU não é viável.</b> Com ${fmtHash(h)} você disputaria com ~${fmtHash(state.net.hash)} da rede. Resultado prático: centavos por ano, muito abaixo do custo de energia. Para aprender, use os projetos didáticos; para ganhar, só ASIC eficiente com energia barata.`;
+  } else if(net < 0){
+    w.style.display='block';
+    w.innerHTML = `<b>Prejuízo operacional.</b> Com energia a R$ ${kwh.toFixed(2)}/kWh este equipamento não se paga. Opções: energia mais barata, equipamento mais eficiente ou não operar.`;
+  } else {
+    w.style.display='none';
+  }
+}
+['cHash','cUnit','cWatt','cKwh'].forEach(id=>$(id).addEventListener('input', calc));
+['cUnit'].forEach(id=>$(id).addEventListener('change', calc));
+
+/* ---------- equipamentos ---------- */
+function loadHw(){
+  try{ state.hw = JSON.parse(localStorage.getItem(HW_KEY) || '[]'); }catch(e){ state.hw = []; }
+  renderHw();
+}
+function renderHw(){
+  const el = $('hwList');
+  if(!state.hw.length){ el.innerHTML = '<div class="sm">Nenhum equipamento cadastrado.</div>'; return; }
+  el.innerHTML = state.hw.map((d,i)=>{
+    const priceBrl = state.priceUsd * state.usdBrl;
+    const h = d.th * 1e12;
+    const btcDay = state.net ? (h / state.net.hash) * 144 * 3.125 : 0;
+    const rev = btcDay * priceBrl;
+    const cost = (d.w/1000)*24*(parseFloat($('cKwh').value.replace(',','.'))||0);
+    const net = rev - cost;
+    return `<div class="tx" style="cursor:default">
+      <span class="ico ${net>=0?'in':'out'}">⛏️</span>
+      <span class="t"><b>${d.n}</b><span>${d.th} TH/s · ${d.w} W</span></span>
+      <span class="v" style="color:${net>=0?'#5AE896':'#FF8C99'}">${fmtBrl(net)}/dia</span>
+      <span data-del="${i}" style="cursor:pointer;color:#6E86A6;font-size:16px;padding-left:6px">×</span>
+    </div>`;
+  }).join('');
+  el.querySelectorAll('[data-del]').forEach(x=>x.onclick=()=>{
+    state.hw.splice(Number(x.dataset.del),1);
+    localStorage.setItem(HW_KEY, JSON.stringify(state.hw)); renderHw();
+  });
+}
+$('btnAddHw').onclick = ()=>{
+  const n = $('hwName').value.trim();
+  const th = parseFloat($('hwTh').value.replace(',','.'));
+  const w = parseFloat($('hwW').value.replace(',','.'));
+  if(!n || !th) return toast('Informe modelo e hashrate');
+  state.hw.push({n, th, w: w || 0});
+  localStorage.setItem(HW_KEY, JSON.stringify(state.hw));
+  $('hwName').value=''; $('hwTh').value=''; $('hwW').value='';
+  renderHw(); toast('Equipamento adicionado');
+};
+
+/* ---------- boot ---------- */
+(async function boot(){
+  loadHw();
+  if(localStorage.getItem(VAULT_KEY)){ $('unlock').style.display='block'; $('setup').style.display='none'; }
+  else { $('setup').style.display='block'; }
+  try{ await loadMarket(); }catch(e){}
+  const s = $('netStatus');
+  s.textContent = state.priceUsd ? 'rede ok' : 'offline';
+})();
+</script>
+</body>
+</html>
