@@ -1,0 +1,5342 @@
+[
+{
+"curso": "Introdução ao Computador",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/introdu-o-ao-computador.pdf"
+},
+{
+"curso": "Windows 11 do Zero",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/windows-11-do-zero.pdf"
+},
+{
+"curso": "Digitação (Básico)",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/digita-o-b-sico.pdf"
+},
+{
+"curso": "Digitação (Avançado)",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/digita-o-avan-ado.pdf"
+},
+{
+"curso": "Word Essencial",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/word-essencial.pdf"
+},
+{
+"curso": "Word Completo",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/word-completo.pdf"
+},
+{
+"curso": "Excel Essencial",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/excel-essencial.pdf"
+},
+{
+"curso": "Excel Intermediário",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/excel-intermedi-rio.pdf"
+},
+{
+"curso": "Excel Avançado com Fórmulas",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/excel-avan-ado-com-f-rmulas.pdf"
+},
+{
+"curso": "Excel Financeiro",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/excel-financeiro.pdf"
+},
+{
+"curso": "PowerPoint Essencial",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/powerpoint-essencial.pdf"
+},
+{
+"curso": "PowerPoint para Apresentações",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/powerpoint-para-apresenta-es.pdf"
+},
+{
+"curso": "Google Docs",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/google-docs.pdf"
+},
+{
+"curso": "Google Planilhas",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/google-planilhas.pdf"
+},
+{
+"curso": "Google Apresentações",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/google-apresenta-es.pdf"
+},
+{
+"curso": "Internet Essencial",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/internet-essencial.pdf"
+},
+{
+"curso": "E-mail Profissional (Gmail)",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/e-mail-profissional-gmail.pdf"
+},
+{
+"curso": "E-mail Profissional (Outlook)",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/e-mail-profissional-outlook.pdf"
+},
+{
+"curso": "Organização de Arquivos no PC",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/organiza-o-de-arquivos-no-pc.pdf"
+},
+{
+"curso": "Zoom e Videochamadas",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/zoom-e-videochamadas.pdf"
+},
+{
+"curso": "Assinatura Digital de Documentos",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/assinatura-digital-de-documentos.pdf"
+},
+{
+"curso": "Impressão e Digitalização",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/impress-o-e-digitaliza-o.pdf"
+},
+{
+"curso": "Manutenção Básica de Computadores",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/manuten-o-b-sica-de-computadores.pdf"
+},
+{
+"curso": "Montagem de Computadores",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/montagem-de-computadores.pdf"
+},
+{
+"curso": "Instalação de Programas",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/instala-o-de-programas.pdf"
+},
+{
+"curso": "Backup e Segurança de Arquivos",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/backup-e-seguran-a-de-arquivos.pdf"
+},
+{
+"curso": "Atalhos do Teclado e Produtividade",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/atalhos-do-teclado-e-produtividade.pdf"
+},
+{
+"curso": "Adobe PDF (Leitura e Preenchimento)",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/adobe-pdf-leitura-e-preenchimento.pdf"
+},
+{
+"curso": "Canva Essencial",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/canva-essencial.pdf"
+},
+{
+"curso": "Atendimento Digital no Computador",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/atendimento-digital-no-computador.pdf"
+},
+{
+"curso": "Combo Ferramentas Google",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/combo-ferramentas-google.pdf"
+},
+{
+"curso": "Informática Aplicada a Educação",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/inform-tica-aplicada-a-educa-o.pdf"
+},
+{
+"curso": "Informática Avançada",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/inform-tica-avan-ada.pdf"
+},
+{
+"curso": "Informática Intermediaria",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/inform-tica-intermediaria.pdf"
+},
+{
+"curso": "Introdução a Redes Informática",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/introdu-o-a-redes-inform-tica.pdf"
+},
+{
+"curso": "Operador de Micro Computador",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/operador-de-micro-computador.pdf"
+},
+{
+"curso": "Operador de Telemarketing",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/operador-de-telemarketing.pdf"
+},
+{
+"curso": "Power Point",
+"categoria": "Informática Básica",
+"pdf": "cursos/pdf/power-point.pdf"
+},
+{
+"curso": "Lógica de Programação do Zero",
+"categoria": "Programação",
+"pdf": "cursos/pdf/l-gica-de-programa-o-do-zero.pdf"
+},
+{
+"curso": "Python Básico",
+"categoria": "Programação",
+"pdf": "cursos/pdf/python-b-sico.pdf"
+},
+{
+"curso": "Python Intermediário",
+"categoria": "Programação",
+"pdf": "cursos/pdf/python-intermedi-rio.pdf"
+},
+{
+"curso": "Python para Análise de Dados",
+"categoria": "Programação",
+"pdf": "cursos/pdf/python-para-an-lise-de-dados.pdf"
+},
+{
+"curso": "JavaScript Básico",
+"categoria": "Programação",
+"pdf": "cursos/pdf/javascript-b-sico.pdf"
+},
+{
+"curso": "JavaScript na Prática",
+"categoria": "Programação",
+"pdf": "cursos/pdf/javascript-na-pr-tica.pdf"
+},
+{
+"curso": "HTML Essencial",
+"categoria": "Programação",
+"pdf": "cursos/pdf/html-essencial.pdf"
+},
+{
+"curso": "CSS Essencial",
+"categoria": "Programação",
+"pdf": "cursos/pdf/css-essencial.pdf"
+},
+{
+"curso": "HTML e CSS Sites Completos",
+"categoria": "Programação",
+"pdf": "cursos/pdf/html-e-css-sites-completos.pdf"
+},
+{
+"curso": "Java Básico",
+"categoria": "Programação",
+"pdf": "cursos/pdf/java-b-sico.pdf"
+},
+{
+"curso": "Java Orientação a Objetos",
+"categoria": "Programação",
+"pdf": "cursos/pdf/java-orienta-o-a-objetos.pdf"
+},
+{
+"curso": "C Básico",
+"categoria": "Programação",
+"pdf": "cursos/pdf/c-b-sico.pdf"
+},
+{
+"curso": "C++ Básico",
+"categoria": "Programação",
+"pdf": "cursos/pdf/c-plusplus-b-sico.pdf"
+},
+{
+"curso": "C# Básico",
+"categoria": "Programação",
+"pdf": "cursos/pdf/c-sharp-b-sico.pdf"
+},
+{
+"curso": "PHP Básico",
+"categoria": "Programação",
+"pdf": "cursos/pdf/php-b-sico.pdf"
+},
+{
+"curso": "PHP com Banco de Dados",
+"categoria": "Programação",
+"pdf": "cursos/pdf/php-com-banco-de-dados.pdf"
+},
+{
+"curso": "SQL Básico",
+"categoria": "Programação",
+"pdf": "cursos/pdf/sql-b-sico.pdf"
+},
+{
+"curso": "MySQL na Prática",
+"categoria": "Programação",
+"pdf": "cursos/pdf/mysql-na-pr-tica.pdf"
+},
+{
+"curso": "Git e GitHub Essencial",
+"categoria": "Programação",
+"pdf": "cursos/pdf/git-e-github-essencial.pdf"
+},
+{
+"curso": "APIs REST para Iniciantes",
+"categoria": "Programação",
+"pdf": "cursos/pdf/apis-rest-para-iniciantes.pdf"
+},
+{
+"curso": "Criação de Sites com WordPress",
+"categoria": "Programação",
+"pdf": "cursos/pdf/cria-o-de-sites-com-wordpress.pdf"
+},
+{
+"curso": "WordPress Loja Online",
+"categoria": "Programação",
+"pdf": "cursos/pdf/wordpress-loja-online.pdf"
+},
+{
+"curso": "Desenvolvimento Mobile Iniciante",
+"categoria": "Programação",
+"pdf": "cursos/pdf/desenvolvimento-mobile-iniciante.pdf"
+},
+{
+"curso": "App Android com Kotlin (Iniciação)",
+"categoria": "Programação",
+"pdf": "cursos/pdf/app-android-com-kotlin-inicia-o.pdf"
+},
+{
+"curso": "Scratch Programação para Crianças",
+"categoria": "Programação",
+"pdf": "cursos/pdf/scratch-programa-o-para-crian-as.pdf"
+},
+{
+"curso": "Automação com Python",
+"categoria": "Programação",
+"pdf": "cursos/pdf/automa-o-com-python.pdf"
+},
+{
+"curso": "Testes de Software Iniciação",
+"categoria": "Programação",
+"pdf": "cursos/pdf/testes-de-software-inicia-o.pdf"
+},
+{
+"curso": "Banco de Dados Essencial",
+"categoria": "Programação",
+"pdf": "cursos/pdf/banco-de-dados-essencial.pdf"
+},
+{
+"curso": "Laravel Iniciação",
+"categoria": "Programação",
+"pdf": "cursos/pdf/laravel-inicia-o.pdf"
+},
+{
+"curso": "React Iniciação",
+"categoria": "Programação",
+"pdf": "cursos/pdf/react-inicia-o.pdf"
+},
+{
+"curso": "Android para Iniciantes",
+"categoria": "Programação",
+"pdf": "cursos/pdf/android-para-iniciantes.pdf"
+},
+{
+"curso": "AutoCAD 2017",
+"categoria": "Programação",
+"pdf": "cursos/pdf/autocad-2017.pdf"
+},
+{
+"curso": "Java na Prática Avançada",
+"categoria": "Programação",
+"pdf": "cursos/pdf/java-na-pr-tica-avan-ada.pdf"
+},
+{
+"curso": "Java na Prática Códigos",
+"categoria": "Programação",
+"pdf": "cursos/pdf/java-na-pr-tica-c-digos.pdf"
+},
+{
+"curso": "Java na Prática Intermediário",
+"categoria": "Programação",
+"pdf": "cursos/pdf/java-na-pr-tica-intermedi-rio.pdf"
+},
+{
+"curso": "PHP MySQL Iniciante",
+"categoria": "Programação",
+"pdf": "cursos/pdf/php-mysql-iniciante.pdf"
+},
+{
+"curso": "IA Básica para o Dia a Dia",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/ia-b-sica-para-o-dia-a-dia.pdf"
+},
+{
+"curso": "Prompts Essenciais para IA",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/prompts-essenciais-para-ia.pdf"
+},
+{
+"curso": "ChatGPT para Trabalho",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/chatgpt-para-trabalho.pdf"
+},
+{
+"curso": "ChatGPT para Estudos",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/chatgpt-para-estudos.pdf"
+},
+{
+"curso": "IA para Pequenos Negócios",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/ia-para-pequenos-neg-cios.pdf"
+},
+{
+"curso": "IA para Redes Sociais",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/ia-para-redes-sociais.pdf"
+},
+{
+"curso": "IA para Escrever Melhor",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/ia-para-escrever-melhor.pdf"
+},
+{
+"curso": "IA para Atendimento ao Cliente",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/ia-para-atendimento-ao-cliente.pdf"
+},
+{
+"curso": "Ética e Uso Responsável de IA",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/tica-e-uso-respons-vel-de-ia.pdf"
+},
+{
+"curso": "Excel com IA",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/excel-com-ia.pdf"
+},
+{
+"curso": "Análise de Dados Iniciação",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/an-lise-de-dados-inicia-o.pdf"
+},
+{
+"curso": "Power BI Básico",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/power-bi-b-sico.pdf"
+},
+{
+"curso": "Power BI na Prática",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/power-bi-na-pr-tica.pdf"
+},
+{
+"curso": "Google Data Studio",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/google-data-studio.pdf"
+},
+{
+"curso": "Ciência de Dados Iniciação",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/ci-ncia-de-dados-inicia-o.pdf"
+},
+{
+"curso": "Estatística Essencial",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/estat-stica-essencial.pdf"
+},
+{
+"curso": "Visualização de Dados",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/visualiza-o-de-dados.pdf"
+},
+{
+"curso": "No-Code com IA",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/no-code-com-ia.pdf"
+},
+{
+"curso": "Automação de Tarefas com IA",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/automa-o-de-tarefas-com-ia.pdf"
+},
+{
+"curso": "IA na Educação",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/ia-na-educa-o.pdf"
+},
+{
+"curso": "IA para Concursos e Estudos",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/ia-para-concursos-e-estudos.pdf"
+},
+{
+"curso": "Assistentes Virtuais e Chatbots",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/assistentes-virtuais-e-chatbots.pdf"
+},
+{
+"curso": "IA na Contabilidade",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/ia-na-contabilidade.pdf"
+},
+{
+"curso": "IA no Agronegócio",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/ia-no-agroneg-cio.pdf"
+},
+{
+"curso": "IA para Vendedores",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/ia-para-vendedores.pdf"
+},
+{
+"curso": "Fundamentos de Machine Learning",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/fundamentos-de-machine-learning.pdf"
+},
+{
+"curso": "R para Iniciantes",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/r-para-iniciantes.pdf"
+},
+{
+"curso": "Big Data Conceitos",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/big-data-conceitos.pdf"
+},
+{
+"curso": "Dados Públicos para Municípios",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/dados-p-blicos-para-munic-pios.pdf"
+},
+{
+"curso": "Dashboards para Gestão Pública",
+"categoria": "IA e Dados",
+"pdf": "cursos/pdf/dashboards-para-gest-o-p-blica.pdf"
+},
+{
+"curso": "Robótica Educacional Básica",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/rob-tica-educacional-b-sica.pdf"
+},
+{
+"curso": "Robótica Educacional com Arduino",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/rob-tica-educacional-com-arduino.pdf"
+},
+{
+"curso": "Arduino Iniciação",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/arduino-inicia-o.pdf"
+},
+{
+"curso": "Arduino Projetos Práticos",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/arduino-projetos-pr-ticos.pdf"
+},
+{
+"curso": "Eletrônica Aplicada à Robótica",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/eletr-nica-aplicada-rob-tica.pdf"
+},
+{
+"curso": "Montagem de Robôs Educacionais",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/montagem-de-rob-s-educacionais.pdf"
+},
+{
+"curso": "Programação de Robôs",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/programa-o-de-rob-s.pdf"
+},
+{
+"curso": "Impressão 3D Iniciação",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/impress-o-3d-inicia-o.pdf"
+},
+{
+"curso": "Modelagem 3D para Impressão",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/modelagem-3d-para-impress-o.pdf"
+},
+{
+"curso": "Operador de Drone Básico",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/operador-de-drone-b-sico.pdf"
+},
+{
+"curso": "Pilotagem de Drone na Prática",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/pilotagem-de-drone-na-pr-tica.pdf"
+},
+{
+"curso": "Legislação de Drones (ANAC)",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/legisla-o-de-drones-anac.pdf"
+},
+{
+"curso": "Manutenção de Drones",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/manuten-o-de-drones.pdf"
+},
+{
+"curso": "Drone para Fotografia e Vídeo",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/drone-para-fotografia-e-v-deo.pdf"
+},
+{
+"curso": "Drone no Agronegócio",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/drone-no-agroneg-cio.pdf"
+},
+{
+"curso": "Drone para Inspeção e Mapeamento",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/drone-para-inspe-o-e-mapeamento.pdf"
+},
+{
+"curso": "Mapeamento com Drone e Software",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/mapeamento-com-drone-e-software.pdf"
+},
+{
+"curso": "Robótica na Escola (Professores)",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/rob-tica-na-escola-professores.pdf"
+},
+{
+"curso": "Competições de Robótica",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/competi-es-de-rob-tica.pdf"
+},
+{
+"curso": "Solderagem (Solda de Placas)",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/solderagem-solda-de-placas.pdf"
+},
+{
+"curso": "Raspberry Pi Iniciação",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/raspberry-pi-inicia-o.pdf"
+},
+{
+"curso": "Automação Residencial com Arduino",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/automa-o-residencial-com-arduino.pdf"
+},
+{
+"curso": "Sensores e Automação",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/sensores-e-automa-o.pdf"
+},
+{
+"curso": "IoT Conceitos e Projetos",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/iot-conceitos-e-projetos.pdf"
+},
+{
+"curso": "Robótica Industrial Visão Geral",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/rob-tica-industrial-vis-o-geral.pdf"
+},
+{
+"curso": "Mecatrônica Iniciação",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/mecatr-nica-inicia-o.pdf"
+},
+{
+"curso": "Drone FPV Iniciação",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/drone-fpv-inicia-o.pdf"
+},
+{
+"curso": "Simulador de Voo de Drone",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/simulador-de-voo-de-drone.pdf"
+},
+{
+"curso": "Segurança em Operação de Drones",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/seguran-a-em-opera-o-de-drones.pdf"
+},
+{
+"curso": "Legislação de Voo Avançada",
+"categoria": "Robótica e Drones",
+"pdf": "cursos/pdf/legisla-o-de-voo-avan-ada.pdf"
+},
+{
+"curso": "Inglês Básico",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-b-sico.pdf"
+},
+{
+"curso": "Inglês Intermediário",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-intermedi-rio.pdf"
+},
+{
+"curso": "Inglês para o Trabalho",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-para-o-trabalho.pdf"
+},
+{
+"curso": "Inglês para Viagens",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-para-viagens.pdf"
+},
+{
+"curso": "Inglês para Atendimento",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-para-atendimento.pdf"
+},
+{
+"curso": "Inglês Conversação",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-conversa-o.pdf"
+},
+{
+"curso": "Espanhol Básico",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/espanhol-b-sico.pdf"
+},
+{
+"curso": "Espanhol para o Trabalho",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/espanhol-para-o-trabalho.pdf"
+},
+{
+"curso": "Espanhol Intermediário",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/espanhol-intermedi-rio.pdf"
+},
+{
+"curso": "Francês Básico",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/franc-s-b-sico.pdf"
+},
+{
+"curso": "Italiano Básico",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/italiano-b-sico.pdf"
+},
+{
+"curso": "Alemão Básico",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/alem-o-b-sico.pdf"
+},
+{
+"curso": "Japonês Básico",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/japon-s-b-sico.pdf"
+},
+{
+"curso": "LIBRAS Básico",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/libras-b-sico.pdf"
+},
+{
+"curso": "LIBRAS Intermediário",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/libras-intermedi-rio.pdf"
+},
+{
+"curso": "LIBRAS para Professores",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/libras-para-professores.pdf"
+},
+{
+"curso": "LIBRAS para Saúde",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/libras-para-sa-de.pdf"
+},
+{
+"curso": "LIBRAS para Atendimento Público",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/libras-para-atendimento-p-blico.pdf"
+},
+{
+"curso": "Português para Concursos",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/portugu-s-para-concursos.pdf"
+},
+{
+"curso": "Redação Profissional",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/reda-o-profissional.pdf"
+},
+{
+"curso": "Português Empresarial",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/portugu-s-empresarial.pdf"
+},
+{
+"curso": "Interpretação de Texto",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/interpreta-o-de-texto.pdf"
+},
+{
+"curso": "Oratória em Público",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/orat-ria-em-p-blico.pdf"
+},
+{
+"curso": "Preparação para Entrevista em Inglês",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/prepara-o-para-entrevista-em-ingl-s.pdf"
+},
+{
+"curso": "Inglês Técnico para TI",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-t-cnico-para-ti.pdf"
+},
+{
+"curso": "Inglês para Hospitalidade",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-para-hospitalidade.pdf"
+},
+{
+"curso": "Espanhol para Vendas",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/espanhol-para-vendas.pdf"
+},
+{
+"curso": "Inglês para Crianças (Recreação)",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-para-crian-as-recrea-o.pdf"
+},
+{
+"curso": "Pronúncia e Fluidez",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/pron-ncia-e-fluidez.pdf"
+},
+{
+"curso": "Inglês para Enfermagem",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-para-enfermagem.pdf"
+},
+{
+"curso": "Espanhol para Iniciantes",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/espanhol-para-iniciantes.pdf"
+},
+{
+"curso": "Espanhol para Iniciantes 2",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/espanhol-para-iniciantes-2.pdf"
+},
+{
+"curso": "Espanhol para Iniciantes 3",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/espanhol-para-iniciantes-3.pdf"
+},
+{
+"curso": "Inglês Instrumental",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-instrumental.pdf"
+},
+{
+"curso": "Inglês Técnico Básico",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-t-cnico-b-sico.pdf"
+},
+{
+"curso": "Inglês para Iniciantes",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-para-iniciantes.pdf"
+},
+{
+"curso": "Inglês para Iniciantes 2",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-para-iniciantes-2.pdf"
+},
+{
+"curso": "Inglês para Iniciantes 3",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/ingl-s-para-iniciantes-3.pdf"
+},
+{
+"curso": "Leitura Dinâmica",
+"categoria": "Idiomas",
+"pdf": "cursos/pdf/leitura-din-mica.pdf"
+},
+{
+"curso": "Canva para Redes Sociais",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/canva-para-redes-sociais.pdf"
+},
+{
+"curso": "Canva Avançado",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/canva-avan-ado.pdf"
+},
+{
+"curso": "Photoshop Essencial",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/photoshop-essencial.pdf"
+},
+{
+"curso": "Photoshop na Prática",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/photoshop-na-pr-tica.pdf"
+},
+{
+"curso": "Illustrator Essencial",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/illustrator-essencial.pdf"
+},
+{
+"curso": "CorelDRAW Essencial",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/coreldraw-essencial.pdf"
+},
+{
+"curso": "Figma Básico",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/figma-b-sico.pdf"
+},
+{
+"curso": "Figma para Interfaces",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/figma-para-interfaces.pdf"
+},
+{
+"curso": "Edição de Vídeo no Celular",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/edi-o-de-v-deo-no-celular.pdf"
+},
+{
+"curso": "CapCut Essencial",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/capcut-essencial.pdf"
+},
+{
+"curso": "Premiere Rush",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/premiere-rush.pdf"
+},
+{
+"curso": "DaVinci Resolve Iniciação",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/davinci-resolve-inicia-o.pdf"
+},
+{
+"curso": "Edição de Foto no Celular",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/edi-o-de-foto-no-celular.pdf"
+},
+{
+"curso": "Design de Posts para Instagram",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/design-de-posts-para-instagram.pdf"
+},
+{
+"curso": "Identidade Visual Básica",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/identidade-visual-b-sica.pdf"
+},
+{
+"curso": "Design de Embalagens",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/design-de-embalagens.pdf"
+},
+{
+"curso": "Motion Design Iniciação",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/motion-design-inicia-o.pdf"
+},
+{
+"curso": "Animação 2D Básica",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/anima-o-2d-b-sica.pdf"
+},
+{
+"curso": "Produção de Reels",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/produ-o-de-reels.pdf"
+},
+{
+"curso": "Fotografia com Celular",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/fotografia-com-celular.pdf"
+},
+{
+"curso": "Fotografia de Produtos",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/fotografia-de-produtos.pdf"
+},
+{
+"curso": "Áudio e Podcast Iniciação",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/udio-e-podcast-inicia-o.pdf"
+},
+{
+"curso": "Roteiro para Vídeos Curtos",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/roteiro-para-v-deos-curtos.pdf"
+},
+{
+"curso": "Diagramação de Materiais",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/diagrama-o-de-materiais.pdf"
+},
+{
+"curso": "Design Acessível",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/design-acess-vel.pdf"
+},
+{
+"curso": "Cinema 4d",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/cinema-4d.pdf"
+},
+{
+"curso": "Decoração de Ambientes",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/decora-o-de-ambientes.pdf"
+},
+{
+"curso": "Design Gráfico",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/design-gr-fico.pdf"
+},
+{
+"curso": "Design de Interiores com Plantas",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/design-de-interiores-com-plantas.pdf"
+},
+{
+"curso": "Design para Social Media",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/design-para-social-media.pdf"
+},
+{
+"curso": "Edição de Vídeo",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/edi-o-de-v-deo.pdf"
+},
+{
+"curso": "Fotografia Digital",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/fotografia-digital.pdf"
+},
+{
+"curso": "Guia de Trabalho para Paisagistas",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/guia-de-trabalho-para-paisagistas.pdf"
+},
+{
+"curso": "Jardinagem e Paisagismo",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/jardinagem-e-paisagismo.pdf"
+},
+{
+"curso": "Noções Básicas de Paisagismo para Interiores",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/no-es-b-sicas-de-paisagismo-para-interiores.pdf"
+},
+{
+"curso": "Paisagismo para Iniciantes",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/paisagismo-para-iniciantes.pdf"
+},
+{
+"curso": "Projetos de Interiores Residenciais",
+"categoria": "Design e Multimídia",
+"pdf": "cursos/pdf/projetos-de-interiores-residenciais.pdf"
+},
+{
+"curso": "Marketing Digital do Zero",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-digital-do-zero.pdf"
+},
+{
+"curso": "Instagram para Negócios",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/instagram-para-neg-cios.pdf"
+},
+{
+"curso": "Facebook para Negócios",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/facebook-para-neg-cios.pdf"
+},
+{
+"curso": "TikTok para Negócios",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/tiktok-para-neg-cios.pdf"
+},
+{
+"curso": "WhatsApp Business",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/whatsapp-business.pdf"
+},
+{
+"curso": "WhatsApp para Vendas",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/whatsapp-para-vendas.pdf"
+},
+{
+"curso": "Copywriting Básico",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/copywriting-b-sico.pdf"
+},
+{
+"curso": "Copywriting para Redes",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/copywriting-para-redes.pdf"
+},
+{
+"curso": "SEO Essencial",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/seo-essencial.pdf"
+},
+{
+"curso": "Google Meu Negócio",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/google-meu-neg-cio.pdf"
+},
+{
+"curso": "E-mail Marketing",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/e-mail-marketing.pdf"
+},
+{
+"curso": "Tráfego Pago Iniciação",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/tr-fego-pago-inicia-o.pdf"
+},
+{
+"curso": "Meta Ads Iniciação",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/meta-ads-inicia-o.pdf"
+},
+{
+"curso": "Google Ads Iniciação",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/google-ads-inicia-o.pdf"
+},
+{
+"curso": "Funil de Vendas",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/funil-de-vendas.pdf"
+},
+{
+"curso": "Geração de Leads",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/gera-o-de-leads.pdf"
+},
+{
+"curso": "Remarketing Conceitos",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/remarketing-conceitos.pdf"
+},
+{
+"curso": "Marketing de Afiliados",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-de-afiliados.pdf"
+},
+{
+"curso": "Influência Digital e Parcerias",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/influ-ncia-digital-e-parcerias.pdf"
+},
+{
+"curso": "Branding para Pequenos Negócios",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/branding-para-pequenos-neg-cios.pdf"
+},
+{
+"curso": "Marketing para Salões",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-para-sal-es.pdf"
+},
+{
+"curso": "Marketing para Restaurantes",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-para-restaurantes.pdf"
+},
+{
+"curso": "Marketing para Lojas",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-para-lojas.pdf"
+},
+{
+"curso": "Marketing de Conteúdo",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-de-conte-do.pdf"
+},
+{
+"curso": "Bio e Perfil que Vendem",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/bio-e-perfil-que-vendem.pdf"
+},
+{
+"curso": "Métricas e Insights",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/m-tricas-e-insights.pdf"
+},
+{
+"curso": "Planejamento de Conteúdo",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/planejamento-de-conte-do.pdf"
+},
+{
+"curso": "E-commerce Iniciação",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/e-commerce-inicia-o.pdf"
+},
+{
+"curso": "Marketplaces (Mercado Livre e Shopee)",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketplaces-mercado-livre-e-shopee.pdf"
+},
+{
+"curso": "Atendimento que Converte",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/atendimento-que-converte.pdf"
+},
+{
+"curso": "Branding Construção de Marca",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/branding-constru-o-de-marca.pdf"
+},
+{
+"curso": "CRM",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/crm.pdf"
+},
+{
+"curso": "Comunicação Integrada de Marketing IMC",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/comunica-o-integrada-de-marketing-imc.pdf"
+},
+{
+"curso": "Content Shock no Marketing de Conteúdo",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/content-shock-no-marketing-de-conte-do.pdf"
+},
+{
+"curso": "Digital Mindset Business",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/digital-mindset-business.pdf"
+},
+{
+"curso": "Employer Branding",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/employer-branding.pdf"
+},
+{
+"curso": "Endomarketing",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/endomarketing.pdf"
+},
+{
+"curso": "Facebook Ads",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/facebook-ads.pdf"
+},
+{
+"curso": "Fidelização de Clientes",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/fideliza-o-de-clientes.pdf"
+},
+{
+"curso": "Fundamentos do Marketing Digital",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/fundamentos-do-marketing-digital.pdf"
+},
+{
+"curso": "Inteligência de Mercado",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/intelig-ncia-de-mercado.pdf"
+},
+{
+"curso": "Inteligência e Pesquisa de Mercado",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/intelig-ncia-e-pesquisa-de-mercado.pdf"
+},
+{
+"curso": "Marketing Digital",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-digital.pdf"
+},
+{
+"curso": "Marketing Digital para Empreendedores",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-digital-para-empreendedores.pdf"
+},
+{
+"curso": "Marketing Verde e Consumo Ambiental",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-verde-e-consumo-ambiental.pdf"
+},
+{
+"curso": "Marketing de Excelência da Informação",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-de-excel-ncia-da-informa-o.pdf"
+},
+{
+"curso": "Marketing de Ignição",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-de-igni-o.pdf"
+},
+{
+"curso": "Marketing de Serviços",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-de-servi-os.pdf"
+},
+{
+"curso": "Marketing de Varejo",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/marketing-de-varejo.pdf"
+},
+{
+"curso": "Modelos Inovadores de Negócios Digitais",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/modelos-inovadores-de-neg-cios-digitais.pdf"
+},
+{
+"curso": "Pesquisa de Mercado",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/pesquisa-de-mercado.pdf"
+},
+{
+"curso": "Pesquisa de Mercado Avançada",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/pesquisa-de-mercado-avan-ada.pdf"
+},
+{
+"curso": "Posicionamento Estratégico de Marketing",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/posicionamento-estrat-gico-de-marketing.pdf"
+},
+{
+"curso": "Publicidade",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/publicidade.pdf"
+},
+{
+"curso": "SEO",
+"categoria": "Marketing Digital",
+"pdf": "cursos/pdf/seo.pdf"
+},
+{
+"curso": "Auxiliar Administrativo",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/auxiliar-administrativo.pdf"
+},
+{
+"curso": "Técnicas de Arquivamento",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/t-cnicas-de-arquivamento.pdf"
+},
+{
+"curso": "Secretariado Básico",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/secretariado-b-sico.pdf"
+},
+{
+"curso": "Redação de Ofícios e E-mails",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/reda-o-de-of-cios-e-e-mails.pdf"
+},
+{
+"curso": "Rotinas de Escritório",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/rotinas-de-escrit-rio.pdf"
+},
+{
+"curso": "Recursos Humanos Básico",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/recursos-humanos-b-sico.pdf"
+},
+{
+"curso": "Departamento Pessoal Básico",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/departamento-pessoal-b-sico.pdf"
+},
+{
+"curso": "Recrutamento e Seleção",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/recrutamento-e-sele-o.pdf"
+},
+{
+"curso": "Contabilidade Básica",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/contabilidade-b-sica.pdf"
+},
+{
+"curso": "Contas a Pagar e Receber",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/contas-a-pagar-e-receber.pdf"
+},
+{
+"curso": "Fluxo de Caixa",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/fluxo-de-caixa.pdf"
+},
+{
+"curso": "Controle Financeiro de Microempresa",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/controle-financeiro-de-microempresa.pdf"
+},
+{
+"curso": "Faturamento e Nota Fiscal",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/faturamento-e-nota-fiscal.pdf"
+},
+{
+"curso": "Licitações Básico",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/licita-es-b-sico.pdf"
+},
+{
+"curso": "Compras Públicas Iniciação",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/compras-p-blicas-inicia-o.pdf"
+},
+{
+"curso": "Prestação de Contas Básica",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/presta-o-de-contas-b-sica.pdf"
+},
+{
+"curso": "Gestão de Projetos Básico",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-projetos-b-sico.pdf"
+},
+{
+"curso": "Excel para RH",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/excel-para-rh.pdf"
+},
+{
+"curso": "Atendimento Telefônico Profissional",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/atendimento-telef-nico-profissional.pdf"
+},
+{
+"curso": "Cerimonial e Protocolo",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/cerimonial-e-protocolo.pdf"
+},
+{
+"curso": "Gestão de Contratos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-contratos.pdf"
+},
+{
+"curso": "Orçamento Familiar",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/or-amento-familiar.pdf"
+},
+{
+"curso": "Emitindo Nota Fiscal de Serviço",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/emitindo-nota-fiscal-de-servi-o.pdf"
+},
+{
+"curso": "Controladoria Básica",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/controladoria-b-sica.pdf"
+},
+{
+"curso": "Gestão de Equipes",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-equipes.pdf"
+},
+{
+"curso": "Administração Estratégica",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-estrat-gica.pdf"
+},
+{
+"curso": "Administração Financeira",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-financeira.pdf"
+},
+{
+"curso": "Administração Financeira Avaliação do Desempenho Empresarial",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-financeira-avalia-o-do-desempenho-empresarial.pdf"
+},
+{
+"curso": "Administração Geral",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-geral.pdf"
+},
+{
+"curso": "Administração da Frota",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-da-frota.pdf"
+},
+{
+"curso": "Administração de Armazenagem",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-de-armazenagem.pdf"
+},
+{
+"curso": "Administração de Empresas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-de-empresas.pdf"
+},
+{
+"curso": "Administração de Marketing",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-de-marketing.pdf"
+},
+{
+"curso": "Administração de Pequenas Empresas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-de-pequenas-empresas.pdf"
+},
+{
+"curso": "Administração de Recursos Humanos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-de-recursos-humanos.pdf"
+},
+{
+"curso": "Administração de Supermercado",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-de-supermercado.pdf"
+},
+{
+"curso": "Administração de Tesouraria",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-de-tesouraria.pdf"
+},
+{
+"curso": "Administração de Vendas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-de-vendas.pdf"
+},
+{
+"curso": "Administração do Tempo",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-do-tempo.pdf"
+},
+{
+"curso": "Administração e Planejamento",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/administra-o-e-planejamento.pdf"
+},
+{
+"curso": "Analista Contábil",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/analista-cont-bil.pdf"
+},
+{
+"curso": "Analista Financeiro",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/analista-financeiro.pdf"
+},
+{
+"curso": "Análise de Demonstrações Financeiras",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/an-lise-de-demonstra-es-financeiras.pdf"
+},
+{
+"curso": "Apuração e Análise de Custos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/apura-o-e-an-lise-de-custos.pdf"
+},
+{
+"curso": "Assistente Administrativo",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/assistente-administrativo.pdf"
+},
+{
+"curso": "Assistente Administrativo Básico",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/assistente-administrativo-b-sico.pdf"
+},
+{
+"curso": "Auditoria Contábil",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/auditoria-cont-bil.pdf"
+},
+{
+"curso": "Autoconhecimento e Desenvolvimento Pessoal",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/autoconhecimento-e-desenvolvimento-pessoal.pdf"
+},
+{
+"curso": "Auxiliar Administrativo Avançado",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/auxiliar-administrativo-avan-ado.pdf"
+},
+{
+"curso": "Auxiliar de Faturamento",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/auxiliar-de-faturamento.pdf"
+},
+{
+"curso": "Avaliação de Desempenho",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/avalia-o-de-desempenho.pdf"
+},
+{
+"curso": "Balanced Scorecard",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/balanced-scorecard.pdf"
+},
+{
+"curso": "Business Partner de Finanças",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/business-partner-de-finan-as.pdf"
+},
+{
+"curso": "CTPS Carteira de Trabalho e Previdência Social",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/ctps-carteira-de-trabalho-e-previd-ncia-social.pdf"
+},
+{
+"curso": "Calculo Financeiro",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/calculo-financeiro.pdf"
+},
+{
+"curso": "Cálculos Trabalhistas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/c-lculos-trabalhistas.pdf"
+},
+{
+"curso": "Chefia e Liderança",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/chefia-e-lideran-a.pdf"
+},
+{
+"curso": "Coaching",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/coaching.pdf"
+},
+{
+"curso": "Coaching e Planejamento de Carreira",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/coaching-e-planejamento-de-carreira.pdf"
+},
+{
+"curso": "Comércio Exterior",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/com-rcio-exterior.pdf"
+},
+{
+"curso": "Como Conduzir Reuniões de Trabalho",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/como-conduzir-reuni-es-de-trabalho.pdf"
+},
+{
+"curso": "Como Iniciar Seu Próprio Negócio",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/como-iniciar-seu-pr-prio-neg-cio.pdf"
+},
+{
+"curso": "Comunicação Nas Organizações",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/comunica-o-nas-organiza-es.pdf"
+},
+{
+"curso": "Consultoria Empresarial",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/consultoria-empresarial.pdf"
+},
+{
+"curso": "Consultoria de Moda",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/consultoria-de-moda.pdf"
+},
+{
+"curso": "Contabilidade Avançada",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/contabilidade-avan-ada.pdf"
+},
+{
+"curso": "Contabilidade Financeira",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/contabilidade-financeira.pdf"
+},
+{
+"curso": "Contabilidade para Análise de Negócios",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/contabilidade-para-an-lise-de-neg-cios.pdf"
+},
+{
+"curso": "Contabilidade para Não Contadores",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/contabilidade-para-n-o-contadores.pdf"
+},
+{
+"curso": "Contabilidade para Tomada de Decisão",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/contabilidade-para-tomada-de-decis-o.pdf"
+},
+{
+"curso": "Controladoria",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/controladoria.pdf"
+},
+{
+"curso": "Controles Financeiros",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/controles-financeiros.pdf"
+},
+{
+"curso": "Decisões de Investimento e Financiamento",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/decis-es-de-investimento-e-financiamento.pdf"
+},
+{
+"curso": "Departamento Pessoal",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/departamento-pessoal.pdf"
+},
+{
+"curso": "Desenvolvimento Pessoal",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/desenvolvimento-pessoal.pdf"
+},
+{
+"curso": "Desenvolvimento Pessoal no Trabalho",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/desenvolvimento-pessoal-no-trabalho.pdf"
+},
+{
+"curso": "Economia Empresarial",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/economia-empresarial.pdf"
+},
+{
+"curso": "Educação Financeira",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/educa-o-financeira.pdf"
+},
+{
+"curso": "Empreendedorismo",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/empreendedorismo.pdf"
+},
+{
+"curso": "Empreendedorismo Criativo",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/empreendedorismo-criativo.pdf"
+},
+{
+"curso": "Empreendedorismo Digital",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/empreendedorismo-digital.pdf"
+},
+{
+"curso": "Empreendedorismo e Criação de Valor",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/empreendedorismo-e-cria-o-de-valor.pdf"
+},
+{
+"curso": "Empreendedorismo e Marketing",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/empreendedorismo-e-marketing.pdf"
+},
+{
+"curso": "Escrita Fiscal",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/escrita-fiscal.pdf"
+},
+{
+"curso": "Estratégia Empresarial e Negociação",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/estrat-gia-empresarial-e-negocia-o.pdf"
+},
+{
+"curso": "Etiqueta Profissional",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/etiqueta-profissional.pdf"
+},
+{
+"curso": "Ferramentas da Qualidade",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/ferramentas-da-qualidade.pdf"
+},
+{
+"curso": "Finanças Corporativas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/finan-as-corporativas.pdf"
+},
+{
+"curso": "Finanças para Executivos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/finan-as-para-executivos.pdf"
+},
+{
+"curso": "Finanças para Não Financeiros",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/finan-as-para-n-o-financeiros.pdf"
+},
+{
+"curso": "Formação de Liderança",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/forma-o-de-lideran-a.pdf"
+},
+{
+"curso": "Formação em Gestão de Pessoas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/forma-o-em-gest-o-de-pessoas.pdf"
+},
+{
+"curso": "Formação em Recursos Humanos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/forma-o-em-recursos-humanos.pdf"
+},
+{
+"curso": "Formação em Vendas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/forma-o-em-vendas.pdf"
+},
+{
+"curso": "Gerente de Recursos Humanos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gerente-de-recursos-humanos.pdf"
+},
+{
+"curso": "Gestão Financeira Empresarial",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-financeira-empresarial.pdf"
+},
+{
+"curso": "Gestão Financeira para Pequenas e Médias Empresas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-financeira-para-pequenas-e-m-dias-empresas.pdf"
+},
+{
+"curso": "Gestão da Qualidade",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-da-qualidade.pdf"
+},
+{
+"curso": "Gestão de Cargos e Salários",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-cargos-e-sal-rios.pdf"
+},
+{
+"curso": "Gestão de Carreiras",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-carreiras.pdf"
+},
+{
+"curso": "Gestão de Compras",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-compras.pdf"
+},
+{
+"curso": "Gestão de Conflitos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-conflitos.pdf"
+},
+{
+"curso": "Gestão de Crédito e Risco",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-cr-dito-e-risco.pdf"
+},
+{
+"curso": "Gestão de Custos e Formação de Preços",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-custos-e-forma-o-de-pre-os.pdf"
+},
+{
+"curso": "Gestão de Equipes de Trabalho",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-equipes-de-trabalho.pdf"
+},
+{
+"curso": "Gestão de Farmácias",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-farm-cias.pdf"
+},
+{
+"curso": "Gestão de Indicadores de Desempenho",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-indicadores-de-desempenho.pdf"
+},
+{
+"curso": "Gestão de Marketing",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-marketing.pdf"
+},
+{
+"curso": "Gestão de Negócios",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-neg-cios.pdf"
+},
+{
+"curso": "Gestão de Obra",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-obra.pdf"
+},
+{
+"curso": "Gestão de Pessoas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-pessoas.pdf"
+},
+{
+"curso": "Gestão de Projetos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-projetos.pdf"
+},
+{
+"curso": "Gestão de Redes Sociais",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-redes-sociais.pdf"
+},
+{
+"curso": "Gestão de Serviços",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-servi-os.pdf"
+},
+{
+"curso": "Gestão de Serviços de Farmácia",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-servi-os-de-farm-cia.pdf"
+},
+{
+"curso": "Gestão de Trânsito",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-tr-nsito.pdf"
+},
+{
+"curso": "Gestão de Vendas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-de-vendas.pdf"
+},
+{
+"curso": "Gestão do Clima Organizacional",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/gest-o-do-clima-organizacional.pdf"
+},
+{
+"curso": "Importação Rotinas e Procedimentos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/importa-o-rotinas-e-procedimentos.pdf"
+},
+{
+"curso": "Imposto de Renda",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/imposto-de-renda.pdf"
+},
+{
+"curso": "Introdução a Administração",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/introdu-o-a-administra-o.pdf"
+},
+{
+"curso": "Introdução a Contabilidade",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/introdu-o-a-contabilidade.pdf"
+},
+{
+"curso": "Introdução a Gestão de Projetos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/introdu-o-a-gest-o-de-projetos.pdf"
+},
+{
+"curso": "Introdução a Liderança Lean",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/introdu-o-a-lideran-a-lean.pdf"
+},
+{
+"curso": "Juros Legalidade e Ilegalidade",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/juros-legalidade-e-ilegalidade.pdf"
+},
+{
+"curso": "Licitações e Contratos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/licita-es-e-contratos.pdf"
+},
+{
+"curso": "Liderança Digital Disruptiva",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/lideran-a-digital-disruptiva.pdf"
+},
+{
+"curso": "Liderança de Alta Performance",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/lideran-a-de-alta-performance.pdf"
+},
+{
+"curso": "Liderança e Gestão de Pessoas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/lideran-a-e-gest-o-de-pessoas.pdf"
+},
+{
+"curso": "Matemática Financeira",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/matem-tica-financeira.pdf"
+},
+{
+"curso": "Matemática Financeira com Excel",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/matem-tica-financeira-com-excel.pdf"
+},
+{
+"curso": "Matemática Financeira com HP 12C",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/matem-tica-financeira-com-hp-12c.pdf"
+},
+{
+"curso": "Motivação e Gestão de Equipes",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/motiva-o-e-gest-o-de-equipes.pdf"
+},
+{
+"curso": "Negociação e Administração de Conflitos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/negocia-o-e-administra-o-de-conflitos.pdf"
+},
+{
+"curso": "Nova Lei de Licitações",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/nova-lei-de-licita-es.pdf"
+},
+{
+"curso": "Noções de Contabilidade",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/no-es-de-contabilidade.pdf"
+},
+{
+"curso": "Pis PASEP",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/pis-pasep.pdf"
+},
+{
+"curso": "Planejamento Estratégico",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/planejamento-estrat-gico.pdf"
+},
+{
+"curso": "Planejamento Tributário",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/planejamento-tribut-rio.pdf"
+},
+{
+"curso": "Planejamento de Recursos Humanos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/planejamento-de-recursos-humanos.pdf"
+},
+{
+"curso": "Planejamento e Ferramentas da Qualidade",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/planejamento-e-ferramentas-da-qualidade.pdf"
+},
+{
+"curso": "Postura e Imagem Profissional",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/postura-e-imagem-profissional.pdf"
+},
+{
+"curso": "Produtividade e Gestão de Custos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/produtividade-e-gest-o-de-custos.pdf"
+},
+{
+"curso": "Programa 5s",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/programa-5s.pdf"
+},
+{
+"curso": "Recrutamento e Seleção Por Competências",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/recrutamento-e-sele-o-por-compet-ncias.pdf"
+},
+{
+"curso": "Recrutamento e Seleção de Pessoal",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/recrutamento-e-sele-o-de-pessoal.pdf"
+},
+{
+"curso": "Recursos Humanos",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/recursos-humanos.pdf"
+},
+{
+"curso": "Recursos Humanos Avançada",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/recursos-humanos-avan-ada.pdf"
+},
+{
+"curso": "Relacionamento Interpessoal",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/relacionamento-interpessoal.pdf"
+},
+{
+"curso": "Rescisão de Contrato de Trabalho",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/rescis-o-de-contrato-de-trabalho.pdf"
+},
+{
+"curso": "Secretariado Escolar",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/secretariado-escolar.pdf"
+},
+{
+"curso": "Secretariado Executivo",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/secretariado-executivo.pdf"
+},
+{
+"curso": "Treinamento e Desenvolvimento",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/treinamento-e-desenvolvimento.pdf"
+},
+{
+"curso": "Técnicas Administrativas",
+"categoria": "Administração e Escritório",
+"pdf": "cursos/pdf/t-cnicas-administrativas.pdf"
+},
+{
+"curso": "Vendedor de Loja",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/vendedor-de-loja.pdf"
+},
+{
+"curso": "Técnicas de Venda",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/t-cnicas-de-venda.pdf"
+},
+{
+"curso": "Atendimento ao Cliente",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/atendimento-ao-cliente.pdf"
+},
+{
+"curso": "Vendas no WhatsApp",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/vendas-no-whatsapp.pdf"
+},
+{
+"curso": "PDV e Frente de Caixa",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/pdv-e-frente-de-caixa.pdf"
+},
+{
+"curso": "Controle de Estoque",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/controle-de-estoque.pdf"
+},
+{
+"curso": "Precificação de Produtos",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/precifica-o-de-produtos.pdf"
+},
+{
+"curso": "Negociação Básica",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/negocia-o-b-sica.pdf"
+},
+{
+"curso": "Comportamento do Consumidor",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/comportamento-do-consumidor.pdf"
+},
+{
+"curso": "Vendas Externas",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/vendas-externas.pdf"
+},
+{
+"curso": "Televendas",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/televendas.pdf"
+},
+{
+"curso": "E-commerce do Zero",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/e-commerce-do-zero.pdf"
+},
+{
+"curso": "Loja no Instagram",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/loja-no-instagram.pdf"
+},
+{
+"curso": "Loja no Mercado Livre",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/loja-no-mercado-livre.pdf"
+},
+{
+"curso": "Loja na Shopee",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/loja-na-shopee.pdf"
+},
+{
+"curso": "Loja Virtual com WhatsApp",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/loja-virtual-com-whatsapp.pdf"
+},
+{
+"curso": "Logística de Envios",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/log-stica-de-envios.pdf"
+},
+{
+"curso": "Embalagem e Envio",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/embalagem-e-envio.pdf"
+},
+{
+"curso": "Devolução e Trocas",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/devolu-o-e-trocas.pdf"
+},
+{
+"curso": "Fiado e Cobrança",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/fiado-e-cobran-a.pdf"
+},
+{
+"curso": "Crédito e Cobrança Básico",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/cr-dito-e-cobran-a-b-sico.pdf"
+},
+{
+"curso": "Supermercadista Básico",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/supermercadista-b-sico.pdf"
+},
+{
+"curso": "Operação de Caixa e Cartões",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/opera-o-de-caixa-e-cart-es.pdf"
+},
+{
+"curso": "Layout de Loja que Vende",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/layout-de-loja-que-vende.pdf"
+},
+{
+"curso": "Gôndola e Reposição",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/g-ndola-e-reposi-o.pdf"
+},
+{
+"curso": "Atendimento Ao Cliente Avançada",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/atendimento-ao-cliente-avan-ada.pdf"
+},
+{
+"curso": "Atendimento Call Center",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/atendimento-call-center.pdf"
+},
+{
+"curso": "Atendimento e Vendas",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/atendimento-e-vendas.pdf"
+},
+{
+"curso": "Estratégia de Distribuição Omnichannel",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/estrat-gia-de-distribui-o-omnichannel.pdf"
+},
+{
+"curso": "Excelência em Vendas B2B",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/excel-ncia-em-vendas-b2b.pdf"
+},
+{
+"curso": "Gestão Comercial",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/gest-o-comercial.pdf"
+},
+{
+"curso": "Mídias Digitais e Vendas",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/m-dias-digitais-e-vendas.pdf"
+},
+{
+"curso": "Planejamento de Vendas e Novos Negócios",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/planejamento-de-vendas-e-novos-neg-cios.pdf"
+},
+{
+"curso": "Qualidade no Atendimento ao Cliente",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/qualidade-no-atendimento-ao-cliente.pdf"
+},
+{
+"curso": "Supervisor de Vendas",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/supervisor-de-vendas.pdf"
+},
+{
+"curso": "Técnicas de Vendas",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/t-cnicas-de-vendas.pdf"
+},
+{
+"curso": "Vendedores Profissionais",
+"categoria": "Comércio e Vendas",
+"pdf": "cursos/pdf/vendedores-profissionais.pdf"
+},
+{
+"curso": "Pedreiro Básico",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/pedreiro-b-sico.pdf"
+},
+{
+"curso": "Pedreiro Acabamento",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/pedreiro-acabamento.pdf"
+},
+{
+"curso": "Azulejista",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/azulejista.pdf"
+},
+{
+"curso": "Eletricista Predial",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/eletricista-predial.pdf"
+},
+{
+"curso": "Encanador (Hidráulica)",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/encanador-hidr-ulica.pdf"
+},
+{
+"curso": "Instalações Hidráulicas Prediais",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/instala-es-hidr-ulicas-prediais.pdf"
+},
+{
+"curso": "Pintor de Parede",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/pintor-de-parede.pdf"
+},
+{
+"curso": "Pintura Decorativa",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/pintura-decorativa.pdf"
+},
+{
+"curso": "Carpinteiro de Obras",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/carpinteiro-de-obras.pdf"
+},
+{
+"curso": "Carpinteira de Telhado",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/carpinteira-de-telhado.pdf"
+},
+{
+"curso": "Gesseiro",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/gesseiro.pdf"
+},
+{
+"curso": "Instalador de Piso",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/instalador-de-piso.pdf"
+},
+{
+"curso": "Instalador de Porcelanato",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/instalador-de-porcelanato.pdf"
+},
+{
+"curso": "Marmorista Básico",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/marmorista-b-sico.pdf"
+},
+{
+"curso": "Vidraceiro",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/vidraceiro.pdf"
+},
+{
+"curso": "Alvenaria Estrutural",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/alvenaria-estrutural.pdf"
+},
+{
+"curso": "Leitura de Projetos",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/leitura-de-projetos.pdf"
+},
+{
+"curso": "Concreto e Fôrmas",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/concreto-e-f-rmas.pdf"
+},
+{
+"curso": "Andaime e Segurança (NR-35)",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/andaime-e-seguran-a-nr-35.pdf"
+},
+{
+"curso": "Topografia Básica",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/topografia-b-sica.pdf"
+},
+{
+"curso": "Ajudante de Obras",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/ajudante-de-obras.pdf"
+},
+{
+"curso": "Impermeabilização",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/impermeabiliza-o.pdf"
+},
+{
+"curso": "Telhado e Calhas",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/telhado-e-calhas.pdf"
+},
+{
+"curso": "Forro e Divisórias",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/forro-e-divis-rias.pdf"
+},
+{
+"curso": "Reforma Residencial",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/reforma-residencial.pdf"
+},
+{
+"curso": "Orçamento de Obras",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/or-amento-de-obras.pdf"
+},
+{
+"curso": "NR-6 EPIs na Construção",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/nr-6-epis-na-constru-o.pdf"
+},
+{
+"curso": "Primeiros Socorros na Obra",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/primeiros-socorros-na-obra.pdf"
+},
+{
+"curso": "Gestão de Canteiro",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/gest-o-de-canteiro.pdf"
+},
+{
+"curso": "Patologia das Construções",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/patologia-das-constru-es.pdf"
+},
+{
+"curso": "Arquitetura Sustentável",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/arquitetura-sustent-vel.pdf"
+},
+{
+"curso": "Construção Civil Básico",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/constru-o-civil-b-sico.pdf"
+},
+{
+"curso": "Desenho Auxiliado Pelo Computador Cad",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/desenho-auxiliado-pelo-computador-cad.pdf"
+},
+{
+"curso": "Desenho Técnico",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/desenho-t-cnico.pdf"
+},
+{
+"curso": "Materiais de Construção",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/materiais-de-constru-o.pdf"
+},
+{
+"curso": "Planejamento e Controle de Obras",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/planejamento-e-controle-de-obras.pdf"
+},
+{
+"curso": "Projeto de Instalações Elétricas",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/projeto-de-instala-es-el-tricas.pdf"
+},
+{
+"curso": "Revestimentos de Paredes",
+"categoria": "Construção Civil",
+"pdf": "cursos/pdf/revestimentos-de-paredes.pdf"
+},
+{
+"curso": "Mecânico de Automóveis Iniciação",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/mec-nico-de-autom-veis-inicia-o.pdf"
+},
+{
+"curso": "Mecânica de Automóveis Básico",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/mec-nica-de-autom-veis-b-sico.pdf"
+},
+{
+"curso": "Mecânico de Motos",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/mec-nico-de-motos.pdf"
+},
+{
+"curso": "Injeção Eletrônica",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/inje-o-eletr-nica.pdf"
+},
+{
+"curso": "Sistema de Freios",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/sistema-de-freios.pdf"
+},
+{
+"curso": "Suspensão e Direção",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/suspens-o-e-dire-o.pdf"
+},
+{
+"curso": "Retífica de Motores",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/ret-fica-de-motores.pdf"
+},
+{
+"curso": "Elétrica Automotiva",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/el-trica-automotiva.pdf"
+},
+{
+"curso": "Elétrica de Motos",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/el-trica-de-motos.pdf"
+},
+{
+"curso": "Manutenção de Bicicletas",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/manuten-o-de-bicicletas.pdf"
+},
+{
+"curso": "Manutenção Industrial Básico",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/manuten-o-industrial-b-sico.pdf"
+},
+{
+"curso": "Lubrificação Industrial",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/lubrifica-o-industrial.pdf"
+},
+{
+"curso": "Usinagem Básica",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/usinagem-b-sica.pdf"
+},
+{
+"curso": "Solda Elétrodo",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/solda-el-trodo.pdf"
+},
+{
+"curso": "Solda MIG/MAG",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/solda-mig-mag.pdf"
+},
+{
+"curso": "Solda TIG",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/solda-tig.pdf"
+},
+{
+"curso": "Funilaria Básica",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/funilaria-b-sica.pdf"
+},
+{
+"curso": "Pintura Automotiva",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/pintura-automotiva.pdf"
+},
+{
+"curso": "Alinhamento e Balanceamento",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/alinhamento-e-balanceamento.pdf"
+},
+{
+"curso": "Ar-condicionado Automotivo",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/ar-condicionado-automotivo.pdf"
+},
+{
+"curso": "Manutenção de Panelas Elétricas",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/manuten-o-de-panelas-el-tricas.pdf"
+},
+{
+"curso": "Manutenção de Eletrodomésticos",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/manuten-o-de-eletrodom-sticos.pdf"
+},
+{
+"curso": "Máquinas Agrícolas Básico",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/m-quinas-agr-colas-b-sico.pdf"
+},
+{
+"curso": "Peças e Serviços (Balcão)",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/pe-as-e-servi-os-balc-o.pdf"
+},
+{
+"curso": "Gestão de Oficina",
+"categoria": "Mecânica e Manutenção",
+"pdf": "cursos/pdf/gest-o-de-oficina.pdf"
+},
+{
+"curso": "Elétrica Residencial",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/el-trica-residencial.pdf"
+},
+{
+"curso": "Eletrotécnica Básica",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/eletrot-cnica-b-sica.pdf"
+},
+{
+"curso": "Painéis Elétricos",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/pain-is-el-tricos.pdf"
+},
+{
+"curso": "Quadros de Distribuição",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/quadros-de-distribui-o.pdf"
+},
+{
+"curso": "Instalações Elétricas Prediais",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/instala-es-el-tricas-prediais.pdf"
+},
+{
+"curso": "NR-10 Básico",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/nr-10-b-sico.pdf"
+},
+{
+"curso": "Eletrônica Básica",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/eletr-nica-b-sica.pdf"
+},
+{
+"curso": "Manutenção de Placas",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/manuten-o-de-placas.pdf"
+},
+{
+"curso": "Fontes e Fonte Chaveada",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/fontes-e-fonte-chaveada.pdf"
+},
+{
+"curso": "Automação de Portões",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/automa-o-de-port-es.pdf"
+},
+{
+"curso": "Instalação de Chuveiros e Tomadas",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/instala-o-de-chuveiros-e-tomadas.pdf"
+},
+{
+"curso": "Aterramento",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/aterramento.pdf"
+},
+{
+"curso": "Instalação de Câmeras (CFTV)",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/instala-o-de-c-meras-cftv.pdf"
+},
+{
+"curso": "Alarmes Residenciais",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/alarmes-residenciais.pdf"
+},
+{
+"curso": "Interfones",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/interfones.pdf"
+},
+{
+"curso": "Iluminação e Luminotécnica",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/ilumina-o-e-luminot-cnica.pdf"
+},
+{
+"curso": "Motores Elétricos",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/motores-el-tricos.pdf"
+},
+{
+"curso": "Comandos Elétricos",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/comandos-el-tricos.pdf"
+},
+{
+"curso": "CLP Iniciação",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/clp-inicia-o.pdf"
+},
+{
+"curso": "Leitura de Diagramas Elétricos",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/leitura-de-diagramas-el-tricos.pdf"
+},
+{
+"curso": "Energia Solar Residencial",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/energia-solar-residencial.pdf"
+},
+{
+"curso": "Energia Solar Off-Grid",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/energia-solar-off-grid.pdf"
+},
+{
+"curso": "Manutenção de No-breaks",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/manuten-o-de-no-breaks.pdf"
+},
+{
+"curso": "Lâmpadas LED e Circuitos",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/l-mpadas-led-e-circuitos.pdf"
+},
+{
+"curso": "Segurança em Eletricidade",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/seguran-a-em-eletricidade.pdf"
+},
+{
+"curso": "Análise de Circuitos Elétricos",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/an-lise-de-circuitos-el-tricos.pdf"
+},
+{
+"curso": "Eletrotécnica",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/eletrot-cnica.pdf"
+},
+{
+"curso": "Sistemas Operacionais",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/sistemas-operacionais.pdf"
+},
+{
+"curso": "Tecnologia da Informação e DOC",
+"categoria": "Elétrica e Eletrônica",
+"pdf": "cursos/pdf/tecnologia-da-informa-o-e-doc.pdf"
+},
+{
+"curso": "Cuidador de Idosos",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/cuidador-de-idosos.pdf"
+},
+{
+"curso": "Cuidador de Idosos Avançado",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/cuidador-de-idosos-avan-ado.pdf"
+},
+{
+"curso": "Cuidador Infantil (Babá)",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/cuidador-infantil-bab.pdf"
+},
+{
+"curso": "Primeiros Socorros",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/primeiros-socorros.pdf"
+},
+{
+"curso": "Suporte Básico de Vida",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/suporte-b-sico-de-vida.pdf"
+},
+{
+"curso": "Massoterapia Básica",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/massoterapia-b-sica.pdf"
+},
+{
+"curso": "Massagem Relaxante",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/massagem-relaxante.pdf"
+},
+{
+"curso": "Drenagem Linfática",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/drenagem-linf-tica.pdf"
+},
+{
+"curso": "Shantala (Massagem Baby)",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/shantala-massagem-baby.pdf"
+},
+{
+"curso": "Nutrição Básica",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/nutri-o-b-sica.pdf"
+},
+{
+"curso": "Alimentação Saudável",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/alimenta-o-saud-vel.pdf"
+},
+{
+"curso": "Alimentação para Idosos",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/alimenta-o-para-idosos.pdf"
+},
+{
+"curso": "Cuidados de Enfermagem Básicos",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/cuidados-de-enfermagem-b-sicos.pdf"
+},
+{
+"curso": "Higiene e Segurança do Paciente",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/higiene-e-seguran-a-do-paciente.pdf"
+},
+{
+"curso": "Saúde Mental Básico",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/sa-de-mental-b-sico.pdf"
+},
+{
+"curso": "Saúde Mental no Trabalho",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/sa-de-mental-no-trabalho.pdf"
+},
+{
+"curso": "Prevenção do Suicídio (Sensibilização)",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/preven-o-do-suic-dio-sensibiliza-o.pdf"
+},
+{
+"curso": "Ginástica Laboral",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/gin-stica-laboral.pdf"
+},
+{
+"curso": "Aleitamento Materno",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/aleitamento-materno.pdf"
+},
+{
+"curso": "Ergonomia (NR-17)",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/ergonomia-nr-17.pdf"
+},
+{
+"curso": "Cuidados com Deficientes Físicos",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/cuidados-com-deficientes-f-sicos.pdf"
+},
+{
+"curso": "Fisioterapia Caseira para Idosos",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/fisioterapia-caseira-para-idosos.pdf"
+},
+{
+"curso": "Cuidados Paliativos Básico",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/cuidados-paliativos-b-sico.pdf"
+},
+{
+"curso": "Farmácia Caseira e Uso Racional",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/farm-cia-caseira-e-uso-racional.pdf"
+},
+{
+"curso": "Fitoterapia Básica",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/fitoterapia-b-sica.pdf"
+},
+{
+"curso": "Agente Comunitário de Saúde",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/agente-comunit-rio-de-sa-de.pdf"
+},
+{
+"curso": "Agente de Endemias Básico",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/agente-de-endemias-b-sico.pdf"
+},
+{
+"curso": "Aromaterapia",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/aromaterapia.pdf"
+},
+{
+"curso": "Aromaterapia na Prática",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/aromaterapia-na-pr-tica.pdf"
+},
+{
+"curso": "Atendente de Farmácia",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/atendente-de-farm-cia.pdf"
+},
+{
+"curso": "Auxiliar de Análises Clínicas",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/auxiliar-de-an-lises-cl-nicas.pdf"
+},
+{
+"curso": "Auxiliar de Saúde Bucal",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/auxiliar-de-sa-de-bucal.pdf"
+},
+{
+"curso": "Bases da Nutrição",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/bases-da-nutri-o.pdf"
+},
+{
+"curso": "Deficiência Auditiva e Surdez",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/defici-ncia-auditiva-e-surdez.pdf"
+},
+{
+"curso": "Deficiência Intelectual",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/defici-ncia-intelectual.pdf"
+},
+{
+"curso": "Depressão e Ansiedade Infantil",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/depress-o-e-ansiedade-infantil.pdf"
+},
+{
+"curso": "Distúrbios da Aprendizagem",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/dist-rbios-da-aprendizagem.pdf"
+},
+{
+"curso": "Educação Emocional e Arte",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/educa-o-emocional-e-arte.pdf"
+},
+{
+"curso": "Educação Física Adaptada",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/educa-o-f-sica-adaptada.pdf"
+},
+{
+"curso": "Educação Inclusiva",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/educa-o-inclusiva.pdf"
+},
+{
+"curso": "Enfermagem Geriátrica",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/enfermagem-geri-trica.pdf"
+},
+{
+"curso": "Enfermagem Obstétrica e Neonatal",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/enfermagem-obst-trica-e-neonatal.pdf"
+},
+{
+"curso": "Enfermagem Pediátrica",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/enfermagem-pedi-trica.pdf"
+},
+{
+"curso": "Enfermagem do Trabalho",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/enfermagem-do-trabalho.pdf"
+},
+{
+"curso": "Enfermagem na Cardiologia",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/enfermagem-na-cardiologia.pdf"
+},
+{
+"curso": "Enfermagem na Endocrinologia",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/enfermagem-na-endocrinologia.pdf"
+},
+{
+"curso": "Estatuto da Pessoa com Deficiência",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/estatuto-da-pessoa-com-defici-ncia.pdf"
+},
+{
+"curso": "Farmacologia Clínica",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/farmacologia-cl-nica.pdf"
+},
+{
+"curso": "Farmacologia Geral",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/farmacologia-geral.pdf"
+},
+{
+"curso": "Fundamentos Técnicos em Enfermagem",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/fundamentos-t-cnicos-em-enfermagem.pdf"
+},
+{
+"curso": "Fundamentos da Educação Especial",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/fundamentos-da-educa-o-especial.pdf"
+},
+{
+"curso": "Gestão Empresarial Sustentável",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/gest-o-empresarial-sustent-vel.pdf"
+},
+{
+"curso": "Gestão Hospitalar",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/gest-o-hospitalar.pdf"
+},
+{
+"curso": "Introdução ao SUS",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/introdu-o-ao-sus.pdf"
+},
+{
+"curso": "Lei Brasileira de Inclusão da Pessoa com Deficiência",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/lei-brasileira-de-inclus-o-da-pessoa-com-defici-ncia.pdf"
+},
+{
+"curso": "Nutrição Clínica Básico",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/nutri-o-cl-nica-b-sico.pdf"
+},
+{
+"curso": "Nutrição Escolar Básico",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/nutri-o-escolar-b-sico.pdf"
+},
+{
+"curso": "Plantas Medicinais e Óleos Essenciais",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/plantas-medicinais-e-leos-essenciais.pdf"
+},
+{
+"curso": "Podologia Básico",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/podologia-b-sico.pdf"
+},
+{
+"curso": "Podologia Estética",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/podologia-est-tica.pdf"
+},
+{
+"curso": "Prevenção de Urgências",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/preven-o-de-urg-ncias.pdf"
+},
+{
+"curso": "Primeiros Socorros Lei de Lucas",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/primeiros-socorros-lei-de-lucas.pdf"
+},
+{
+"curso": "Psicologia Escolar e Educacional",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/psicologia-escolar-e-educacional.pdf"
+},
+{
+"curso": "Psicologia Escolar e Problemas de Aprendizagem",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/psicologia-escolar-e-problemas-de-aprendizagem.pdf"
+},
+{
+"curso": "Psicologia Experimental",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/psicologia-experimental.pdf"
+},
+{
+"curso": "Psicologia Organizacional",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/psicologia-organizacional.pdf"
+},
+{
+"curso": "Psicologia Organizacional e do Trabalho",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/psicologia-organizacional-e-do-trabalho.pdf"
+},
+{
+"curso": "Psicologia Social",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/psicologia-social.pdf"
+},
+{
+"curso": "Psicologia da Educação",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/psicologia-da-educa-o.pdf"
+},
+{
+"curso": "Psicologia do Desenvolvimento",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/psicologia-do-desenvolvimento.pdf"
+},
+{
+"curso": "Psicologia do Direito",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/psicologia-do-direito.pdf"
+},
+{
+"curso": "Recepcionista Hospitalar",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/recepcionista-hospitalar.pdf"
+},
+{
+"curso": "SUS e Saúde Bucal",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/sus-e-sa-de-bucal.pdf"
+},
+{
+"curso": "Síndromes e Desenvolvimento",
+"categoria": "Saúde e Cuidado",
+"pdf": "cursos/pdf/s-ndromes-e-desenvolvimento.pdf"
+},
+{
+"curso": "Cabeleireiro Básico",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/cabeleireiro-b-sico.pdf"
+},
+{
+"curso": "Cabeleireiro Avançado",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/cabeleireiro-avan-ado.pdf"
+},
+{
+"curso": "Barbeiro",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/barbeiro.pdf"
+},
+{
+"curso": "Barba e Bigode (Barbearia)",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/barba-e-bigode-barbearia.pdf"
+},
+{
+"curso": "Cortes Masculinos",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/cortes-masculinos.pdf"
+},
+{
+"curso": "Coloração Básica",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/colora-o-b-sica.pdf"
+},
+{
+"curso": "Mecha e Balayage",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/mecha-e-balayage.pdf"
+},
+{
+"curso": "Manicure",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/manicure.pdf"
+},
+{
+"curso": "Pedicure",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/pedicure.pdf"
+},
+{
+"curso": "Alongamento de Unhas em Gel",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/alongamento-de-unhas-em-gel.pdf"
+},
+{
+"curso": "Alongamento em Fibra",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/alongamento-em-fibra.pdf"
+},
+{
+"curso": "Design de Sobrancelhas",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/design-de-sobrancelhas.pdf"
+},
+{
+"curso": "Extensão de Cílios (Fio a Fio)",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/extens-o-de-c-lios-fio-a-fio.pdf"
+},
+{
+"curso": "Maquiagem Básica",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/maquiagem-b-sica.pdf"
+},
+{
+"curso": "Maquiagem Profissional",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/maquiagem-profissional.pdf"
+},
+{
+"curso": "Maquiagem Social",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/maquiagem-social.pdf"
+},
+{
+"curso": "Automaquiagem",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/automaquiagem.pdf"
+},
+{
+"curso": "Depilação com Cera",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/depila-o-com-cera.pdf"
+},
+{
+"curso": "Depilação Egípcia",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/depila-o-eg-pcia.pdf"
+},
+{
+"curso": "Massagem Modeladora",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/massagem-modeladora.pdf"
+},
+{
+"curso": "Estética Facial Básica",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/est-tica-facial-b-sica.pdf"
+},
+{
+"curso": "Limpeza de Pele",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/limpeza-de-pele.pdf"
+},
+{
+"curso": "Tranças e Trançado Afro",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/tran-as-e-tran-ado-afro.pdf"
+},
+{
+"curso": "Escova e Penteados",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/escova-e-penteados.pdf"
+},
+{
+"curso": "Cosmetologia Básica",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/cosmetologia-b-sica.pdf"
+},
+{
+"curso": "Corte e Costura",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/corte-e-costura.pdf"
+},
+{
+"curso": "Escova Progressiva Sem Esfumaçar",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/escova-progressiva-sem-esfuma-ar.pdf"
+},
+{
+"curso": "Produção e Técnicas de Maquiagem",
+"categoria": "Beleza e Estética",
+"pdf": "cursos/pdf/produ-o-e-t-cnicas-de-maquiagem.pdf"
+},
+{
+"curso": "Cozinheiro Básico",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/cozinheiro-b-sico.pdf"
+},
+{
+"curso": "Confeiteiro Iniciação",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/confeiteiro-inicia-o.pdf"
+},
+{
+"curso": "Confeiteiro Avançado",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/confeiteiro-avan-ado.pdf"
+},
+{
+"curso": "Padeiro",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/padeiro.pdf"
+},
+{
+"curso": "Padeiro Confeiteiro",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/padeiro-confeiteiro.pdf"
+},
+{
+"curso": "Salgados para Venda",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/salgados-para-venda.pdf"
+},
+{
+"curso": "Bolos Caseiros",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/bolos-caseiros.pdf"
+},
+{
+"curso": "Bolos para Festa (Confeitaria)",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/bolos-para-festa-confeitaria.pdf"
+},
+{
+"curso": "Cake Design",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/cake-design.pdf"
+},
+{
+"curso": "Chocolateria e Trufas",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/chocolateria-e-trufas.pdf"
+},
+{
+"curso": "Doces Finos",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/doces-finos.pdf"
+},
+{
+"curso": "Pizzas e Massas",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/pizzas-e-massas.pdf"
+},
+{
+"curso": "Garçom e Serviço de Mesa",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/gar-om-e-servi-o-de-mesa.pdf"
+},
+{
+"curso": "Barmeister Básico",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/barmeister-b-sico.pdf"
+},
+{
+"curso": "Barista",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/barista.pdf"
+},
+{
+"curso": "Café Especial e Extração",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/caf-especial-e-extra-o.pdf"
+},
+{
+"curso": "Atendente de Lanchonete",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/atendente-de-lanchonete.pdf"
+},
+{
+"curso": "Montagem de Marmitas (Marmitex)",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/montagem-de-marmitas-marmitex.pdf"
+},
+{
+"curso": "Comida de Rua e Food Truck",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/comida-de-rua-e-food-truck.pdf"
+},
+{
+"curso": "Culinária Regional Mineira",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/culin-ria-regional-mineira.pdf"
+},
+{
+"curso": "Culinária Saudável e Fit",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/culin-ria-saud-vel-e-fit.pdf"
+},
+{
+"curso": "Panificação Fermentação Natural",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/panifica-o-fermenta-o-natural.pdf"
+},
+{
+"curso": "Sushiman Iniciação",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/sushiman-inicia-o.pdf"
+},
+{
+"curso": "Higiene e Boas Práticas (Boas Práticas Alimentares)",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/higiene-e-boas-pr-ticas-boas-pr-ticas-alimentares.pdf"
+},
+{
+"curso": "Aproveitamento Integral de Alimentos",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/aproveitamento-integral-de-alimentos.pdf"
+},
+{
+"curso": "Controle de Qualidade dos Alimentos",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/controle-de-qualidade-dos-alimentos.pdf"
+},
+{
+"curso": "Food Fraud e Food Defense",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/food-fraud-e-food-defense.pdf"
+},
+{
+"curso": "Panificação",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/panifica-o.pdf"
+},
+{
+"curso": "UAN (Unidade de Alimentação e Nutrição)",
+"categoria": "Gastronomia",
+"pdf": "cursos/pdf/uan-unidade-de-alimenta-o-e-nutri-o.pdf"
+},
+{
+"curso": "Agricultura Familiar",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/agricultura-familiar.pdf"
+},
+{
+"curso": "Horticultura Básica",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/horticultura-b-sica.pdf"
+},
+{
+"curso": "Horta Caseira e Urbana",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/horta-caseira-e-urbana.pdf"
+},
+{
+"curso": "Produção de Mudas",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/produ-o-de-mudas.pdf"
+},
+{
+"curso": "Apicultura Iniciação",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/apicultura-inicia-o.pdf"
+},
+{
+"curso": "Piscicultura Básica",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/piscicultura-b-sica.pdf"
+},
+{
+"curso": "Avicultura Caipira",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/avicultura-caipira.pdf"
+},
+{
+"curso": "Bovinocultura de Leite",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/bovinocultura-de-leite.pdf"
+},
+{
+"curso": "Bovinocultura de Corte",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/bovinocultura-de-corte.pdf"
+},
+{
+"curso": "Suinocultura Básica",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/suinocultura-b-sica.pdf"
+},
+{
+"curso": "Caprinocultura",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/caprinocultura.pdf"
+},
+{
+"curso": "Ovinocultura",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/ovinocultura.pdf"
+},
+{
+"curso": "Adubação e Solo",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/aduba-o-e-solo.pdf"
+},
+{
+"curso": "Compostagem e Adubo Orgânico",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/compostagem-e-adubo-org-nico.pdf"
+},
+{
+"curso": "Plantio Direto Conceitos",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/plantio-direto-conceitos.pdf"
+},
+{
+"curso": "Irrigação Básica",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/irriga-o-b-sica.pdf"
+},
+{
+"curso": "Sistemas de Irrigação Por Gotejamento",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/sistemas-de-irriga-o-por-gotejamento.pdf"
+},
+{
+"curso": "Controle de Praças (Pragas) Caseiro",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/controle-de-pra-as-pragas-caseiro.pdf"
+},
+{
+"curso": "Colheita e Pós-colheita",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/colheita-e-p-s-colheita.pdf"
+},
+{
+"curso": "Armazenamento de Grãos",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/armazenamento-de-gr-os.pdf"
+},
+{
+"curso": "Finanças do Campo",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/finan-as-do-campo.pdf"
+},
+{
+"curso": "Associativismo e Cooperativas",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/associativismo-e-cooperativas.pdf"
+},
+{
+"curso": "Certificações de Produtos Rurais",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/certifica-es-de-produtos-rurais.pdf"
+},
+{
+"curso": "Venda Direta do Produtor",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/venda-direta-do-produtor.pdf"
+},
+{
+"curso": "Feira do Produtor",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/feira-do-produtor.pdf"
+},
+{
+"curso": "Fruticultura Básica",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/fruticultura-b-sica.pdf"
+},
+{
+"curso": "Banana e Citros",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/banana-e-citros.pdf"
+},
+{
+"curso": "Café Básico",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/caf-b-sico.pdf"
+},
+{
+"curso": "Cacau Iniciação",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/cacau-inicia-o.pdf"
+},
+{
+"curso": "Produção de Açaí e Polpas",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/produ-o-de-a-a-e-polpas.pdf"
+},
+{
+"curso": "Agroecologia e Agricultura Orgânica",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/agroecologia-e-agricultura-org-nica.pdf"
+},
+{
+"curso": "Avicultura e Suinocultura",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/avicultura-e-suinocultura.pdf"
+},
+{
+"curso": "Como Fazer Bonsai",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/como-fazer-bonsai.pdf"
+},
+{
+"curso": "Controle Integrado de Pragas",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/controle-integrado-de-pragas.pdf"
+},
+{
+"curso": "Fitogeografia Brasileira",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/fitogeografia-brasileira.pdf"
+},
+{
+"curso": "Hidroponia",
+"categoria": "Agronegócio",
+"pdf": "cursos/pdf/hidroponia.pdf"
+},
+{
+"curso": "Reciclagem Básica",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/reciclagem-b-sica.pdf"
+},
+{
+"curso": "Coleta Seletiva",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/coleta-seletiva.pdf"
+},
+{
+"curso": "Compostagem Doméstica",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/compostagem-dom-stica.pdf"
+},
+{
+"curso": "Captação de Água de Chuva",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/capta-o-de-gua-de-chuva.pdf"
+},
+{
+"curso": "Economia de Água",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/economia-de-gua.pdf"
+},
+{
+"curso": "Economia de Energia",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/economia-de-energia.pdf"
+},
+{
+"curso": "Educação Ambiental",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/educa-o-ambiental.pdf"
+},
+{
+"curso": "Reflorestamento Básico",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/reflorestamento-b-sico.pdf"
+},
+{
+"curso": "Plantio de Árvores Nativas",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/plantio-de-rvores-nativas.pdf"
+},
+{
+"curso": "Horta Escolar",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/horta-escolar.pdf"
+},
+{
+"curso": "Agenda 2030 (ODS) Básico",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/agenda-2030-ods-b-sico.pdf"
+},
+{
+"curso": "Mudanças Climáticas Conceitos",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/mudan-as-clim-ticas-conceitos.pdf"
+},
+{
+"curso": "Resíduos Sólidos (Política Nacional)",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/res-duos-s-lidos-pol-tica-nacional.pdf"
+},
+{
+"curso": "Manejo de Resíduos em Condomínios",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/manejo-de-res-duos-em-condom-nios.pdf"
+},
+{
+"curso": "Cidades Sustentáveis",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/cidades-sustent-veis.pdf"
+},
+{
+"curso": "Sustentabilidade em Pequenos Negócios",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/sustentabilidade-em-pequenos-neg-cios.pdf"
+},
+{
+"curso": "Uso Racional de Agrotóxicos",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/uso-racional-de-agrot-xicos.pdf"
+},
+{
+"curso": "Bem-estar Animal Básico",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/bem-estar-animal-b-sico.pdf"
+},
+{
+"curso": "Fauna Urbana e Silvestres",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/fauna-urbana-e-silvestres.pdf"
+},
+{
+"curso": "Permacultura Iniciação",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/permacultura-inicia-o.pdf"
+},
+{
+"curso": "Auditoria e Perícia Ambiental",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/auditoria-e-per-cia-ambiental.pdf"
+},
+{
+"curso": "Desenvolvimento Sustentável",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/desenvolvimento-sustent-vel.pdf"
+},
+{
+"curso": "Educação Ambiental na Prática",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/educa-o-ambiental-na-pr-tica.pdf"
+},
+{
+"curso": "Geografia Ambiental",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/geografia-ambiental.pdf"
+},
+{
+"curso": "Licenciamento Ambiental",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/licenciamento-ambiental.pdf"
+},
+{
+"curso": "Política e Gestão Ambiental",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/pol-tica-e-gest-o-ambiental.pdf"
+},
+{
+"curso": "Ética e Sustentabilidade",
+"categoria": "Meio Ambiente e Sustentabilidade",
+"pdf": "cursos/pdf/tica-e-sustentabilidade.pdf"
+},
+{
+"curso": "Porteiro",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/porteiro.pdf"
+},
+{
+"curso": "Porteiro de Condomínio",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/porteiro-de-condom-nio.pdf"
+},
+{
+"curso": "Vigilante (Formação Teórica)",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/vigilante-forma-o-te-rica.pdf"
+},
+{
+"curso": "Segurança Patrimonial",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/seguran-a-patrimonial.pdf"
+},
+{
+"curso": "Segurança do Trabalho Básico",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/seguran-a-do-trabalho-b-sico.pdf"
+},
+{
+"curso": "NR-6 EPIs",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/nr-6-epis.pdf"
+},
+{
+"curso": "NR-10 Segurança em Eletricidade",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/nr-10-seguran-a-em-eletricidade.pdf"
+},
+{
+"curso": "NR-35 Trabalho em Altura",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/nr-35-trabalho-em-altura.pdf"
+},
+{
+"curso": "NR-12 Máquinas e Equipamentos",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/nr-12-m-quinas-e-equipamentos.pdf"
+},
+{
+"curso": "NR-18 Obras",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/nr-18-obras.pdf"
+},
+{
+"curso": "Brigada de Incêndio Básico",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/brigada-de-inc-ndio-b-sico.pdf"
+},
+{
+"curso": "Prevenção de Incêndio",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/preven-o-de-inc-ndio.pdf"
+},
+{
+"curso": "Combate a Incêndio Iniciação",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/combate-a-inc-ndio-inicia-o.pdf"
+},
+{
+"curso": "Primeiros Socorros no Trabalho",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/primeiros-socorros-no-trabalho.pdf"
+},
+{
+"curso": "Riscos Ocupacionais",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/riscos-ocupacionais.pdf"
+},
+{
+"curso": "Ergonomia e Prevenção",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/ergonomia-e-preven-o.pdf"
+},
+{
+"curso": "Gestão de Emergências",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/gest-o-de-emerg-ncias.pdf"
+},
+{
+"curso": "CFTV e Monitoramento",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/cftv-e-monitoramento.pdf"
+},
+{
+"curso": "Controle de Acessos",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/controle-de-acessos.pdf"
+},
+{
+"curso": "Segurança Bancária Básica",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/seguran-a-banc-ria-b-sica.pdf"
+},
+{
+"curso": "Defesa Civil Básico",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/defesa-civil-b-sico.pdf"
+},
+{
+"curso": "Prevenção de Acidentes Domésticos",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/preven-o-de-acidentes-dom-sticos.pdf"
+},
+{
+"curso": "Radiações e Saúde",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/radia-es-e-sa-de.pdf"
+},
+{
+"curso": "Segurança Digital para Todos",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/seguran-a-digital-para-todos.pdf"
+},
+{
+"curso": "Prevenção à Fraude (Golpes Digitais)",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/preven-o-fraude-golpes-digitais.pdf"
+},
+{
+"curso": "Brigadista de Incêndio",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/brigadista-de-inc-ndio.pdf"
+},
+{
+"curso": "Gestão da Produção",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/gest-o-da-produ-o.pdf"
+},
+{
+"curso": "Metrologia Industrial Básico",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/metrologia-industrial-b-sico.pdf"
+},
+{
+"curso": "Metrologia e Normatização",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/metrologia-e-normatiza-o.pdf"
+},
+{
+"curso": "NR 01 Básico Disposições Gerais",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/nr-01-b-sico-disposi-es-gerais.pdf"
+},
+{
+"curso": "NR 05 CIPA",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/nr-05-cipa.pdf"
+},
+{
+"curso": "NR 09 Básico",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/nr-09-b-sico.pdf"
+},
+{
+"curso": "NR 23 Proteção Contra Incêndios",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/nr-23-prote-o-contra-inc-ndios.pdf"
+},
+{
+"curso": "Segurança do Trabalho",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/seguran-a-do-trabalho.pdf"
+},
+{
+"curso": "Segurança do Trabalho e Saúde Ocupacional",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/seguran-a-do-trabalho-e-sa-de-ocupacional.pdf"
+},
+{
+"curso": "Segurança do Trabalho na Industria e na Logística",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/seguran-a-do-trabalho-na-industria-e-na-log-stica.pdf"
+},
+{
+"curso": "Soldagem",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/soldagem.pdf"
+},
+{
+"curso": "Ventilação Industrial",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/ventila-o-industrial.pdf"
+},
+{
+"curso": "Vigia",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/vigia.pdf"
+},
+{
+"curso": "Vigia e Porteiro",
+"categoria": "Segurança e Trabalho",
+"pdf": "cursos/pdf/vigia-e-porteiro.pdf"
+},
+{
+"curso": "Logística Básica",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/log-stica-b-sica.pdf"
+},
+{
+"curso": "Estoquista",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/estoquista.pdf"
+},
+{
+"curso": "Armazenagem Básica",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/armazenagem-b-sica.pdf"
+},
+{
+"curso": "Conferência de Mercadorias",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/confer-ncia-de-mercadorias.pdf"
+},
+{
+"curso": "Motorista Profissional (Teórico)",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/motorista-profissional-te-rico.pdf"
+},
+{
+"curso": "Combustível e Direção Econômica",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/combust-vel-e-dire-o-econ-mica.pdf"
+},
+{
+"curso": "Motoboy",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/motoboy.pdf"
+},
+{
+"curso": "Transporte Escolar",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/transporte-escolar.pdf"
+},
+{
+"curso": "Transporte de Passageiros (Teórico)",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/transporte-de-passageiros-te-rico.pdf"
+},
+{
+"curso": "Roteirização de Entregas",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/roteiriza-o-de-entregas.pdf"
+},
+{
+"curso": "Distribuição Urbana",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/distribui-o-urbana.pdf"
+},
+{
+"curso": "Docas e Expedição",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/docas-e-expedi-o.pdf"
+},
+{
+"curso": "Cargas e Documentação",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/cargas-e-documenta-o.pdf"
+},
+{
+"curso": "Embalagem para Transporte",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/embalagem-para-transporte.pdf"
+},
+{
+"curso": "Frota Básico",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/frota-b-sico.pdf"
+},
+{
+"curso": "WMS Conceitos",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/wms-conceitos.pdf"
+},
+{
+"curso": "Última Milha",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/ltima-milha.pdf"
+},
+{
+"curso": "E-commerce Logística",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/e-commerce-log-stica.pdf"
+},
+{
+"curso": "Transporte de Alimentos",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/transporte-de-alimentos.pdf"
+},
+{
+"curso": "Movimentação de Cargas (Empilhadeira Teoria)",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/movimenta-o-de-cargas-empilhadeira-teoria.pdf"
+},
+{
+"curso": "Agenciamento Portuário",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/agenciamento-portu-rio.pdf"
+},
+{
+"curso": "Aspectos Tributários na Cadeia de Suprimentos",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/aspectos-tribut-rios-na-cadeia-de-suprimentos.pdf"
+},
+{
+"curso": "Auditoria em Logística",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/auditoria-em-log-stica.pdf"
+},
+{
+"curso": "Auxiliar de Almoxarifado",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/auxiliar-de-almoxarifado.pdf"
+},
+{
+"curso": "Auxiliar de Logística",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/auxiliar-de-log-stica.pdf"
+},
+{
+"curso": "Calculo de Custos e Preços do Transporte",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/calculo-de-custos-e-pre-os-do-transporte.pdf"
+},
+{
+"curso": "Distribuição e Logística",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/distribui-o-e-log-stica.pdf"
+},
+{
+"curso": "Estratégia de Logística",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/estrat-gia-de-log-stica.pdf"
+},
+{
+"curso": "Gerenciamento da Cadeia de Suprimentos",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/gerenciamento-da-cadeia-de-suprimentos.pdf"
+},
+{
+"curso": "Gestão da Cadeia de Suprimentos",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/gest-o-da-cadeia-de-suprimentos.pdf"
+},
+{
+"curso": "Introdução a Logística",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/introdu-o-a-log-stica.pdf"
+},
+{
+"curso": "Logística Empresarial",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/log-stica-empresarial.pdf"
+},
+{
+"curso": "Logística Internacional",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/log-stica-internacional.pdf"
+},
+{
+"curso": "Logística de Distribuição",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/log-stica-de-distribui-o.pdf"
+},
+{
+"curso": "Logística de Transportes",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/log-stica-de-transportes.pdf"
+},
+{
+"curso": "Logística e Centro de Distribuição",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/log-stica-e-centro-de-distribui-o.pdf"
+},
+{
+"curso": "Noções de Logística",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/no-es-de-log-stica.pdf"
+},
+{
+"curso": "Planejamento de Estoques",
+"categoria": "Transporte e Logística",
+"pdf": "cursos/pdf/planejamento-de-estoques.pdf"
+},
+{
+"curso": "Mediador de Leitura",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/mediador-de-leitura.pdf"
+},
+{
+"curso": "Educação Infantil Básico",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/educa-o-infantil-b-sico.pdf"
+},
+{
+"curso": "Recreação Infantil",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/recrea-o-infantil.pdf"
+},
+{
+"curso": "Brincadeiras Cooperativas",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/brincadeiras-cooperativas.pdf"
+},
+{
+"curso": "Educação Especial (Introdução)",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/educa-o-especial-introdu-o.pdf"
+},
+{
+"curso": "Tecnologia Assistiva",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/tecnologia-assistiva.pdf"
+},
+{
+"curso": "Educação de Jovens e Adultos (Introdução)",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/educa-o-de-jovens-e-adultos-introdu-o.pdf"
+},
+{
+"curso": "Bullying e Cyberbullying (Prevenção)",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/bullying-e-cyberbullying-preven-o.pdf"
+},
+{
+"curso": "Cidadania Digital",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/cidadania-digital.pdf"
+},
+{
+"curso": "Ética e Cidadania",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/tica-e-cidadania.pdf"
+},
+{
+"curso": "Direitos Humanos Básico",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/direitos-humanos-b-sico.pdf"
+},
+{
+"curso": "Estatuto da Criança e do Adolescente (ECA Básico)",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/estatuto-da-crian-a-e-do-adolescente-eca-b-sico.pdf"
+},
+{
+"curso": "Estatuto do Idoso",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/estatuto-do-idoso.pdf"
+},
+{
+"curso": "Violência Doméstica (Sensibilização)",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/viol-ncia-dom-stica-sensibiliza-o.pdf"
+},
+{
+"curso": "Drogas: Prevenção e Redução de Danos",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/drogas-preven-o-e-redu-o-de-danos.pdf"
+},
+{
+"curso": "Projeto Social: Como Criar",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/projeto-social-como-criar.pdf"
+},
+{
+"curso": "Captação de Recursos para Projetos Sociais",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/capta-o-de-recursos-para-projetos-sociais.pdf"
+},
+{
+"curso": "Voluntariado Organizado",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/voluntariado-organizado.pdf"
+},
+{
+"curso": "Gestão de OSCs Básico",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/gest-o-de-oscs-b-sico.pdf"
+},
+{
+"curso": "Comunicação Comunitária",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/comunica-o-comunit-ria.pdf"
+},
+{
+"curso": "Liderança Comunitária",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/lideran-a-comunit-ria.pdf"
+},
+{
+"curso": "Finanças Pessoais",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/finan-as-pessoais.pdf"
+},
+{
+"curso": "Educação Financeira Básico",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/educa-o-financeira-b-sico.pdf"
+},
+{
+"curso": "Educação Financeira para Jovens",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/educa-o-financeira-para-jovens.pdf"
+},
+{
+"curso": "Empreendedorismo Social",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/empreendedorismo-social.pdf"
+},
+{
+"curso": "Alfabetização Infantil e Letramento",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/alfabetiza-o-infantil-e-letramento.pdf"
+},
+{
+"curso": "Alfabetização de Jovens e Adultos",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/alfabetiza-o-de-jovens-e-adultos.pdf"
+},
+{
+"curso": "Apoio Escolar",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/apoio-escolar.pdf"
+},
+{
+"curso": "Arte para Educadores",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/arte-para-educadores.pdf"
+},
+{
+"curso": "Atendimento Educacional Especializado AEE",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/atendimento-educacional-especializado-aee.pdf"
+},
+{
+"curso": "Autismo",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/autismo.pdf"
+},
+{
+"curso": "Avaliação Escolar",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/avalia-o-escolar.pdf"
+},
+{
+"curso": "BNCC para Educação Infantil",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/bncc-para-educa-o-infantil.pdf"
+},
+{
+"curso": "BNCC para Ensino Fundamental",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/bncc-para-ensino-fundamental.pdf"
+},
+{
+"curso": "BNCC para o Ensino Fundamental",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/bncc-para-o-ensino-fundamental.pdf"
+},
+{
+"curso": "BNCC para o Ensino Médio",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/bncc-para-o-ensino-m-dio.pdf"
+},
+{
+"curso": "Benefícios da Parceria Entre Escola e Família",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/benef-cios-da-parceria-entre-escola-e-fam-lia.pdf"
+},
+{
+"curso": "Conhecimentos Pedagógicos Básico",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/conhecimentos-pedag-gicos-b-sico.pdf"
+},
+{
+"curso": "Constituição Federal e Educação",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/constitui-o-federal-e-educa-o.pdf"
+},
+{
+"curso": "Coordenador Pedagógico",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/coordenador-pedag-gico.pdf"
+},
+{
+"curso": "Coordenação e Orientação Escolar",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/coordena-o-e-orienta-o-escolar.pdf"
+},
+{
+"curso": "Cuidador Escolar",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/cuidador-escolar.pdf"
+},
+{
+"curso": "Didática do Ensino Superior",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/did-tica-do-ensino-superior.pdf"
+},
+{
+"curso": "Direção Escolar",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/dire-o-escolar.pdf"
+},
+{
+"curso": "Discalculia",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/discalculia.pdf"
+},
+{
+"curso": "Disciplina e Indisciplina Escolar",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/disciplina-e-indisciplina-escolar.pdf"
+},
+{
+"curso": "Disgrafia Transtorno de Aprendizagem",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/disgrafia-transtorno-de-aprendizagem.pdf"
+},
+{
+"curso": "Dislexia",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/dislexia.pdf"
+},
+{
+"curso": "Docência e Prática de Ensino",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/doc-ncia-e-pr-tica-de-ensino.pdf"
+},
+{
+"curso": "Educação Física e Lazer para Todas As Idades",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/educa-o-f-sica-e-lazer-para-todas-as-idades.pdf"
+},
+{
+"curso": "Ensino da Língua Portuguesa",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/ensino-da-l-ngua-portuguesa.pdf"
+},
+{
+"curso": "Ensino de Matemática na Educação Infantil",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/ensino-de-matem-tica-na-educa-o-infantil.pdf"
+},
+{
+"curso": "Estatuto da Criança e do Adolescente",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/estatuto-da-crian-a-e-do-adolescente.pdf"
+},
+{
+"curso": "Filosofia para Educação",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/filosofia-para-educa-o.pdf"
+},
+{
+"curso": "Formação para Conselheiros Escolares",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/forma-o-para-conselheiros-escolares.pdf"
+},
+{
+"curso": "Fundamentos da Educação",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/fundamentos-da-educa-o.pdf"
+},
+{
+"curso": "Gestão Democrática Nas Escolas",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/gest-o-democr-tica-nas-escolas.pdf"
+},
+{
+"curso": "Gestão de Sala de Aula",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/gest-o-de-sala-de-aula.pdf"
+},
+{
+"curso": "Inspeção Escolar",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/inspe-o-escolar.pdf"
+},
+{
+"curso": "Introdução ao Serviço Social",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/introdu-o-ao-servi-o-social.pdf"
+},
+{
+"curso": "Introdução aos Direitos Humanos",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/introdu-o-aos-direitos-humanos.pdf"
+},
+{
+"curso": "Introdução a Educação a Distância",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/introdu-o-a-educa-o-a-dist-ncia.pdf"
+},
+{
+"curso": "Lei Brasileira de Inclusão LBI",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/lei-brasileira-de-inclus-o-lbi.pdf"
+},
+{
+"curso": "Lei Geral de Proteção de Dados LGPD",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/lei-geral-de-prote-o-de-dados-lgpd.pdf"
+},
+{
+"curso": "Lei Maria da Penha",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/lei-maria-da-penha.pdf"
+},
+{
+"curso": "Lei de Diretrizes e Bases da Educação LDB",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/lei-de-diretrizes-e-bases-da-educa-o-ldb.pdf"
+},
+{
+"curso": "Leitura e Escrita na Alfabetização e Letramento",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/leitura-e-escrita-na-alfabetiza-o-e-letramento.pdf"
+},
+{
+"curso": "Matemática para o Ensino Fundamental",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/matem-tica-para-o-ensino-fundamental.pdf"
+},
+{
+"curso": "Materiais Alternativos na Utilização em Sala de Aula",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/materiais-alternativos-na-utiliza-o-em-sala-de-aula.pdf"
+},
+{
+"curso": "Mecânica Industrial",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/mec-nica-industrial.pdf"
+},
+{
+"curso": "Metodologia do Ensino da Matemática para EJA",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/metodologia-do-ensino-da-matem-tica-para-eja.pdf"
+},
+{
+"curso": "Monitor de Transporte Escolar",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/monitor-de-transporte-escolar.pdf"
+},
+{
+"curso": "Organização e Legislação da Educação",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/organiza-o-e-legisla-o-da-educa-o.pdf"
+},
+{
+"curso": "Orientação Educacional",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/orienta-o-educacional.pdf"
+},
+{
+"curso": "Paternidade Responsável",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/paternidade-respons-vel.pdf"
+},
+{
+"curso": "Pedagogia Empresarial",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/pedagogia-empresarial.pdf"
+},
+{
+"curso": "Pedagogia Hospitalar",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/pedagogia-hospitalar.pdf"
+},
+{
+"curso": "Pesquisa em Educação",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/pesquisa-em-educa-o.pdf"
+},
+{
+"curso": "Práticas de Avaliação",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/pr-ticas-de-avalia-o.pdf"
+},
+{
+"curso": "Professores de Laboratório de Informática",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/professores-de-laborat-rio-de-inform-tica.pdf"
+},
+{
+"curso": "Projeto Pedagógico com Base na BNCC",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/projeto-pedag-gico-com-base-na-bncc.pdf"
+},
+{
+"curso": "Projeto Político Pedagógico",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/projeto-pol-tico-pedag-gico.pdf"
+},
+{
+"curso": "Projetos de Pesquisa em Educação",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/projetos-de-pesquisa-em-educa-o.pdf"
+},
+{
+"curso": "Psicopedagogia",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/psicopedagogia.pdf"
+},
+{
+"curso": "Redução de Danos",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/redu-o-de-danos.pdf"
+},
+{
+"curso": "Rodas de Histórias na Educação Infantil",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/rodas-de-hist-rias-na-educa-o-infantil.pdf"
+},
+{
+"curso": "Sequências Didáticas com Base na BNCC",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/sequ-ncias-did-ticas-com-base-na-bncc.pdf"
+},
+{
+"curso": "Serviço Social na Educação",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/servi-o-social-na-educa-o.pdf"
+},
+{
+"curso": "Serviço Social na Saúde Pública",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/servi-o-social-na-sa-de-p-blica.pdf"
+},
+{
+"curso": "Sistema Único de Assistência Social",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/sistema-nico-de-assist-ncia-social.pdf"
+},
+{
+"curso": "Supervisão e Orientação Pedagógica",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/supervis-o-e-orienta-o-pedag-gica.pdf"
+},
+{
+"curso": "Tendências Pedagógicas",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/tend-ncias-pedag-gicas.pdf"
+},
+{
+"curso": "Técnicas de Diagnósticos Psicopedagógicos",
+"categoria": "Educação e Social",
+"pdf": "cursos/pdf/t-cnicas-de-diagn-sticos-psicopedag-gicos.pdf"
+},
+{
+"curso": "Comunicação Eficaz",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/comunica-o-eficaz.pdf"
+},
+{
+"curso": "Oratória (Falar em Público)",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/orat-ria-falar-em-p-blico.pdf"
+},
+{
+"curso": "Comunicação Não Violenta",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/comunica-o-n-o-violenta.pdf"
+},
+{
+"curso": "Escuta Ativa",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/escuta-ativa.pdf"
+},
+{
+"curso": "Liderança Básica",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/lideran-a-b-sica.pdf"
+},
+{
+"curso": "Trabalho em Equipe",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/trabalho-em-equipe.pdf"
+},
+{
+"curso": "Gestão de Emoções",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/gest-o-de-emo-es.pdf"
+},
+{
+"curso": "Autoestima e Autoconfiança",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/autoestima-e-autoconfian-a.pdf"
+},
+{
+"curso": "Foco e Produtividade",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/foco-e-produtividade.pdf"
+},
+{
+"curso": "Organização Pessoal",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/organiza-o-pessoal.pdf"
+},
+{
+"curso": "Gestão do Tempo",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/gest-o-do-tempo.pdf"
+},
+{
+"curso": "Inteligência Emocional",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/intelig-ncia-emocional.pdf"
+},
+{
+"curso": "Resolução de Conflitos",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/resolu-o-de-conflitos.pdf"
+},
+{
+"curso": "Currículo que Chama Atenção",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/curr-culo-que-chama-aten-o.pdf"
+},
+{
+"curso": "Entrevista de Emprego",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/entrevista-de-emprego.pdf"
+},
+{
+"curso": "Recolocação Profissional",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/recoloca-o-profissional.pdf"
+},
+{
+"curso": "Networking",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/networking.pdf"
+},
+{
+"curso": "Postura Profissional",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/postura-profissional.pdf"
+},
+{
+"curso": "Empreendedorismo Básico",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/empreendedorismo-b-sico.pdf"
+},
+{
+"curso": "Formalização MEI",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/formaliza-o-mei.pdf"
+},
+{
+"curso": "Como Abrir MEI",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/como-abrir-mei.pdf"
+},
+{
+"curso": "Finanças do Microempreendedor",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/finan-as-do-microempreendedor.pdf"
+},
+{
+"curso": "Voz e Dicção",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/voz-e-dic-o.pdf"
+},
+{
+"curso": "Apresentações Profissionais",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/apresenta-es-profissionais.pdf"
+},
+{
+"curso": "Mentoria (Como Ser Mentorado)",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/mentoria-como-ser-mentorado.pdf"
+},
+{
+"curso": "Hábitos e Rotina Matinal",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/h-bitos-e-rotina-matinal.pdf"
+},
+{
+"curso": "Disciplina e Constância",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/disciplina-e-const-ncia.pdf"
+},
+{
+"curso": "Propósito e Carreira",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/prop-sito-e-carreira.pdf"
+},
+{
+"curso": "Simplicidade e Vida Minimalista",
+"categoria": "Desenvolvimento Humano",
+"pdf": "cursos/pdf/simplicidade-e-vida-minimalista.pdf"
+},
+{
+"curso": "Recepcionista",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/recepcionista.pdf"
+},
+{
+"curso": "Recepcionista de Hotel",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/recepcionista-de-hotel.pdf"
+},
+{
+"curso": "Camareira de Hotel",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/camareira-de-hotel.pdf"
+},
+{
+"curso": "Governança Hoteleira",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/governan-a-hoteleira.pdf"
+},
+{
+"curso": "Guiamento Local (Guia de Turismo)",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/guiamento-local-guia-de-turismo.pdf"
+},
+{
+"curso": "Roteiros Turísticos",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/roteiros-tur-sticos.pdf"
+},
+{
+"curso": "Eventos Básico",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/eventos-b-sico.pdf"
+},
+{
+"curso": "Cerimonialista",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/cerimonialista.pdf"
+},
+{
+"curso": "Decorador de Festas",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/decorador-de-festas.pdf"
+},
+{
+"curso": "Bufê e Serviços de Festas",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/buf-e-servi-os-de-festas.pdf"
+},
+{
+"curso": "Brinquedoteca",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/brinquedoteca.pdf"
+},
+{
+"curso": "Animação de Festas Infantis",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/anima-o-de-festas-infantis.pdf"
+},
+{
+"curso": "Salão de Festas (Gestão)",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/sal-o-de-festas-gest-o.pdf"
+},
+{
+"curso": "Cafeteria (Gestão)",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/cafeteria-gest-o.pdf"
+},
+{
+"curso": "Casa de Praia e Temporada (Gestão)",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/casa-de-praia-e-temporada-gest-o.pdf"
+},
+{
+"curso": "Turismo Rural",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/turismo-rural.pdf"
+},
+{
+"curso": "Turismo de Aventura Básico",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/turismo-de-aventura-b-sico.pdf"
+},
+{
+"curso": "Cultura Local e Patrimônio",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/cultura-local-e-patrim-nio.pdf"
+},
+{
+"curso": "Atendimento Multicultural",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/atendimento-multicultural.pdf"
+},
+{
+"curso": "Airbnb e Temporadas",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/airbnb-e-temporadas.pdf"
+},
+{
+"curso": "Básico de Recepcionista",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/b-sico-de-recepcionista.pdf"
+},
+{
+"curso": "Básico de Telefonista",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/b-sico-de-telefonista.pdf"
+},
+{
+"curso": "Ecoturismo",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/ecoturismo.pdf"
+},
+{
+"curso": "Gestão Hoteleira",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/gest-o-hoteleira.pdf"
+},
+{
+"curso": "Profissional de Ecoturismo",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/profissional-de-ecoturismo.pdf"
+},
+{
+"curso": "Recepcionista Avançada",
+"categoria": "Turismo e Hospitalidade",
+"pdf": "cursos/pdf/recepcionista-avan-ada.pdf"
+},
+{
+"curso": "Doméstica Profissional",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/dom-stica-profissional.pdf"
+},
+{
+"curso": "Arrumação Profissional",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/arruma-o-profissional.pdf"
+},
+{
+"curso": "Lavanderia Profissional",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/lavanderia-profissional.pdf"
+},
+{
+"curso": "Passadoria",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/passadoria.pdf"
+},
+{
+"curso": "Costureira Básica",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/costureira-b-sica.pdf"
+},
+{
+"curso": "Costura Criativa",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/costura-criativa.pdf"
+},
+{
+"curso": "Alfaiataria Básica",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/alfaiataria-b-sica.pdf"
+},
+{
+"curso": "Croché e Tricô",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/croch-e-tric.pdf"
+},
+{
+"curso": "Artesanato para Venda",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/artesanato-para-venda.pdf"
+},
+{
+"curso": "Jardinagem Básica",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/jardinagem-b-sica.pdf"
+},
+{
+"curso": "Poda e Manutenção de Jardins",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/poda-e-manuten-o-de-jardins.pdf"
+},
+{
+"curso": "Paisagismo Básico",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/paisagismo-b-sico.pdf"
+},
+{
+"curso": "Piscineiro (Manutenção)",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/piscineiro-manuten-o.pdf"
+},
+{
+"curso": "Dedetização e Controle de Pragas (Teoria)",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/dedetiza-o-e-controle-de-pragas-teoria.pdf"
+},
+{
+"curso": "Limpeza Pós-Obra",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/limpeza-p-s-obra.pdf"
+},
+{
+"curso": "Organização de Residências (Personal Organizer)",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/organiza-o-de-resid-ncias-personal-organizer.pdf"
+},
+{
+"curso": "Pet Care (Cuidador de Pets)",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/pet-care-cuidador-de-pets.pdf"
+},
+{
+"curso": "Banho e Tosa Básico",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/banho-e-tosa-b-sico.pdf"
+},
+{
+"curso": "Adestramento Básico",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/adestramento-b-sico.pdf"
+},
+{
+"curso": "Cuidador de Piscinas e Áreas",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/cuidador-de-piscinas-e-reas.pdf"
+},
+{
+"curso": "Chaveiro (Teoria)",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/chaveiro-teoria.pdf"
+},
+{
+"curso": "Sapataria e Consertos",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/sapataria-e-consertos.pdf"
+},
+{
+"curso": "Tapeceiro",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/tapeceiro.pdf"
+},
+{
+"curso": "Conserto de Roupas (Ajustes)",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/conserto-de-roupas-ajustes.pdf"
+},
+{
+"curso": "Fotografia de Festas",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/fotografia-de-festas.pdf"
+},
+{
+"curso": "Som e Iluminação para Festas",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/som-e-ilumina-o-para-festas.pdf"
+},
+{
+"curso": "Instalação de Etiquetas e Preços",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/instala-o-de-etiquetas-e-pre-os.pdf"
+},
+{
+"curso": "Zelador de Condomínio",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/zelador-de-condom-nio.pdf"
+},
+{
+"curso": "Síndico Profissional",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/s-ndico-profissional.pdf"
+},
+{
+"curso": "Facilities Básico",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/facilities-b-sico.pdf"
+},
+{
+"curso": "Auxiliar de Veterinária e Pet Shop",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/auxiliar-de-veterin-ria-e-pet-shop.pdf"
+},
+{
+"curso": "Chaveiro",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/chaveiro.pdf"
+},
+{
+"curso": "Corretor de Imóveis",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/corretor-de-im-veis.pdf"
+},
+{
+"curso": "Corretor de Seguros Noções Essenciais",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/corretor-de-seguros-no-es-essenciais.pdf"
+},
+{
+"curso": "Violão para Iniciantes",
+"categoria": "Serviços e Profissões Liberais",
+"pdf": "cursos/pdf/viol-o-para-iniciantes.pdf"
+},
+{
+"curso": "Gestão Pública Básica",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/gest-o-p-blica-b-sica.pdf"
+},
+{
+"curso": "Noções de Administração Pública",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/no-es-de-administra-o-p-blica.pdf"
+},
+{
+"curso": "Ética no Serviço Público",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/tica-no-servi-o-p-blico.pdf"
+},
+{
+"curso": "Planejamento Estratégico Municipal",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/planejamento-estrat-gico-municipal.pdf"
+},
+{
+"curso": "Orçamento Público (PPA, LDO e LOA)",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/or-amento-p-blico-ppa-ldo-e-loa.pdf"
+},
+{
+"curso": "Execução Orçamentária",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/execu-o-or-ament-ria.pdf"
+},
+{
+"curso": "Prestação de Contas Municipal",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/presta-o-de-contas-municipal.pdf"
+},
+{
+"curso": "Contabilidade Pública Básica",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/contabilidade-p-blica-b-sica.pdf"
+},
+{
+"curso": "Convênios e Transferências",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/conv-nios-e-transfer-ncias.pdf"
+},
+{
+"curso": "Fundos Municipais",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/fundos-municipais.pdf"
+},
+{
+"curso": "Controle Interno",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/controle-interno.pdf"
+},
+{
+"curso": "Controle Externo e Tribunal de Contas",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/controle-externo-e-tribunal-de-contas.pdf"
+},
+{
+"curso": "Finanças Municipais",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/finan-as-municipais.pdf"
+},
+{
+"curso": "Gestão de Pessoas no Setor Público",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/gest-o-de-pessoas-no-setor-p-blico.pdf"
+},
+{
+"curso": "Carreira e Remuneração (Noções)",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/carreira-e-remunera-o-no-es.pdf"
+},
+{
+"curso": "Gestão de Projetos Públicos",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/gest-o-de-projetos-p-blicos.pdf"
+},
+{
+"curso": "Gestão de Processos no Serviço Público",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/gest-o-de-processos-no-servi-o-p-blico.pdf"
+},
+{
+"curso": "Qualidade no Atendimento Interno",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/qualidade-no-atendimento-interno.pdf"
+},
+{
+"curso": "Reuniões e Relatórios Oficiais",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/reuni-es-e-relat-rios-oficiais.pdf"
+},
+{
+"curso": "Modernização Administrativa",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/moderniza-o-administrativa.pdf"
+},
+{
+"curso": "Formação de Vereadores",
+"categoria": "Setor Público: Gestão Pública",
+"pdf": "cursos/pdf/forma-o-de-vereadores.pdf"
+},
+{
+"curso": "Licitações (Lei 14.133)",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/licita-es-lei-14-133.pdf"
+},
+{
+"curso": "Pregão Eletrônico",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/preg-o-eletr-nico.pdf"
+},
+{
+"curso": "PNCP na Prática",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/pncp-na-pr-tica.pdf"
+},
+{
+"curso": "Compras Públicas Eficientes",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/compras-p-blicas-eficientes.pdf"
+},
+{
+"curso": "Dispensa e Inexigibilidade",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/dispensa-e-inexigibilidade.pdf"
+},
+{
+"curso": "Ata de Registro de Preços",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/ata-de-registro-de-pre-os.pdf"
+},
+{
+"curso": "Contratos Públicos",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/contratos-p-blicos.pdf"
+},
+{
+"curso": "Fiscalização de Contratos",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/fiscaliza-o-de-contratos.pdf"
+},
+{
+"curso": "Pesquisa e Painel de Preços",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/pesquisa-e-painel-de-pre-os.pdf"
+},
+{
+"curso": "Compras Sustentáveis",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/compras-sustent-veis.pdf"
+},
+{
+"curso": "Como Ler um Edital",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/como-ler-um-edital.pdf"
+},
+{
+"curso": "Habilitação em Licitações",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/habilita-o-em-licita-es.pdf"
+},
+{
+"curso": "Recursos e Impugnações",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/recursos-e-impugna-es.pdf"
+},
+{
+"curso": "Cotação Eletrônica",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/cota-o-eletr-nica.pdf"
+},
+{
+"curso": "Contratação de TI no Setor Público",
+"categoria": "Setor Público: Licitações e Compras",
+"pdf": "cursos/pdf/contrata-o-de-ti-no-setor-p-blico.pdf"
+},
+{
+"curso": "Atendimento ao Público",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/atendimento-ao-p-blico.pdf"
+},
+{
+"curso": "Atendimento ao Cidadão com IA",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/atendimento-ao-cidad-o-com-ia.pdf"
+},
+{
+"curso": "Ouvidoria Pública",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/ouvidoria-p-blica.pdf"
+},
+{
+"curso": "Lei de Acesso à Informação (LAI)",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/lei-de-acesso-informa-o-lai.pdf"
+},
+{
+"curso": "Transparência e Portal da Transparência",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/transpar-ncia-e-portal-da-transpar-ncia.pdf"
+},
+{
+"curso": "LGPD para Servidores",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/lgpd-para-servidores.pdf"
+},
+{
+"curso": "Redação Oficial (Ofícios e Documentos)",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/reda-o-oficial-of-cios-e-documentos.pdf"
+},
+{
+"curso": "Comunicação Pública",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/comunica-o-p-blica.pdf"
+},
+{
+"curso": "Acessibilidade no Atendimento",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/acessibilidade-no-atendimento.pdf"
+},
+{
+"curso": "Atendimento a Pessoas com Deficiência",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/atendimento-a-pessoas-com-defici-ncia.pdf"
+},
+{
+"curso": "Protocolo e Fluxo Documental",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/protocolo-e-fluxo-documental.pdf"
+},
+{
+"curso": "Educação Fiscal para a Comunidade",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/educa-o-fiscal-para-a-comunidade.pdf"
+},
+{
+"curso": "Participação Social e Conselhos",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/participa-o-social-e-conselhos.pdf"
+},
+{
+"curso": "Gestão de Queixas e Manifestações",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/gest-o-de-queixas-e-manifesta-es.pdf"
+},
+{
+"curso": "Atendimento Multicanal (WhatsApp e Presencial)",
+"categoria": "Setor Público: Atendimento ao Cidadão",
+"pdf": "cursos/pdf/atendimento-multicanal-whatsapp-e-presencial.pdf"
+},
+{
+"curso": "Governo Digital",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/governo-digital.pdf"
+},
+{
+"curso": "Transformação Digital Municipal",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/transforma-o-digital-municipal.pdf"
+},
+{
+"curso": "IA na Gestão Pública",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/ia-na-gest-o-p-blica.pdf"
+},
+{
+"curso": "Chatbot e Atendimento Automático Municipal",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/chatbot-e-atendimento-autom-tico-municipal.pdf"
+},
+{
+"curso": "Dados Abertos",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/dados-abertos.pdf"
+},
+{
+"curso": "Segurança da Informação no Setor Público",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/seguran-a-da-informa-o-no-setor-p-blico.pdf"
+},
+{
+"curso": "Assinatura Eletrônica e Documentos Digitais",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/assinatura-eletr-nica-e-documentos-digitais.pdf"
+},
+{
+"curso": "Processo Eletrônico (SEI Iniciação)",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/processo-eletr-nico-sei-inicia-o.pdf"
+},
+{
+"curso": "Geoprocessamento Básico para Municípios",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/geoprocessamento-b-sico-para-munic-pios.pdf"
+},
+{
+"curso": "Cidades Inteligentes (Conceitos)",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/cidades-inteligentes-conceitos.pdf"
+},
+{
+"curso": "Governo Aberto",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/governo-aberto.pdf"
+},
+{
+"curso": "Inclusão Digital para Servidores",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/inclus-o-digital-para-servidores.pdf"
+},
+{
+"curso": "Sistemas Municipais (Noções)",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/sistemas-municipais-no-es.pdf"
+},
+{
+"curso": "Indicadores e Metas Municipais",
+"categoria": "Setor Público: Tecnologia e Inovação",
+"pdf": "cursos/pdf/indicadores-e-metas-municipais.pdf"
+}
+]
