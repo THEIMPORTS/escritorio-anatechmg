@@ -206,7 +206,7 @@ function animar(el,alvo){const t0=performance.now(),dur=900;
     el.textContent=Math.round(alvo*e).toLocaleString('pt-BR');
     if(p<1)requestAnimationFrame(passo);}requestAnimationFrame(passo);}
 
-fetch('dados.json?v=5').then(r=>r.json()).then(d=>{
+fetch('dados.json?h=fb1fec48').then(r=>r.json()).then(d=>{
   dados=d;
   animar(document.getElementById('k1'),d.total);
   animar(document.getElementById('k2'),d.areas.length);
