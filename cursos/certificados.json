@@ -1,0 +1,18 @@
+{
+ "certificados": [
+  {
+   "codigo": "ANA-96D4-880B-67F7",
+   "nome": "Thiago Almeida",
+   "curso": "Excel Essencial",
+   "horas": 20,
+   "data": "29/10/2026"
+  },
+  {
+   "codigo": "ANA-C6BA-F3C2-0C5D",
+   "nome": "Maria Silva Santos",
+   "curso": "Cortes Masculinos",
+   "horas": 20,
+   "data": "29/10/2026"
+  }
+ ]
+}

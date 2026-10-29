@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Validação de certificado — ANATECH MG</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--marinho:#001336;--azul:#009CFE;--laranja:#FF8100}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:26px;
+ background:radial-gradient(900px 500px at 80% -10%,rgba(0,156,254,.18),transparent 60%),#050A16;
+ color:#E8ECF5;font-family:Poppins,system-ui,sans-serif}
+.box{width:100%;max-width:560px;border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:32px;
+ background:rgba(255,255,255,.03);backdrop-filter:blur(10px)}
+img{height:32px;margin-bottom:22px}
+h1{font-size:20px;margin:0 0 6px;font-weight:600;letter-spacing:-.4px}
+p{font-size:13px;color:#93A0BA;line-height:1.6;margin:0 0 18px}
+input{width:100%;padding:13px;border-radius:11px;border:1px solid rgba(255,255,255,.12);
+ background:rgba(255,255,255,.05);color:#fff;font:400 14px Poppins;outline:none;text-transform:uppercase}
+input:focus{border-color:var(--azul)}
+button{width:100%;margin-top:10px;padding:13px;border:0;border-radius:11px;background:var(--azul);
+ color:#001336;font:600 13px Poppins;cursor:pointer}
+button:hover{background:#38B4FF}
+.res{margin-top:18px;padding:16px;border-radius:12px;font-size:13px;line-height:1.7;display:none}
+.ok{display:block;background:rgba(37,183,96,.12);border:1px solid rgba(37,183,96,.5)}
+.no{display:block;background:rgba(255,129,0,.12);border:1px solid rgba(255,129,0,.5)}
+.res b{color:#fff}.res span{color:#93A0BA;font-size:11.5px;display:block}
+a{color:var(--azul);font-size:12px;text-decoration:none}
+</style></head>
+<body><div class="box">
+<img src="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/905c9cd34_logo-completo-branco.png" alt="ANATECH MG">
+<h1>Validar certificado</h1>
+<p>Digite o número de registro que está impresso no certificado ou escaneie o QR code.</p>
+<input id="c" placeholder="ANA-0000-0000-0000" autocomplete="off">
+<button id="b">Verificar</button>
+<div class="res" id="r"></div>
+<p style="margin:18px 0 0"><a href="./">Voltar ao catálogo</a></p>
+</div>
+<script>
+const r=document.getElementById('r'), inp=document.getElementById('c');
+const fmt=v=>v.toUpperCase().replace(/[^A-Z0-9]/g,'').replace(/^ANA/,'').replace(/^(.{4})(.{4})(.{0,4}).*$/,(m,a,b,c)=>c?`ANA-${a}-${b}-${c}`:`ANA-${a}-${b}`);
+inp.value=new URLSearchParams(location.search).get('c')||'';
+async function validar(){
+  const cod=fmt(inp.value.trim());
+  r.className='res';r.style.display='none';
+  if(cod.replace(/-/g,'').length<15){r.className='res no';r.innerHTML='Número incompleto. O formato é <b>ANA-0000-0000-0000</b>.';return;}
+  try{
+    const j=await fetch('certificados.json?t='+Date.now()).then(x=>x.json());
+    const reg=(j.certificados||[]).find(x=>x.codigo===cod);
+    if(reg){r.className='res ok';
+      r.innerHTML=`<b>Certificado válido</b><br>Aluno: <b>${reg.nome}</b><br>Curso: <b>${reg.curso}</b><br>Carga horária: <b>${reg.horas}h</b><br>Conclusão: <b>${reg.data}</b><br>Registro: <b>${reg.codigo}</b><span>Emitido pela ANATECH MG · curso livre (Lei 9.394/96).</span>`;}
+    else{r.className='res no';r.innerHTML='<b>Não encontramos este registro.</b><br>Confira o número impresso ou fale com a Anatech MG no (31) 98951-3698.';}
+  }catch(e){r.className='res no';r.textContent='Não foi possível consultar agora. Tente novamente.';}
+}
+document.getElementById('b').onclick=validar;
+if(inp.value)validar();
+</script></body></html>
