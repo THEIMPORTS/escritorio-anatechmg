@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catálogo ANATECH MG — 1.068 cursos com material próprio</title>
+<meta name="description" content="Catálogo da ANATECH MG: 1.068 cursos em 27 áreas, cada um com material em PDF próprio, 12 aulas e certificado com QR de validação.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* direção visual: vitrine tecnica com indice lateral (não repete Stat-Led nem Split editorial) */
+:root{
+  --marinho:#001336; --marinho2:#04122e; --azul:#009CFE; --laranja:#FF8100;
+  --papel:#F5F5F3; --txt:#E8ECF5; --txt2:#93A0BA; --linha:rgba(255,255,255,.08);
+  --card:rgba(255,255,255,.028); --card2:rgba(255,255,255,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:
+    radial-gradient(1100px 620px at 82% -8%, rgba(0,156,254,.16), transparent 62%),
+    radial-gradient(760px 480px at 4% 104%, rgba(255,129,0,.10), transparent 60%),
+    #050A16;
+  color:var(--txt); font-family:'Poppins',system-ui,-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased; min-height:100vh;
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--linha) 1px,transparent 1px),linear-gradient(90deg,var(--linha) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(circle at 50% 0%,#000 25%,transparent 78%);
+  -webkit-mask-image:radial-gradient(circle at 50% 0%,#000 25%,transparent 78%);opacity:.55}
+a{color:inherit;text-decoration:none}
+/* barra */
+.bar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);
+  background:linear-gradient(180deg,rgba(5,10,22,.94),rgba(5,10,22,.78));border-bottom:1px solid var(--linha)}
+.bar-in{max-width:1500px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:20px}
+.logo{height:34px;width:auto;display:block}
+.kpis{display:flex;gap:22px;margin-left:auto;align-items:center}
+.kpi{text-align:right;line-height:1.1}
+.kpi b{display:block;font-size:17px;font-weight:600;letter-spacing:-.3px;color:#fff}
+.kpi span{font-size:10.5px;color:var(--txt2);text-transform:uppercase;letter-spacing:.13em}
+.busca{position:relative;flex:1;max-width:430px}
+.busca input{width:100%;padding:12px 44px 12px 42px;border-radius:12px;border:1px solid var(--linha);
+  background:rgba(255,255,255,.05);color:#fff;font:400 14px Poppins,sans-serif;outline:none;transition:.25s}
+.busca input:focus{border-color:rgba(0,156,254,.6);background:rgba(0,156,254,.07);box-shadow:0 0 0 4px rgba(0,156,254,.09)}
+.busca input::placeholder{color:#6D7A93}
+.busca svg{position:absolute;left:14px;top:12px;opacity:.55}
+.busca kbd{position:absolute;right:10px;top:9px;font:600 10px Poppins;color:#7E8AA3;border:1px solid var(--linha);
+  border-radius:5px;padding:3px 6px}
+/* layout */
+.wrap{position:relative;z-index:1;max-width:1500px;margin:0 auto;padding:26px 22px 80px;
+  display:grid;grid-template-columns:242px 1fr;gap:30px;align-items:start}
+/* indice lateral */
+.indice{position:sticky;top:88px;max-height:calc(100vh - 116px);overflow:auto;padding-right:6px}
+.indice h2{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt2);margin:0 0 12px}
+.ind{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;text-align:left;
+  background:none;border:0;border-left:2px solid transparent;color:var(--txt2);font:400 13px Poppins;
+  padding:8px 10px;border-radius:0 8px 8px 0;cursor:pointer;transition:.18s}
+.ind:hover{background:var(--card2);color:#fff;border-left-color:rgba(0,156,254,.5)}
+.ind.on{background:linear-gradient(90deg,rgba(0,156,254,.16),transparent);color:#fff;border-left-color:var(--azul);font-weight:500}
+.ind i{font-style:normal;font-size:11px;color:#7A88A3;font-variant-numeric:tabular-nums}
+/* faixa de resumo */
+.faixa{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+.faixa h1{font-size:26px;line-height:1.15;margin:0;font-weight:600;letter-spacing:-.6px}
+.faixa h1 em{font-style:normal;color:var(--azul)}
+.cont{font-size:12.5px;color:var(--txt2)}
+.chip{border:1px solid var(--linha);background:var(--card);border-radius:999px;padding:7px 13px;font:500 11.5px Poppins;
+  color:var(--txt2);cursor:pointer;transition:.2s}
+.chip:hover{color:#fff;border-color:rgba(0,156,254,.45)}
+.chip.on{background:rgba(0,156,254,.14);border-color:rgba(0,156,254,.6);color:#fff}
+/* grade */
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:18px}
+.card{position:relative;border:1px solid var(--linha);border-radius:16px;overflow:hidden;
+  background:linear-gradient(180deg,var(--card),rgba(255,255,255,.012));transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .35s;
+  transform-style:preserve-3d;will-change:transform}
+.card:hover{border-color:rgba(0,156,254,.42);box-shadow:0 26px 60px -26px rgba(0,156,254,.5),0 0 0 1px rgba(0,156,254,.14)}
+.capa{position:relative;aspect-ratio:380/537;overflow:hidden;background:#0A1226}
+.capa img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .4s;
+  filter:saturate(.92) brightness(.92)}
+.card:hover .capa img{transform:scale(1.07) translateZ(30px);filter:saturate(1.05) brightness(1)}
+.capa::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(5,10,22,.9));opacity:.85}
+.selo{position:absolute;top:10px;left:10px;z-index:2;font:600 9.5px Poppins;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 8px;border-radius:6px;background:rgba(0,156,254,.9);color:#001336}
+.selo.auto{background:var(--laranja);color:#001336}
+.info{position:absolute;left:0;right:0;bottom:0;padding:13px 14px;z-index:2}
+.info h3{margin:0 0 4px;font-size:13.6px;line-height:1.3;font-weight:600;color:#fff}
+.info span{font-size:11px;color:#AEBCD6}
+/* painel de hover */
+.hover{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;gap:9px;
+  padding:16px;background:linear-gradient(180deg,rgba(0,19,54,.2),rgba(0,15,40,.95) 42%);
+  opacity:0;transform:translateY(10px);transition:.34s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.card:hover .hover{opacity:1;transform:translateY(0);pointer-events:auto}
+.hover p{margin:0;font-size:11.6px;line-height:1.5;color:#C9D5EA;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.hover ul{margin:0;padding:0;list-style:none;display:grid;gap:3px}
+.hover li{font-size:11px;color:#9FB0CC;padding-left:13px;position:relative;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hover li::before{content:"";position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--laranja)}
+.acoes{display:flex;gap:7px;margin-top:2px}
+.btn{border:0;border-radius:9px;padding:9px 11px;font:600 11.5px Poppins;cursor:pointer;transition:.2s;flex:1;text-align:center}
+.btn.azul{background:var(--azul);color:#001336}
+.btn.azul:hover{background:#38B4FF}
+.btn.ghost{background:rgba(255,255,255,.09);color:#fff;border:1px solid var(--linha)}
+.btn.ghost:hover{background:rgba(255,255,255,.16)}
+/* mais */
+.mais{display:flex;justify-content:center;margin-top:30px}
+.mais button{background:rgba(255,255,255,.06);border:1px solid var(--linha);color:#fff;font:600 12.5px Poppins;
+  padding:13px 26px;border-radius:11px;cursor:pointer;transition:.2s}
+.mais button:hover{background:rgba(0,156,254,.14);border-color:rgba(0,156,254,.5)}
+.vazio{padding:60px 20px;text-align:center;color:var(--txt2)}
+/* certificado */
+.cert{margin-top:70px;border:1px solid var(--linha);border-radius:20px;padding:34px;display:grid;
+  grid-template-columns:1.25fr .75fr;gap:34px;align-items:center;
+  background:radial-gradient(600px 300px at 12% 10%,rgba(0,156,254,.14),transparent 62%),rgba(255,255,255,.022)}
+.cert h2{margin:0 0 10px;font-size:24px;letter-spacing:-.5px}
+.cert p{margin:0 0 8px;font-size:13.4px;line-height:1.65;color:#B9C6DC}
+.cert ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:7px}
+.cert li{font-size:12.8px;color:#CBD7EA;padding-left:20px;position:relative}
+.cert li::before{content:"";position:absolute;left:0;top:5px;width:9px;height:9px;border-radius:2px;
+  background:linear-gradient(135deg,var(--azul),var(--laranja))}
+.fig{border:1px solid var(--linha);border-radius:14px;padding:18px;background:rgba(0,19,54,.5);text-align:center}
+.fig .qr{width:96px;height:96px;margin:0 auto 10px;border-radius:8px;background:#fff;display:grid;place-items:center;
+  font:700 9px Poppins;color:#001336;letter-spacing:.08em}
+.fig small{font-size:10.5px;color:var(--txt2);line-height:1.5;display:block}
+footer{margin-top:56px;border-top:1px solid var(--linha);padding-top:22px;display:flex;flex-wrap:wrap;gap:14px;
+  justify-content:space-between;font-size:11.8px;color:var(--txt2)}
+@media (max-width:1000px){
+  .wrap{grid-template-columns:1fr;padding:18px 16px 60px;gap:18px}
+  .indice{position:static;max-height:none;display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+  .indice h2{display:none}
+  .ind{border-left:0;border:1px solid var(--linha);border-radius:999px;white-space:nowrap;padding:8px 12px}
+  .ind.on{border-color:var(--azul)}
+  .cert{grid-template-columns:1fr}
+  .bar-in{flex-wrap:wrap;gap:12px}
+  .busca{max-width:none;order:3;flex-basis:100%}
+  .kpis{margin-left:0}
+  .faixa h1{font-size:20px}
+  .grade{grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:11px}
+  .info h3{font-size:11.6px}
+  .hover{display:none}
+  .card:hover .capa img{transform:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="bar"><div class="bar-in">
+  <a href="/"><img class="logo" alt="ANATECH MG" src="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/905c9cd34_logo-completo-branco.png"></a>
+  <div class="busca">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Buscar curso ou área (ex.: corte, excel, licitação)" autocomplete="off">
+    <kbd>/</kbd>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><b id="k1">0</b><span>cursos</span></div>
+    <div class="kpi"><b id="k2">0</b><span>áreas</span></div>
+    <div class="kpi"><b id="k3">0</b><span>PDFs</span></div>
+  </div>
+</div></div>
+
+<div class="wrap">
+  <aside class="indice" id="indice"><h2>Áreas do catálogo</h2></aside>
+
+  <main>
+    <div class="faixa">
+      <h1 id="titulo">Catálogo <em>completo</em></h1>
+      <div class="cont" id="cont"></div>
+      <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="chip on" data-f="todos">Todos</button>
+        <button class="chip" data-f="auto">Material autoral</button>
+        <button class="chip" data-f="pdf">Com PDF</button>
+      </div>
+    </div>
+    <div class="grade" id="grade"></div>
+    <div class="mais"><button id="mais">Carregar mais</button></div>
+
+    <section class="cert" id="certificado">
+      <div>
+        <h2>Certificado com QR de validação</h2>
+        <p>Cada certificado sai com número de registro, carga horária e QR code que abre a página pública de validação. Quem recebe confere em segundos se é verdadeiro.</p>
+        <ul>
+          <li>Nome, curso, carga horária e data de conclusão</li>
+          <li>Número de registro único e QR code verificável</li>
+          <li>Válido como curso livre para currículo, estágio e progressão</li>
+          <li>Emitido pela ANATECH MG com CNPJ no documento</li>
+        </ul>
+      </div>
+      <div class="fig">
+        <div class="qr">QR<br>VALIDAÇÃO</div>
+        <small>O QR abre a página de verificação e mostra o nome, o curso e a data registrados.</small>
+      </div>
+    </section>
+
+    <footer>
+      <span>ANATECH MG · cursos.anatechmg.com.br · (31) 98951-3698</span>
+      <span>Material próprio, em PDF, sem redirecionar para servidor de terceiro.</span>
+    </footer>
+  </main>
+</div>
+
+<script>
+const IMG='thumbs/', PDF='pdf/';
+let dados=null, area='', filtro='todos', busca='', mostrados=0, listaFiltrada=[], POR=60;
+const g=document.getElementById('grade'), q=document.getElementById('q');
+
+function animar(el,alvo){const t0=performance.now(),dur=900;
+  function passo(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(alvo*e).toLocaleString('pt-BR');
+    if(p<1)requestAnimationFrame(passo);}requestAnimationFrame(passo);}
+
+fetch('dados.json').then(r=>r.json()).then(d=>{
+  dados=d;
+  animar(document.getElementById('k1'),d.total);
+  animar(document.getElementById('k2'),d.areas.length);
+  animar(document.getElementById('k3'),d.total);
+  const ind=document.getElementById('indice');
+  const mk=(nome,cont,val)=>{const b=document.createElement('button');b.className='ind'+(val===area?' on':'');
+    b.innerHTML='<span>'+nome+'</span><i>'+cont+'</i>';b.onclick=()=>{area=val;document.querySelectorAll('.ind').forEach(x=>x.classList.remove('on'));b.classList.add('on');aplicar();};return b;};
+  const todas=document.createElement('button');todas.className='ind on';
+  todas.innerHTML='<span>Todas as áreas</span><i>'+d.total+'</i>';
+  todas.onclick=()=>{area='';document.querySelectorAll('.ind').forEach(x=>x.classList.remove('on'));todas.classList.add('on');aplicar();};
+  ind.appendChild(todas);
+  d.areas.sort((a,b)=>b.n-a.n).forEach(a=>ind.appendChild(mk(a.nome,a.n,a.nome)));
+  aplicar();
+});
+
+function aplicar(){
+  const t=(busca||'').toLowerCase().trim();
+  listaFiltrada=dados.cursos.filter(c=>{
+    if(area&&c.a!==area)return false;
+    if(filtro==='auto'&&c.v!=='autoral')return false;
+    if(t){const alvo=(c.n+' '+c.a+' '+(c.t||[]).join(' ')).toLowerCase();if(!alvo.includes(t))return false;}
+    return true;});
+  mostrados=0;g.innerHTML='';mostrar();
+  const tit=document.getElementById('titulo');
+  tit.innerHTML=area?('Área: <em>'+area+'</em>'):'Catálogo <em>completo</em>';
+  document.getElementById('cont').textContent=listaFiltrada.length.toLocaleString('pt-BR')+' cursos com material em PDF';
+}
+function cartao(c){
+  const el=document.createElement('article');el.className='card';
+  const aulas=(c.t||[]).map(x=>'<li>'+x+'</li>').join('');
+  el.innerHTML=
+   '<div class="capa"><span class="selo'+(c.v==='autoral'?' auto':'')+'">'+(c.v==='autoral'?'autoral':'pdf')+'</span>'+
+   '<img loading="lazy" src="'+IMG+c.s+'.webp" alt="Capa do curso '+c.n+'"></div>'+
+   '<div class="info"><h3>'+c.n+'</h3><span>'+c.a+' · '+c.h+'h</span></div>'+
+   '<div class="hover"><p>'+(c.d||'Material próprio em PDF com 12 aulas, exercícios e checklist.')+'</p>'+
+   (aulas?'<ul>'+aulas+'</ul>':'')+
+   '<div class="acoes"><a class="btn azul" href="'+PDF+c.s+'.pdf" target="_blank" rel="noopener">Ver material</a>'+
+   '<a class="btn ghost" href="#certificado">Certificado</a></div></div>';
+  el.addEventListener('mousemove',e=>{
+    if(window.matchMedia('(hover:none)').matches)return;
+    const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    el.style.transform='perspective(900px) rotateY('+(x*7).toFixed(2)+'deg) rotateX('+(-y*7).toFixed(2)+'deg) translateY(-6px)';});
+  el.addEventListener('mouseleave',()=>{el.style.transform='';});
+  return el;
+}
+function mostrar(){
+  const fim=Math.min(mostrados+POR,listaFiltrada.length);const frag=document.createDocumentFragment();
+  for(let i=mostrados;i<fim;i++)frag.appendChild(cartao(listaFiltrada[i]));
+  g.appendChild(frag);mostrados=fim;
+  document.getElementById('mais').style.display=mostrados>=listaFiltrada.length?'none':'block';
+  if(!listaFiltrada.length)g.innerHTML='<div class="vazio">Nenhum curso encontrado com esse termo. Tente outra palavra.</div>';
+}
+document.getElementById('mais').onclick=mostrar;
+q.addEventListener('input',e=>{busca=e.target.value;clearTimeout(window._d);window._d=setTimeout(aplicar,180);});
+document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}});
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  filtro=b.dataset.f;aplicar();});
+window.addEventListener('scroll',()=>{if(!listaFiltrada.length)return;
+  if(window.innerHeight+window.scrollY>document.body.offsetHeight-700&&mostrados<listaFiltrada.length)mostrar();},{passive:true});
+</script>
+</body>
+</html>
