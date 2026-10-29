@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Fraunces:opsz,wght@9..144,400;9..144,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* Hallmark · waive 1 (Poppins é a face oficial da marca), 38iii (destaque único no título é a assinatura da peça) */
 /* Hallmark · direcoes · theme: showcase multi-direção · posture: full-palette · surface: absolute · hero: índice de amostras · nav: topo fixo · footer: linha única · built 2026-10-29 */
 :root{
   --navy:#001336; --blue:#009CFE; --orange:#FF8100;
@@ -56,15 +55,16 @@ main{padding:var(--pad)}
 .d2 li b{color:var(--blue);font-weight:700}
 /* 3 tipográfico bruto */
 .d3{padding:clamp(1rem,3vw,2.2rem);background:var(--paper-2)}
-.d3 h3{font-family:var(--font-sans);font-weight:800;font-size:clamp(2rem,7vw,4.4rem);line-height:.92;letter-spacing:-.03em;text-wrap:balance}
-.d3 h3 mark{background:var(--orange);color:var(--navy);padding:0 .12em}
+.d3 h3{font-family:var(--font-serif);font-weight:800;font-size:clamp(2rem,7vw,4.4rem);line-height:.92;letter-spacing:-.03em;text-wrap:balance}
+.d3 h3 
+.d3sub{font-size:var(--s1);color:var(--ink-soft);margin-top:.7rem;max-width:34ch}
 .d3 footer{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem;font-size:var(--s1);color:var(--ink-soft)}
 /* 4 vitrine quente */
 .d4{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-.d4 .txt{padding:clamp(1.1rem,2.6vw,2rem);background:#FBF3E6}
+.d4 .txt{padding:clamp(1.1rem,2.6vw,2rem);background:var(--sand)}
 .d4 h3{font-family:var(--font-serif);font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.1;text-wrap:balance}
 .d4 p{font-size:var(--s1);color:var(--sand-ink);margin-top:.6rem}
-.d4 .foto{background:linear-gradient(160deg,var(--sand-a),var(--sand-b));display:flex;align-items:flex-end;padding:1rem;font-family:var(--font-mono);font-size:.68rem;color:#5B4A36}
+.d4 .foto{background:linear-gradient(160deg,var(--sand-a),var(--sand-b));display:flex;align-items:flex-end;padding:1rem;font-family:var(--font-mono);font-size:.68rem;color:var(--sand-deep)}
 /* 5 cinema */
 .d5{position:relative;min-height:240px;background:linear-gradient(200deg,var(--cine-a),var(--cine-b) 60%,var(--cine-c));color:var(--cine-ink);display:flex;align-items:flex-end;padding:clamp(1.1rem,3vw,2rem)}
 .d5 h3{font-size:clamp(1.2rem,2.4vw,1.8rem);font-weight:300;max-width:24ch;line-height:1.25;text-wrap:balance}
@@ -123,7 +123,8 @@ main{padding:var(--pad)}
   <section class="bloco">
     <header><small>direção 03</small><h2>Tipográfico bruto</h2><p>Só tipo e cor. Serve para campanha, oferta e peça de impacto.</p></header>
     <div class="amostra d3">
-      <h3>Pare de <mark>perder</mark> cliente por demora.</h3>
+      <h3>Pare de perder cliente por demora.</h3>
+      <p class="d3sub">cinco minutos de demora já custa venda</p>
       <footer><span>implantação em 7 dias</span><span>atendimento 24h</span></footer>
     </div>
   </section>
