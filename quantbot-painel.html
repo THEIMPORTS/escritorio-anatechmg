@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesa Quant: painel de 12 widgets</title>
+<meta name="description" content="Painel da mesa quantitativa da Anatechmg: mercado, risco, portão de decisão e memória de experimentos em uma tela.">
+<link rel="icon" href="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/965128b02_favicon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · Mesa Quant painel · theme: custom (technical dark) · posture: restrained · surface: absolute · hero: data-led, twelve live widgets · nav: single line bar · footer: one line · built 2026-10-29 */
+/* critique: the pull is the chart plus the honest performance of the base signal; the rest is quiet instrumentation, no decoration competing with numbers. */
+:root{
+  --ink-bg:#001336; --ink-bg-2:#021c44; --ink-line:#0f3358; --ink-line-soft:#0b2447;
+  --ink:#eef4fb; --ink-soft:#9fb3cc; --ink-dim:#6f88a6;
+  --accent:#009CFE; --accent-soft:#1f3f66; --warn:#FF8100; --down:#8fb0d0;
+  --space-1:.35rem; --space-2:.7rem; --space-3:1.1rem; --space-4:1.6rem; --space-5:2.4rem;
+  --step-s:.72rem; --step-m:.9rem; --step-l:1.15rem; --step-xl:2.1rem;
+  --radius:.7rem; --max:1320px; --font:'Poppins',system-ui,sans-serif; --tint-hover:#05224a;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip}
+body{margin:0;overflow-x:clip;background:var(--ink-bg);color:var(--ink);font-family:var(--font);font-size:var(--step-m);line-height:1.55}
+a{color:var(--accent);text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a:active{color:var(--warn)}
+.w a:active,.w:active{background:var(--tint-hover)}
+.bar{border-bottom:1px solid var(--ink-line);background:var(--ink-bg-2)}
+.bar-in{max-width:var(--max);margin:0 auto;padding:var(--space-2) var(--space-3);display:flex;align-items:center;gap:var(--space-3);justify-content:space-between}
+.bar img{height:26px;width:auto;display:block}
+.bar p{margin:0;color:var(--ink-soft);font-size:var(--step-s)}
+.wrap{max-width:var(--max);margin:0 auto;padding:var(--space-4) var(--space-3) var(--space-5)}
+.head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-3);align-items:end;margin-bottom:var(--space-3)}
+h1{font-size:var(--step-xl);line-height:1.15;margin:0;overflow-wrap:break-word;min-width:0;text-wrap:balance}
+.head p{margin:var(--space-1) 0 0;color:var(--ink-soft)}
+.stamp{font-size:var(--step-s);color:var(--ink-dim);text-align:right;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:var(--space-2);align-items:start}
+.w{background:var(--ink-bg-2);border:1px solid var(--ink-line);border-radius:var(--radius);padding:var(--space-3)}
+.w-wide{grid-column:span 2}
+.w h2{margin:0 0 var(--space-1);font-size:var(--step-s);color:var(--ink-soft);font-weight:500}
+.big{font-size:1.7rem;font-weight:600;font-variant-numeric:tabular-nums;margin:0;overflow-wrap:break-word}
+.sub{color:var(--ink-dim);font-size:var(--step-s);margin:var(--space-1) 0 0;font-variant-numeric:tabular-nums}
+.row{display:flex;justify-content:space-between;gap:var(--space-2);padding:.28rem 0;border-bottom:1px solid var(--ink-line-soft);font-size:var(--step-s)}
+.row:last-child{border-bottom:0}
+.row span:first-child{color:var(--ink-soft)}
+.row span:last-child{font-variant-numeric:tabular-nums;text-align:right}
+canvas{width:100%;height:auto;display:block;margin-top:var(--space-1)}
+.note{margin:var(--space-3) 0 0;color:var(--ink-dim);font-size:var(--step-s);max-width:70ch}
+.foot{max-width:var(--max);margin:0 auto;padding:var(--space-3);border-top:1px solid var(--ink-line);color:var(--ink-dim);font-size:var(--step-s);display:flex;gap:var(--space-2);flex-wrap:wrap;justify-content:space-between}
+@media (max-width:760px){.w-wide{grid-column:span 1}.head{grid-template-columns:minmax(0,1fr)}.stamp{text-align:left}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bar"><div class="bar-in">
+  <img src="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/905c9cd34_logo-completo-branco.png" alt="Anatechmg">
+  <p id="rede">conectando às fontes de dados</p>
+</div></div>
+<main class="wrap">
+  <div class="head">
+    <div>
+      <h1>Mesa quantitativa, doze widgets vivos</h1>
+      <p>Mercado, risco, portão de decisão e memória de experimentos no mesmo lugar, com a fonte de cada número à vista.</p>
+    </div>
+    <div class="stamp" id="stamp">carregando</div>
+  </div>
+
+  <div class="grid">
+    <section class="w"><h2>WIN, preço do último candle</h2><p class="big" id="w1">-</p><p class="sub" id="w1s">aguardando</p></section>
+    <section class="w w-wide"><h2>Série de preço com médias 9 e 21</h2><canvas id="chart" width="760" height="240" role="img" aria-label="Série de preço do WIN com médias móveis curtas"></canvas><p class="sub" id="w2s">aguardando</p></section>
+    <section class="w"><h2>RSI do momento</h2><p class="big" id="w3">-</p><p class="sub" id="w3s">leitura de 0 a 100</p></section>
+    <section class="w"><h2>Regime de mercado</h2><p class="big" id="w4">-</p><p class="sub" id="w4s">inclinação</p></section>
+    <section class="w"><h2>Sinais recentes do radar</h2><div id="w5"><p class="sub">aguardando</p></div></section>
+    <section class="w"><h2>Simulação de risco</h2><div id="w6"><p class="sub">aguardando</p></div></section>
+    <section class="w"><h2>Travas de risco no dia</h2><div id="w7"><p class="sub">aguardando</p></div></section>
+    <section class="w"><h2>Qualidade do feed</h2><div id="w8"><p class="sub">aguardando</p></div></section>
+    <section class="w"><h2>Desempenho do sinal base</h2><div id="w9"><p class="sub">aguardando</p></div></section>
+    <section class="w"><h2>Portão de decisão</h2><div id="w10"><p class="sub">aguardando</p></div></section>
+    <section class="w"><h2>Memória de experimentos</h2><div id="w11"><p class="sub">aguardando</p></div></section>
+    <section class="w"><h2>Ordens na mesa</h2><div id="w12"><p class="sub">aguardando</p></div></section>
+  </div>
+
+  <p class="note">Nenhum número aqui é projeção: cada widget lê uma função do sistema. O sinal base é uma regra declarada e o painel mostra o desempenho real dela, inclusive quando é ruim. Ferramenta educacional, não é recomendação de investimento, e toda ordem depende de aprovação humana.</p>
+</main>
+<footer class="foot">
+  <span>Anatechmg, mesa quantitativa</span>
+  <span id="rodape-hora">-</span>
+</footer>
+
+<script>
+const R = 'https://ana-a391f94e.base44.app/functions/';
+const $ = (id) => document.getElementById(id);
+const num = (v, d) => Number(v || 0).toLocaleString('pt-BR', { minimumFractionDigits: d ?? 0, maximumFractionDigits: d ?? 0 });
+const pct = (v, d) => (v === null || v === undefined ? '-' : Number(v * 100).toFixed(d ?? 0) + '%');
+const txt = (v) => (v === null || v === undefined || v === '' ? '-' : String(v));
+const linha = (k, v) => '<div class="row"><span>' + k + '</span><span>' + v + '</span></div>';
+
+function ema(serie, periodo) {
+  const k = 2 / (periodo + 1);
+  let e = serie[0];
+  return serie.map((v, i) => (i === 0 ? e : (e = v * k + e * (1 - k))));
+}
+
+function desenha(candles) {
+  const cv = $('chart');
+  const dpr = window.devicePixelRatio || 1;
+  const w = cv.clientWidth || 760, h = 240;
+  cv.width = w * dpr; cv.height = h * dpr;
+  const c = cv.getContext('2d');
+  c.scale(dpr, dpr);
+  c.clearRect(0, 0, w, h);
+  if (!candles || !candles.length) return;
+  const fech = candles.map((x) => Number(x.c));
+  const e9 = ema(fech, 9), e21 = ema(fech, 21);
+  const min = Math.min.apply(null, fech), max = Math.max.apply(null, fech);
+  const pad = (max - min) * 0.12 || 1;
+  const y = (v) => h - ((v - (min - pad)) / ((max + pad) - (min - pad))) * h;
+  const x = (i) => (i / (fech.length - 1 || 1)) * w;
+  const estilo = getComputedStyle(document.documentElement);
+  const corA = estilo.getPropertyValue('--accent').trim() || '#009CFE';
+  const corB = estilo.getPropertyValue('--warn').trim() || '#FF8100';
+  const corL = estilo.getPropertyValue('--ink-line').trim() || '#0f3358';
+  c.strokeStyle = corL; c.lineWidth = 1;
+  for (let i = 1; i < 4; i++) { const yy = (h / 4) * i; c.beginPath(); c.moveTo(0, yy); c.lineTo(w, yy); c.stroke(); }
+  c.lineWidth = 1.6; c.strokeStyle = corA; c.beginPath();
+  fech.forEach((v, i) => (i ? c.lineTo(x(i), y(v)) : c.moveTo(x(i), y(v))));
+  c.stroke();
+  c.strokeStyle = corB; c.beginPath();
+  e21.forEach((v, i) => (i ? c.lineTo(x(i), y(v)) : c.moveTo(x(i), y(v))));
+  c.stroke();
+  c.setLineDash([3, 3]); c.strokeStyle = corL; c.beginPath();
+  e9.forEach((v, i) => (i ? c.lineTo(x(i), y(v)) : c.moveTo(x(i), y(v))));
+  c.stroke(); c.setLineDash([]);
+}
+
+async function pega(url) {
+  try { const r = await fetch(url, { cache: 'no-store' }); return await r.json(); } catch (e) { return null; }
+}
+
+async function carrega() {
+  const [radar, gate, memo, desk] = await Promise.all([
+    pega(R + 'winRadarLive?api=1'), pega(R + 'quantGate?api=1'), pega(R + 'memoriaQuant?api=1'), pega(R + 'quantDesk?api=1'),
+  ]);
+
+  $('rede').textContent = radar ? 'fontes de dados respondendo' : 'sem resposta do radar';
+  $('stamp').textContent = new Date().toLocaleString('pt-BR');
+
+  if (radar) {
+    const cs = radar.candles || [];
+    const ult = cs[cs.length - 1] || {};
+    const ant = cs[cs.length - 2] || {};
+    const preco = Number(radar.last || ult.c || 0);
+    const varPct = ant.c ? ((preco - Number(ant.c)) / Number(ant.c)) * 100 : 0;
+    $('w1').textContent = num(preco);
+    $('w1s').textContent = 'variação no candle: ' + (varPct >= 0 ? '+' : '') + varPct.toFixed(2) + '%';
+    desenha(cs);
+    $('w2s').textContent = cs.length + ' candles · fonte ' + txt(radar.src) + ' · linha cheia preço, tracejada média 9, laranja média 21';
+    $('w3').textContent = num(radar.rsi_atual);
+    $('w3s').textContent = Number(radar.rsi_atual) > 70 ? 'zona de sobrecompra' : Number(radar.rsi_atual) < 30 ? 'zona de sobrevenda' : 'faixa neutra';
+    const rg = radar.regime || {};
+    $('w4').textContent = txt(rg.nome || '-');
+    $('w4s').textContent = 'inclinação ' + num(rg.slope_pct, 2) + '%';
+    const sin = (radar.sinais || []).slice(-5).reverse();
+    $('w5').innerHTML = sin.length ? sin.map((s) => linha(new Date(s.t).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }), txt(s.tipo) + ' · RSI ' + num(s.rsi))).join('') : '<p class="sub">nenhum sinal na janela</p>';
+    const mc = radar.monte_carlo || {};
+    $('w6').innerHTML = linha('probabilidade de perda', num(mc.prob_perda_pct) + '%')
+      + linha('drawdown p95', num(mc.p95_dd_pct, 2) + '%')
+      + linha('pior sequência de perdas', num(mc.pior_sequencia_perdas))
+      + linha('iterações', num(mc.iteracoes));
+    const rk = radar.risco || {};
+    $('w7').innerHTML = linha('travas hoje', num(rk.nHoje) + ' de ' + num(rk.maxDia))
+      + linha('cooldown', rk.cooldownOk ? 'liberado' : 'ativo')
+      + linha('intervalo mínimo', num(rk.cooldownMin) + ' min')
+      + linha('pregão', radar.pregao ? 'aberto' : 'fechado');
+    const q = radar.qualidade || {};
+    $('w8').innerHTML = linha('candles na janela', num(q.n))
+      + linha('idade do último', num(q.idadeMin) + ' min')
+      + linha('falhas de sequência', num(q.gaps))
+      + linha('atraso declarado', txt(radar.atraso));
+    const ind = radar.indicador_stats || {};
+    $('w9').innerHTML = linha('sinais avaliados', num(ind.n))
+      + linha('acerto', num(ind.acerto_pct) + '%')
+      + linha('resultado acumulado', num(ind.total_pct, 2) + '%')
+      + linha('janela', txt(ind.janela));
+  }
+
+  if (gate) {
+    const s = gate.stats || {};
+    $('w10').innerHTML = linha('avaliações', num(s.total))
+      + linha('trade / hold', num(s.trades) + ' / ' + num(s.holds))
+      + linha('acerto real', s.comResultados ? pct(s.hitRate) : 'sem desfecho ainda')
+      + linha('limiar de política', pct(gate.limiar)) ;
+  }
+
+  if (memo) {
+    const ruins = (memo.setups_que_falham || []).map((x) => x.setup).slice(0, 2);
+    $('w11').innerHTML = linha('operações lembradas', num(memo.total_registros))
+      + linha('acerto global', memo.hit_global === null ? 'sem amostra' : pct(memo.hit_global))
+      + linha('setups distintos', num((memo.setups || []).length))
+      + (ruins.length ? linha('setups que falham', ruins.join(' / ')) : '');
+  }
+
+  if (desk) {
+    const ordens = desk.ordens || [];
+    $('w12').innerHTML = linha('preço de referência', num(desk.preco_atual))
+      + linha('ordens registradas', num(ordens.length))
+      + linha('abertas', num(ordens.filter((o) => o.status !== 'fechada').length));
+  }
+
+  $('rodape-hora').textContent = 'atualizado ' + new Date().toLocaleString('pt-BR');
+}
+
+carrega();
+setInterval(carrega, 60000);
+window.addEventListener('resize', () => { carrega(); });
+</script>
+</body>
+</html>
