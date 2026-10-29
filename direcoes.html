@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direções de design, Anatech MG</title>
+<meta name="description" content="Seis direções visuais da marca Anatech MG, uma para cada tipo de produto, para nenhuma página sair com a mesma cara da anterior.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Fraunces:opsz,wght@9..144,400;9..144,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · waive 1 (Poppins é a face oficial da marca), 38iii (destaque único no título é a assinatura da peça) */
+/* Hallmark · direcoes · theme: showcase multi-direção · posture: full-palette · surface: absolute · hero: índice de amostras · nav: topo fixo · footer: linha única · built 2026-10-29 */
+:root{
+  --navy:#001336; --blue:#009CFE; --orange:#FF8100;
+  --paper:#F5F5F3; --paper-2:#FBFAF6; --ink:#0B1B2B; --ink-soft:#5B6B7C;
+  --line:#D8D5CC; --line-dark:#132C4A;
+  --font-sans:'Poppins',system-ui,sans-serif;
+  --font-serif:'Fraunces',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+  --s1:.8rem; --s2:1rem; --s3:1.35rem; --s4:2rem; --s5:3rem; --s6:4.6rem;
+  --pad:clamp(1.1rem,4vw,4rem);
+  --paper-veil:rgba(245,245,243,.92); --ice:#EAF2FF; --sand:#FBF3E6; --sand-ink:#6B5A45;
+  --sand-a:#E8D9C3; --sand-b:#CBB79A; --sand-deep:#5B4A36;
+  --cine-a:#04162E; --cine-b:#0A2A4A; --cine-c:#123A62; --cine-ink:#F2F7FF; --cine-soft:#8FB4D8;
+  --prose:#33475B; --mono-label:.72rem;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:clip}
+body{overflow-x:clip;background:var(--paper);color:var(--ink);font-family:var(--font-sans);font-size:var(--s2);line-height:1.55}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+a:active{opacity:.75}
+.topo{position:sticky;top:0;z-index:9;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.9rem var(--pad);background:var(--paper-veil);border-bottom:1px solid var(--line);width:auto}
+.topo span{font-size:var(--s1);color:var(--ink-soft);letter-spacing:.02em}
+main{padding:var(--pad)}
+.intro{max-width:60ch;margin-bottom:calc(var(--pad)*1.2)}
+.intro h1{font-family:var(--font-serif);font-weight:700;font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;text-wrap:balance;margin-bottom:.6rem}
+.intro p{color:var(--ink-soft);max-width:52ch}
+.bloco{border-top:1px solid var(--line);padding:calc(var(--pad)*.9) 0;display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:var(--pad);align-items:start}
+.bloco > header small{display:block;font-family:var(--font-sans);font-size:.74rem;font-weight:600;color:var(--ink-soft);margin-bottom:.35rem}
+.bloco > header h2{font-size:var(--s3);line-height:1.2}
+.bloco > header p{color:var(--ink-soft);font-size:var(--s1);margin-top:.4rem}
+.amostra{border:1px solid var(--line);border-radius:2px;overflow:hidden;background:var(--paper-2)}
+/* 1 editorial */
+.d1{padding:clamp(1.2rem,3vw,2.6rem);font-family:var(--font-serif)}
+.d1 h3{font-size:clamp(1.6rem,3.4vw,2.6rem);line-height:1.04;max-width:18ch;text-wrap:balance}
+.d1 .regua{height:1px;background:var(--ink);margin:1rem 0;width:4rem}
+.d1 p{font-family:var(--font-sans);font-size:var(--s1);color:var(--ink-soft);max-width:52ch}
+.d1 a{display:inline-block;margin-top:1rem;font-family:var(--font-sans);font-size:var(--s1);text-decoration:underline;text-underline-offset:4px}
+/* 2 técnico escuro */
+.d2{background:var(--navy);color:var(--ice);padding:clamp(1.2rem,3vw,2.4rem);display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:1.4rem}
+.d2 h3{font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.1;font-weight:600;text-wrap:balance}
+.d2 ul{list-style:none;font-family:var(--font-mono);font-size:.74rem;display:grid;gap:.45rem;align-content:start}
+.d2 li{display:flex;justify-content:space-between;border-bottom:1px solid var(--line-dark);padding-bottom:.35rem;font-variant-numeric:tabular-nums}
+.d2 li b{color:var(--blue);font-weight:700}
+/* 3 tipográfico bruto */
+.d3{padding:clamp(1rem,3vw,2.2rem);background:var(--paper-2)}
+.d3 h3{font-family:var(--font-sans);font-weight:800;font-size:clamp(2rem,7vw,4.4rem);line-height:.92;letter-spacing:-.03em;text-wrap:balance}
+.d3 h3 mark{background:var(--orange);color:var(--navy);padding:0 .12em}
+.d3 footer{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem;font-size:var(--s1);color:var(--ink-soft)}
+/* 4 vitrine quente */
+.d4{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.d4 .txt{padding:clamp(1.1rem,2.6vw,2rem);background:#FBF3E6}
+.d4 h3{font-family:var(--font-serif);font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.1;text-wrap:balance}
+.d4 p{font-size:var(--s1);color:var(--sand-ink);margin-top:.6rem}
+.d4 .foto{background:linear-gradient(160deg,var(--sand-a),var(--sand-b));display:flex;align-items:flex-end;padding:1rem;font-family:var(--font-mono);font-size:.68rem;color:#5B4A36}
+/* 5 cinema */
+.d5{position:relative;min-height:240px;background:linear-gradient(200deg,var(--cine-a),var(--cine-b) 60%,var(--cine-c));color:var(--cine-ink);display:flex;align-items:flex-end;padding:clamp(1.1rem,3vw,2rem)}
+.d5 h3{font-size:clamp(1.2rem,2.4vw,1.8rem);font-weight:300;max-width:24ch;line-height:1.25;text-wrap:balance}
+.d5 small{position:absolute;top:1rem;left:clamp(1.1rem,3vw,2rem);font-family:var(--font-sans);font-size:.7rem;color:var(--cine-soft)}
+/* 6 documento longo */
+.d6{padding:clamp(1.1rem,3vw,2rem);max-width:62ch}
+.d6 h3{font-size:var(--s3);margin-bottom:.5rem}
+.d6 p{font-size:var(--s1);color:var(--prose);margin-bottom:.7rem}
+.d6 p:last-child{margin-bottom:0}
+.d6 b{font-weight:600}
+.rodape{border-top:1px solid var(--line);margin-top:var(--pad);padding-top:1rem;font-size:var(--s1);color:var(--ink-soft)}
+@media (max-width:720px){
+  .bloco{grid-template-columns:1fr;gap:.8rem}
+  .d2,.d4{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:no-preference){
+  .amostra{transition:border-color .18s ease}
+  .amostra:hover{border-color:var(--blue)}
+}
+</style>
+</head>
+<body>
+<header class="topo">
+  <img src="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/d808348e2_logo-completo.png" alt="Anatech MG">
+  <span>Direções de design · 29/10/2026</span>
+</header>
+<main>
+  <div class="intro">
+    <h1>Seis direções, um só manual de marca.</h1>
+    <p>Cada produto escolhe uma direção diferente, para não sair tudo com a mesma cara. A escolha fica registrada e não se repete nos dois projetos seguintes.</p>
+  </div>
+
+  <section class="bloco">
+    <header><small>direção 01</small><h2>Editorial claro</h2><p>Página de leitura, titulo serifado, régua fina. Serve para conteúdo, manifesto e institucional.</p></header>
+    <div class="amostra d1">
+      <h3>Automação que trabalha enquanto o time dorme.</h3>
+      <div class="regua"></div>
+      <p>Texto de apoio curto, uma ideia por tela, sem card e sem ícone decorativo.</p>
+      <a href="#">Conhecer o serviço</a>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <header><small>direção 02</small><h2>Técnico escuro</h2><p>Dado na frente, tipografia mono, coluna de números. Serve para produto de dados, trading e painel.</p></header>
+    <div class="amostra d2">
+      <h3>Sua operação inteira em uma tela.</h3>
+      <ul>
+        <li><span>candles</span><b>169</b></li>
+        <li><span>sinais</span><b>5</b></li>
+        <li><span>acerto</span><b>0%</b></li>
+        <li><span>drawdown</span><b>1,76%</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <header><small>direção 03</small><h2>Tipográfico bruto</h2><p>Só tipo e cor. Serve para campanha, oferta e peça de impacto.</p></header>
+    <div class="amostra d3">
+      <h3>Pare de <mark>perder</mark> cliente por demora.</h3>
+      <footer><span>implantação em 7 dias</span><span>atendimento 24h</span></footer>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <header><small>direção 04</small><h2>Vitrine quente</h2><p>Sépia e off-white, produto à vista. Serve para rifa, varejo e venda direta.</p></header>
+    <div class="amostra d4">
+      <div class="txt">
+        <h3>Campanha no ar, com sorteio federal.</h3>
+        <p>Site, Pix e painel prontos. Você só divulga.</p>
+      </div>
+      <div class="foto">foto real da campanha</div>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <header><small>direção 05</small><h2>Cinema</h2><p>Imagem domina, texto é legenda. Serve para lançamento e apresentação de produto.</p></header>
+    <div class="amostra d5">
+      <small>anatech mg · operação ao vivo</small>
+      <h3>Doze agentes trabalhando agora no seu negócio.</h3>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <header><small>direção 06</small><h2>Documento longo</h2><p>Leitura corrida, sem botão grande. Serve para proposta, licitação e B2G.</p></header>
+    <div class="amostra d6">
+      <h3>Proposta de automação municipal</h3>
+      <p><b>Escopo.</b> Atendimento automático no WhatsApp, triagem de demandas e relatório semanal por secretaria.</p>
+      <p><b>Prazo.</b> Quatro semanas de implantação, com acompanhamento na primeira operação real.</p>
+    </div>
+  </section>
+
+  <p class="rodape">Anatech MG, tecnologia aplicada. Esta página é o padrão de comparação: cada produto novo sai numa direção diferente da anterior.</p>
+</main>
+</body>
+</html>
