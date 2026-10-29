@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atendimento por voz da Anatech MG</title>
+<meta name="description" content="Agente de voz da Anatech MG que atende ligação, qualifica o cliente, marca na agenda e manda o resumo no WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · tipo-bruto · theme: custom, posture: committed, surface: flat, hero: type-only, nav: none, footer: single line, by request (dono aprovou direção tipográfica em 29/10) */
+:root{--ink:#0B1220;--paper:#F4F1EC;--orange:#FF8100;--navy:#001336;--line:#C9C3B7;--muted:#4A5162;--font:'Poppins',system-ui,sans-serif;--s1:.9rem;--s2:1.15rem;--s3:clamp(2.2rem,7vw,5.4rem);--pad:clamp(1.2rem,5vw,6rem)}
+html,body{overflow-x:clip}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:var(--s2);line-height:1.55}
+a{color:inherit}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+a:active{opacity:.7}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+.topo{border-bottom:2px solid var(--ink);padding:1.1rem 0;font-size:var(--s1)}
+.topo .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+h1{font-size:var(--s3);line-height:1.02;letter-spacing:-.03em;font-weight:800;text-wrap:balance;overflow-wrap:break-word;min-width:0;margin:clamp(2rem,6vw,4rem) 0 1.4rem}
+
+.lead{max-width:56ch;font-size:var(--s2)}
+.acoes{display:flex;gap:1rem;flex-wrap:wrap;margin:2rem 0 3.2rem}
+.btn{display:inline-block;white-space:nowrap;background:var(--orange);color:var(--navy);text-decoration:none;font-weight:700;padding:1rem 1.8rem;border:2px solid var(--ink)}
+.btn.sec{background:transparent;color:var(--ink)}
+.faixa{background:var(--ink);color:var(--paper);padding:clamp(2.4rem,6vw,4rem) 0}
+.faixa h2{font-size:clamp(1.5rem,3.4vw,2.4rem);line-height:1.15;text-wrap:balance;font-weight:800;max-width:30ch}
+.passos{display:grid;grid-template-columns:minmax(0,1fr);gap:1.6rem;margin-top:2.4rem}
+.passo{display:grid;grid-template-columns:minmax(0,3rem) minmax(0,1fr);gap:1rem;align-items:start}
+.passo b{font-size:1.6rem;color:var(--orange);font-variant-numeric:tabular-nums;line-height:1}
+.secao{padding:clamp(2.6rem,7vw,4.6rem) 0}
+h2.tit{font-size:clamp(1.6rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.02em;text-wrap:balance;margin-bottom:1.6rem;max-width:24ch}
+.planos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:0;border:2px solid var(--ink)}
+.plano{padding:1.8rem 1.5rem;border-top:2px solid var(--ink)}
+.plano:first-child{border-top:0}
+.plano h3{font-size:1.05rem;letter-spacing:.02em;text-transform:none;font-weight:700}
+.valor{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:800;font-variant-numeric:tabular-nums;margin:.5rem 0 .2rem;letter-spacing:-.02em}
+.valor small{font-size:.42em;font-weight:600;color:var(--muted);letter-spacing:0}
+.plano ul{list-style:none;margin-top:1rem;font-size:var(--s1);color:var(--muted);display:grid;gap:.45rem}
+.plano.destaque{background:var(--orange);color:var(--navy)}
+.plano.destaque .valor small,.plano.destaque ul{color:var(--navy)}
+.aviso{position:relative;padding:.2rem 0 .2rem 1.6rem;font-size:var(--s1);color:var(--muted);max-width:60ch;margin-top:2rem}
+.aviso::before{content:"";position:absolute;left:0;top:.45rem;width:.7rem;height:.7rem;background:var(--orange)}
+footer{border-top:2px solid var(--ink);padding:1.6rem 0;font-size:var(--s1);color:var(--muted)}
+@media(min-width:760px){.passos{grid-template-columns:repeat(3,minmax(0,1fr))}.planos{grid-template-columns:repeat(3,minmax(0,1fr))}.plano{border-top:0;border-left:2px solid var(--ink)}.plano:first-child{border-left:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="wrap">
+    <strong>ANATECH MG</strong>
+    <span>Atendimento por voz · telefone e WhatsApp</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Toca o telefone. A Ana atende.</h1>
+  <p class="lead">Agente de voz que qualifica, marca na agenda e manda o resumo no WhatsApp do seu time. Enquanto ninguém pega o telefone, o cliente liga para o concorrente. O agente responde em português, entende o que a pessoa quer, anota o contato e devolve a ligação com nome, telefone e o que precisa.</p>
+  <div class="acoes">
+    <a class="btn" href="https://wa.me/5531989513698?text=Quero%20o%20atendimento%20por%20voz%20da%20Anatech%20MG">Falar sobre o atendimento por voz</a>
+    <a class="btn sec" href="#planos">Ver planos</a>
+  </div>
+</main>
+
+<section class="faixa">
+  <div class="wrap">
+    <h2>O que acontece em uma ligação atendida</h2>
+    <div class="passos">
+      <div class="passo"><b>1</b><div><strong>Abertura com a marca</strong><p>O cliente ouve o nome da empresa e diz o que precisa, sem menu e sem esperar alguém liberar o telefone.</p></div></div>
+      <div class="passo"><b>2</b><div><strong>Qualificação</strong><p>O agente pergunta negócio, cidade, volume de atendimento e prazo, e registra cada resposta na conversa.</p></div></div>
+      <div class="passo"><b>3</b><div><strong>Retorno com resumo</strong><p>No fim, o time recebe pelo WhatsApp o nome, o número, o que a pessoa pediu e o horário disponível para retorno.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="secao wrap" id="planos">
+  <h2 class="tit">Planos de assinatura</h2>
+  <div class="planos">
+    <div class="plano">
+      <h3>Essencial</h3>
+      <p class="valor">R$ 397<small>/mês</small></p>
+      <ul>
+        <li>1 número de atendimento</li>
+        <li>Até 300 minutos por mês</li>
+        <li>Resumo no WhatsApp</li>
+        <li>Agenda conectada</li>
+      </ul>
+    </div>
+    <div class="plano destaque">
+      <h3>Profissional</h3>
+      <p class="valor">R$ 797<small>/mês</small></p>
+      <ul>
+        <li>3 números de atendimento</li>
+        <li>Até 1.000 minutos por mês</li>
+        <li>Resumo no WhatsApp e por e-mail</li>
+        <li>Agenda e transferência para humano</li>
+      </ul>
+    </div>
+    <div class="plano">
+      <h3>Escala</h3>
+      <p class="valor">R$ 1.497<small>/mês</small></p>
+      <ul>
+        <li>5 números de atendimento</li>
+        <li>Até 3.000 minutos por mês</li>
+        <li>Painel de ligações e históricos</li>
+        <li>Revisão mensal do roteiro</li>
+      </ul>
+    </div>
+  </div>
+  <p class="aviso">Implantação cobrada uma única vez, com roteiro, agenda e testes feitos junto com o seu time. Minutos acima do plano são cobrados por uso. Preço e disponibilidade a confirmar antes do fechamento. Não prometemos volume de ligações nem resultado de venda.</p>
+</section>
+
+<footer>
+  <div class="wrap">Anatech MG<br>Atendimento por voz e WhatsApp<br>(31) 98951-3698</div>
+</footer>
+</body>
+</html>
