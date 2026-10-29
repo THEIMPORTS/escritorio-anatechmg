@@ -2,52 +2,213 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rifa como Serviço — Sua rifa automatizada com a Anatechmg</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rifa como Serviço: a campanha completa, do site ao sorteio</title>
+<meta name="description" content="Montamos a sua rifa inteira: site com Pix automático, reserva de números, roleta de bônus e painel de vendas. R$ 500 de montagem e 10% sobre o bilhetário vendido.">
+<link rel="icon" href="https://media.base44.com/images/public/69b1d5cd9842092aa391f94e/965128b02_favicon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-body{background:#160b28;color:#f3edff;line-height:1.6}
-.hero{text-align:center;padding:60px 20px;background:linear-gradient(160deg,#160b28 0%,#3a1470 100%)}
-.hero h1{font-size:2.2rem;margin-bottom:16px}
-.hero h1 span{color:#ffb020}
-.badge{display:inline-block;background:#ffb020;color:#2b1600;font-weight:700;border-radius:20px;padding:6px 18px;margin-bottom:18px;font-size:.85rem}
-.sub{max-width:680px;margin:0 auto 28px;color:#cdbde8;font-size:1.1rem}
-.cta{display:inline-block;background:#ffb020;color:#2b1600;text-decoration:none;font-weight:800;font-size:1.15rem;padding:16px 42px;border-radius:14px}
-section{max-width:860px;margin:0 auto;padding:48px 20px}
-h2{text-align:center;margin-bottom:28px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.card{background:#241040;border:1px solid #3f2270;border-radius:14px;padding:22px}
-.card b{color:#ffb020}
-.price{text-align:center;background:#241040;border:2px solid #ffb020;border-radius:18px;padding:34px;margin:0 20px}
-.price .big{font-size:2.4rem;font-weight:900;color:#ffb020}
-.foot{text-align:center;padding:36px 20px 52px;color:#a390c2;font-size:.85rem}
+/* Hallmark · Rifa como Serviço · theme: custom (editorial light) · posture: restrained · surface: absolute · hero: type-led with price stamp · nav: light inline · footer: two lines · material: real price and real campaign page, no invented proof · built 2026-10-29 */
+/* critique: inverte o registro do QuantBot de propósito, papel claro e coluna de leitura, com o preço em carimbo em vez de painel escuro */
+:root{
+  --paper:#F5F5F3; --paper-2:#FAFAF7; --cta-hover:#D96D00; --line:#E1E0DA; --line-strong:#C9C7BF;
+  --ink:#001336; --ink-soft:#4A5A70; --ink-dim:#7B8798;
+  --accent:#12386B; --cta:#FF8100; --cta-ink:#2B1600; --blue:#009CFE;
+  --measure:68rem; --radius:4px;
+  --step-xs:.78rem; --step-s:.9rem; --step-m:1.04rem; --step-l:1.3rem;
+  --step-h2:clamp(1.6rem,3vw,2.2rem); --step-h1:clamp(2.2rem,5.6vw,4rem);
+  --font:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{overflow-x:clip;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:var(--step-m);line-height:1.62;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{overflow-wrap:break-word;min-width:0;line-height:1.1;letter-spacing:-.015em;font-weight:600;text-wrap:balance}
+.wrap{width:100%;max-width:var(--measure);margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2rem)}
+.top{border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;padding-block:.9rem}
+.brand{display:flex;align-items:center;gap:.6rem}
+.brand img{height:28px;width:auto}
+.brand span{font-size:var(--step-s);color:var(--ink-soft)}
+.top nav{display:none;gap:1.5rem;font-size:var(--step-s);color:var(--ink-soft)}
+.top nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.9rem 1.5rem;border-radius:100px;font-size:var(--step-s);font-weight:600;border:1px solid transparent;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.btn-primary{background:var(--cta);color:var(--cta-ink)}
+.btn-primary:hover{background:var(--cta-hover)}
+.btn-ghost{border-color:var(--line-strong);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.btn:active{transform:translateY(1px)}
+.hero{padding-block:clamp(2.6rem,6vw,4.6rem) clamp(1.6rem,4vw,2.6rem)}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(1.6rem,4vw,3rem);align-items:end}
+.hero h1{font-size:var(--step-h1);font-weight:700;max-width:20ch}
+.hero p{color:var(--ink-soft);max-width:46ch;margin-top:1rem}
+.hero .actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+.stamp{border-top:2px solid var(--ink);padding-top:1rem;display:grid;gap:.5rem}
+.stamp .val{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums}
+.stamp .lbl{font-size:var(--step-xs);color:var(--ink-dim)}
+.stamp hr{border:0;border-top:1px solid var(--line);margin-block:.2rem}
+section{padding-block:clamp(2.4rem,5vw,3.6rem)}
+.band{background:var(--paper-2);border-block:1px solid var(--line)}
+.steps{counter-reset:s;display:grid;gap:1.4rem;margin-top:1.8rem}
+.step{counter-increment:s;display:grid;grid-template-columns:auto minmax(0,1fr);gap:1rem;align-items:start}
+.step::before{content:counter(s,decimal-leading-zero);font-size:var(--step-s);font-weight:600;color:var(--cta);padding-top:.2rem;min-width:2rem}
+.step h3{font-size:var(--step-l)}
+.step p{color:var(--ink-soft);margin-top:.2rem;max-width:54ch}
+.two{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(1.6rem,4vw,3rem)}
+.list{list-style:none;display:grid;gap:.7rem;font-size:var(--step-s);color:var(--ink-soft)}
+.list li{padding-left:1.1rem;position:relative}
+.list li::before{content:"";position:absolute;left:0;top:.62em;width:.42rem;height:.42rem;background:var(--blue);border-radius:50%}
+.h2-sm{font-size:var(--step-h2)}
+.price-box{border:2px solid var(--ink);border-radius:var(--radius);padding:clamp(1.4rem,3vw,2rem);background:var(--paper-2)}
+.price-box .big{font-size:clamp(2rem,5vw,2.8rem);font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.price-box .small{color:var(--ink-soft);font-size:var(--step-s);margin-top:.4rem;font-variant-numeric:tabular-nums}
+.price-box .actions{margin-top:1.4rem;display:flex;flex-wrap:wrap;gap:.7rem}
+.fine{font-size:var(--step-xs);color:var(--ink-dim);margin-top:1.2rem;max-width:62ch}
+.example{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;margin-top:1.4rem;border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem 1.3rem;background:var(--paper-2)}
+.example .t{font-weight:600}
+.example p{color:var(--ink-soft);font-size:var(--step-s);margin-top:.2rem}
+.example a{color:var(--accent);border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+footer{border-top:1px solid var(--line);padding-block:1.8rem;font-size:var(--step-xs);color:var(--ink-dim)}
+footer .wrap{display:grid;gap:.4rem}
+footer a{color:var(--ink-soft)}
+.reveal{opacity:1}
+.js .reveal{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (min-width:54rem){
+  .top nav{display:flex}
+  .hero .grid{grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr)}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.8rem 2.4rem}
+  .two{grid-template-columns:minmax(0,1fr) minmax(0,.85fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .btn{transition:none}
+}
 </style>
 </head>
 <body>
-<div class="hero">
-  <div class="badge">WHITE-LABEL COMPLETO</div>
-  <h1>Vender rifas virou produto.<br><span>Você cria. A gente opera.</span></h1>
-  <p class="sub">Quer fazer uma rifa pro seu evento, projeto ou instituição? Entregamos o site completo: Pix automático, reserva de números na hora, roleta de bônus e painel de vendas ao vivo. Você só divulga.</p>
-  <a class="cta" href="https://wa.me/5531989513698?text=Quero%20uma%20rifa%20automatizada%20pra%20meu%20projeto">QUERO MINHA RIFA →</a>
-</div>
-<section>
-  <h2>O que a plataforma entrega</h2>
-  <div class="grid">
-    <div class="card">🛒 <b>Site completo</b> com checkout Pix automático</div>
-    <div class="card">🎫 <b>Números reservados</b> na hora da compra, vinculados ao CPF do cliente</div>
-    <div class="card">🎰 <b>Roleta de bônus</b> e pacotes promocionais automáticos</div>
-    <div class="card">📋 <b>Comprovante</b> com os números do comprador direto no WhatsApp</div>
-    <div class="card">📊 <b>Painel ao vivo</b> de vendas e bilhetes vendidos</div>
-    <div class="card">🎨 <b>Criativos e textos</b> prontos pra divulgação</div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/escritorio-anatechmg/">
+      <img src="https://media.base44.com/images/public/69b1d5cd9842092aa391f94e/d808348e2_logo-completo.png" alt="Anatech MG">
+      <span>Rifa como Serviço</span>
+    </a>
+    <nav>
+      <a href="#como">Como funciona</a>
+      <a href="#inclui">O que vai pronto</a>
+      <a href="#preco">Preço</a>
+    </nav>
+    <a class="btn btn-primary" href="https://wa.me/5531989513698?text=Quero%20montar%20uma%20rifa%20com%20a%20Anatechmg">Falar com a Ana</a>
   </div>
-</section>
-<section>
-  <div class="price">
-    <div class="big">R$ 500 setup + 10% do bilhetário vendido</div>
-    <small>Assessoria regulatória inclusa (Lei 5.768/71 — autorização judicial competente) e configuração completa.</small>
-    <p style="margin-top:18px"><a class="cta" href="https://wa.me/5531989513698?text=Quero%20fazer%20uma%20rifa%20com%20a%20Anatechmg">FALAR COM A ANA AGORA</a></p>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <h1>Rifa no ar, sorteio pela Loteria Federal.</h1>
+          <p>Site, pagamento, números, roleta e painel prontos. Você só divulga.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://wa.me/5531989513698?text=Quero%20montar%20uma%20rifa%20com%20a%20Anatechmg">Quero montar a minha</a>
+            <a class="btn btn-ghost" href="https://rifa.anatechmg.com.br">Ver uma campanha no ar</a>
+          </div>
+        </div>
+        <div class="stamp">
+          <div class="val">R$ 500</div>
+          <div class="lbl">de montagem da campanha</div>
+          <hr>
+          <div class="val">10%</div>
+          <div class="lbl">sobre o bilhetário vendido</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="como">
+    <div class="wrap">
+      <h2 class="h2-sm reveal">Como a campanha sai do papel</h2>
+      <div class="steps">
+        <div class="step reveal"><div><h3>Você define o prêmio</h3><p>Prêmio, quantidade de números, preço do bilhete e data do sorteio. A gente ajusta para o que vende no seu público.</p></div></div>
+        <div class="step reveal"><div><h3>Nós montamos o site</h3><p>Página da campanha com foto do prêmio, regulamento, reserva de números e Pix gerado na hora da compra.</p></div></div>
+        <div class="step reveal"><div><h3>O comprador recebe no WhatsApp</h3><p>Comprovante com os números dele, direto no celular. Sem planilha manual e sem conferência por print.</p></div></div>
+        <div class="step reveal"><div><h3>O sorteio é público</h3><p>Resultado pela Loteria Federal, com o número ganhador publicado na própria página da campanha.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="inclui">
+    <div class="wrap">
+      <div class="two">
+        <div class="reveal">
+          <h2 class="h2-sm">O que você recebe pronto</h2>
+          <p style="color:var(--ink-soft);margin-top:.7rem;max-width:52ch">A mesma estrutura que usamos nas campanhas da Anatechmg, configurada com a sua marca.</p>
+          <ul class="list" style="margin-top:1.4rem">
+            <li>Site da campanha com fotos, prêmios e regulamento</li>
+            <li>Checkout Pix com confirmação automática</li>
+            <li>Reserva de números vinculada ao CPF do comprador</li>
+            <li>Roleta de bônus e pacotes de números</li>
+            <li>Comprovante e números enviados pelo WhatsApp</li>
+            <li>Painel de vendas ao vivo para acompanhar o bilhetário</li>
+            <li>Criativos e textos de divulgação no padrão da marca</li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <div class="example">
+            <div class="t">Campanha em produção</div>
+            <p>Rifa do iPhone 18 Pro Max, com Pix, roleta e sorteio pela Loteria Federal. É o mesmo formato que você recebe.</p>
+            <p style="margin-top:.6rem"><a href="https://rifa.anatechmg.com.br">Abrir a campanha</a></p>
+          </div>
+          <p class="fine">Campanhas de sorteio precisam seguir a legislação aplicável e a autorização do órgão competente. A gente orienta o caminho e monta a estrutura; a responsabilidade pela autorização e pela entrega do prêmio é do realizador da campanha.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="preco">
+    <div class="wrap">
+      <div class="two">
+        <div class="reveal">
+          <h2 class="h2-sm">Quanto custa</h2>
+          <p style="color:var(--ink-soft);margin-top:.7rem;max-width:50ch">Você paga a montagem e uma comissão sobre o que for vendido. Se a campanha não vender, a comissão não existe.</p>
+          <p class="fine">Sem promessa de arrecadação e sem garantia de vendas: o resultado depende do prêmio, do público e da divulgação da sua campanha.</p>
+        </div>
+        <div class="price-box reveal">
+          <div class="big">R$ 500 + 10%</div>
+          <div class="small">montagem da campanha e comissão sobre o bilhetário vendido</div>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://wa.me/5531989513698?text=Quero%20montar%20uma%20rifa%20com%20a%20Anatechmg">Começar pelo WhatsApp</a>
+            <a class="btn btn-ghost" href="https://wa.me/5531989513698?text=Tenho%20d%C3%BAvidas%20sobre%20a%20rifa%20como%20servi%C3%A7o">Tirar dúvidas</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Anatechmg. Tecnologia e automação, Belo Horizonte.</div>
+    <div>WhatsApp <a href="https://wa.me/5531989513698">(31) 98951-3698</a></div>
+    <div><a href="pacote-ia.html">Pacote IA</a> e <a href="quantbot.html">QuantBot v3</a></div>
   </div>
-</section>
-<div class="foot">Anatechmg · Tecnologia de rifas com Pix automático · WhatsApp (31) 98951-3698</div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -10% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+} else {
+  document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+}
+</script>
 </body>
 </html>

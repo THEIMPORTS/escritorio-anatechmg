@@ -2,54 +2,207 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuantBot v3 — Tecnologia de trading transparente</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuantBot v3: a mesa de operações da Anatechmg</title>
+<meta name="description" content="QuantBot v3: scanner de mercado, 17 métricas por ativo, risco travado e cada decisão registrada. R$ 97 no primeiro mês, garantia de 30 dias. Sinalização educacional, não é recomendação de investimento.">
+<link rel="icon" href="https://media.base44.com/images/public/69b1d5cd9842092aa391f94e/965128b02_favicon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-body{background:#0b0e1a;color:#e8ecf8;line-height:1.6}
-.hero{text-align:center;padding:60px 20px;background:linear-gradient(160deg,#0b0e1a 0%,#1a2450 100%)}
-.hero h1{font-size:2.2rem;margin-bottom:16px}
-.hero h1 span{color:#4da3ff}
-.badge{display:inline-block;background:#4da3ff;color:#03142b;font-weight:700;border-radius:20px;padding:6px 18px;margin-bottom:18px;font-size:.85rem}
-.sub{max-width:680px;margin:0 auto 28px;color:#aab5d4;font-size:1.1rem}
-.cta{display:inline-block;background:#4da3ff;color:#03142b;text-decoration:none;font-weight:800;font-size:1.15rem;padding:16px 42px;border-radius:14px}
-section{max-width:860px;margin:0 auto;padding:48px 20px}
-h2{text-align:center;margin-bottom:28px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.card{background:#141a33;border:1px solid #26305c;border-radius:14px;padding:22px}
-.card b{color:#4da3ff}
-.price{text-align:center;background:#141a33;border:2px solid #4da3ff;border-radius:18px;padding:34px;margin:0 20px}
-.price .big{font-size:2.6rem;font-weight:900;color:#4da3ff}
-.disc{max-width:720px;margin:30px auto 0;background:#1d1330;border:1px solid #3d2a66;border-radius:14px;padding:20px;font-size:.95rem;color:#cbb8f0}
-.foot{text-align:center;padding:36px 20px 52px;color:#7787ad;font-size:.85rem}
+/* Hallmark · QuantBot v3 · theme: custom (technical dark) · posture: restrained · surface: absolute · hero: type-led with the real offer · nav: sticky compact · footer: two lines · material: real features and real prices, no invented proof · built 2026-10-29 */
+/* critique: a oferta em números abre a página e a lista técnica faz o argumento; nenhum cartão empilhado, nenhuma prova inventada */
+:root{
+  --bg:#001336; --bg-2:#041C3C; --line:#123A63; --line-soft:#0C2A4C;
+  --ink:#F1F6FF; --ink-soft:#9CB2CC; --ink-dim:#6E87A3;
+  --accent:#009CFE; --cta:#FF8100; --cta-dark:#E67200;
+  --warn-border:#5A3A0B; --warn-ink:#F4C98A;
+  --measure:64rem; --gap:clamp(1rem,3vw,2rem); --radius:14px;
+  --step-xs:.78rem; --step-s:.9rem; --step-m:1.05rem; --step-l:1.35rem;
+  --step-h2:clamp(1.7rem,3.4vw,2.5rem); --step-h1:clamp(2.3rem,6vw,4.4rem);
+  --font:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --shadow:0 24px 60px rgba(0,0,0,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{overflow-x:clip;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:var(--step-m);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{overflow-wrap:break-word;min-width:0;line-height:1.08;letter-spacing:-.02em;font-weight:600;text-wrap:balance}
+.wrap{width:100%;max-width:var(--measure);margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2rem)}
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--gap);padding-block:.9rem}
+.brand{display:flex;align-items:center;gap:.6rem}
+.brand img{height:30px;width:auto}
+.brand span{font-size:var(--step-s);font-weight:500;color:var(--ink-soft)}
+.top nav{display:none;gap:1.6rem;font-size:var(--step-s)}
+.top nav a{color:var(--ink-soft)}
+.top nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.95rem 1.6rem;border-radius:999px;font-weight:600;font-size:var(--step-s);border:1px solid transparent;transition:background-color .22s ease,color .22s ease,border-color .22s ease,transform .22s ease}
+.btn-primary{background:var(--cta);color:var(--bg)}
+.btn-primary:hover{background:var(--cta-dark)}
+.btn-ghost{border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn:active{transform:translateY(1px)}
+.top .btn{padding:.7rem 1.2rem}
+.hero{padding-block:clamp(3rem,7vw,5.5rem) clamp(2rem,5vw,3.5rem);position:relative;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:-30% 40% 40% -20%;background:radial-gradient(60% 60% at 40% 40%,color-mix(in srgb,var(--accent) 20%,transparent),transparent 70%);z-index:-1;filter:blur(20px)}
+.hero h1{font-size:var(--step-h1);font-weight:700;max-width:24ch;text-wrap:balance}
+.hero p{color:var(--ink-soft);font-size:clamp(1.02rem,1.7vw,1.2rem);max-width:52ch;margin-top:1.1rem}
+.hero .actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem}
+.hero .note{margin-top:1.2rem;font-size:var(--step-xs);color:var(--ink-dim);max-width:52ch}
+.tape{margin-top:clamp(2.5rem,5vw,3.5rem);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);padding-block:1.1rem}
+.tape ul{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1.4rem;font-size:var(--step-s);color:var(--ink-soft)}
+.tape b{color:var(--ink);font-weight:600}
+section{padding-block:clamp(2.8rem,6vw,4.5rem)}
+.sec-head{max-width:56ch}
+.sec-head h2{font-size:var(--step-h2)}
+.sec-head p{color:var(--ink-soft);margin-top:.8rem}
+.features{margin-top:2.4rem;display:grid;gap:1.6rem;grid-template-columns:minmax(0,1fr)}
+.feature{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1rem;padding-bottom:1.6rem;border-bottom:1px solid var(--line-soft)}
+.feature:last-child{border-bottom:0;padding-bottom:0}
+.feature .n{font-size:var(--step-s);font-weight:600;color:var(--accent);padding-top:.24rem;min-width:1.8rem}
+.feature h3{font-size:var(--step-l);font-weight:600}
+.feature p{color:var(--ink-soft);margin-top:.35rem;max-width:56ch}
+.offer{text-wrap:pretty;margin-top:clamp(2rem,4vw,3rem);border:1px solid var(--line);border-radius:calc(var(--radius) + 4px);padding:clamp(1.6rem,3.6vw,2.6rem);background:linear-gradient(180deg,var(--bg-2),var(--bg));}
+.offer .price{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem 1rem}
+.offer .price strong{font-size:clamp(2.3rem,6vw,3.4rem);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.offer .price span{color:var(--ink-soft);font-size:var(--step-s);font-variant-numeric:tabular-nums}
+.offer ul{list-style:none;margin-top:1.4rem;display:grid;gap:.6rem;font-size:var(--step-s);color:var(--ink-soft)}
+.offer ul li{padding-left:1.2rem;position:relative}
+.offer ul li::before{content:"";position:absolute;left:0;top:.62em;width:.45rem;height:.45rem;border-radius:2px;background:var(--accent)}
+.offer .actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem}
+.disclaimer{margin-top:2.2rem;border:1px solid var(--warn-border);border-radius:var(--radius);padding:1.2rem 1.3rem;color:var(--warn-ink);font-size:var(--step-s);background:color-mix(in srgb,var(--cta) 8%,transparent)}
+.live{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:2rem;font-size:var(--step-s);color:var(--ink-soft)}
+.live a{color:var(--accent);border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent);padding-bottom:1px}
+footer{border-top:1px solid var(--line-soft);padding-block:2.2rem;font-size:var(--step-xs);color:var(--ink-dim)}
+footer .wrap{display:grid;gap:.6rem}
+footer a{color:var(--ink-soft)}
+.reveal{opacity:1}
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (min-width:52rem){
+  .top nav{display:flex}
+  .features{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.8rem 2.6rem}
+  .feature{border-bottom:0;padding-bottom:0}
+  .tape ul{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .btn{transition:none}
+}
 </style>
 </head>
 <body>
-<div class="hero">
-  <div class="badge">ASSINATURA MENSAL</div>
-  <h1>Tecnologia de mercado<br>que trabalha <span>enquanto você vive.</span></h1>
-  <p class="sub">O QuantBot v3 é o sistema de análise e execução de trades que roda na nossa própria mesa: scanner de mercado 24h, 17 métricas por ativo, gestão de risco travada e cada decisão auditável.</p>
-  <a class="cta" href="https://wa.me/5531989513698?text=Quero%20ver%20o%20QuantBot%20v3%20funcionando">QUERO VER AO VIVO →</a>
-</div>
-<section>
-  <h2>O que acompanha em tempo real</h2>
-  <div class="grid">
-    <div class="card">🔍 <b>Scanner</b> varrendo o mercado a cada 30 minutos</div>
-    <div class="card">🧮 <b>17 métricas</b> técnicas por ativo (liquidez, honeypot, impostos, volume)</div>
-    <div class="card">🛡️ <b>Risco travado</b>: limite de perda diária e por posição</div>
-    <div class="card">📝 <b>Toda decisão registrada</b>: entrada, saída, parcial, motivo</div>
-    <div class="card">📈 <b>P&L ao vivo</b> de cada posição</div>
-    <div class="card">☀️ <b>Briefing diário</b> às 8h com resultado do dia anterior</div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/escritorio-anatechmg/">
+      <img src="https://media.base44.com/images/public/69b1d5cd9842092aa391f94e/d808348e2_logo-completo.png" alt="Anatech MG">
+      <span>QuantBot v3</span>
+    </a>
+    <nav>
+      <a href="#mesa">A mesa</a>
+      <a href="#inclui">O que inclui</a>
+      <a href="#assinatura">Assinatura</a>
+    </nav>
+    <a class="btn btn-primary" href="https://wa.me/5531989513698?text=Quero%20conhecer%20o%20QuantBot%20v3">Falar com a Ana</a>
   </div>
-</section>
-<section>
-  <div class="price">
-    <div class="big">R$ 497/mês</div>
-    <small>Painel completo, scanner 30min, briefing diário e relatórios auditáveis.</small>
-    <p style="margin-top:18px"><a class="cta" href="https://wa.me/5531989513698?text=Quero%20assinar%20o%20QuantBot%20v3">FALAR COM A ANA AGORA</a></p>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Sua mesa de operações, com método.</h1>
+      <p>Scanner, 17 métricas por ativo e risco travado. Cada decisão fica registrada.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://wa.me/5531989513698?text=Quero%20assinar%20o%20QuantBot%20v3">Assinar por R$ 97</a>
+        <a class="btn btn-ghost" href="win-radar.html">Ver o painel ao vivo</a>
+      </div>
+      <p class="note">Sinalização e estudo de mercado. Sem promessa de rendimento, sem gestão de dinheiro de terceiros.</p>
+
+      <div class="tape" id="mesa">
+        <ul>
+          <li><b>Scanner</b> rodando a cada 30 minutos</li>
+          <li><b>17 métricas</b> por ativo analisado</li>
+          <li><b>Risco</b> limitado por dia e por posição</li>
+          <li><b>Histórico</b> completo de cada decisão</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="inclui">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>O que você recebe ao entrar</h2>
+        <p>Tudo que a nossa mesa usa para decidir, aberto na sua tela. Nada de resultado escondido atrás de print.</p>
+      </div>
+      <div class="features">
+        <article class="feature reveal"><span class="n">01</span><div><h3>Radar de sinais</h3><p>Leitura de mini índice e do mercado, com contexto de regime, volatilidade e horário. Sinalização visual, sem disparo automático em corretora.</p></div></article>
+        <article class="feature reveal"><span class="n">02</span><div><h3>17 métricas por ativo</h3><p>Liquidez, volume, concentração, variação de curto prazo e histórico de preço, tudo na mesma ficha antes de qualquer decisão.</p></div></article>
+        <article class="feature reveal"><span class="n">03</span><div><h3>Risco travado</h3><p>Perda máxima por dia e por posição definida antes de operar. Quando o limite bate, a mesa para. Quem opera decide, o sistema não decide por você.</p></div></article>
+        <article class="feature reveal"><span class="n">04</span><div><h3>Escritório 3D ao vivo</h3><p>A sala da Anatechmg em três dimensões: cada agente com sua função e o que está fazendo naquele momento. É o mesmo painel que usamos aqui.</p></div></article>
+        <article class="feature reveal"><span class="n">05</span><div><h3>Briefing das 8h</h3><p>Todo dia de manhã, o resumo do dia anterior: o que foi sinalizado, o que foi executado e o que ficou de fora.</p></div></article>
+        <article class="feature reveal"><span class="n">06</span><div><h3>Suporte direto no WhatsApp</h3><p>Dúvida sobre a leitura de um sinal ou sobre o painel: você fala com a gente no mesmo número que atende os clientes.</p></div></article>
+      </div>
+
+      <div class="live">
+        <span>Quer ver antes de assinar?</span>
+        <a href="win-radar.html">Abrir o painel de sinais</a>
+        <a href="sala.html">Entrar na sala 3D</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="assinatura">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Assinatura</h2>
+        <p>Primeiro mês com preço de entrada e garantia de 30 dias. Se não fizer sentido para você, devolvemos.</p>
+      </div>
+      <div class="offer reveal">
+        <div class="price">
+          <strong>R$ 97</strong>
+          <span>no primeiro mês, depois R$ 497 por mês</span>
+        </div>
+        <ul>
+          <li>Painel completo com radar de sinais e escritório 3D</li>
+          <li>Scanner de mercado rodando a cada 30 minutos</li>
+          <li>Briefing diário às 8h e histórico de decisões</li>
+          <li>Garantia de 30 dias no primeiro mês</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://wa.me/5531989513698?text=Quero%20assinar%20o%20QuantBot%20v3%20com%20garantia%20de%2030%20dias">Assinar pelo WhatsApp</a>
+          <a class="btn btn-ghost" href="https://wa.me/5531989513698?text=Tenho%20uma%20d%C3%BAvida%20sobre%20o%20QuantBot%20v3">Tirar uma dúvida</a>
+        </div>
+      </div>
+      <div class="disclaimer">
+        Transparência: o QuantBot é ferramenta de análise e sinalização. Não há promessa de rendimento, não há gestão de capital de terceiros e não há garantia de resultado. Operar mercado envolve risco de perda. Conteúdo educacional e tecnológico, não é recomendação de investimento.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Anatechmg. Tecnologia e automação, Belo Horizonte.</div>
+    <div>WhatsApp <a href="https://wa.me/5531989513698">(31) 98951-3698</a></div>
+    <div><a href="pacote-ia.html">Pacote IA</a> e <a href="rifa-servico.html">Rifa como Serviço</a></div>
   </div>
-  <div class="disc">⚠️ <b>Transparência radical:</b> nenhum resultado escondido e nenhuma promessa de rendimento. Mercado rende e perde — quem vence no longo prazo tem método, risco travado e disciplina de execução. Entregamos o método; risco é de mercado. Conteúdo educacional e tecnológico, não é recomendação de investimento.</div>
-</section>
-<div class="foot">Anatechmg · Mesa QuantBot v3 operando desde 15/10/2026 · WhatsApp (31) 98951-3698</div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -12% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+} else {
+  document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+}
+</script>
 </body>
 </html>
