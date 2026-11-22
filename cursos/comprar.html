@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pagamento por PIX — ANATECH MG</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script>
+/* PIXEL DA RIFA ANATECH MG — trocar aqui se mudar */
+var FB_PIXEL_ID = '477315780528297';
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', FB_PIXEL_ID); fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=477315780528297&ev=PageView&noscript=1"/></noscript>
+<style>
+/* direção: documento de pagamento (contraste alto, tipografia grande, sem hero) */
+:root{--marinho:#001336;--azul:#009CFE;--laranja:#FF8100;--verde:#25B760}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:radial-gradient(900px 520px at 88% -6%,rgba(0,156,254,.18),transparent 60%),#050A16;
+ color:#E8ECF5;font-family:Poppins,system-ui,sans-serif;padding:22px 16px 60px}
+.topo{max-width:960px;margin:0 auto 26px;display:flex;align-items:center;gap:14px}
+.topo img{height:30px}
+.topo a{margin-left:auto;font-size:12px;color:#93A0BA;text-decoration:none}
+.topo a:hover{color:#fff}
+.palco{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:start}
+.bloco{border:1px solid rgba(255,255,255,.09);border-radius:18px;background:rgba(255,255,255,.03);padding:24px}
+.rotulo{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7A88A3;margin-bottom:8px}
+h1{font-size:22px;line-height:1.25;letter-spacing:-.5px;margin-bottom:6px}
+.curso{color:#B9C6DC;font-size:13px;margin-bottom:20px}
+.curso b{color:#fff}
+.total{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.total strong{font-size:38px;letter-spacing:-1.5px;font-weight:600}
+.total span{font-size:12px;color:#93A0BA}
+.extra{margin:16px 0 20px;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#C9D5EA;cursor:pointer;line-height:1.5}
+.check input{margin-top:2px;accent-color:var(--azul);width:16px;height:16px}
+.check b{color:#fff}
+.passos{display:grid;gap:9px;margin-top:4px}
+.passo{display:flex;gap:10px;font-size:12.2px;color:#A9B7CE;line-height:1.5}
+.passo i{flex:0 0 20px;height:20px;border-radius:50%;background:rgba(0,156,254,.16);border:1px solid rgba(0,156,254,.5);
+ color:#fff;font-style:normal;font-size:10.5px;font-weight:600;display:grid;place-items:center}
+.aviso{margin-top:16px;font-size:11.5px;color:#8B98B0;line-height:1.6;border-left:2px solid var(--laranja);padding-left:10px}
+.qrbox{text-align:center}
+.qrbox .moldura{background:#fff;border-radius:16px;padding:14px;display:inline-block;line-height:0}
+.qrbox canvas,.qrbox img{width:232px;height:232px;display:block}
+.qrbox .nome{font-size:11px;color:#93A0BA;margin-top:10px}
+.copia{margin-top:14px;text-align:left}
+.copia textarea{width:100%;height:76px;background:#04070F;color:#7DE39A;border:1px solid rgba(255,255,255,.12);
+ border-radius:11px;padding:10px;font:11px/1.5 monospace;resize:none;word-break:break-all;outline:none}
+.btn{display:block;width:100%;margin-top:10px;border:0;border-radius:11px;padding:14px;font:600 13px Poppins;cursor:pointer;transition:.2s}
+.btn.p{background:var(--azul);color:#001336}.btn.p:hover{background:#38B4FF}
+.btn.g{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.btn.g:hover{background:rgba(255,255,255,.14)}
+.btn.v{background:var(--verde);color:#04120A}.btn.v:hover{background:#33cf72}
+.rodape{max-width:960px;margin:26px auto 0;font-size:11.5px;color:#7A88A3;line-height:1.7}
+.rodape b{color:#C9D5EA}
+.ok{display:none;margin-top:12px;padding:14px;border-radius:12px;background:rgba(37,183,96,.12);
+ border:1px solid rgba(37,183,96,.45);font-size:12.5px;color:#DFF5E7;line-height:1.6}
+@media(max-width:820px){.palco{grid-template-columns:1fr}.total strong{font-size:32px}.qrbox canvas,.qrbox img{width:210px;height:210px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head>
+<body>
+<div class="topo">
+  <img src="https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/905c9cd34_logo-completo-branco.png" alt="ANATECH MG">
+  <a href="./">Voltar ao catálogo</a>
+</div>
+
+<div class="palco">
+  <section class="bloco">
+    <div class="rotulo">Pagamento por PIX</div>
+    <h1 id="titulo">Acesso ao curso</h1>
+    <p class="curso">Curso: <b id="nomeCurso">—</b> · 12 aulas em PDF</p>
+
+    <div class="total"><strong id="valorTotal">R$ 9,90</strong><span>pagamento único</span></div>
+    <div class="extra">
+      <label class="check"><input type="checkbox" id="cert">
+        <span>Quero o <b>certificado com QR de validação</b> (+ R$ 29,90). Sai com número de registro e página pública de verificação.</span>
+      </label>
+    </div>
+
+    <div class="passos">
+      <div class="passo"><i>1</i><span>Abra o app do seu banco e escolha pagar com PIX.</span></div>
+      <div class="passo"><i>2</i><span>Escaneie o QR ao lado ou use o código copia e cola.</span></div>
+      <div class="passo"><i>3</i><span>Envie o comprovante no WhatsApp (31) 98951-3698 com o nome do curso.</span></div>
+      <div class="passo"><i>4</i><span>A liberação é manual e sai no mesmo dia útil. Você recebe o acesso e o material em PDF.</span></div>
+    </div>
+
+    <div class="aviso">O valor é único, sem mensalidade. A chave PIX é da ANATECH MG. Guarde o comprovante: ele é o seu comprador.</div>
+    <div class="ok" id="ok">Recebemos o aviso de pagamento. Envie o comprovante no WhatsApp para liberar o acesso agora.</div>
+  </section>
+
+  <section class="bloco qrbox">
+    <div class="rotulo" style="text-align:left">QR code do PIX</div>
+    <div class="moldura" id="moldura"></div>
+    <div class="nome">Chave PIX: anatechmganatech@gmail.com</div>
+    <div class="copia">
+      <textarea id="codigo" readonly></textarea>
+      <button class="btn p" id="copiar">Copiar código PIX</button>
+      <a class="btn v" id="zap" href="#" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">Já paguei: enviar comprovante</a>
+      <button class="btn g" id="paguei">Registrar que paguei</button>
+    </div>
+  </section>
+</div>
+
+<p class="rodape"><b>ANATECH MG</b> · cursos.anatechmg.com.br · (31) 98951-3698<br>
+Pagamento processado por PIX direto na conta da ANATECH MG. Nenhum dado de cartão é solicitado.</p>
+
+<script>
+const CHAVE='anatechmganatech@gmail.com';
+const NOME_REC='ANATECH MG';
+const CIDADE='BELO HORIZONTE';
+const BASE=9.90, CERT=29.90, ZAP='5531989513698';
+const params=new URLSearchParams(location.search);
+const curso=params.get('n')||params.get('curso')||'Curso ANATECH MG';
+const slug=params.get('c')||'curso';
+document.getElementById('nomeCurso').textContent=curso;
+document.title='PIX · '+curso+' — ANATECH MG';
+
+function emv(id,v){const l=String(v.length).padStart(2,'0');return id+l+v;}
+function crc16(s){let c=0xFFFF;for(let i=0;i<s.length;i++){c^=s.charCodeAt(i)<<8;
+ for(let j=0;j<8;j++){c=(c&0x8000)?((c<<1)^0x1021):(c<<1);c&=0xFFFF;}}
+ return c.toString(16).toUpperCase().padStart(4,'0');}
+function pixPayload(valor,txid){
+  const nome=NOME_REC.replace(/[^a-zA-Z0-9 ]/g,'').toUpperCase().slice(0,25);
+  const guia=emv('00','br.gov.bcb.pix')+emv('01',CHAVE);
+  const tx=String(txid).replace(/[^a-zA-Z0-9]/g,'').slice(0,25)||'***';
+  let p='000201'+emv('26',guia)+'52040000'+'5303986'+emv('54',valor.toFixed(2))+'5802BR'+
+        emv('59',nome)+emv('60',CIDADE)+emv('62',emv('05',tx))+'6304';
+  return p+crc16(p);
+}
+let valor=BASE, txid='';
+function txidDe(v){
+  const s=(slug.replace(/[^a-zA-Z0-9]/g,'').toUpperCase().slice(0,18)||'CURSO');
+  return (s+'C'+Math.round(v*100)+'T'+Date.now().toString(36).toUpperCase()).slice(0,35);
+}
+function render(){
+  valor=document.getElementById('cert').checked?BASE+CERT:BASE;
+  document.getElementById('valorTotal').textContent='R$ '+valor.toFixed(2).replace('.',',');
+  if(!txid) txid=txidDe(valor);
+  const payload=pixPayload(valor,txid);
+  document.getElementById('codigo').value=payload;
+  const moldura=document.getElementById('moldura');
+  if(window.QRCode&&QRCode.toCanvas){
+    moldura.innerHTML='<canvas id="qr"></canvas>';
+    QRCode.toCanvas(document.getElementById('qr'),payload,{width:232,margin:1,color:{dark:'#001336',light:'#FFFFFF'}});
+  } else {
+    moldura.innerHTML='<div style="color:#001336;font:600 11px Poppins;padding:26px 10px">Use o código copia e cola ao lado</div>';
+  }
+  const msg=encodeURIComponent('Oi! Paguei o PIX do curso '+curso+' no valor de R$ '+valor.toFixed(2).replace('.',',')+'. Segue o comprovante. Código: '+txid);
+  document.getElementById('zap').href='https://wa.me/'+ZAP+'?text='+msg;
+}
+document.getElementById('cert').addEventListener('change',()=>{txid='';render();});
+render();
+fbq('track','InitiateCheckout',{value:BASE,currency:'BRL',content_name:curso});
+fbq('track','ViewContent',{content_name:curso,content_type:'product'});
+
+document.getElementById('copiar').addEventListener('click',async()=>{
+  const t=document.getElementById('codigo');
+  try{await navigator.clipboard.writeText(t.value);}catch(e){t.select();document.execCommand('copy');}
+  const b=document.getElementById('copiar');const old=b.textContent;
+  b.textContent='Código copiado ✓';setTimeout(()=>b.textContent=old,1800);
+  fbq('track','AddPaymentInfo',{value:valor,currency:'BRL',content_name:curso});
+});
+document.getElementById('paguei').addEventListener('click',()=>{
+  document.getElementById('ok').style.display='block';
+  fbq('track','Purchase',{value:valor,currency:'BRL',content_name:curso,content_ids:[slug]});
+});
+</script>
+</body></html>

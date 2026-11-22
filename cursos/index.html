@@ -140,6 +140,17 @@ footer{margin-top:56px;border-top:1px solid var(--linha);padding-top:22px;displa
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
+<script>
+/* PIXEL DA RIFA ANATECH MG */
+var FB_PIXEL_ID='477315780528297';
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init',FB_PIXEL_ID);fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=477315780528297&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 <div class="bar"><div class="bar-in">
@@ -162,7 +173,7 @@ footer{margin-top:56px;border-top:1px solid var(--linha);padding-top:22px;displa
   <main>
     <div class="faixa">
       <h1 id="titulo">Catálogo <em>completo</em></h1>
-      <div class="cont" id="cont"></div>
+      <div class="cont" id="cont"></div><div class="cont" style="color:#25B760;font-weight:500">PIX disponível · acesso liberado no mesmo dia</div>
       <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">
         <button class="chip on" data-f="todos">Todos</button>
         <button class="chip" data-f="auto">Material autoral</button>
@@ -243,8 +254,8 @@ function cartao(c){
    '<div class="info"><h3>'+c.n+'</h3><span>'+c.a+' · '+c.h+'h</span></div>'+
    '<div class="hover"><p>'+(c.d||'Material próprio em PDF com 12 aulas, exercícios e checklist.')+'</p>'+
    (aulas?'<ul>'+aulas+'</ul>':'')+
-   '<div class="acoes"><a class="btn azul" href="'+PDF+c.s+'.pdf" target="_blank" rel="noopener">Ver material</a>'+
-   '<a class="btn ghost" href="#certificado">Certificado</a></div></div>';
+   '<div class="acoes"><a class="btn azul" href="comprar.html?c='+c.s+'&n='+encodeURIComponent(c.n)+'">Comprar R$ 9,90</a>'+
+   '<a class="btn ghost" href="'+PDF+c.s+'.pdf" target="_blank" rel="noopener">Ver material</a></div></div>';
   el.addEventListener('mousemove',e=>{
     if(window.matchMedia('(hover:none)').matches)return;
     const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
@@ -260,6 +271,17 @@ function mostrar(){
   if(!listaFiltrada.length)g.innerHTML='<div class="vazio">Nenhum curso encontrado com esse termo. Tente outra palavra.</div>';
 }
 document.getElementById('mais').onclick=mostrar;
+g.addEventListener('click',e=>{
+  const a=e.target.closest('a'); if(!a)return;
+  const href=a.getAttribute('href')||'';
+  if(href.indexOf('comprar.html')===0){
+    const nome=a.closest('.card').querySelector('h3').textContent;
+    fbq('track','InitiateCheckout',{value:9.90,currency:'BRL',content_name:nome});
+  } else if(href.endsWith('.pdf')){
+    const nome=a.closest('.card').querySelector('h3').textContent;
+    fbq('track','ViewContent',{content_name:nome,content_type:'product'});
+  }
+});
 q.addEventListener('input',e=>{busca=e.target.value;clearTimeout(window._d);window._d=setTimeout(aplicar,180);});
 document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}});
 document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{
