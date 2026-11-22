@@ -208,7 +208,7 @@ fbq('init',FB_PIXEL_ID);fbq('track','PageView');
 </div>
 
 <script>
-const IMG='thumbs/', PDF='pdf/';
+const IMG='thumbs/', PDF='pdf/', EX='exercicios/';
 let dados=null, area='', filtro='todos', busca='', mostrados=0, listaFiltrada=[], POR=60;
 const g=document.getElementById('grade'), q=document.getElementById('q');
 
@@ -255,7 +255,8 @@ function cartao(c){
    '<div class="hover"><p>'+(c.d||'Material próprio em PDF com 12 aulas, exercícios e checklist.')+'</p>'+
    (aulas?'<ul>'+aulas+'</ul>':'')+
    '<div class="acoes"><a class="btn azul" href="comprar.html?c='+c.s+'&n='+encodeURIComponent(c.n)+'">Comprar R$ 9,90</a>'+
-   '<a class="btn ghost" href="'+PDF+c.s+'.pdf" target="_blank" rel="noopener">Ver material</a></div></div>';
+   '<a class="btn ghost" href="'+PDF+c.s+'.pdf" target="_blank" rel="noopener">Apostila</a>'+
+   '<a class="btn ghost" href="'+EX+c.s+'.pdf" target="_blank" rel="noopener">Exercícios</a></div></div>';
   el.addEventListener('mousemove',e=>{
     if(window.matchMedia('(hover:none)').matches)return;
     const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
