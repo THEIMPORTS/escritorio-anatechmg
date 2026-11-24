@@ -2414,6 +2414,8 @@ const CIDADE='BELO HORIZONTE';
 const BASE=9.90, CERT=29.90, ZAP='5531989513698';
 const params=new URLSearchParams(location.search);
 const curso=params.get('n')||params.get('curso')||'Curso ANATECH MG';
+const AREA=params.get('area')||'';
+if(params.get('cert')==='1'){const el=document.getElementById('cert'); if(el) el.checked=true;}
 const slug=params.get('c')||'curso';
 document.getElementById('nomeCurso').textContent=curso;
 document.title='PIX · '+curso+' — ANATECH MG';
@@ -2466,7 +2468,24 @@ document.getElementById('copiar').addEventListener('click',async()=>{
   fbq('track','AddPaymentInfo',{value:valor,currency:'BRL',content_name:curso});
 });
 document.getElementById('paguei').addEventListener('click',()=>{
-  document.getElementById('ok').style.display='block';
+  const ok=document.getElementById('ok');
+  ok.style.display='block';
+  try{
+    const CH='anatech_compras';
+    const lista=JSON.parse(localStorage.getItem(CH)||'[]');
+    if(!lista.some(c=>c.slug===slug)){
+      lista.unshift({slug:slug, nome:curso, area:AREA, data:new Date().toLocaleDateString('pt-BR')});
+      localStorage.setItem(CH, JSON.stringify(lista));
+    }
+  }catch(e){}
+  if(!ok.querySelector('.ir-cursos')){
+    const a=document.createElement('a');
+    a.className='btn ir-cursos';
+    a.href='meus-cursos.html';
+    a.textContent='Abrir meus cursos';
+    a.style.cssText='display:inline-flex;margin-top:12px;text-decoration:none';
+    ok.appendChild(a);
+  }
   fbq('track','Purchase',{value:valor,currency:'BRL',content_name:curso,content_ids:[slug]});
 });
 </script>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meus cursos — ANATECH MG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--marinho:#001336;--azul:#009CFE;--laranja:#FF8100;--papel:#F5F5F3;--cinza:#5A6072;--linha:#DAD6CD}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:#101828;font-family:Poppins,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+header.topo{border-bottom:1px solid var(--linha);background:rgba(245,245,243,.9);position:sticky;top:0;z-index:40;backdrop-filter:blur(12px)}
+header .wrap{display:flex;align-items:center;gap:16px;height:64px}
+header img{height:28px}
+header .volta{margin-left:auto;font-size:13px;color:var(--cinza)}
+main{padding:46px 0 70px}
+h1{margin:0 0 8px;font-size:clamp(24px,3.2vw,34px);letter-spacing:-.025em;color:var(--marinho)}
+.sub{margin:0 0 30px;color:var(--cinza);font-size:14px}
+.lista{display:grid;gap:14px}
+.item{background:#fff;border:1px solid var(--linha);padding:20px 22px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.item .info{flex:1;min-width:220px}
+.item h2{margin:0 0 4px;font-size:16px;color:var(--marinho);letter-spacing:-.01em}
+.item p{margin:0;font-size:12px;color:var(--cinza)}
+.item .acoes{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:2px;font-weight:600;font-size:12.5px;padding:10px 14px;border:1px solid transparent;transition:.18s}
+.btn.linha{border-color:var(--marinho);color:var(--marinho)}
+.btn.linha:hover{background:var(--marinho);color:#fff}
+.btn.laranja{background:var(--laranja);color:var(--marinho)}
+.btn.marinho{background:var(--marinho);color:#fff}
+.vazio{background:#fff;border:1px dashed var(--linha);padding:46px 26px;text-align:center}
+.vazio h2{margin:0 0 8px;font-size:18px;color:var(--marinho)}
+.vazio p{margin:0 0 20px;color:var(--cinza);font-size:13.5px;line-height:1.6}
+.dica{margin-top:26px;font-size:12px;color:var(--cinza);line-height:1.6}
+.dica a{color:var(--azul);font-weight:600}
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="wrap">
+    <a href="index.html"><img src="assets/logo-anatechmg.png" alt="ANATECH MG"></a>
+    <a class="volta" href="catalogo.html">← Catálogo</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Meus cursos</h1>
+  <p class="sub">Seus materiais ficam liberados aqui, quantas vezes você quiser baixar.</p>
+  <div id="lista" class="lista"></div>
+  <p class="dica">A lista fica salva neste aparelho e navegador. Se você trocar de celular ou limpar os dados, <a href="https://wa.me/5531989513698" target="_blank" rel="noopener">fale no WhatsApp</a> com o comprovante que reenviamos o acesso.</p>
+</main>
+
+<script>
+const CHAVE = 'anatech_compras';
+const alvo = document.getElementById('lista');
+
+function ler(){
+  try{ const v = JSON.parse(localStorage.getItem(CHAVE) || '[]'); return Array.isArray(v) ? v : []; }
+  catch(e){ return []; }
+}
+
+function desenhar(){
+  const compras = ler();
+  if(!compras.length){
+    alvo.innerHTML = `
+      <div class="vazio">
+        <h2>Nenhum curso liberado ainda</h2>
+        <p>Depois de pagar o PIX e enviar o comprovante, o curso aparece aqui.<br>Se você acabou de pagar, toque no botão abaixo para registrar.</p>
+        <a class="btn laranja" href="catalogo.html">Escolher um curso</a>
+      </div>`;
+    return;
+  }
+  alvo.innerHTML = compras.map(c=>`
+    <article class="item">
+      <div class="info">
+        <h2>${c.nome}</h2>
+        <p>${c.area ? c.area + ' · ' : ''}liberado em ${c.data || 'hoje'}</p>
+      </div>
+      <div class="acoes">
+        <a class="btn linha" href="pdf/${c.slug}.pdf" target="_blank" rel="noopener">Apostila</a>
+        <a class="btn linha" href="exercicios/${c.slug}.pdf" target="_blank" rel="noopener">Exercícios</a>
+        <a class="btn marinho" href="comprar.html?c=${encodeURIComponent(c.slug)}&n=${encodeURIComponent(c.nome)}&cert=1">Certificado</a>
+      </div>
+    </article>`).join('');
+}
+
+function registrar(slug, nome, area){
+  const compras = ler();
+  if(!compras.some(c=>c.slug===slug)){
+    compras.unshift({slug, nome, area: area||'', data: new Date().toLocaleDateString('pt-BR')});
+    localStorage.setItem(CHAVE, JSON.stringify(compras));
+  }
+  desenhar();
+}
+
+const p = new URLSearchParams(location.search);
+if(p.get('add')){
+  registrar(p.get('add'), p.get('n') || p.get('add'), p.get('area') || '');
+}
+desenhar();
+</script>
+</body>
+</html>
