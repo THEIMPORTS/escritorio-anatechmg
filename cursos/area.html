@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trilha por área — ANATECH MG</title>
+<meta name="description" content="Trilha sugerida de cursos ANATECH MG por área: comece pelos fundamentos, avance e se especialize. Apostila, exercícios e certificado em cada curso.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/logo-anatechmg.png">
+<style>
+:root{--marinho:#001336;--azul:#009CFE;--laranja:#FF8100;--papel:#F5F5F3;--linha:#DDD9D0;--texto:#151A24;--cinza:#5A6072}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Poppins,system-ui,sans-serif;background:var(--papel);color:var(--texto);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+header.topo{background:var(--marinho);padding:16px 0}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.topo img{height:30px;width:auto;display:block}
+.topo nav{display:flex;gap:18px;font:500 13px Poppins}
+.topo nav a{color:#C9D4E6;text-decoration:none}
+.topo nav a:hover{color:#fff}
+.capa{padding:54px 0 30px;border-bottom:1px solid var(--linha)}
+.trilha{font:500 12px Poppins;color:var(--cinza);margin-bottom:14px;display:flex;gap:8px;flex-wrap:wrap}
+.trilha a{color:#12386B;text-decoration:none}
+h1{font-size:clamp(30px,4.6vw,50px);line-height:1.05;letter-spacing:-.03em;color:var(--marinho);font-weight:800;margin-bottom:14px}
+h1 em{font-style:normal;color:var(--laranja)}
+.sub{font-size:16px;line-height:1.7;color:#3A4152;max-width:660px}
+.meta{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+.selo{font:600 11.5px Poppins;letter-spacing:.06em;text-transform:uppercase;color:#12386B;border:1px solid var(--linha);background:#fff;border-radius:999px;padding:7px 13px}
+.nivel{padding:44px 0 6px}
+.nivel h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--laranja);font-weight:700;margin-bottom:6px}
+.nivel p.desc{color:var(--cinza);font-size:14px;margin-bottom:18px;max-width:640px}
+.lista{display:grid;gap:10px}
+.item{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;background:#fff;border:1px solid var(--linha);border-radius:14px;padding:12px 16px;text-decoration:none;transition:transform .18s,border-color .18s,box-shadow .18s}
+.item:hover{transform:translateY(-2px);border-color:rgba(0,156,254,.55);box-shadow:0 12px 26px rgba(0,19,54,.09)}
+.item img{width:64px;height:82px;object-fit:cover;border-radius:8px;border:1px solid var(--linha)}
+.item b{font-size:15px;color:var(--marinho);font-weight:600;display:block;line-height:1.3}
+.item span{font-size:12.5px;color:var(--cinza)}
+.item i{font-style:normal;font-weight:700;font-size:13px;color:var(--azul);white-space:nowrap}
+.areas{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;padding:40px 0}
+.area-card{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:18px;text-decoration:none;transition:.18s}
+.area-card:hover{border-color:rgba(255,129,0,.6);transform:translateY(-2px)}
+.area-card b{display:block;color:var(--marinho);font-size:15px;margin-bottom:4px}
+.area-card span{font-size:12.5px;color:var(--cinza)}
+footer{background:var(--marinho);color:#9FB0CB;padding:30px 0;margin-top:40px;font-size:12.5px}
+footer b{color:#fff}
+.fim{padding:34px 0 10px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:14px 22px;font:600 14px Poppins;text-decoration:none;transition:.18s}
+.btn.marinho{background:var(--marinho);color:#fff}
+.btn.laranja{background:var(--laranja);color:var(--marinho)}
+.btn:hover{transform:translateY(-1px)}
+@media(max-width:640px){.item{grid-template-columns:52px 1fr}.item i{display:none}.item img{width:52px;height:68px}}
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="wrap">
+    <a href="index.html"><img src="assets/logo-anatechmg.png" alt="ANATECH MG"></a>
+    <nav><a href="catalogo.html">Catálogo</a><a href="meus-cursos.html">Meus cursos</a></nav>
+  </div>
+</header>
+<div id="app"></div>
+<footer><div class="wrap"><b>ANATECH MG</b> · cursos.anatechmg.com.br · (31) 98951-3698<br>Material próprio, exercícios com gabarito e certificado com validação.</div></footer>
+<script>
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const brl = v => 'R$ ' + Number(v).toFixed(2).replace('.', ',');
+const area = new URLSearchParams(location.search).get('area') || '';
+const app = document.getElementById('app');
+
+function nivelDe(h){
+  if(h <= 20) return 0;
+  if(h <= 60) return 1;
+  return 2;
+}
+const NIVEIS = [
+  {titulo:'Comece por aqui', desc:'Base curta, direta e sem pré-requisito. Faça nesta ordem.'},
+  {titulo:'Aprofunde', desc:'Depois da base, estes cursos ampliam o repertório da área.'},
+  {titulo:'Especialize', desc:'Cursos mais longos, para quem já domina o dia a dia.'}
+];
+
+function cardCurso(c){
+  return '<a class="item" href="curso.html?c=' + encodeURIComponent(c.s) + '">' +
+    '<img loading="lazy" src="thumbs/' + c.s + '.webp" alt="Capa de ' + esc(c.n) + '">' +
+    '<div><b>' + esc(c.n) + '</b><span>' + c.h + ' horas · 12 aulas · 34 exercícios</span></div>' +
+    '<i>Ver curso</i></a>';
+}
+
+fetch('dados.json').then(r => r.json()).then(d => {
+  const cursos = d.cursos || [];
+  if(!area){
+    document.title = 'Trilhas por área — ANATECH MG';
+    const areas = (d.areas || []).slice().sort((a,b) => b.n - a.n);
+    app.innerHTML = '<section class="capa"><div class="wrap">' +
+      '<div class="trilha"><a href="index.html">Início</a> / <b>Trilhas</b></div>' +
+      '<h1>Uma trilha para cada <em>área</em></h1>' +
+      '<p class="sub">Escolha a área e siga a ordem sugerida: fundamentos primeiro, depois aprofundamento e especialização. Cada curso entrega apostila ilustrada, caderno de exercícios com gabarito e certificado.</p>' +
+      '<div class="meta"><span class="selo">' + cursos.length.toLocaleString('pt-BR') + ' cursos</span><span class="selo">' + areas.length + ' áreas</span><span class="selo">R$ 9,90 por curso</span></div>' +
+      '</div></section><div class="wrap"><div class="areas">' +
+      areas.map(a => '<a class="area-card" href="area.html?area=' + encodeURIComponent(a.nome) + '"><b>' + esc(a.nome) + '</b><span>' + a.n + ' cursos na trilha</span></a>').join('') +
+      '</div></div>';
+    return;
+  }
+  document.title = area + ' — trilha sugerida — ANATECH MG';
+  const daArea = cursos.filter(c => c.a === area);
+  const ordenados = daArea.slice().sort((a,b) => (a.h - b.h) || a.n.localeCompare(b.n));
+  const blocos = [0,1,2].map(n => {
+    const itens = ordenados.filter(c => nivelDe(Number(c.h)) === n);
+    if(!itens.length) return '';
+    return '<section class="nivel"><div class="wrap"><h2>' + NIVEIS[n].titulo + '</h2>' +
+      '<p class="desc">' + NIVEIS[n].desc + ' (' + itens.length + (itens.length === 1 ? ' curso' : ' cursos') + ')</p>' +
+      '<div class="lista">' + itens.map(cardCurso).join('') + '</div></div></section>';
+  }).join('');
+
+  app.innerHTML = '<section class="capa"><div class="wrap">' +
+    '<div class="trilha"><a href="index.html">Início</a> / <a href="area.html">Trilhas</a> / <b>' + esc(area) + '</b></div>' +
+    '<h1>Trilha de <em>' + esc(area) + '</em></h1>' +
+    '<p class="sub">' + ordenados.length + ' cursos organizados do mais curto ao mais longo. Comece pelo primeiro bloco, sem pular etapa: cada curso supõe o anterior.</p>' +
+    '<div class="meta"><span class="selo">' + ordenados.length + ' cursos</span>' +
+    '<span class="selo">' + ordenados.reduce((t,c) => t + Number(c.h), 0) + ' horas no total</span>' +
+    '<span class="selo">Certificado em cada curso</span></div>' +
+    '<div class="fim"><a class="btn marinho" href="catalogo.html?area=' + encodeURIComponent(area) + '">Ver no catálogo</a>' +
+    '<a class="btn laranja" href="curso.html?c=' + encodeURIComponent(ordenados[0] ? ordenados[0].s : '') + '">Começar pelo primeiro</a></div>' +
+    '</div></section>' + blocos;
+}).catch(() => {
+  app.innerHTML = '<div class="wrap" style="padding:60px 0"><h1>Não consegui carregar as trilhas</h1><p class="sub">Recarregue a página.</p></div>';
+});
+</script>
+</body>
+</html>

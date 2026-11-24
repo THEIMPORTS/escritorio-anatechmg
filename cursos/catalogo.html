@@ -254,7 +254,7 @@ function aplicar(){
     return true;});
   mostrados=0;g.innerHTML='';mostrar();
   const tit=document.getElementById('titulo');
-  tit.innerHTML=area?('Área: <em>'+area+'</em>'):'Catálogo <em>completo</em>';
+  tit.innerHTML=area?('Área: <em>'+area+'</em> <a href="area.html?area='+encodeURIComponent(area)+'" style="font:600 12px Poppins;color:#009CFE;text-decoration:none;margin-left:10px">ver trilha sugerida</a>'):'Catálogo <em>completo</em>';
   document.getElementById('cont').textContent=listaFiltrada.length.toLocaleString('pt-BR')+' cursos com material em PDF';
 }
 function cartao(c){
