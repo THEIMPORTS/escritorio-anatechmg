@@ -83,6 +83,7 @@ a{color:inherit;text-decoration:none}
   padding:5px 8px;border-radius:6px;background:rgba(0,156,254,.9);color:#001336}
 .selo.auto{background:var(--laranja);color:#001336}
 .info{position:absolute;left:0;right:0;bottom:0;padding:13px 14px;z-index:2}
+.info h3 a{color:inherit;text-decoration:none}
 .info h3{margin:0 0 4px;font-size:13.6px;line-height:1.3;font-weight:600;color:#fff}
 .info span{font-size:11px;color:#AEBCD6}
 /* painel de hover */
@@ -261,11 +262,12 @@ function cartao(c){
   const aulas=(c.t||[]).map(x=>'<li>'+x+'</li>').join('');
   el.innerHTML=
    '<div class="capa"><span class="selo'+(c.v==='autoral'?' auto':'')+'">'+(c.v==='autoral'?'autoral':'pdf')+'</span>'+
-   '<img loading="lazy" src="'+IMG+c.s+'.webp" alt="Capa do curso '+c.n+'"></div>'+
-   '<div class="info"><h3>'+c.n+'</h3><span>'+c.a+' · '+c.h+'h</span></div>'+
+   '<a href="curso.html?c='+encodeURIComponent(c.s)+'"><img loading="lazy" src="'+IMG+c.s+'.webp" alt="Capa do curso '+c.n+'"></a></div>'+
+   '<div class="info"><h3><a href="curso.html?c='+encodeURIComponent(c.s)+'">'+c.n+'</a></h3><span>'+c.a+' · '+c.h+'h · 12 aulas · 34 exercícios</span></div>'+
    '<div class="hover"><p>'+(c.d||'Material próprio em PDF com 12 aulas, exercícios e checklist.')+'</p>'+
    (aulas?'<ul>'+aulas+'</ul>':'')+
-   '<div class="acoes"><a class="btn azul" href="comprar.html?c='+c.s+'&n='+encodeURIComponent(c.n)+'">Comprar R$ 9,90</a>'+
+   '<div class="acoes"><a class="btn azul" href="curso.html?c='+encodeURIComponent(c.s)+'">Ver curso</a>'+
+   '<a class="btn ghost" href="comprar.html?c='+c.s+'&n='+encodeURIComponent(c.n)+'">Comprar R$ 9,90</a>'+
    '<a class="btn ghost" href="'+PDF+c.s+'.pdf" target="_blank" rel="noopener">Apostila</a>'+
    '<a class="btn ghost" href="'+EX+c.s+'.pdf" target="_blank" rel="noopener">Exercícios</a></div></div>';
   el.addEventListener('mousemove',e=>{
