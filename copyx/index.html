@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading social com a COPY-X | Conheça a plataforma</title>
+<meta name="description" content="Conheça a COPY-X, plataforma de trading social: escolha traders para acompanhar, comece com valor baixo e entenda os riscos antes de decidir. Fale comigo no WhatsApp ou faça seu cadastro.">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Direcao: Cinema tech (identidade AITECH x COPY-X do PDF) */
+:root{
+  --noite:#02060F; --noite2:#06101F; --painel:rgba(6,18,38,.72);
+  --ciano:#22D3EE; --ciano2:#0EA5E9; --lima:#8DC63F; --lima2:#A6E22E;
+  --texto:#E8F1FB; --suave:#9FB3CC; --linha:rgba(34,211,238,.28);
+  --zap:#25D366;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--noite);color:var(--texto);font-family:Inter,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.titulo{font-family:Rajdhani,Inter,sans-serif;letter-spacing:.01em}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+
+/* ---------- barra fixa ---------- */
+.topo{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(2,6,15,.72);backdrop-filter:blur(10px);border-bottom:1px solid rgba(34,211,238,.14)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:14px}
+.topo img{height:26px;width:auto;display:block}
+.topo .acoes{display:flex;gap:10px}
+
+/* ---------- botoes ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:700 15px Rajdhani,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:14px 26px;border-radius:10px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s;white-space:nowrap}
+.btn svg{width:19px;height:19px;flex:none}
+.btn:active{transform:translateY(1px)}
+.btn-zap{background:var(--zap);color:#03210F;box-shadow:0 10px 30px -10px rgba(37,211,102,.7)}
+.btn-zap:hover{box-shadow:0 14px 38px -8px rgba(37,211,102,.9);transform:translateY(-2px)}
+.btn-cad{background:linear-gradient(135deg,var(--lima2),var(--lima));color:#0A1503;box-shadow:0 10px 30px -10px rgba(141,198,63,.7)}
+.btn-cad:hover{box-shadow:0 14px 38px -8px rgba(166,226,46,.9);transform:translateY(-2px)}
+.btn-pequeno{padding:9px 16px;font-size:13px}
+.btn-linha{border-color:var(--linha);color:var(--ciano)}
+.btn-linha:hover{background:rgba(34,211,238,.1)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;overflow:hidden;isolation:isolate}
+.hero:before{content:"";position:absolute;inset:0;background:url(assets/hero.jpg) center/cover no-repeat;z-index:-2;transform:scale(1.04);animation:respira 26s ease-in-out infinite alternate}
+.hero:after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(2,6,15,.94) 0%,rgba(2,6,15,.72) 46%,rgba(2,6,15,.25) 100%),
+  linear-gradient(180deg,rgba(2,6,15,.55) 0%,transparent 30%,rgba(2,6,15,.95) 100%);z-index:-1}
+@keyframes respira{from{transform:scale(1.04)}to{transform:scale(1.12) translateX(-1.2%)}}
+.selo-topo{display:inline-flex;align-items:center;gap:10px;font:600 12.5px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--ciano);border:1px solid var(--linha);background:rgba(34,211,238,.07);padding:8px 14px;border-radius:99px;margin-bottom:22px}
+.selo-topo i{width:7px;height:7px;border-radius:50%;background:var(--lima2);box-shadow:0 0 12px var(--lima2)}
+h1{font-size:clamp(40px,6.4vw,76px);line-height:1.02;font-weight:700;text-transform:uppercase;max-width:15ch}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--ciano),var(--lima2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{font-size:clamp(16px,2vw,19px);color:var(--suave);max-width:54ch;margin:22px 0 32px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.fatos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:46px;max-width:640px}
+.fato{border-left:2px solid var(--ciano);padding-left:14px}
+.fato b{display:block;font:700 28px Rajdhani;color:#fff;line-height:1}
+.fato span{font-size:12px;color:var(--suave);letter-spacing:.04em}
+
+/* ---------- secoes ---------- */
+section{padding:84px 0;position:relative}
+.rotulo{font:600 12.5px Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--ciano);display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.rotulo:before{content:"";width:34px;height:2px;background:linear-gradient(90deg,var(--ciano),transparent)}
+h2{font-size:clamp(30px,4.2vw,50px);line-height:1.05;font-weight:700;text-transform:uppercase;max-width:20ch}
+.intro{color:var(--suave);max-width:60ch;margin-top:14px}
+
+/* cartoes neon */
+.grade{display:grid;gap:16px;margin-top:38px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.cartao{position:relative;background:var(--painel);border:1px solid var(--linha);border-radius:18px;padding:26px;backdrop-filter:blur(6px);transition:transform .25s,border-color .25s,box-shadow .25s}
+.cartao:hover{transform:translateY(-5px);border-color:rgba(34,211,238,.7);box-shadow:0 18px 50px -22px rgba(34,211,238,.6)}
+.cartao .ico{width:50px;height:50px;border-radius:50%;border:1.5px solid var(--ciano);display:grid;place-items:center;margin-bottom:16px;box-shadow:0 0 22px rgba(34,211,238,.28) inset}
+.cartao .ico svg{width:24px;height:24px;stroke:var(--ciano);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cartao h3{font-size:22px;text-transform:uppercase;margin-bottom:8px;color:#fff}
+.cartao p{font-size:14.5px;color:var(--suave)}
+
+/* bloco com globo */
+.globo{background:linear-gradient(180deg,var(--noite),var(--noite2) 40%,var(--noite))}
+.globo .duas{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center}
+.globo img{width:100%;border-radius:20px;border:1px solid var(--linha);box-shadow:0 30px 80px -30px rgba(34,211,238,.45)}
+.lista{list-style:none;margin-top:24px;display:grid;gap:14px}
+.lista li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px}
+.lista li:before{content:"";flex:none;width:9px;height:9px;margin-top:9px;background:var(--lima2);box-shadow:0 0 12px var(--lima2);transform:rotate(45deg)}
+.lista b{color:#fff}
+
+/* passos */
+.passos{counter-reset:p;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.passo{position:relative;border-top:2px solid var(--ciano);padding-top:22px}
+.passo:before{counter-increment:p;content:"0" counter(p);position:absolute;top:-17px;left:0;background:var(--noite);padding-right:12px;font:700 20px Rajdhani;color:var(--lima2)}
+.passo h3{font-size:21px;text-transform:uppercase;margin-bottom:6px}
+.passo p{font-size:14.5px;color:var(--suave)}
+
+/* risco: destaque honesto */
+.risco{background:linear-gradient(180deg,var(--noite),#0A0F1A)}
+.caixa-risco{border:1.5px solid #E3A008;background:rgba(227,160,8,.07);border-radius:18px;padding:30px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start}
+.caixa-risco .alerta{width:58px;height:58px;border-radius:50%;border:2px solid #E3A008;display:grid;place-items:center;color:#F5B83D;font:700 30px Rajdhani}
+.caixa-risco h3{font-size:25px;text-transform:uppercase;color:#F5B83D;margin-bottom:10px}
+.caixa-risco ul{list-style:none;display:grid;gap:9px;font-size:15px;color:#E9DFC9}
+.caixa-risco li{padding-left:18px;position:relative}
+.caixa-risco li:before{content:"";position:absolute;left:0;top:10px;width:7px;height:7px;background:#F5B83D;border-radius:50%}
+
+/* cta final */
+.final{text-align:center;overflow:hidden;isolation:isolate}
+.final:before{content:"";position:absolute;inset:0;background:url(assets/plataformas.jpg) center/cover;opacity:.35;z-index:-2}
+.final:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(2,6,15,.55),rgba(2,6,15,.96) 75%);z-index:-1}
+.final h2{margin:0 auto 14px;max-width:18ch}
+.final p.intro{margin:0 auto 30px}
+.final .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+footer{background:#010409;border-top:1px solid rgba(34,211,238,.14);padding:40px 0 100px;font-size:12.5px;color:#7A8CA6}
+footer img{height:24px;margin-bottom:16px;display:block}
+footer p{max-width:92ch;margin-bottom:10px}
+
+/* barra mobile fixa */
+.barra-mobile{display:none}
+@media (max-width:860px){
+  .g3,.passos{grid-template-columns:1fr}
+  .globo .duas{grid-template-columns:1fr}
+  .fatos{grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .fato b{font-size:22px}
+  .caixa-risco{grid-template-columns:1fr}
+  .topo .acoes .btn-cad{display:none}
+  .hero{padding-top:96px}
+  .barra-mobile{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(2,6,15,.92);backdrop-filter:blur(12px);border-top:1px solid rgba(34,211,238,.25)}
+  .barra-mobile .btn{padding:13px 8px;font-size:13.5px}
+}
+.revela{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.revela.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .hero:before{animation:none}
+  .revela{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <img src="assets/logo-anatechmg.png" alt="ANATECH MG">
+    <div class="acoes">
+      <a class="btn btn-zap btn-pequeno" href="https://wa.me/5531989513698?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20da%20COPY-X%20e%20quero%20tirar%20minhas%20d%C3%BAvidas." target="_blank" rel="noopener" data-evento="zap_topo">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+        WhatsApp
+      </a>
+      <a class="btn btn-cad btn-pequeno" href="https://copyxapp.com/auth/register?e=5m7eZCyBAsDW0f_4Oeusi1VYZlv4peSlFC4uuSRQ2QQ&a=1" target="_blank" rel="noopener sponsored" data-evento="cadastro_topo">Cadastro</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <span class="selo-topo"><i></i> Trading social · Plataforma COPY-X</span>
+    <h1>Entenda o <em>trading social</em> antes de decidir</h1>
+    <p class="sub">A COPY-X permite acompanhar traders e replicar operações automaticamente, com entrada a partir de US$ 10. Conheça como funciona, veja os riscos com clareza e escolha seu próximo passo.</p>
+    <div class="cta">
+      <a class="btn btn-zap" href="https://wa.me/5531989513698?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20da%20COPY-X%20e%20quero%20tirar%20minhas%20d%C3%BAvidas." target="_blank" rel="noopener" data-evento="zap_hero">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a class="btn btn-cad" href="https://copyxapp.com/auth/register?e=5m7eZCyBAsDW0f_4Oeusi1VYZlv4peSlFC4uuSRQ2QQ&a=1" target="_blank" rel="noopener sponsored" data-evento="cadastro_hero">Fazer meu cadastro</a>
+    </div>
+    <div class="fatos">
+      <div class="fato"><b>US$ 10</b><span>entrada mínima</span></div>
+      <div class="fato"><b>24h</b><span>mercado, 5 dias por semana</span></div>
+      <div class="fato"><b>Social</b><span>escolha quem acompanhar</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="globo">
+  <div class="wrap duas">
+    <div class="revela">
+      <div class="rotulo">O mercado</div>
+      <h2>Forex: o maior mercado financeiro do mundo</h2>
+      <ul class="lista">
+        <li><span><b>Pares de moedas.</b> Compra e venda de uma moeda contra outra, como EUR/USD e USD/JPY.</span></li>
+        <li><span><b>Funciona 24 horas, 5 dias por semana.</b> Bancos centrais, instituições e traders de varejo atuam juntos.</span></li>
+        <li><span><b>Corretora é a ponte.</b> Ela oferece a plataforma, os preços em tempo real e a execução das ordens.</span></li>
+        <li><span><b>Verifique a regulação.</b> Antes de depositar, consulte o órgão oficial que supervisiona a corretora.</span></li>
+      </ul>
+    </div>
+    <div class="revela"><img src="assets/globo.jpg" alt="Globo holográfico com gráficos de candles do mercado Forex" loading="lazy"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="rotulo">A plataforma</div>
+    <h2>Como a COPY-X funciona</h2>
+    <p class="intro">Em vez de operar sozinho, você escolhe um trader para acompanhar e a plataforma replica as operações dele na sua conta.</p>
+    <div class="grade g3">
+      <div class="cartao revela">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3 3-4.6 5.5-4.6s4.9 1.6 5.5 4.6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.6c2.3 0 4 1.3 4.5 3.8"/></svg></div>
+        <h3>Trading social</h3>
+        <p>Veja os traders disponíveis, compare o histórico e escolha quem acompanhar.</p>
+      </div>
+      <div class="cartao revela">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11L10 22l9-12h-6.5z"/></svg></div>
+        <h3>Operação automática</h3>
+        <p>As operações do trader escolhido são copiadas para a sua conta sem você precisar abrir cada ordem.</p>
+      </div>
+      <div class="cartao revela">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v5.5c0 4.6 3.2 8 8 9.5 4.8-1.5 8-4.9 8-9.5V6z"/><path d="m8.8 12 2.3 2.3L15.4 10"/></svg></div>
+        <h3>Entrada baixa</h3>
+        <p>Dá para começar com US$ 10, sem comissão de ativação informada pela plataforma.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="rotulo">Seu caminho</div>
+    <h2>Três passos, no seu ritmo</h2>
+    <div class="passos">
+      <div class="passo revela"><h3>Converse comigo</h3><p>Chame no WhatsApp, tire suas dúvidas e entenda se faz sentido para o seu perfil. Sem compromisso.</p></div>
+      <div class="passo revela"><h3>Faça o cadastro</h3><p>Crie sua conta pelo link oficial. Você confere os dados e as condições na própria plataforma.</p></div>
+      <div class="passo revela"><h3>Decida com calma</h3><p>Estude os traders, defina quanto aceita arriscar e só então decida se e quanto depositar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="risco">
+  <div class="wrap">
+    <div class="rotulo" style="color:#F5B83D">Leia antes de decidir</div>
+    <h2 style="margin-bottom:26px">O que ninguém deve esconder de você</h2>
+    <div class="caixa-risco revela">
+      <div class="alerta">!</div>
+      <div>
+        <h3>Trading envolve risco real de perda</h3>
+        <ul>
+          <li>Operar CFDs e produtos alavancados tem alto risco e pode causar perdas maiores que o valor investido.</li>
+          <li>Resultado passado, inclusive de traders que você copia, não garante resultado futuro.</li>
+          <li>Nunca invista dinheiro de que você precisa. Use apenas o que pode perder.</li>
+          <li>Esta página é informativa. Não é recomendação de investimento, nem promessa de ganho.</li>
+          <li>Verifique a regulação da corretora nos órgãos oficiais antes de depositar.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div class="rotulo" style="justify-content:center">Próximo passo</div>
+    <h2>Quer entender melhor antes de se cadastrar?</h2>
+    <p class="intro">Me chame no WhatsApp e eu explico o passo a passo. Se já se decidiu, o cadastro está a um toque.</p>
+    <div class="cta">
+      <a class="btn btn-zap" href="https://wa.me/5531989513698?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20da%20COPY-X%20e%20quero%20tirar%20minhas%20d%C3%BAvidas." target="_blank" rel="noopener" data-evento="zap_final">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a class="btn btn-cad" href="https://copyxapp.com/auth/register?e=5m7eZCyBAsDW0f_4Oeusi1VYZlv4peSlFC4uuSRQ2QQ&a=1" target="_blank" rel="noopener sponsored" data-evento="cadastro_final">Fazer meu cadastro</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo-anatechmg.png" alt="ANATECH MG">
+    <p><b>Aviso de risco.</b> Operar Forex, CFDs e outros produtos alavancados envolve risco significativo e pode resultar em perda de todo o capital investido. Desempenho passado não garante resultados futuros. Nenhuma informação desta página constitui recomendação de investimento, oferta ou promessa de rendimento.</p>
+    <p><b>Divulgação.</b> Esta é uma página independente de divulgação. O botão de cadastro leva ao site oficial da COPY-X por meio de um link de indicação, e o responsável por esta página pode receber remuneração pelas indicações. As condições, taxas e regulação são as da plataforma e devem ser conferidas no site dela.</p>
+    <p>Atendimento: WhatsApp (31) 98951-3698.</p>
+  </div>
+</footer>
+
+<div class="barra-mobile">
+  <a class="btn btn-zap" href="https://wa.me/5531989513698?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20da%20COPY-X%20e%20quero%20tirar%20minhas%20d%C3%BAvidas." target="_blank" rel="noopener" data-evento="zap_barra">WhatsApp</a>
+  <a class="btn btn-cad" href="https://copyxapp.com/auth/register?e=5m7eZCyBAsDW0f_4Oeusi1VYZlv4peSlFC4uuSRQ2QQ&a=1" target="_blank" rel="noopener sponsored" data-evento="cadastro_barra">Cadastro</a>
+</div>
+
+<script>
+// revelacao suave ao rolar
+(function(){
+  var els=document.querySelectorAll('.revela');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+// medicao de cliques (compativel com Pixel/GA se existirem na pagina)
+document.querySelectorAll('[data-evento]').forEach(function(a){
+  a.addEventListener('click',function(){
+    var nome=a.getAttribute('data-evento');
+    try{ if(window.fbq){ fbq('trackCustom',nome); } }catch(e){}
+    try{ if(window.gtag){ gtag('event',nome); } }catch(e){}
+  });
+});
+</script>
+</body>
+</html>
